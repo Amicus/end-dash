@@ -2,12 +2,13 @@ var path = require("path")
   , expect = require("expect.js")
 
 scriptModule(path.join(__dirname, "..", "lib", "end-dash.js"))
+scriptModule(path.join(__dirname, "..", "lib", "collection.js"))
 
 describe("Setting a single variable", function() {
 
   it("should be set in the html", function () {
-    var EndDash = window.require("/lib/end-dash") 
-      , template = new EndDash('<div class = "singleVariable-"></div>')
+    var Template = window.require("/lib/end-dash") 
+      , template = new Template('<div class = "singleVariable-"></div>')
     template.set("singleVariable", "this is value")
 
     $("body").append(template.template)
@@ -15,8 +16,8 @@ describe("Setting a single variable", function() {
   })
 
   it("should be set in the html even when nested in other elements", function () {
-    var EndDash = window.require("/lib/end-dash") 
-      , template = new EndDash('<div><div class = "singleVariable-"></div></div>')
+    var Template = window.require("/lib/end-dash") 
+      , template = new Template('<div><div class = "singleVariable-"></div></div>')
 
     template.set("singleVariable", "this is value")
 
@@ -25,8 +26,8 @@ describe("Setting a single variable", function() {
   })
 
   it("should overwrite existing content", function () {
-    var EndDash = window.require("/lib/end-dash") 
-      , template = new EndDash('<div class = "singleVariable-">derp</div>')
+    var Template = window.require("/lib/end-dash") 
+      , template = new Template('<div class = "singleVariable-">derp</div>')
 
     template.set("singleVariable", "this is value")
 

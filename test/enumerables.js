@@ -3,6 +3,7 @@ var path = require("path")
   , fs = require("fs")
 
 scriptModule(path.join(__dirname, "..", "lib", "end-dash.js"))
+scriptModule(path.join(__dirname, "..", "lib", "collection.js"))
 
 describe("An enumerable template", function() {
 

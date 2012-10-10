@@ -4,9 +4,12 @@ var jsdom = require("jsdom")
   , path = require("path")
 
 ;(function(global) {
+
   var scripts = [ __dirname + "/../vendor/jquery.js"
                 , __dirname + "/../lib/browser-require.js" ]
-    , scriptModules = { "/node_modules/underscore.js": path.resolve(__dirname + "/../node_modules/underscore/underscore.js") }
+
+    , scriptModules = { "/node_modules/underscore.js": path.resolve(__dirname + "/../node_modules/underscore/underscore.js")
+                      , "/node_modules/inflection.js": path.resolve(__dirname + "/../lib/inflection.js") }
     , window
     , projectRoot = path.resolve(__dirname + "/..")
 
