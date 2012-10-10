@@ -4,9 +4,9 @@ var jsdom = require("jsdom")
   , path = require("path")
 
 ;(function(global) {
-  var scripts = [ "http://code.jquery.com/jquery.js"
+  var scripts = [ __dirname + "/../vendor/jquery.js"
                 , __dirname + "/../lib/browser-require.js" ]
-    , scriptModules = {}
+    , scriptModules = { "/node_modules/underscore.js": path.resolve(__dirname + "/../node_modules/underscore/underscore.js") }
     , window
 
   /* 
@@ -26,7 +26,6 @@ var jsdom = require("jsdom")
   }
 
   beforeEach(function(done) {
-    console.log(scripts)
     jsdom.env({
       html: "<html><head></head><body></body></html>",
       scripts: scripts,
