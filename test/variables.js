@@ -24,4 +24,14 @@ describe("Setting a single variable", function() {
     expect($(".singleVariable-").html()).to.be("this is value")
   })
 
+  it("should overwrite existing content", function () {
+    var EndDash = window.require("/lib/end-dash") 
+      , template = new EndDash('<div class = "singleVariable-">derp</div>')
+
+    template.set("singleVariable", "this is value")
+
+    $("body").append(template.template)
+    expect($(".singleVariable-").html()).to.not.be("derp")
+  })
+ 
 })
