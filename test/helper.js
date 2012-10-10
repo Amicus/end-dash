@@ -8,6 +8,7 @@ var jsdom = require("jsdom")
                 , __dirname + "/../lib/browser-require.js" ]
     , scriptModules = { "/node_modules/underscore.js": path.resolve(__dirname + "/../node_modules/underscore/underscore.js") }
     , window
+    , projectRoot = path.resolve(__dirname + "/..")
 
   /* 
    * these scripts get loaded by each test automatically, 
@@ -18,7 +19,6 @@ var jsdom = require("jsdom")
     scripts.push(script)
   }
 
-  var projectRoot = path.resolve(__dirname + "/..")
 
   global.scriptModule = function (script) {
     var requirePath = path.resolve(script).replace(projectRoot, "")
