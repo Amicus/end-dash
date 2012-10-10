@@ -3,7 +3,10 @@
 Getting started
 ===============
 
-  Just include end dash in your page via script tag.
+```
+  npm install
+  mocha test
+```
 
 Setting variables
 -----------------
