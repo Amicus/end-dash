@@ -23,4 +23,5 @@ describe("Setting a single variable", function() {
     $("body").append(template.template)
     expect($(".singleVariable-").html()).to.be("this is value")
   })
+
 })
