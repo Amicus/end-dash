@@ -18,14 +18,40 @@ var jsdom = require("jsdom")
    * since we have not yet loaded a jsdom instance we
    * store the scripts to load once jsdom starts
    */
-  global.script = function (script) {
-    scripts.push(script)
+  global.script = function () {
+    var opts = _.last(arguments) 
+      , paths
+
+    if(typeof opts === "object") {
+      paths = _.initial(arguments)
+    } else {
+      paths = _.toArray(arguments)
+      opts = { module: false }
+    }
+
+    if(opts.module) {
+      loadModuleScript(paths)
+    } else {
+      loadScript(paths)
+    }
+  }
+
+  function loadScript() {
+    scripts.push.apply(scripts, arguments)
+  }
+
+  function loadModuleScript() {
+    _.each(arguments, function(script) {
+      var requirePath = path.resolve(script)
+      scriptModules[requirePath] = script
+    })
   }
 
 
-  global.scriptModule = function (script) {
-    var requirePath = path.resolve(script).replace(projectRoot, "")
-    scriptModules[requirePath] = script
+  function wrapWithModule(module, contents) {
+    return 'require.register("' + module.replace(projectRoot, "") + '", ' 
+         + 'function(module, exports, require, global) {\n' 
+         + contents + '})\n'
   }
 
   beforeEach(function(done) {
@@ -33,11 +59,10 @@ var jsdom = require("jsdom")
       html: "<html><head></head><body></body></html>",
       scripts: scripts,
       src: _(scriptModules).map(function(script, module) {
+        console.log(script)
         var contents = fs.readFileSync(script)
 
-        return 'require.register("' + module + '", ' 
-             + 'function(module, exports, require, global) {\n' 
-             + contents + '})\n'
+        return wrapWithModule(module, contents)
       }),
       done: jsDomLoaded
     })
@@ -53,20 +78,37 @@ var jsdom = require("jsdom")
         window.document.body.innerHTML = file
       }
 
-      global.script = function(file) {
-        var features = JSON.parse(JSON.stringify(window.document.implementation._features))
+      global.script = function() {
+        var opts
+          , paths
 
-        window.document.implementation.addFeature('FetchExternalResources', ['script'])
-        window.document.implementation.addFeature('ProcessExternalResources', ['script'])
-        window.document.implementation.addFeature('MutationEvents', ['1.0'])
-
-        script = window.document.createElement("script")
-        script.onload = function(argument) {
-          window.document.implementation._features = features
+        if(typeof opts === "object") {
+          paths = _.initial(arguments)
+          opts =  _.last(arguments) 
+        } else {
+          paths = _.toArray(arguments)
+          opts = { module: false }
         }
+ 
+        _(paths).each(function(file) {
+          var features = JSON.parse(JSON.stringify(window.document.implementation._features))
 
-        script.text = fs.readFileSync(file)
-        window.document.documentElement.appendChild(script)
+          window.document.implementation.addFeature('FetchExternalResources', ['script'])
+          window.document.implementation.addFeature('ProcessExternalResources', ['script'])
+          window.document.implementation.addFeature('MutationEvents', ['1.0'])
+
+          script = window.document.createElement("script")
+          script.onload = function(argument) {
+            window.document.implementation._features = features
+          }
+
+          if(opts.module) {
+            script.text = wrapWithModule(file, fs.readFileSync(file))
+          } else {
+            script.text = fs.readFileSync(file)
+          }
+          window.document.documentElement.appendChild(script)
+        })
       }
     }
   })

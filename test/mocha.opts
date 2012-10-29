@@ -1,4 +1,0 @@
---require expect.js ./test/helper.js
---ui bdd
---ignore-leaks
---reporter spec

@@ -2,8 +2,8 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
 
-scriptModule(path.join(__dirname, "..", "lib", "end-dash.js"))
-scriptModule(path.join(__dirname, "..", "lib", "collection.js"))
+script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
 
 describe("An enumerable template", function() {
 
