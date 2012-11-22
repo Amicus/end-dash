@@ -30,9 +30,9 @@ var jsdom = require("jsdom")
     }
 
     if(opts.module) {
-      loadModuleScript(paths)
+      loadModuleScript.apply(this, paths)
     } else {
-      loadScript(paths)
+      loadScript.apply(this, paths)
     }
   }
 
@@ -59,7 +59,6 @@ var jsdom = require("jsdom")
       html: "<html><head></head><body></body></html>",
       scripts: scripts,
       src: _(scriptModules).map(function(script, module) {
-        console.log(script)
         var contents = fs.readFileSync(script)
 
         return wrapWithModule(module, contents)
