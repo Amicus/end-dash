@@ -9,7 +9,7 @@ var jsdom = require("jsdom")
                 , __dirname + "/../lib/browser-require.js" ]
 
     , scriptModules = { "/node_modules/underscore.js": path.resolve(__dirname + "/../node_modules/underscore/underscore.js")
-                      , "/node_modules/inflection.js": path.resolve(__dirname + "/../lib/inflection.js") }
+                      , "/lib/inflection.js": path.resolve(__dirname + "/../lib/inflection.js") }
     , window
     , projectRoot = path.resolve(__dirname + "/..")
 
