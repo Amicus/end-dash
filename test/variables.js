@@ -3,9 +3,9 @@ var path = require("path")
 
 script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
 
 describe("Setting a single variable", function() {
-
   it("should be set in the html", function () {
     var Template = window.require("/lib/end-dash") 
       , template = new Template('<div class = "singleVariable-"></div>')

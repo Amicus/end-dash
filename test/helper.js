@@ -9,7 +9,8 @@ var jsdom = require("jsdom")
                 , __dirname + "/../lib/browser-require.js" ]
 
     , scriptModules = { "/node_modules/underscore.js": path.resolve(__dirname + "/../node_modules/underscore/underscore.js")
-                      , "/lib/inflection.js": path.resolve(__dirname + "/../lib/inflection.js") }
+                      , "/lib/inflection.js": path.resolve(__dirname + "/../lib/inflection.js") 
+                      , "/node_modules/backbone.js": path.resolve(__dirname + "/../node_modules/backbone/backbone.js") }
     , window
     , projectRoot = path.resolve(__dirname + "/..")
 
@@ -68,6 +69,7 @@ var jsdom = require("jsdom")
 
     function jsDomLoaded(errors, ctx) {
       window = global.window = ctx
+      window.console = console
       if(window.$) {
         global.$ = window.$
       }
