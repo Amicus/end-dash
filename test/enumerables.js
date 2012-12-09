@@ -4,6 +4,7 @@ var path = require("path")
 
 script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
 
 describe("An enumerable template", function() {
 
