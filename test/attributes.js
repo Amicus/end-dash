@@ -4,14 +4,15 @@ var path = require("path")
 
 script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
 
 describe("An element with an attribute", function() {
   it("should set the attribute", function () {
     window.console = console
-    var Template = window.require("/lib/end-dash") 
-      , template = new Template(fs.readFileSync(__dirname + "/support/attributes.html").toString())
-
-
+    var TemplateGenerator = window.require("/lib/end-dash")
+      , Template = new TemplateGenerator(fs.readFileSync(__dirname + "/support/attributes.html").toString()).generate()
+      , template = new Template
 
     template.set("name", "zach")
 
