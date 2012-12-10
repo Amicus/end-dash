@@ -8,8 +8,9 @@ script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
 describe("A bound template", function() {
 
   it("should set all the values in the html", function () { 
-    var Template = window.require("/lib/end-dash") 
-      , template = new Template('<div class = "singleVariable-"></div>')
+    var TemplateGenerator = window.require("/lib/end-dash")
+      , Template = new TemplateGenerator('<div class = "singleVariable-"></div>').generate()
+      , template = new Template
       , boundCallback
       , i = 0
       , bindable = {
