@@ -33,4 +33,16 @@ describe("When I initialize a template with a model", function() {
     expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Hawg")
     expect($(".peeps- li:nth-child(2) .name-").html()).to.be("Dawg")
   })
+  it("should watch for changes to models", function() {
+    var model = new Model({ ohHi: "Hello There" })
+      , TemplateGenerator = window.require("/lib/end-dash")
+      , Template = new TemplateGenerator('<div class = "ohHi-"></div>').generate()
+      , template = new Template(model)
+      , $ = window.$
+
+    $(window.document.body).append(template.template)
+    expect($(".ohHi-").html()).to.be("Hello There")
+    model.set("ohHi", "Good bye")
+    expect($(".ohHi-").html()).to.be("Good bye")
+  })
 })
