@@ -45,4 +45,24 @@ describe("When I initialize a template with a model", function() {
     model.set("ohHi", "Good bye")
     expect($(".ohHi-").html()).to.be("Good bye")
   })
+  it("should bind to a collection's changes", function () {
+    var models = new Collection([new Model({ name: "Hawg" })])
+      , TemplateGenerator = window.require("/lib/end-dash")
+      , Template = new TemplateGenerator('<ul class="peeps-"><li class = "peep-"><div class="name-"></div></li></ul>').generate()
+      , template = new Template({ peeps: models })
+      , $ = window.$
+
+    $(window.document.body).append(template.template)
+    expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Hawg")
+    expect($(".peeps- li:nth-child(2) .name-").html()).to.be(undefined)
+
+    models.add(new Model({ name: "Dawg" }))
+
+    expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Hawg")
+    expect($(".peeps- li:nth-child(2) .name-").html()).to.be("Dawg")
+
+    models.shift()
+
+    expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Dawg")
+  })
 })
