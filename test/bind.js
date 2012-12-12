@@ -14,10 +14,10 @@ describe("When I initialize a template with a model", function() {
     var model = new Model({ ohHi: "Hello There" })
       , TemplateGenerator = window.require("/lib/end-dash")
       , Template = new TemplateGenerator('<div class = "ohHi-"></div>').generate()
-      , template = new Template("ohHi")
+      , template = new Template(model)
       , $ = window.$
 
     $(window.document.body).append(template.template)
-    expect($("ohHi-").html()).to.be("Hello There")
+    expect($(".ohHi-").html()).to.be("Hello There")
   })
 })
