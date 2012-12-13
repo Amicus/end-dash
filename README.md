@@ -7,34 +7,46 @@ Getting started
   npm install
   mocha test
 ```
-
-Setting variables
------------------
-
-  To start we'll create a new template. Then set pageTitle on the template.
-
+Or, as a bower component,
 ```
-<h1 class = "pageTitle-"></h1>
-```
-The javascript
-```
-var template = new EndDash("html from above")
-template.set("pageTitle", "The title of the page")
+  bower install
 ```
 
-Enumerable Blocks
------------------
+Example
+=======
+
+Here's an example of a typical end-dash template:
 
 ```
-<ol class = "people-">
-  <li class = "person-">
-    <div class = "name-"></div>
+<div class = "message">
+Hey <a class = "name-" href = "/users/{user_id}"></a>,
+Here are some things to try in end dash:
+<ul class = "things-">
+  <li class = "thing-">
     <div class = "title-"></div>
+    <div class = "description-"></div>
   </li>
-</ol>
+</ul>
 ```
 
+Collections
+===========
+
+Defining Collections in end-dash is really easy.  
+  * Step One: Make a container with the plural name of your objects as class name
+  * Step Two: Inside the previous container, make another element with the singular of your object as the class name
+  * Step Three: Add dashes to the classes
+
+example
+-------
+
 ```
-var template = new EndDash("html from above")
-template.set("people", [{name: "Zach", title: "Developer"}, {name: "Dog", title: "Mr"}])
+<ul class = "things-">
+  <li class = "thing-">
+    <div class = "title-"></div>
+    <div class = "description-"></div>
+  </li>
+</ul>
 ```
+
+This is a collection of things.  Each thing has a title and a description. 
