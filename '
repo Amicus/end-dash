@@ -55,7 +55,7 @@ TemplateFactory.prototype.mapElement = function(key, element, name, value) {
   }
 
   if(type === "attribute") {
-    var match = key.match(/([a-zA-Z ]+)(?:\?([a-zA-Z ]*)\s*)?(?:\:\s*([a-zA-Z ]*))?/)
+    var match = value.match(/([a-zA-Z ]+)(?:\?([a-zA-Z ]*)\s*)?(?:\:\s*([a-zA-Z ]*))?/)
       , valueIfTrue
     key = match[1].replace(/^\s+|\s+$/g, "")
     if(match[2]) {
@@ -278,6 +278,7 @@ TemplateMethods.setAttribute = function(element, attributeName, attributeValue, 
     regex += "\\:\\s*" + valueIfFalse + "\\s*"
   }                                    
   regex += "}"
+  console.log(attributeValue)
   var newValue = attributeValue.replace(new RegExp(regex), replaceValue)
   element.attr(attributeName, newValue)
 }
