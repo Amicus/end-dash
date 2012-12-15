@@ -70,4 +70,36 @@ describe("When I initialize a template with a view bound to it", function() {
     Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- embeddedTestView-"></div></div>').generate()
     template = new Template(model)
   })
+  it("should setup a view for collections", function(done) {
+    var model = { things: new Collection([]) }
+      , TemplateGenerator = window.require("/lib/end-dash")
+      , $ = window.$
+      , Template
+      , template
+
+    TemplateGenerator.configure({ viewDirectory: "/test/views" })
+
+    var parentInstance
+    function Parent() {
+      parentInstance = this
+    }
+
+    function MockView(opts) {
+      expect(this).to.be.a(MockView)
+      expect(opts.collection).to.be(model.things)
+      expect(opts.parent).to.be.a(Parent)
+      expect(opts.parent).to.be(parentInstance)
+      //next tick because we have to allow the template constructor to return
+      //in order to check that it passed itself in
+      process.nextTick(function() {
+        expect(opts.template).to.be(template.collections["things"])
+        done()
+      })
+    }
+    window.require.modules["/test/views/test_view.js"] = { exports: Parent }
+    window.require.modules["/test/views/test_collection_view.js"] = { exports: MockView }
+
+    Template = new TemplateGenerator('<div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div>').generate()
+    template = new Template(model)
+  })
 })
