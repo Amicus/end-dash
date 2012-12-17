@@ -81,10 +81,12 @@ describe("When I initialize a template with a view bound to it", function() {
 
     var parentInstance
     function Parent() {
+      console.log("hey")
       parentInstance = this
     }
 
     function MockView(opts) {
+      console.log("hey")
       expect(this).to.be.a(MockView)
       expect(opts.collection).to.be(model.things)
       expect(opts.parent).to.be.a(Parent)

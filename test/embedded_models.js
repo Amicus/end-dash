@@ -20,7 +20,6 @@ describe("An enumerable template", function() {
 
     expect($("#surveyName").html()).to.be("A Survey")
 
-    console.log(jqts(template.template))
     expect($(".person- .name-").html()).to.be("Zach")
 
   })
