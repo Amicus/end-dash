@@ -21,5 +21,16 @@ describe("An enumerable template", function() {
     expect($(".people- .person-:nth-child(1) .name-").html()).to.be("Zach")
     expect($(".people- .person-:nth-child(2) .name-").html()).to.be("Dog")
   })
+  it("should make the collection empty", function () {
+    var TemplateGenerator = window.require("/lib/end-dash")
+      , Template = new TemplateGenerator(fs.readFileSync(__dirname + "/support/enumerable.html").toString()).generate()
+      , template = new Template
+
+    template.set("people", [])
+
+    $("body").append(template.template)
+
+    expect($(".people-").children().length).to.be(0)
+  })
 
 }) 
