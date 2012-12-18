@@ -21,7 +21,5 @@ describe("An enumerable template", function() {
     expect($("#surveyName").html()).to.be("A Survey")
 
     expect($(".person- .name-").html()).to.be("Zach")
-
   })
-
 })

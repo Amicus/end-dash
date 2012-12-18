@@ -86,7 +86,6 @@ describe("When I initialize a template with a view bound to it", function() {
     }
 
     function MockView(opts) {
-      console.log("hey")
       expect(this).to.be.a(MockView)
       expect(opts.collection).to.be(model.things)
       expect(opts.parent).to.be.a(Parent)
