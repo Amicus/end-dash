@@ -7,7 +7,7 @@ script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
 
-describe("An enumerable template", function() {
+describe("An embedded model", function() {
 
   it("should set all the values in the html", function () {
     var TemplateGenerator = window.require("/lib/end-dash")
