@@ -38,4 +38,4 @@ describe("A conditional attribute", function() {
     template.set("set", true)
     expect($("#el").attr("class")).to.be("omgYes")
   })
-  }) 
+}) 
