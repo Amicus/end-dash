@@ -34,9 +34,9 @@ describe("when integrating with backbone", function() {
     $("body").html(template.template)
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
 
-    expect($(".script- .question-:nth-child(1) > .name-").html()).to.be("q1")
-    expect($(".script- .question-:nth-child(2) > .name-").html()).to.be("q2")
-    expect($(".script- .question-:nth-child(3) > .name-").html()).to.be("q3")
+    expect($(".script- .question-:nth-child(1) > .arb > .name-").html()).to.be("q1")
+    expect($(".script- .question-:nth-child(2) > .arb > .name-").html()).to.be("q2")
+    expect($(".script- .question-:nth-child(3) > .arb > .name-").html()).to.be("q3")
 
     expect($(".script- .question-:nth-child(1) > .answer- > .name-").html()).to.be("a1")
     expect($(".script- .question-:nth-child(2) > .answer- > .name-").html()).to.be("a2")
@@ -62,9 +62,9 @@ describe("when integrating with backbone", function() {
     questions.reset(models)
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
 
-    expect($(".script- .question-:nth-child(1) > .name-").html()).to.be("q1")
-    expect($(".script- .question-:nth-child(2) > .name-").html()).to.be("q2")
-    expect($(".script- .question-:nth-child(3) > .name-").html()).to.be("q3")
+    expect($(".script- .question-:nth-child(1) > .arb > .name-").html()).to.be("q1")
+    expect($(".script- .question-:nth-child(2) > .arb > .name-").html()).to.be("q2")
+    expect($(".script- .question-:nth-child(3) > .arb > .name-").html()).to.be("q3")
 
     expect($(".script- .question-:nth-child(1) > .answer- > .name-").html()).to.be("a1")
     expect($(".script- .question-:nth-child(2) > .answer- > .name-").html()).to.be("a2")
