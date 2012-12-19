@@ -39,7 +39,6 @@ describe("getSelector", function() {
 
       if(found.length == 0) {
         console.log(selector)
-
       }
       expect(found.length).to.be(1)
       expect(found.is(el)).to.be(true)

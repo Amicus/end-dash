@@ -81,7 +81,6 @@ describe("When I initialize a template with a view bound to it", function() {
 
     var parentInstance
     function Parent() {
-      console.log("hey")
       parentInstance = this
     }
 
