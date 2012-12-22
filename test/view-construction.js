@@ -19,7 +19,6 @@ describe("When I initialize a template with a view bound to it", function() {
       , Template
       , template
 
-    TemplateGenerator.configure({ viewDirectory: "/test/views" })
 
     function MockView(opts) {
       expect(this).to.be.a(MockView)
@@ -32,7 +31,8 @@ describe("When I initialize a template with a view bound to it", function() {
         done()
       })
     }
-    window.require.modules["/test/views/test_view.js"] = { exports: MockView }
+
+    TemplateGenerator.registerView("TestView", MockView)
 
     Template = new TemplateGenerator('<div class = "thing- testView-"></div>').generate()
     template = new Template(model)
@@ -44,8 +44,6 @@ describe("When I initialize a template with a view bound to it", function() {
       , $ = window.$
       , Template
       , template
-
-    TemplateGenerator.configure({ viewDirectory: "/test/views" })
 
     var parentInstance
     function Parent() {
@@ -64,8 +62,9 @@ describe("When I initialize a template with a view bound to it", function() {
         done()
       })
     }
-    window.require.modules["/test/views/test_view.js"] = { exports: Parent }
-    window.require.modules["/test/views/embedded_test_view.js"] = { exports: MockView }
+
+    TemplateGenerator.registerView("EmbeddedTestView", MockView)
+    TemplateGenerator.registerView("TestView", Parent)
 
     Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- embeddedTestView-"></div></div>').generate()
     template = new Template(model)
@@ -76,8 +75,6 @@ describe("When I initialize a template with a view bound to it", function() {
       , $ = window.$
       , Template
       , template
-
-    TemplateGenerator.configure({ viewDirectory: "/test/views" })
 
     var parentInstance
     function Parent() {
@@ -96,8 +93,9 @@ describe("When I initialize a template with a view bound to it", function() {
         done()
       })
     }
-    window.require.modules["/test/views/test_view.js"] = { exports: Parent }
-    window.require.modules["/test/views/test_collection_view.js"] = { exports: MockView }
+
+    TemplateGenerator.registerView("TestCollectionView", MockView)
+    TemplateGenerator.registerView("TestView", Parent)
 
     Template = new TemplateGenerator('<div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div>').generate()
     template = new Template(model)
