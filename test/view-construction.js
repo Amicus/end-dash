@@ -103,4 +103,36 @@ describe("When I initialize a template with a view bound to it", function() {
     Template = new TemplateGenerator('<div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div>').generate()
     template = new Template(model)
   })
+  it("should bind a view to submodels", function(done) {
+    var model = { thing: { value: "derp" } }
+      , TemplateGenerator = window.require("/lib/end-dash")
+      , $ = window.$
+      , Template
+      , template
+
+    var parentInstance
+    function Parent() {
+      parentInstance = this
+    }
+
+    function MockView(opts) {
+      expect(this).to.be.a(MockView)
+      expect(opts.model).to.be(model.thing)
+      expect(opts.el.is(".thing-")).to.be(true)
+      expect(opts.parent).to.be.a(Parent)
+      expect(opts.parent).to.be(parentInstance)
+      //next tick because we have to allow the template constructor to return
+      //in order to check that it passed itself in
+      process.nextTick(function() {
+        expect(opts.template).to.be(template.models["thing"])
+        done()
+      })
+    }
+
+    TemplateGenerator.registerView("TestCollectionView", MockView)
+    TemplateGenerator.registerView("TestView", Parent)
+
+    Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>').generate()
+    template = new Template(model)
+  }) 
 })
