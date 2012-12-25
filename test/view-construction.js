@@ -23,6 +23,7 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
+      expect(opts.el.is(".thing-")).to.be(true)
       expect(opts.parent).to.be(null)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
@@ -53,6 +54,7 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
+      expect(opts.el.is(".thing-")).to.be(true)
       expect(opts.parent).to.be.a(Parent)
       expect(opts.parent).to.be(parentInstance)
       //next tick because we have to allow the template constructor to return
@@ -84,6 +86,7 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       expect(this).to.be.a(MockView)
       expect(opts.collection).to.be(model.things)
+      expect(opts.el.is(".things-")).to.be(true)
       expect(opts.parent).to.be.a(Parent)
       expect(opts.parent).to.be(parentInstance)
       //next tick because we have to allow the template constructor to return
