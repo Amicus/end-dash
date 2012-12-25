@@ -50,3 +50,8 @@ example
 ```
 
 This is a collection of things.  Each thing has a title and a description. 
+
+ideas
+=====
+
+  * formatters, functions declared in the markup to format things
