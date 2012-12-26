@@ -40,5 +40,5 @@ describe("Setting a single variable", function() {
     $("body").append(template.template)
     expect($(".singleVariable-").html()).to.not.be("derp")
   })
- 
+  it("should set the value on inputs")
 })
