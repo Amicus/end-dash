@@ -13,6 +13,22 @@ script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
 
 describe("when integrating with backbone", function() {
+  describe("I pass a backbone model to set", function() {
+    it("should set it's attributes", function() {
+      var model = new Backbone.Model({ name: "q1", title: "herp" })
+        , markup = '<div class = "name-"></div><div class = "title-"></div>'
+        , TemplateGenerator = window.require("/lib/end-dash")
+        , Template = new TemplateGenerator(markup).generate()
+        , template = new Template()
+
+      $("body").html(template.template)
+
+      template.set(model)
+
+      expect($(".name-").html()).to.be("q1")
+      expect($(".title-").html()).to.be("herp")
+    })
+  })
   it("it should bind to a preloaded collection")
   it("it should bind to a collection that has not yet loaded")
   it("it should bind to a model that has not yet loaded")
