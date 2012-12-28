@@ -111,11 +111,8 @@ describe("When I initialize a template with a view bound to it", function() {
       , template
 
     var parentInstance
-    function Parent(opts) {
+    function Parent() {
       parentInstance = this
-      process.nextTick(function() {
-        expect(opts.template.view).to.be.a(Parent)
-      })
     }
 
     function MockView(opts) {
@@ -127,8 +124,7 @@ describe("When I initialize a template with a view bound to it", function() {
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect(opts.template.view).to.be.a(MockView)
-        expect(opts.template).to.be(template.get("thing"))
+        expect(opts.template).to.be(template.models["thing"])
         done()
       })
     }
@@ -138,6 +134,5 @@ describe("When I initialize a template with a view bound to it", function() {
 
     Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>').generate()
     template = new Template(model)
-
   }) 
 })
