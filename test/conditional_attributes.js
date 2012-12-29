@@ -16,13 +16,13 @@ describe("A conditional attribute", function() {
 
     $("body").append(template.template)
 
-    expect($("#el").attr("class")).to.be("omgYes")
-
-    template.set("set", false)
     expect($("#el").attr("class")).to.be("")
 
     template.set("set", true)
     expect($("#el").attr("class")).to.be("omgYes")
+
+    template.set("set", false)
+    expect($("#el").attr("class")).to.be("")
   })
 
   it("should handle else replacement values", function() {
