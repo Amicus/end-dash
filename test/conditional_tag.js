@@ -16,13 +16,14 @@ describe("A conditional tag", function() {
 
     $("body").append(template.template)
 
-    expect($(".isSet-").is(":visible")).to.be(true)
-
-    template.set("set", false)
+    //undefined is falsy, therefore, hidden
     expect($(".isSet-").is(":visible")).to.be(false)
 
     template.set("set", true)
     expect($(".isSet-").is(":visible")).to.be(true)
+
+    template.set("set", false)
+    expect($(".isSet-").is(":visible")).to.be(false)
   })
 
 })
