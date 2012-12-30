@@ -21,11 +21,13 @@ describe("When I initialize a template with a view bound to it", function() {
 
 
     function MockView(opts) {
+      var that = this
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
+        expect($(".thing-").data("view")).to.be(that)
         expect(opts.el.is($(".thing-"))).to.be(true)
         expect(opts.template).to.be(template)
         done()
@@ -49,11 +51,14 @@ describe("When I initialize a template with a view bound to it", function() {
     function Parent() {}
 
     function MockView(opts) {
+      var that = this
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
+
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
+        expect($(".thing-").data("view")).to.be(that)
         expect(opts.el.is($(".thing-"))).to.be(true)
         expect(opts.template).to.be(template)
         done()
@@ -77,11 +82,13 @@ describe("When I initialize a template with a view bound to it", function() {
     function Parent() {}
 
     function MockView(opts) {
+      var that = this
       expect(this).to.be.a(MockView)
       expect(opts.collection).to.be(model.herp.things)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
+        expect($(".things-").data("view")).to.be(that)
         expect(opts.el.is($(".things-"))).to.be(true)
         expect(opts.template).to.be(template.get("herp").get("things"))
         done()
@@ -102,14 +109,16 @@ describe("When I initialize a template with a view bound to it", function() {
       , Template
       , template
 
-    function Parent() { }
+    function Parent() {}
 
     function MockView(opts) {
+      var that = this
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model.thing)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
+        expect($(".thing-").data("view")).to.be(that)
         expect(opts.el.is($(".thing-"))).to.be(true)
         expect(opts.template).to.be(template.get("thing"))
         done()
