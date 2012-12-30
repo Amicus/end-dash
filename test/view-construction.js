@@ -24,7 +24,6 @@ describe("When I initialize a template with a view bound to it", function() {
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
       expect(opts.el.is(".thing-")).to.be(true)
-      expect(opts.parent).to.be(null)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
@@ -46,17 +45,12 @@ describe("When I initialize a template with a view bound to it", function() {
       , Template
       , template
 
-    var parentInstance
-    function Parent() {
-      parentInstance = this
-    }
+    function Parent() {}
 
     function MockView(opts) {
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
       expect(opts.el.is(".thing-")).to.be(true)
-      expect(opts.parent).to.be.a(Parent)
-      expect(opts.parent).to.be(parentInstance)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
@@ -72,27 +66,22 @@ describe("When I initialize a template with a view bound to it", function() {
     template = new Template(model)
   })
   it("should setup a view for collections", function(done) {
-    var model = { things: new Collection([]) }
+    var model = { herp: { things: new Collection([]) } }
       , TemplateGenerator = window.require("/lib/end-dash")
       , $ = window.$
       , Template
       , template
 
-    var parentInstance
-    function Parent() {
-      parentInstance = this
-    }
+    function Parent() {}
 
     function MockView(opts) {
       expect(this).to.be.a(MockView)
-      expect(opts.collection).to.be(model.things)
-      expect(opts.el.is(".things-")).to.be(true)
-      expect(opts.parent).to.be.a(Parent)
-      expect(opts.parent).to.be(parentInstance)
+      expect(opts.collection).to.be(model.herp.things)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect(opts.template).to.be(template.collections["things"])
+        expect(opts.el.is($(".things-"))).to.be(true)
+        expect(opts.template).to.be(template.get("herp").get("things"))
         done()
       })
     }
