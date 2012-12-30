@@ -36,10 +36,12 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       this.opts = opts
     }
+
     MockView.prototype.stopListening = function() {
       expect(this.opts.model).to.be(firstModel)
       done()
     }
+
     MockView.prototype.undelegateEvents = function() {
       expect(this.opts.model).to.be(firstModel)
       done()
