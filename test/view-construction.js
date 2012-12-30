@@ -23,10 +23,10 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
-      expect(opts.el.is(".thing-")).to.be(true)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
+        expect(opts.el.is($(".thing-"))).to.be(true)
         expect(opts.template).to.be(template)
         done()
       })
@@ -36,6 +36,7 @@ describe("When I initialize a template with a view bound to it", function() {
 
     Template = new TemplateGenerator('<div class = "thing- testView-"></div>').generate()
     template = new Template(model)
+    $("body").append(template.template)
   })
 
    it("should setup the view heirarchy correctly", function(done) {
@@ -50,10 +51,10 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
-      expect(opts.el.is(".thing-")).to.be(true)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
+        expect(opts.el.is($(".thing-"))).to.be(true)
         expect(opts.template).to.be(template)
         done()
       })
@@ -64,6 +65,7 @@ describe("When I initialize a template with a view bound to it", function() {
 
     Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- embeddedTestView-"></div></div>').generate()
     template = new Template(model)
+    $("body").append(template.template)
   })
   it("should setup a view for collections", function(done) {
     var model = { herp: { things: new Collection([]) } }
@@ -105,10 +107,10 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model.thing)
-      expect(opts.el.is(".thing-")).to.be(true)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
+        expect(opts.el.is($(".thing-"))).to.be(true)
         expect(opts.template).to.be(template.get("thing"))
         done()
       })
@@ -119,5 +121,6 @@ describe("When I initialize a template with a view bound to it", function() {
 
     Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>').generate()
     template = new Template(model)
+    $("body").append(template.template)
   }) 
 })
