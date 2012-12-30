@@ -24,7 +24,6 @@ describe("getSelector", function() {
       , element = $(".woot")
 
     expect($(util.getSelector(element, root), root).is(element)).to.be(true)
-    expect(util.getSelector(element, root)).to.be(".woot")
   })
   it("should create a unique selector for every element in complex markup", function() {
     var markup = fs.readFileSync(__dirname + "/support/complex_markup.html")
