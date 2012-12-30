@@ -75,10 +75,6 @@ var jsdom = require("jsdom")
       }
       done()
 
-      global.html = function(file) {
-        window.document.body.innerHTML = file
-      }
-
       global.script = function() {
         var opts
           , paths

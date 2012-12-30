@@ -36,7 +36,7 @@ describe("A nested collection", function() {
         }) 
       }
     })
-    template = new Template()
+    var template = new Template()
     template.set({things: things})
 
     $("body").html(template.template)
