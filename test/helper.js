@@ -3,6 +3,7 @@ var jsdom = require("jsdom")
   , _ = require("underscore")
   , path = require("path")
 
+
 ;(function(global) {
 
   var scripts = [ __dirname + "/../vendor/jquery.js"
@@ -47,7 +48,6 @@ var jsdom = require("jsdom")
       scriptModules[requirePath] = script
     })
   }
-
 
   function wrapWithModule(module, contents) {
     return 'require.register("' + module.replace(projectRoot, "") + '", ' 
