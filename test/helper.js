@@ -69,7 +69,10 @@ var jsdom = require("jsdom")
 
     function jsDomLoaded(errors, ctx) {
       window = global.window = ctx
+
       window.console = console
+      window.require.modules.path = { exports: path }
+
       if(window.$) {
         global.$ = window.$
       }
