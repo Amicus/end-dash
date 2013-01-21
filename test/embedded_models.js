@@ -14,7 +14,7 @@ describe("An embedded model", function() {
       , Template = new TemplateGenerator(fs.readFileSync(__dirname + "/support/embedded_models.html").toString()).generate()
       , template = new Template
 
-    template.set({ name: "A Survey", person: { name: "Zach" }})
+    template.set({ survey: { name: "A Survey", person: { name: "Zach" } } })
 
     $("body").append(template.template)
 
