@@ -38,4 +38,5 @@ describe("EndDash.reactTo", function() {
       var template = new Template(data)
     })
   })
+  it("should work with multiple reactions of the same type")
 })
