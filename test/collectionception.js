@@ -40,7 +40,6 @@ describe("A nested collection", function() {
     template.set({things: things})
 
     $("body").html(template.template)
-    console.log(jqts(template.template))
   })
 })
 
