@@ -18,7 +18,7 @@ describe("An enumerable template", function() {
   it("should set all the values in the html", function () {
     var TemplateGenerator = window.require("/lib/end-dash")
       , Template = new TemplateGenerator(fs.readFileSync(__dirname + "/support/enumerable.html").toString()).generate()
-      , template = new Template([{name: "Zach"}, {name: "Dog"}])
+      , template = new Template({ people: [{name: "Zach"}, {name: "Dog"}] })
 
     template.set
 
@@ -31,7 +31,7 @@ describe("An enumerable template", function() {
   it("should make the collection empty", function () {
     var TemplateGenerator = window.require("/lib/end-dash")
       , Template = new TemplateGenerator(fs.readFileSync(__dirname + "/support/enumerable.html").toString()).generate()
-      , template = new Template([])
+      , template = new Template({ people: [] })
 
     $("body").append(template.template)
 
