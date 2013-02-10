@@ -9,6 +9,8 @@ function jqts(element) {
 
 script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
 
@@ -19,11 +21,9 @@ describe("when integrating with backbone", function() {
         , markup = '<div class = "name-"></div><div class = "title-"></div>'
         , TemplateGenerator = window.require("/lib/end-dash")
         , Template = new TemplateGenerator(markup).generate()
-        , template = new Template()
+        , template = new Template(model)
 
       $("body").html(template.template)
-
-      template.set(model)
 
       expect($(".name-").html()).to.be("q1")
       expect($(".title-").html()).to.be("herp")

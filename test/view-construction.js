@@ -29,8 +29,8 @@ describe("When I initialize a template with a view bound to it", function() {
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect($(".thing-").data("view")).to.be(that)
-        expect(opts.el.is($(".thing-"))).to.be(true)
+        expect($(".ohHi-").data("view")).to.be(that)
+        expect(opts.el.is($(".ohHi-"))).to.be(true)
         expect(opts.template).to.be(template)
         done()
       })
@@ -38,8 +38,8 @@ describe("When I initialize a template with a view bound to it", function() {
 
     ViewReaction.registerView("TestView", MockView)
 
-    Template = new TemplateGenerator('<div class = "thing- testView-"><div class="ohHi-"></div></div>').generate()
-    template = new Template({ thing: model })
+    Template = new TemplateGenerator('<div class = "ohHi- testView-"></div>').generate()
+    template = new Template(model)
     $("body").append(template.template)
   })
 
@@ -86,14 +86,12 @@ describe("When I initialize a template with a view bound to it", function() {
     TemplateGenerator.registerReaction(ViewReaction)
 
     function Parent() {
-      console.log("parent")
       this.name = "parent"
     }
 
     function MockView(opts) {
       this.name = "mock"
       var that = this
-      console.log("ctor")
       expect(this).to.be.a(MockView)
       expect(opts.collection).to.be(model.herp.things)
       //next tick because we have to allow the template constructor to return
