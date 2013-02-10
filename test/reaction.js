@@ -5,11 +5,6 @@ var path = require("path")
   , jqts = require("../lib/util").jqts
   , Reaction = require("../lib/reaction")
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
- 
 describe("EndDash.reactTo", function() {
   describe("when I setup a reactor", function() {
     it("should parse and initialize it", function(done) {

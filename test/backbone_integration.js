@@ -3,19 +3,6 @@ var path = require("path")
   , fs = require("fs")
   , Backbone = require("backbone")
 
-function jqts(element) {
-  return $("<div>").append(element.clone()).html()
-}
-
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "model.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 describe("when integrating with backbone", function() {
   describe("I pass a backbone model to set", function() {
     it("should set it's attributes", function() {

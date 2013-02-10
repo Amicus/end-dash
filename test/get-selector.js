@@ -3,8 +3,6 @@ var util = require("../lib/util")
   , expect = require("expect.js")
   , fs = require("fs")
 
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 describe("getSelector", function() {
   it("should return a selector unique within root", function() {
     var html = '<div class = "hi"><span></span><span><div class = "woot"</span></div>'

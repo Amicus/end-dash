@@ -5,11 +5,6 @@ var path = require("path")
   , _ = require("underscore")
   , jqts = require("../lib/util").jqts
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 describe("A nested collection", function() {
   it("should support collections in collections in collections", function() {
     //use node's path in the browser env

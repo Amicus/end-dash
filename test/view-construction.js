@@ -6,16 +6,6 @@ var path = require("path")
   , Model = Backbone.Model
   , Collection = Backbone.Collection
 
- 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "model.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 describe("When I initialize a template with a view bound to it", function() {
   it("it should initialize the view correctly", function(done) {
     var model = new Model({ ohHi: "Hello There" })

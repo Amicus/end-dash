@@ -40,7 +40,6 @@ process.env.NODE_ENV = "test"
   }
    
   script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-  script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
   script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
   script(path.join(__dirname, "..", "lib", "reactions", "collection.js"), { module: true })
   script(path.join(__dirname, "..", "lib", "reactions", "model.js"), { module: true })

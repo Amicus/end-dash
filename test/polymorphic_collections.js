@@ -3,11 +3,6 @@ var path = require("path")
   , fs = require("fs")
   , Backbone = require("backbone")
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 //describe("A polymporhic template", function() {
 //
 //  it("should display the correct item based on type", function() {
