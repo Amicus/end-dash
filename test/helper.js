@@ -21,7 +21,7 @@ process.env.NODE_ENV = "test"
    * since we have not yet loaded a jsdom instance we
    * store the scripts to load once jsdom starts
    */
-  global.script = function () {
+  var script = global.script = function () {
     var opts = _.last(arguments) 
       , paths
 
@@ -38,6 +38,16 @@ process.env.NODE_ENV = "test"
       loadScript.apply(this, paths)
     }
   }
+   
+  script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "reactions", "collection.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "reactions", "model.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
+   
 
   function loadScript() {
     scripts.push.apply(scripts, arguments)

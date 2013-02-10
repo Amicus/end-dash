@@ -30,6 +30,7 @@ describe("A nested collection", function() {
       , template = new Template({ items: items, thing: new Backbone.Model({ name: "Zach" }) })
 
     $("body").html(template.template)
+    console.log($("body").html())
     expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
     expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")
     expect($(".thing- .name-").html()).to.be("Zach")
