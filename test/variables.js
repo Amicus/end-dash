@@ -1,6 +1,5 @@
 var path = require("path")
   , expect = require("expect.js")
-  , VariableReaction = require("../lib/reactions/variable")
 
 script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
