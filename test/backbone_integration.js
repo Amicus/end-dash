@@ -10,6 +10,8 @@ function jqts(element) {
 script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "reactions", "collection.js"), { module: true })
+script(path.join(__dirname, "..", "lib", "reactions", "model.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
@@ -18,7 +20,7 @@ describe("when integrating with backbone", function() {
   describe("I pass a backbone model to set", function() {
     it("should set it's attributes", function() {
       var model = new Backbone.Model({ name: "q1", title: "herp" })
-        , markup = '<div class = "name-"></div><div class = "title-"></div>'
+        , markup = '<div><div class = "name-"></div><div class = "title-"></div></div>'
         , TemplateGenerator = window.require("/lib/end-dash")
         , Template = new TemplateGenerator(markup).generate()
         , template = new Template(model)
@@ -35,7 +37,7 @@ describe("when integrating with backbone", function() {
   it("it should bind to a preloaded model")
   it("it should drill down and find associated models")
   it("it should throw an error when a model or collection is not found")
-  it("it should populate a collection within a module", function(done) {
+  it("it should populate a collection within a model", function(done) {
     var questions = new Backbone.Collection([
       new Backbone.Model({ name: "q1", answer: new Backbone.Model({ name: "a1" }) }), 
       new Backbone.Model({ name: "q2", answer: new Backbone.Model({ name: "a2" }) }), 
@@ -45,7 +47,7 @@ describe("when integrating with backbone", function() {
       , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
       , TemplateGenerator = window.require("/lib/end-dash")
       , Template = new TemplateGenerator(markup).generate()
-      , template = new Template({ script: script }) 
+      , template = new Template({ script: script })
 
     $("body").html(template.template)
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
