@@ -5,8 +5,8 @@ var path = require("path")
   , _ = require("underscore")
   , jqts = require("../lib/util").jqts
 
-describe("A nested collection", function() {
-  it("should support collections in collections in collections", function() {
+describe("A template with partials", function() {
+  it("should collections", function() {
     //use node's path in the browser env
     var EndDash = window.require("/lib/end-dash")
 
@@ -25,7 +25,6 @@ describe("A nested collection", function() {
       , template = new Template({ items: items, thing: new Backbone.Model({ name: "Zach" }) })
 
     $("body").html(template.template)
-    console.log($("body").html())
     expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
     expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")
     expect($(".thing- .name-").html()).to.be("Zach")
