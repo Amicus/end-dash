@@ -3,6 +3,7 @@ var jsdom = require("jsdom")
   , _ = require("underscore")
   , path = require("path")
 
+process.env.NODE_ENV = "test"
 
 ;(function(global) {
 
