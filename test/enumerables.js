@@ -5,14 +5,6 @@ var path = require("path")
 require("../lib/end-dash")
 require("../lib/reactions/collection") 
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true }) 
-
 describe("An enumerable template", function() {
 
   it("should set all the values in the html", function () {

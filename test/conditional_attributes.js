@@ -2,11 +2,6 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 describe("A conditional attribute", function() {
 
 //it("should be set correctly", function () {

@@ -6,11 +6,6 @@ var path = require("path")
   , Collection = Backbone.Collection
   , ed = require("../lib/end-dash")
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
- 
 describe("When I initialize a template with a model", function() {
   it("should bind to the values", function () {
     var model = new Model({ ohHi: "Hello There" })

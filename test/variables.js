@@ -1,13 +1,6 @@
 var path = require("path")
   , expect = require("expect.js")
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reactions", "variable.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 describe("Setting a single variable", function() {
   it("should be set in the html", function () {
     var TemplateBuilder = window.require("/lib/end-dash") 

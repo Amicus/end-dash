@@ -3,11 +3,6 @@ var path = require("path")
   , fs = require("fs")
   , Backbone = require("backbone")
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
- 
 describe("when the template has a form element", function() {
 it("should update the model when it changes to it's change")
 //  var model = new Backbone.Model({ name: "old" })
