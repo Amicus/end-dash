@@ -44,6 +44,7 @@ process.env.NODE_ENV = "test"
   script(path.join(__dirname, "..", "lib", "reactions", "collection.js"), { module: true })
   script(path.join(__dirname, "..", "lib", "reactions", "model.js"), { module: true })
   script(path.join(__dirname, "..", "lib", "reaction.js"), { module: true })
+  script(path.join(__dirname, "..", "lib", "template.js"), { module: true })
   script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
   script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
    

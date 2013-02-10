@@ -1,6 +1,8 @@
 var path = require("path")
   , expect = require("expect.js")
 
+require("../lib/template")
+
 describe("Setting a single variable", function() {
   it("should be set in the html", function () {
     var TemplateBuilder = window.require("/lib/end-dash") 
