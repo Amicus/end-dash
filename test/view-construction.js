@@ -2,6 +2,7 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
+  , ViewReaction = require("../lib/reactions/views")
   , Model = Backbone.Model
   , Collection = Backbone.Collection
 
@@ -18,6 +19,8 @@ describe("When I initialize a template with a view bound to it", function() {
       , Template
       , template
 
+    TemplateGenerator.registerReaction(ViewReaction)
+
 
     function MockView(opts) {
       var that = this
@@ -33,7 +36,7 @@ describe("When I initialize a template with a view bound to it", function() {
       })
     }
 
-    TemplateGenerator.registerView("TestView", MockView)
+    ViewReaction.registerView("TestView", MockView)
 
     Template = new TemplateGenerator('<div class = "thing- testView-"><div class="ohHi-"></div></div>').generate()
     template = new Template({ thing: model })
@@ -46,6 +49,8 @@ describe("When I initialize a template with a view bound to it", function() {
       , $ = window.$
       , Template
       , template
+
+    TemplateGenerator.registerReaction(ViewReaction)
 
     function Parent() {}
 
@@ -64,8 +69,8 @@ describe("When I initialize a template with a view bound to it", function() {
       })
     }
 
-    TemplateGenerator.registerView("EmbeddedTestView", MockView)
-    TemplateGenerator.registerView("TestView", Parent)
+    ViewReaction.registerView("EmbeddedTestView", MockView)
+    ViewReaction.registerView("TestView", Parent)
 
     Template = new TemplateGenerator('<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>').generate()
     template = new Template(model)
@@ -77,6 +82,8 @@ describe("When I initialize a template with a view bound to it", function() {
       , $ = window.$
       , Template
       , template
+
+    TemplateGenerator.registerReaction(ViewReaction)
 
     function Parent() {
       console.log("parent")
@@ -98,8 +105,8 @@ describe("When I initialize a template with a view bound to it", function() {
       })
     }
 
-    TemplateGenerator.registerView("TestCollectionView", MockView)
-    TemplateGenerator.registerView("TestView", Parent)
+    ViewReaction.registerView("TestCollectionView", MockView)
+    ViewReaction.registerView("TestView", Parent)
 
     Template = new TemplateGenerator('<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div></div>').generate()
     template = new Template(model)
@@ -111,6 +118,8 @@ describe("When I initialize a template with a view bound to it", function() {
       , $ = window.$
       , Template
       , template
+
+    TemplateGenerator.registerReaction(ViewReaction)
 
     function Parent() {}
 
@@ -127,8 +136,8 @@ describe("When I initialize a template with a view bound to it", function() {
       })
     }
 
-    TemplateGenerator.registerView("TestCollectionView", MockView)
-    TemplateGenerator.registerView("TestView", Parent)
+    ViewReaction.registerView("TestCollectionView", MockView)
+    ViewReaction.registerView("TestView", Parent)
 
     Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>').generate()
     template = new Template(model)

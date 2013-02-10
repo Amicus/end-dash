@@ -3,6 +3,7 @@ var path = require("path")
   , fs = require("fs")
   , ed = require("../lib/end-dash")
   , jqts = require("../lib/util").jqts
+  , Reaction = require("../lib/reaction")
 
 script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
 script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
@@ -16,7 +17,8 @@ describe("EndDash.reactTo", function() {
         , $ = window.$
         , parsed = false
 
-      EndDash.reactTo("[data-test]", {
+      var TestReaction = Reaction.extend({
+        selector: "[data-test]",
         parse: function(el) {
           parsed = true
                 
@@ -31,6 +33,7 @@ describe("EndDash.reactTo", function() {
           done()
         }
       })
+      EndDash.registerReaction(TestReaction)
 
       var Template = new EndDash('<div class="thing-"><div class="test" data-test="testValue"><span class="val-"></span></div></div>').generate()
         , data = { thing: { val: "yay" } }
