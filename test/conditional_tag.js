@@ -1,24 +1,22 @@
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
+  , Backbone = require("backbone")
+  , generateTemplate = require("./util").generateTemplate
 
 describe("A conditional tag", function() {
+  beforeEach(function() {
+    this.model = new Backbone.Model({})
+  })
+  it("should not be visible when false", function () {
+    var template = generateTemplate(this.model, '<div><div class="hasThing-"></div><div class="isSet-"></div></div>')
 
-//it("should not be visible when false", function () {
-//  var TemplateGenerator = window.require("/lib/end-dash")
-//    , Template = new TemplateGenerator('<div class="isSet-"></div>').generate()
-//    , template = new Template
-//
-//  $("body").append(template.template)
-//
-//  //undefined is falsy, therefore, hidden
-//  expect($(".isSet-").is(":visible")).to.be(false)
-//
-//  template.set("set", true)
-//  expect($(".isSet-").is(":visible")).to.be(true)
-//
-//  template.set("set", false)
-//  expect($(".isSet-").is(":visible")).to.be(false)
-//})
+    expect($(".isSet-").is(":visible")).to.be(false)
 
+    this.model.set({ set: true, thing: true })
+    expect($(".isSet-").is(":visible")).to.be(true)
+
+    this.model.set({ set: false, thing: false })
+    expect($(".isSet-").is(":visible")).to.be(false)
+  })
 })
