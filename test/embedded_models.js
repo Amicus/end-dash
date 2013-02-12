@@ -4,7 +4,6 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
 
 describe("An embedded model", function() {
-
   it("should set all the values in the html", function () {
     var template = generateTemplate({ survey: { name: "A Survey", person: { name: "Zach" } } }, fs.readFileSync(__dirname + "/support/embedded_models.html").toString())
 
