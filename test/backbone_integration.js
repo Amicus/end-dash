@@ -5,8 +5,6 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
   , Factory = require("test-things").Factory
 
-
-
 describe("when integrating with backbone", function() {
   beforeEach(function() {
     this.markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
@@ -61,4 +59,3 @@ describe("when integrating with backbone", function() {
     })
   }) 
 })
-
