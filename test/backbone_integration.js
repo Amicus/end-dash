@@ -9,6 +9,7 @@ var path = require("path")
 
 describe("when integrating with backbone", function() {
   beforeEach(function() {
+    this.markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
     this.answerFactory = new Factory(Backbone.Model, { 
       name: "a{{sequence(1)}}" 
     })
@@ -35,43 +36,29 @@ describe("when integrating with backbone", function() {
     })
   })
 
-  it("it should populate a collection within a model", function(done) {
+  it("it should populate a collection within a model", function() {
     var script = this.scriptFactory.generate()
       , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
-      , TemplateGenerator = window.require("/lib/end-dash")
-      , Template = new TemplateGenerator(markup).generate()
-      , template = new Template({ script: script })
+      , template = generateTemplate({ script: script }, this.markup) 
 
-    $("body").html(template.template)
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
-
-    expect($(".script- .question-:nth-child(1) > .arb > .name-").html()).to.be("q1")
-    expect($(".script- .question-:nth-child(2) > .arb > .name-").html()).to.be("q2")
-    expect($(".script- .question-:nth-child(3) > .arb > .name-").html()).to.be("q3")
-
-    expect($(".script- .question-:nth-child(1) > .answer- > .name-").html()).to.be("a1")
-    expect($(".script- .question-:nth-child(2) > .answer- > .name-").html()).to.be("a2")
-    expect($(".script- .question-:nth-child(3) > .answer- > .name-").html()).to.be("a3")
-    done()
+    script.get("questions").each(function(question, i) {
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+    }) 
   })
 
-  it("it should update the collection after reset", function(done) {
+  it("it should update the collection after reset", function() {
     var script = this.scriptFactory.generate({ questions: this.questionCollectionFactory.generate(0) })
-      , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
-      , template = generateTemplate({ script: script }, markup) 
+      , template = generateTemplate({ script: script }, this.markup) 
 
     script.get("questions").reset(this.questionCollectionFactory.generate().models)
 
-    expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
-
-    expect($(".script- .question-:nth-child(1) > .arb > .name-").html()).to.be("q1")
-    expect($(".script- .question-:nth-child(2) > .arb > .name-").html()).to.be("q2")
-    expect($(".script- .question-:nth-child(3) > .arb > .name-").html()).to.be("q3")
-
-    expect($(".script- .question-:nth-child(1) > .answer- > .name-").html()).to.be("a1")
-    expect($(".script- .question-:nth-child(2) > .answer- > .name-").html()).to.be("a2")
-    expect($(".script- .question-:nth-child(3) > .answer- > .name-").html()).to.be("a3")
-    done()
+    expect($(".script- .name-:nth-child(1)").html()).to.be(script.get("name"))
+    script.get("questions").each(function(question, i) {
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+    })
   }) 
 })
 
