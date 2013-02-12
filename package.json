@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "mocha": "1.x.x",
-    "jsdom": "0.3.x",
+    "jsdom": "0.4.x",
     "expect.js": "0.x.x"
   }
 }
