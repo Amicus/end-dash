@@ -5,14 +5,23 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
   , Factory = require("test-things").Factory
 
-  , answerFactory = new Factory(Backbone.Model, { name: "a{{sequence(1)}}" })
-  , questionFactory = new Factory(Backbone.Model, { name: "q{{sequence(1)}}", answer: answerFactory })
-  , scriptFactory = new Factory(Backbone.Model, { 
-    name: "the name", 
-    questions: questionFactory.collectionFactory(Backbone.Collection, 4)
-  })
+
 
 describe("when integrating with backbone", function() {
+  beforeEach(function() {
+    this.answerFactory = new Factory(Backbone.Model, { 
+      name: "a{{sequence(1)}}" 
+    })
+    this.questionFactory = new Factory(Backbone.Model, { 
+      name: "q{{sequence(1)}}", 
+      answer: this.answerFactory 
+    })
+    this.questionCollectionFactory = this.questionFactory.collectionFactory(Backbone.Collection, 3)
+    this.scriptFactory = new Factory(Backbone.Model, { 
+      name: "the name", 
+      questions: this.questionCollectionFactory
+    }) 
+  })
   describe("I pass a backbone model to set", function() {
     it("should set it's attributes", function() {
       var model = new Backbone.Model({ name: "q1", title: "herp" })
@@ -27,8 +36,7 @@ describe("when integrating with backbone", function() {
   })
 
   it("it should populate a collection within a model", function(done) {
-    var questions = questionFactory.collection(Backbone.Collection, 3)
-    var script = new Backbone.Model({ name: "the name", questions: questions })
+    var script = this.scriptFactory.generate()
       , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
       , TemplateGenerator = window.require("/lib/end-dash")
       , Template = new TemplateGenerator(markup).generate()
@@ -48,19 +56,12 @@ describe("when integrating with backbone", function() {
   })
 
   it("it should update the collection after reset", function(done) {
-    var models = [
-      new Backbone.Model({ name: "q1", answer: new Backbone.Model({ name: "a1" }) }), 
-      new Backbone.Model({ name: "q2", answer: new Backbone.Model({ name: "a2" }) }), 
-      new Backbone.Model({ name: "q3", answer: new Backbone.Model({ name: "a3" }) })
-    ]
-    var questions = new Backbone.Collection()
-    var script = new Backbone.Model({ name: "the name", questions: questions })
+    var script = this.scriptFactory.generate({ questions: this.questionCollectionFactory.generate(0) })
       , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
       , template = generateTemplate({ script: script }, markup) 
 
-    $("body").html(template.template)
+    script.get("questions").reset(this.questionCollectionFactory.generate().models)
 
-    questions.reset(models)
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
 
     expect($(".script- .question-:nth-child(1) > .arb > .name-").html()).to.be("q1")
