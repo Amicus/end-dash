@@ -2,15 +2,14 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
+  , generateTemplate = require("./util").generateTemplate
 
 describe("when integrating with backbone", function() {
   describe("I pass a backbone model to set", function() {
     it("should set it's attributes", function() {
       var model = new Backbone.Model({ name: "q1", title: "herp" })
         , markup = '<div><div class = "name-"></div><div class = "title-"></div></div>'
-        , TemplateGenerator = window.require("/lib/end-dash")
-        , Template = new TemplateGenerator(markup).generate()
-        , template = new Template(model)
+        , template = generateTemplate(model, markup)
 
       $("body").html(template.template)
 
@@ -18,12 +17,6 @@ describe("when integrating with backbone", function() {
       expect($(".title-").html()).to.be("herp")
     })
   })
-  it("it should bind to a preloaded collection")
-  it("it should bind to a collection that has not yet loaded")
-  it("it should bind to a model that has not yet loaded")
-  it("it should bind to a preloaded model")
-  it("it should drill down and find associated models")
-  it("it should throw an error when a model or collection is not found")
   it("it should populate a collection within a model", function(done) {
     var questions = new Backbone.Collection([
       new Backbone.Model({ name: "q1", answer: new Backbone.Model({ name: "a1" }) }), 
@@ -58,9 +51,7 @@ describe("when integrating with backbone", function() {
     var questions = new Backbone.Collection()
     var script = new Backbone.Model({ name: "the name", questions: questions })
       , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
-      , TemplateGenerator = window.require("/lib/end-dash")
-      , Template = new TemplateGenerator(markup).generate()
-      , template = new Template({ script: script }) 
+      , template = generateTemplate({ script: script }, markup) 
 
     $("body").html(template.template)
 
@@ -76,10 +67,5 @@ describe("when integrating with backbone", function() {
     expect($(".script- .question-:nth-child(3) > .answer- > .name-").html()).to.be("a3")
     done()
   }) 
-
-/*
- * <div class = "isThing- script-"> this will try to build the selector for isThing- 
- * from within the contents of script-, which it will never find!
- **/
 })
 
