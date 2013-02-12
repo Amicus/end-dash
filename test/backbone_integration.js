@@ -3,6 +3,14 @@ var path = require("path")
   , fs = require("fs")
   , Backbone = require("backbone")
   , generateTemplate = require("./util").generateTemplate
+  , Factory = require("test-things").Factory
+
+  , answerFactory = new Factory(Backbone.Model, { name: "a{{sequence(1)}}" })
+  , questionFactory = new Factory(Backbone.Model, { name: "q{{sequence(1)}}", answer: answerFactory })
+  , scriptFactory = new Factory(Backbone.Model, { 
+    name: "the name", 
+    questions: questionFactory.collectionFactory(Backbone.Collection, 4)
+  })
 
 describe("when integrating with backbone", function() {
   describe("I pass a backbone model to set", function() {
@@ -17,12 +25,9 @@ describe("when integrating with backbone", function() {
       expect($(".title-").html()).to.be("herp")
     })
   })
+
   it("it should populate a collection within a model", function(done) {
-    var questions = new Backbone.Collection([
-      new Backbone.Model({ name: "q1", answer: new Backbone.Model({ name: "a1" }) }), 
-      new Backbone.Model({ name: "q2", answer: new Backbone.Model({ name: "a2" }) }), 
-      new Backbone.Model({ name: "q3", answer: new Backbone.Model({ name: "a3" }) })
-    ])
+    var questions = questionFactory.collection(Backbone.Collection, 3)
     var script = new Backbone.Model({ name: "the name", questions: questions })
       , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
       , TemplateGenerator = window.require("/lib/end-dash")
