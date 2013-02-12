@@ -3,7 +3,7 @@ function generateTemplate(model, markup) {
     , Template = new EndDash(markup).generate()
     , template = new Template(model)
 
-  $("body").append(template.template)
+  $("body").html(template.template)
 
   return template
 }
