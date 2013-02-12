@@ -5,6 +5,7 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
 
 describe("A conditional attribute", function() {
+
   beforeEach(function() {
     this.model = new Backbone.Model({})
   })
@@ -32,6 +33,7 @@ describe("A conditional attribute", function() {
     this.model.set("set", true)
     expect($("#el").attr("class")).to.be("omgYes")
   })
+
   it("should default to the key if set to a boolean true", function() {
     var markup = '<div id="el" class="#{set}"></div>'
       , template = generateTemplate(this.model, markup)
