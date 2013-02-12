@@ -1,6 +1,7 @@
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
+  , generateTemplate = require("./util").generateTemplate
 
 describe("An embedded model", function() {
 
