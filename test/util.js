@@ -7,6 +7,4 @@ function generateTemplate(model, markup) {
 
   return template
 }
-module.exports = { 
-  generateTemplate: generateTemplate 
-}
+module.exports = { generateTemplate: generateTemplate }
