@@ -6,7 +6,7 @@ function generateTemplate(model, markup) {
   } else {
     Template = new EndDash(markup).generate() 
   }
-  template = new Template(model) 
+  template = new Template(model, { templateName: "/test/support/template.html" }) 
 
   $("body").html(template.template)
   return template

@@ -5,7 +5,6 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
 
 describe("An element with an attribute", function() {
-
   beforeEach(function() {
     this.markup = '<div><a href="/person/#{name}" id = "link"></a></div>'
   })
