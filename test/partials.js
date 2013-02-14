@@ -15,7 +15,7 @@ describe("A template with partials", function() {
       "/support/list_item.html"
     ]
 
-    var model = { 
+    var model = {
       items: new Backbone.Collection([{ variable: "wat1" }, { variable: "wat2" }]),
       thing: new Backbone.Model({ name: "Zach" }) 
     }
@@ -29,5 +29,6 @@ describe("A template with partials", function() {
     expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
     expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")
     expect($(".thing- .name-").html()).to.be("Zach")
+    expect($("embed").length).to.be(0)
   })
 })
