@@ -8,7 +8,7 @@ describe("An template", function() {
     before(function() {
       var root = {
         name: "root",
-        boot: { 
+        boot: {
           name: "boot",
           sock: {
             name: "sock" 
