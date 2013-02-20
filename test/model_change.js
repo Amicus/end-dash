@@ -18,6 +18,10 @@ describe("When I replace an embedded model", function() {
   
     model.set("subModel", new Backbone.Model({ title: "a new title" }))
 
+    _(subModel._events).each(function(events, key) {
+      expect(events.length).to.be(0)
+    })
+  
     expect($(".title-").html()).to.be("a new title")
   })
 })
