@@ -1,5 +1,4 @@
-var path = require("path")
-  , expect = require("expect.js")
+var expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
   , generateTemplate = require("./util").generateTemplate
