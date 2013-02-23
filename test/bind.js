@@ -34,6 +34,7 @@ describe("when I initialize a collection", function() {
 
   it("should bind to a collection", function () {
     this.models.add(new Model({ name: "Dawg" }))
+    console.log($("body").html())
     expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Hawg")
     expect($(".peeps- li:nth-child(2) .name-").html()).to.be("Dawg")
   })
