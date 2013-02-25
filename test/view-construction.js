@@ -87,8 +87,7 @@ describe("When I initialize a template with a view bound to it", function() {
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect($(".thing-").data("view")).to.be(that)
-        expect(opts.el.is($(".thing-"))).to.be(true)
+        expect(opts.el.is(".thing-")).to.be(true)
         done()
       })
     }
@@ -97,7 +96,5 @@ describe("When I initialize a template with a view bound to it", function() {
 
     var model = { thing: { value: "derp" } }
       , template = generateTemplate(model, '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>')
-
-    $("body").append(template.template)
   }) 
 })
