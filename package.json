@@ -16,6 +16,7 @@
   "devDependencies": {
     "mocha": "1.x.x",
     "jsdom": "0.4.x",
-    "expect.js": "0.x.x"
+    "expect.js": "0.x.x",
+    "test-things": "git+ssh://git@github.com/Amicus/test-things.git"
   }
 }
