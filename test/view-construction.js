@@ -6,6 +6,11 @@ var path = require("path")
   , Model = Backbone.Model
   , Collection = Backbone.Collection
   , generateTemplate = require("./util").generateTemplate
+  , views = {}
+
+ViewReaction.setGetView(function(name) {
+  return views[name]
+})
 
 describe("When I initialize a template with a view bound to it", function() {
   it("it should initialize the view correctly", function(done) {
@@ -19,11 +24,10 @@ describe("When I initialize a template with a view bound to it", function() {
       process.nextTick(function() {
         expect($(".ohHi-").data("view")).to.be(that)
         expect(opts.el.is($(".ohHi-"))).to.be(true)
-        expect(opts.template).to.be(template)
         done()
       })
     }
-    ViewReaction.registerView("testView", MockView)
+    views.testView = MockView
 
     var model = new Model({ ohHi: "Hello There" })
       , template = generateTemplate(model, '<div class = "ohHi- testView-"></div>')
@@ -41,12 +45,12 @@ describe("When I initialize a template with a view bound to it", function() {
       process.nextTick(function() {
         expect($(".ohHi-").data("view")).to.be(that)
         expect(opts.el.is($(".ohHi-"))).to.be(true)
-        expect(opts.template).to.be(template)
         done()
       })
     }
-    ViewReaction.registerView("embeddedTestView", MockView)
-    ViewReaction.registerView("testView", Parent)
+
+    views.embeddedTestView = MockView
+    views.testView = Parent
 
     var model = new Model({ ohHi: "Hello There" })
       , template = generateTemplate(model, '<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>')
@@ -66,8 +70,9 @@ describe("When I initialize a template with a view bound to it", function() {
         done()
       })
     }
-    ViewReaction.registerView("testCollectionView", MockView)
-    ViewReaction.registerView("testView", Parent)
+
+    views.testCollectionView = MockView
+    views.testView = Parent
 
     var model = { herp: { things: new Collection([]) } }
       , template = generateTemplate(model, '<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div></div>')
@@ -87,8 +92,8 @@ describe("When I initialize a template with a view bound to it", function() {
         done()
       })
     }
-    ViewReaction.registerView("testCollectionView", MockView)
-    ViewReaction.registerView("testView", Parent)
+    views.testCollectionView = MockView
+    views.testView = Parent
 
     var model = { thing: { value: "derp" } }
       , template = generateTemplate(model, '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>')
