@@ -1,13 +1,21 @@
 EndDash
 -------
 
-  * *Compiled* on the server.
-  * *Prepopulated* with data on the server.
-  * *One* & *two* way binding.
-  * *Extensible* easily extensible.
+  EndDash is a box full of useful things!
+
+  * *Compilable* on the server.
+  * *Live reloadable* of templates, and even things bound to them! †
+  *  Easily *Extensible*.
+  * *Prepopulatable* with data on the server.
+  *  One & two way *bindable*.
+
+† assuming you're not shitty, and make sure all application state is stored in
+either a presenter or a model.  If you're storing state in the DOM, or
+somewhere else, you're going to have a bad time. (don't be shitty) 
 
 Usage
 =====
+
 ```
 <div class="cause-">
   <div class="title-"></div>
@@ -111,3 +119,19 @@ And blam, you get:
   </div>
 </div>
 ```
+
+
+#Debugging EndDash templates.
+
+  Shit doesn't always work.  EndDash provides some useful tools to
+help debug.  
+
+  For example, maybe you have a variable, and you can't figure out why
+it's not getting the right value.  From the console you can do:
+
+```
+var model = EndDash.getModel(".myElement-") 
+```
+
+To get the element's model.  Then you can interact with it and see
+what's up.
