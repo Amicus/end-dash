@@ -3,8 +3,6 @@ var util = require("../lib/util")
   , expect = require("expect.js")
   , fs = require("fs")
 
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
-
 describe("getSelector", function() {
   it("should return a selector unique within root", function() {
     var html = '<div class = "hi"><span></span><span><div class = "woot"</span></div>'
@@ -24,7 +22,6 @@ describe("getSelector", function() {
       , element = $(".woot")
 
     expect($(util.getSelector(element, root), root).is(element)).to.be(true)
-    expect(util.getSelector(element, root)).to.be(".woot")
   })
   it("should create a unique selector for every element in complex markup", function() {
     var markup = fs.readFileSync(__dirname + "/support/complex_markup.html")
@@ -37,10 +34,6 @@ describe("getSelector", function() {
       var selector = util.getSelector($(el), root)
         , found = root.find(selector)
 
-      if(found.length == 0) {
-        console.log(selector)
-
-      }
       expect(found.length).to.be(1)
       expect(found.is(el)).to.be(true)
     })

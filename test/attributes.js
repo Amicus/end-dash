@@ -1,22 +1,45 @@
 var path = require("path")
+  , Model = require("backbone").Model
   , expect = require("expect.js")
   , fs = require("fs")
-
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
+  , generateTemplate = require("./util").generateTemplate
 
 describe("An element with an attribute", function() {
+  beforeEach(function() {
+    this.markup = '<div><a href="/person/#{name}" id = "link"></a></div>'
+  })
+
   it("should set the attribute", function () {
-    window.console = console
-    var TemplateGenerator = window.require("/lib/end-dash")
-      , Template = new TemplateGenerator(fs.readFileSync(__dirname + "/support/attributes.html").toString()).generate()
-      , template = new Template
-
-    template.set("name", "zach")
-
-    $("body").append(template.template)
+    var template = generateTemplate({ name: "zach" }, this.markup)
     expect($("#link").attr("href")).to.be("/person/zach")
+  })
+
+  it("should update the element's attribute when the model's attribute changes", function() {
+    var model = new Model({ name: "zach" })
+      , template = generateTemplate(model, this.markup)
+
+    expect($("#link").attr("href")).to.be("/person/zach")
+
+    model.set("name", "newName")
+    expect($("#link").attr("href")).to.be("/person/newName")
+  })
+})
+
+describe("An element with an attribute with multiple interpolations", function() {
+  it("should set the attribute", function() {
+   var markup = '<a id="link" href="#{one} and #{two}"></a>'
+     , template = generateTemplate({ one: '1', two: '2' }, markup)
+
+    expect($("#link").attr("href")).to.be("1 and 2")
+  })
+})
+
+describe("An element with multiple attributes and interpolations", function() {
+  it("should set the attribute", function() {
+    var markup = '<a id="link" href="#{one} and #{two}" class="#{three}"></a>'
+      , template = generateTemplate({ one: "1", two: "2", three: "3" }, markup)
+
+    expect($("#link").attr("href")).to.be("1 and 2")
+    expect($("#link").attr("class")).to.be("3")
   })
 })
