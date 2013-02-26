@@ -54,4 +54,39 @@ This is a collection of things.  Each thing has a title and a description.
 ideas
 =====
 
-  * formatters, functions declared in the markup to format things
+  * This is only partially end-dash related, but we could do the template thing
+implicitly in the router, i.e. given the router classname and method, we
+get the correct template, and render it.  Unless you explicity declare what template
+you want.
+
+```
+class SocialMail extends BaseRouter
+
+  "users/:userId/social_mail":"show"
+
+  @before ->
+    @currentUser = session.get("currentUser")
+
+  show: (userId)->
+    @socialMailConfiguration = SocialMailConfiguration.findBy { user: currentUser }
+    @mailingExplanation = new MailingExplanation.findBy { initiative: session.get("currentInitiative") }
+```
+
+behind the scenes this would basically do. 
+
+```
+Template = EndDash.getTemplate("/new/templates/social_mails/show") 
+
+@template = new Template 
+  currentUser: session.get("currentUser"), 
+  socialMailConfiguration: SocialMailConfiguration.findBy { user: currentUser }
+  etc: etc
+
+#and then when another route is loaded...
+
+@template.unbindAllEvents()
+```
+Boom, cleanup for free
+
+  * We could also do the "layouts" thing.  i.e. we have a layout that gets autorendered
+and then we render your template inside of that.
