@@ -2,72 +2,99 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
+  , ViewReaction = require("../lib/reactions/view")
   , Model = Backbone.Model
   , Collection = Backbone.Collection
-  , ed = require("../lib/end-dash")
+  , generateTemplate = require("./util").generateTemplate
+  , views = {}
 
-script(path.join(__dirname, "..", "lib", "end-dash.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "collection.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "parser.js"), { module: true })
-script(path.join(__dirname, "..", "lib", "util.js"), { module: true })
- 
+ViewReaction.setGetView(function(name) {
+  return views[name]
+})
+
 describe("When I initialize a template with a view bound to it", function() {
   it("it should initialize the view correctly", function(done) {
-    var model = new Model({ ohHi: "Hello There" })
-      , TemplateGenerator = window.require("/lib/end-dash")
-      , $ = window.$
-      , Template
-      , template
-
-    TemplateGenerator.configure({ viewDirectory: "/test/views" })
 
     function MockView(opts) {
+      var that = this
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
-      expect(opts.parent).to.be(null)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect(opts.template).to.be(template)
+        expect($(".ohHi-").data("view")).to.be(that)
+        expect(opts.el.is($(".ohHi-"))).to.be(true)
         done()
       })
     }
-    window.require.modules["/test/views/test_view.js"] = { exports: MockView }
+    views.testView = MockView
 
-    Template = new TemplateGenerator('<div class = "thing- testView-"></div>').generate()
-    template = new Template(model)
+    var model = new Model({ ohHi: "Hello There" })
+      , template = generateTemplate(model, '<div class = "ohHi- testView-"></div>')
   })
 
    it("should setup the view heirarchy correctly", function(done) {
-    var model = new Model({ ohHi: "Hello There" })
-      , TemplateGenerator = window.require("/lib/end-dash")
-      , $ = window.$
-      , Template
-      , template
-
-    TemplateGenerator.configure({ viewDirectory: "/test/views" })
-
-    var parentInstance
-    function Parent() {
-      parentInstance = this
-    }
-
+    function Parent() {}
     function MockView(opts) {
+      var that = this
       expect(this).to.be.a(MockView)
       expect(opts.model).to.be(model)
-      expect(opts.parent).to.be.a(Parent)
-      expect(opts.parent).to.be(parentInstance)
+
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect(opts.template).to.be(template)
+        expect($(".ohHi-").data("view")).to.be(that)
+        expect(opts.el.is($(".ohHi-"))).to.be(true)
         done()
       })
     }
-    window.require.modules["/test/views/test_view.js"] = { exports: Parent }
-    window.require.modules["/test/views/embedded_test_view.js"] = { exports: MockView }
 
-    Template = new TemplateGenerator('<div class = "testView-"><div class = "thing- embeddedTestView-"></div></div>').generate()
-    template = new Template(model)
+    views.embeddedTestView = MockView
+    views.testView = Parent
+
+    var model = new Model({ ohHi: "Hello There" })
+      , template = generateTemplate(model, '<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>')
   })
+  it("should setup a view for collections", function(done) {
+
+    function Parent() {}
+    function MockView(opts) {
+      var that = this
+      expect(this).to.be.a(MockView)
+      expect(opts.collection).to.be(model.herp.things)
+      //next tick because we have to allow the template constructor to return
+      //in order to check that it passed itself in
+      process.nextTick(function() {
+        expect($(".things-").data("view")).to.be(that)
+        expect(opts.el.is($(".things-"))).to.be(true)
+        done()
+      })
+    }
+
+    views.testCollectionView = MockView
+    views.testView = Parent
+
+    var model = { herp: { things: new Collection([]) } }
+      , template = generateTemplate(model, '<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div></div>')
+  })
+  it("should bind a view to submodels", function(done) {
+    function Parent() {}
+
+    function MockView(opts) {
+      var that = this
+      expect(this).to.be.a(MockView)
+      expect(opts.model).to.be(model.thing)
+      //next tick because we have to allow the template constructor to return
+      //in order to check that it passed itself in
+      process.nextTick(function() {
+        expect(opts.el.is(".thing-")).to.be(true)
+        done()
+      })
+    }
+    views.testCollectionView = MockView
+    views.testView = Parent
+
+    var model = { thing: { value: "derp" } }
+      , template = generateTemplate(model, '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>')
+  }) 
 })
