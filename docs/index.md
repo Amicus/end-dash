@@ -98,7 +98,7 @@ attribute you want to set.  Prepend data- to the attribute name and use
 </div>
 ```
 
-If the user in this case were to have an id of 1234, this would result in.
+  If the user in this case were to have an id of 1234, this would result in.
 
 ```
 <div class="user-">
@@ -106,14 +106,43 @@ If the user in this case were to have an id of 1234, this would result in.
 </div>
 ```
 
-And, like all other properties, if the id property on user were to change
+  And, like all other properties, if the id property on user were to change
 this would be automatically updated.
 
- 
-Scopes
-------
+Conditionals
+------------
 
-  Scopes bind an element and all child elements to a new model.
+  If you want to be able to hide or show an element based on a variable,
+you can use a conditional. It's the variables name, prefixed with
+is, has, isnt, or hasNo.
+
+`isnt` and `hasNo` are the negation of the variable.
+
+For example:
+
+```
+<div class="user-">
+  <div class="isntConfirmed-">
+    Your account has not yet been confirmed. 
+  </div>
+  <div class="isConfirmed-">
+    <div class="hasMoney-">
+      You have <div class="money-"></div> monies.
+    </div>
+    <div class="hasNoMoney-">
+      No monies :-(
+    </div>
+  </div>
+</div>
+```
+
+  If a variable is truthy (by the javascript definition of truthy) it will be
+displayed, if it isn't truthy it won't be.
+
+Model Blocks
+------------
+
+  Model blocks bind an element and all child elements to a new model.
 
 ```
 <div class="user-">
@@ -144,7 +173,6 @@ And blam, you get:
   </div>
 </div>
 ```
-
 
 # ViewBinding
 
