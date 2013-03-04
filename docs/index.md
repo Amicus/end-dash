@@ -85,10 +85,64 @@ I get the following.
 <div class="name-">Topper</div>
 ```                 
 
-Scopes
-------
+Attributes
+----------
 
-  Scopes bind an element and all child elements to a new model.
+  End-dash provides a convenient syntax for binding to attributes.  given the
+attribute you want to set.  Prepend data- to the attribute name and use
+`#{variableName}` in the value to interpolate the attribute.
+
+```
+<div class="user-">
+  <a data-href="/users/#{id}">Profile</a>
+</div>
+```
+
+  If the user in this case were to have an id of 1234, this would result in.
+
+```
+<div class="user-">
+  <a data-href="/users/1234">Profile</a>
+</div>
+```
+
+  And, like all other properties, if the id property on user were to change
+this would be automatically updated.
+
+Conditionals
+------------
+
+  If you want to be able to hide or show an element based on a variable,
+you can use a conditional. It's the variables name, prefixed with
+is, has, isnt, or hasNo.
+
+`isnt` and `hasNo` are the negation of the variable.
+
+For example:
+
+```
+<div class="user-">
+  <div class="isntConfirmed-">
+    Your account has not yet been confirmed. 
+  </div>
+  <div class="isConfirmed-">
+    <div class="hasMoney-">
+      You have <div class="money-"></div> monies.
+    </div>
+    <div class="hasNoMoney-">
+      No monies :-(
+    </div>
+  </div>
+</div>
+```
+
+  If a variable is truthy (by the javascript definition of truthy) it will be
+displayed, if it isn't truthy it won't be.
+
+Model Blocks
+------------
+
+  Model blocks bind an element and all child elements to a new model.
 
 ```
 <div class="user-">
@@ -120,8 +174,33 @@ And blam, you get:
 </div>
 ```
 
+# ViewBinding
 
-#Debugging EndDash templates.
+  When you put data-view on an element, the view will automatically be
+bound to the element.  The view will get the element and model or collection 
+passed in.
+
+```
+<div class="user-" data-view="users/show">
+  <div class="name-">Zach</div>
+</div>
+```
+
+  This will create a new view with the user- div as the `el` property and the
+user model as the `model` property into a view constructor.  
+
+  You can bind a view to any element, if you bind it to an element that does
+not itself have a model, it will find the nearest ancestor element with a model
+bound and pass in that.  In this case, the magic_button view, will get the
+button as it's `el` and it will get the thing model as it's model.
+
+```
+<div class="thing-">
+  <button data-view="magic_button_view">Magic</button>
+</div>
+``` 
+ 
+# Debugging EndDash templates.
 
   Shit doesn't always work.  EndDash provides some useful tools to
 help debug.  
