@@ -4,7 +4,7 @@ var generateTemplate = require("./util").generateTemplate
   , expect = require("expect.js")
   , _ = require("underscore")
   , fs = require("fs")
-  , views = {}
+  , views = { }
 
 
 describe("When I replace an embedded model", function() {
@@ -27,8 +27,13 @@ describe("When I replace an embedded model", function() {
   })
 
   it("should stop listening to old views", function(done) {
-    var testView = views.testView = function() { this.stopListening = function() { done(); } }
-      , subModel = new Backbone.Model({ title: "a title" })
+    views.testView = function() {
+      var once
+      this.stopListening = this.undelegateEvents = function() { 
+        once = (once) ? done() : true 
+      } 
+    }
+    var subModel = new Backbone.Model({ title: "a title" })
       , model = new Backbone.Model({ subModel: subModel })
       , markup = '<div><div class = "subModel-" data-view="testView"><div class = "title-"></div></div></div>'
       , template = generateTemplate(model, markup)
