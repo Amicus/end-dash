@@ -6,11 +6,13 @@ var generateTemplate = require("./util").generateTemplate
   , fs = require("fs")
   , views = {}
 
-ViewReaction.setGetView(function(name) {
-  return views[name]
-})
 
 describe("When I replace an embedded model", function() {
+  beforeEach(function() {
+    ViewReaction.setGetView(function(name) {
+      return views[name]
+    })
+  })
   it("should change it in the template", function() {
     var subModel = new Backbone.Model({ title: "a title" })
       , model = new Backbone.Model({ subModel: subModel })
