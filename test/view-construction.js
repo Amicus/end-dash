@@ -8,11 +8,12 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
   , views = {}
 
-ViewReaction.setGetView(function(name) {
-  return views[name]
-})
-
 describe("When I initialize a template with a view bound to it", function() {
+  beforeEach(function() {
+    ViewReaction.setGetView(function(name) {
+      return views[name]
+    })
+  }) 
   it("it should initialize the view correctly", function(done) {
 
     function MockView(opts) {
