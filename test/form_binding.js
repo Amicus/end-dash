@@ -4,7 +4,7 @@ var path = require("path")
   , Backbone = require("backbone")
   , generateTemplate = require("./util").generateTemplate
 
-describe("when the template has a form element", function() {
+describe("when the template has an input", function() {
   it("should update the model when it changes to it's change", function() {
     var model = new Backbone.Model({ name: "old" })
       , markup = '<div class = "model-"><input type="text" class = "name-"></div>'
@@ -16,7 +16,7 @@ describe("when the template has a form element", function() {
   it("should update the model when it changes to it's change", function() {
     var model = new Backbone.Model({ name: 1 })
       , markup = '<div class = "model-">' +
-                   '<input type="radio" class="name-" value="1">' + 
+                   '<input type="radio" class="name-" value="1">' +
                    '<input type="radio" class="name-" value="2">' +
                  '</div>'
 
@@ -27,5 +27,19 @@ describe("when the template has a form element", function() {
     model.set("name", 2)
     expect($("input:nth-child(1)").is(":checked")).to.be(false)
     expect($("input:nth-child(2)").is(":checked")).to.be(true)
-  }) 
+  })
+})
+describe("when the template has a select input", function() {
+  it("should update the model when it changes to it's change", function() {
+    var model = new Backbone.Model({ val: "2" })
+      , markup = '<div class="model-"><select class="val-">' +
+                   '<option id="opt1" value="1">1</option>' +
+                   '<option id="opt2" value="2">2</option>' +
+                 '</select></div>'
+      , template = generateTemplate({ model: model }, markup)
+
+    expect(model.get("val")).to.be("2")
+    $("#opt1").click()
+    expect(model.get("val")).to.be("1")
+  })
 })
