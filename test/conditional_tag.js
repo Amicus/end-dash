@@ -1,6 +1,7 @@
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
+  , helper = require("./helper")
   , Backbone = require("backbone")
   , generateTemplate = require("./util").generateTemplate
 
@@ -33,5 +34,21 @@ describe("A conditional tag", function() {
     expect($(".hasThing-").is(":visible")).to.be(false)
     expect($(".isntSet-").is(":visible")).to.be(true)
     expect($(".hasNoThing-").is(":visible")).to.be(true)
+  })
+  it("should 'and' two conditionals together", function () {
+    var template = generateTemplate(this.model, '<div id="test" class="hasThing- isntSet-"></div>')
+      , el = $("#test")
+
+    this.model.set({ set: false, thing: false })
+    expect(el.is(":visible")).to.be(false)
+
+    this.model.set({ set: true, thing: false })
+    expect(el.is(":visible")).to.be(false)
+
+    this.model.set({ set: false, thing: true })
+    expect(el.is(":visible")).to.be(true)
+
+    this.model.set({ set: true, thing: true })
+    expect(el.is(":visible")).to.be(false)
   })
 })
