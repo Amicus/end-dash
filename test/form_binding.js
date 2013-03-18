@@ -30,7 +30,8 @@ describe("when the template has an input", function() {
   })
 })
 describe("when the template has a select input", function() {
-  it("should update the model when it changes to it's change", function() {
+  it("should update the model when it changes to it's change")
+  var originalTestFunctionForWhenNotPending = function() {
     var model = new Backbone.Model({ val: "2" })
       , markup = '<div class="model-"><select class="val-">' +
                    '<option id="opt1" value="1">1</option>' +
@@ -41,5 +42,5 @@ describe("when the template has a select input", function() {
     expect(model.get("val")).to.be("2")
     $("#opt1").click()
     expect(model.get("val")).to.be("1")
-  })
+  }
 })
