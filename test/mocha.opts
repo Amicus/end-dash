@@ -1,4 +1,5 @@
 --require expect.js
+--compilers docjs:awesome-docs
 --ui bdd
 --globals window,$
 --reporter spec
