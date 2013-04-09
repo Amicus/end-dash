@@ -1,6 +1,0 @@
-# HERP DERP
-
-[](it "Should do shit")
-```javascript
-  expect("herp").to.be("herp")
-```

@@ -1,0 +1,11 @@
+<div class="blogPost-">
+  <div class="title-"></div>
+  <ul class="comments-">
+    <li class="comment-">
+      This comment is in response to:
+      <div class="title-" data-scope=".."></div>
+      Comment:
+      <div class="body-"></div>
+    </li>
+  </ul>
+</div>
