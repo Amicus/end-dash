@@ -5,7 +5,7 @@ Model = require("Backbone").Model
 EndDash = require("../lib/end-dash").generateTemplate
 ```
 
-[templates/blog_post.ed](./templates/blog_post.ed#L12-L23)
+[templates/blog_post.ed](./templates/blog_post.ed#L2-L7)
 
 #Changing Scopes
 
