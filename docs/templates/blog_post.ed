@@ -3,8 +3,9 @@
   <ul class="comments-">
     <li class="comment-">
       This comment is in response to:
-      <div class="title-" data-scope=".."></div>
+      <div class="post title-" data-scope="../.."></div>
       Comment:
+      <h2 class="comment title-"></h2>
       <div class="body-"></div>
     </li>
   </ul>

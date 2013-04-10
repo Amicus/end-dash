@@ -3,7 +3,7 @@ var jsdom = require("jsdom")
 before(function(done) {
   jsdom.env({
     html: "<html><head></head><body></body></html>",
-    scripts: ["http://code.jquery.com/jquery.js"],
+    scripts: [__dirname + "/../vendor/jquery.js"],
     done: jsDomLoaded
   })
 
