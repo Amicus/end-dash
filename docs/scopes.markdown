@@ -10,8 +10,6 @@ EndDash = require("../lib/end-dash").generateTemplate
   Often you need to access the properties of another model outside the current
 scope.
 
-  
-
 ##Accessing a Variable from a Parent
 
   An example would be where you're building a blog and you need to 
@@ -98,3 +96,9 @@ $("body").html(account.template)
   expect($(".transaction-:nth-child(1) .amount-").html()).to.be("100")
   expect($(".transaction-:nth-child(2) .amount-").html()).to.be("200")
 ```
+<<<<<<< Updated upstream
+=======
+
+##Absolute Scope Paths
+
+>>>>>>> Stashed changes
