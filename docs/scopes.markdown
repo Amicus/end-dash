@@ -16,13 +16,12 @@ access a the post's title from within each comment.
 
 [](beforeEach)
 ```coffeescript
-Template = (markup, {
+Template = Derp(markup, {
   blogPost: {
     title: "I'm a title.",
     comments: [{ body: "comment 1 body" }, { body: "comment 2 body" }]
   }
 })
-
 ```
 
 [](it "should do stuff")
