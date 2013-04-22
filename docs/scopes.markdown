@@ -15,7 +15,7 @@ scope.
   An example would be where you're building a blog and you need to 
 access a the post's title from within each comment. 
 
-[templates/blog_post.ed](./templates/blog_post.ed)
+  [](./templates/blog_post.ed "inline")
 
 [](beforeEach)
 ```coffeescript
@@ -96,9 +96,5 @@ $("body").html(account.template)
   expect($(".transaction-:nth-child(1) .amount-").html()).to.be("100")
   expect($(".transaction-:nth-child(2) .amount-").html()).to.be("200")
 ```
-<<<<<<< Updated upstream
-=======
 
 ##Absolute Scope Paths
-
->>>>>>> Stashed changes
