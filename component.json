@@ -1,9 +1,11 @@
 {
   "name": "end-dash",
+  "repo": "Amicus/end-dash"
   "version": "0.2.0",
-  "main": "./lib/end-dash.js",
+  "main": "lib/end-dash.js",
+  "scripts": []
   "dependencies": {
-    "jquery": "1.8.x",
-    "underscore": "1.4.x"
+    "component/jquery": "2.0.0",
+    "xcoderzach/underscore": "1.4.4"
   }
 }
