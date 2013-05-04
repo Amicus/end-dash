@@ -1,0 +1,12 @@
+<div class="account-">
+  <span class="name-"></span>'s <span class="accountType-"></span> account transactions
+  <ul class="transactions-">
+    <li class="transaction-">
+      <span class="amount-"></span> sent from 
+      <div data-scope="../..">
+        <span class="name-"></span>'s 
+        <span class="accountType-"></span> account
+      </div>
+    </li>
+  </ul>
+</div>
