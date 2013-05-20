@@ -19,5 +19,6 @@
     "jsdom": "0.5.x",
     "expect.js": "0.x.x",
     "test-things": "git+ssh://git@github.com/Amicus/test-things.git"
+    "awesome-docs": "git+ssh://git@github.com/Amicus/awesome-docs.git"
   }
 }
