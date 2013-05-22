@@ -13,7 +13,7 @@ describe("When I initialize a template with a view bound to it", function() {
     ViewReaction.setGetView(function(name) {
       return views[name]
     })
-  }) 
+  })
   it("it should initialize the view correctly", function(done) {
 
     function MockView(opts) {
@@ -84,7 +84,7 @@ describe("When I initialize a template with a view bound to it", function() {
     function MockView(opts) {
       var that = this
       expect(this).to.be.a(MockView)
-      expect(opts.model).to.be(model.thing)
+      expect(opts.model.attributes).to.eql(model.thing)
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
@@ -97,5 +97,5 @@ describe("When I initialize a template with a view bound to it", function() {
 
     var model = { thing: { value: "derp" } }
       , template = generateTemplate(model, '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>')
-  }) 
+  })
 })
