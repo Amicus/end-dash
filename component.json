@@ -1,7 +1,7 @@
 {
   "name": "end-dash",
   "repo": "Amicus/end-dash"
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "lib/end-dash.js",
   "scripts": []
   "dependencies": {
