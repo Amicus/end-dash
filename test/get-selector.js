@@ -3,6 +3,8 @@ var util = require("../lib/util")
   , expect = require("expect.js")
   , fs = require("fs")
 
+require("./helper")
+
 describe("getSelector", function() {
   it("should return a selector unique within root", function() {
     var html = '<div class = "hi"><span></span><span><div class = "woot"</span></div>'
@@ -30,9 +32,10 @@ describe("getSelector", function() {
 
     var root = $("#root")
       , elements = root.find("*")
+
     elements.each(function(i, el) {
       var selector = util.getSelector($(el), root)
-        , found = root.find(selector)
+      var found = root.find(selector)
 
       expect(found.length).to.be(1)
       expect(found.is(el)).to.be(true)
