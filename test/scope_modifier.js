@@ -1,7 +1,8 @@
 var expect = require("expect.js")
   , fs = require("fs")
   , generateTemplate = require("./util").generateTemplate
-  , markup = ''
+
+require("./helper")
 
 describe("An template", function() {
   describe("which has data-scope attributes", function() {
@@ -11,20 +12,20 @@ describe("An template", function() {
         boot: {
           name: "boot",
           sock: {
-            name: "sock" 
+            name: "sock"
           }
         },
         model: {
-          name: "model", 
+          name: "model",
           thing: {
             name: "thing",
             dude: {
-              name: "dude" 
+              name: "dude"
             },
             item: {
-              name: "item" 
+              name: "item"
             }
-          } 
+          }
         }
       }
       var template = generateTemplate(root, fs.readFileSync(__dirname + "/support/scopes.html").toString())
