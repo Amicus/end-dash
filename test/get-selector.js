@@ -35,7 +35,7 @@ describe("getSelector", function() {
 
     elements.each(function(i, el) {
       var selector = util.getSelector($(el), root)
-      var found = root.find(selector)
+        , found = root.find(selector)
 
       expect(found.length).to.be(1)
       expect(found.is(el)).to.be(true)
