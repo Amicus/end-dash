@@ -8,6 +8,8 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
   , views = {}
 
+require("./helper")
+
 describe("When I initialize a template with a view bound to it", function() {
   beforeEach(function() {
     ViewReaction.setGetView(function(name) {
@@ -97,5 +99,17 @@ describe("When I initialize a template with a view bound to it", function() {
 
     var model = { thing: { value: "derp" } }
       , template = generateTemplate(model, '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>')
+  })
+
+  it("should setup the view with the correct scope, once", function(done) {
+    var model = { currentUser: new Model() }
+      , template
+
+    views["navigation/menu_view"] = function(opts) {
+      expect(opts.model).to.be(model.currentUser)
+      done()
+    }
+
+    template = generateTemplate(model, '<div data-scope="/currentUser" data-view="navigation/menu_view"></div>')
   })
 })
