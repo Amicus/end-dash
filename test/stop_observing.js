@@ -34,7 +34,7 @@ describe("When I clean up a template", function() {
     expect(model.person.get("name")).to.be("zach")
   }) 
 
-  it("should not remove other peoples listeners", function(done) {
+  it("should not remove other peoples listeners from the model", function(done) {
     var model = { person: new Model({ name: "zach" }) }
       , markup = '<div class="person-"><input class="name-"></div>'
       , template = generateTemplate(model, markup)
@@ -47,4 +47,20 @@ describe("When I clean up a template", function() {
 
     model.person.set("property", "stuff")
   })
+
+  it("should not remove other peoples listeners from the element", function(done) {
+    var model = { person: new Model({ name: "zach" }) }
+      , markup = '<div class="person-"><input class="name-"></div>'
+      , template = generateTemplate(model, markup)
+
+ 
+    $(".name-").on("change", function() {
+      done()
+    }) 
+
+    template.cleanup()
+
+    $(".name-").change()
+  })
+
 })
