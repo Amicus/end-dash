@@ -15,9 +15,9 @@ describe("When I clean up a template", function() {
     expect($(".name-").html()).to.be("zach")
 
     template.cleanup()
-    model.person.set("name", "devin")
+    model.person.set("name", "devon")
 
-    expect($(".name-").html()).to.not.be("devin")
+    expect($(".name-").html()).to.not.be("devon")
     expect($(".name-").html()).to.be("zach")
   })
 
@@ -28,9 +28,9 @@ describe("When I clean up a template", function() {
 
     expect(model.person.get("name")).to.be("zach")
     template.cleanup()
-    $(".name-").val("devin").change()
+    $(".name-").val("devon").change()
 
-    expect(model.person.get("name")).to.not.be("devin")
+    expect(model.person.get("name")).to.not.be("devon")
     expect(model.person.get("name")).to.be("zach")
   }) 
 
