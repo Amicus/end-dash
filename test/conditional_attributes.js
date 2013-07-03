@@ -4,6 +4,8 @@ var path = require("path")
   , Backbone = require("backbone")
   , generateTemplate = require("./util").generateTemplate
 
+require("./helper")
+
 describe("A conditional attribute", function() {
 
   beforeEach(function() {
