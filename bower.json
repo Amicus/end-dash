@@ -1,6 +1,6 @@
 {
   "name": "end-dash",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "main": "./lib/end-dash.js",
   "dependencies": {
     "jquery": "1.8.x",
