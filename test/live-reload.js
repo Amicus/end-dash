@@ -10,9 +10,9 @@ describe("Setting a single variable", function() {
     var template = generateTemplate({ singleVariable: "this is value" }, '<div class = "singleVariable-"></div>')
     expect($(".singleVariable-").html()).to.be("this is value")
 
-    var newTemplate = '<p class = "singleVariable-"></p>'
+    var newTemplate = '<div><p class = "singleVariable-"></p><span class="newVariable-"></span></div>'
 
-    Template = (new EndDash(markup)).serialize()
-    template.init()
+    var parts = (new EndDash(markup)).serialize()
+    template.init(parts.markup, parts.structure)
   })
 })
