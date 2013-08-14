@@ -6,6 +6,8 @@ var expect = require("expect.js")
   , generateTemplate = require("./support/generate_template")
   , Factory = require("test-things").Factory
 
+ require("./helper")
+
 describe("when integrating with backbone", function() {
   beforeEach(function() {
     this.markup = fs.readFileSync(__dirname + "/support/templates/complex_nested.html").toString()
@@ -40,8 +42,8 @@ describe("when integrating with backbone", function() {
 
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
     script.get("questions").each(function(question, i) {
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+      expect($(".questions- li:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
+      expect($(".questions- li:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
     }) 
   })
 
@@ -53,8 +55,8 @@ describe("when integrating with backbone", function() {
 
     expect($(".script- .name-:nth-child(1)").html()).to.be(script.get("name"))
     script.get("questions").each(function(question, i) {
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+      expect($(".questions- li:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
+      expect($(".questions- li:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
     })
   }) 
 })
