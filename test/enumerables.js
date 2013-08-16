@@ -2,7 +2,9 @@ var expect = require("expect.js")
   , fs = require("fs")
   , generateTemplate = require("./util").generateTemplate
 
-describe("An enumerable template", function() {
+require("./helper.js")
+
+describe("A collection", function() {
 
   it("should set all the values in the html", function () {
     var model = { people: [{name: "Zach"}, {name: "Dog"}] }
