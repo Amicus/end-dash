@@ -26,8 +26,8 @@ describe("A template with partials", function() {
 
     var template = generateTemplate(model, "/support/partials.html")
 
-    expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
-    expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")
+    expect($(".items- li:nth-child(1) .variable-").html()).to.be("wat1")
+    expect($(".items- li:nth-child(2) .variable-").html()).to.be("wat2")
     expect($(".thing- .name-").html()).to.be("Zach")
     expect($("embed").length).to.be(0)
   })
