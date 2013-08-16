@@ -28,7 +28,7 @@ describe("when I initialize a collection", function() {
 
   beforeEach(function() {
     this.models = new Collection([new Model({ name: "Hawg" })])
-    this.markup = '<ul class="peeps-"><li class = "peep-"><div class="name-"></div></li></ul>'
+    this.markup = '<ul class="peeps-" data-col><li class = "peep-"><div class="name-"></div></li></ul>'
     this.template = generateTemplate({ peeps: this.models }, this.markup)
   })
 
