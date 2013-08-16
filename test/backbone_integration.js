@@ -4,6 +4,8 @@ var expect = require("expect.js")
   , generateTemplate = require("./util").generateTemplate
   , Factory = require("test-things").Factory
 
+ require("./helper")
+
 describe("when integrating with backbone", function() {
   beforeEach(function() {
     this.markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
@@ -52,10 +54,9 @@ describe("when integrating with backbone", function() {
     script.get("questions").reset(this.questionCollectionFactory.generate().models)
 
     expect($(".script- .name-:nth-child(1)").html()).to.be(script.get("name"))
-    console.log($(".script-").html())
     script.get("questions").each(function(question, i) {
-      expect($(".script- li:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
-      expect($(".script- li-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+      expect($(".questions- li:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
+      expect($(".questions- li:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
     })
   }) 
 })
