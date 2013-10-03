@@ -25,4 +25,16 @@ describe("Setting a single variable", function() {
     var template = generateTemplate({ singleVariable: "this is value" }, '<div><input class = "singleVariable-" /></div>')
     expect($(".singleVariable-").val()).to.be("this is value")
   })
+  
+  it("should set the value on select menus for true or false", function() {
+    var template = generateTemplate({ singleVariable: "false" }, 
+                                    '<div>' +
+                                        '<select class="singleVariable-">' +
+                                          '<option value="true">Yes</option>' +
+                                          '<option value="false">No</option>' +
+                                        '</select>' +
+                                      '</div>'
+                                    )
+    expect($(".singleVariable-").val()).to.be("false")
+  })
 })
