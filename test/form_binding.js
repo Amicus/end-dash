@@ -5,7 +5,7 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
 
 describe("when the template has an input", function() {
-  it("should update the model when it changes to it's change", function() {
+  it("should update the model when the DOM changes", function() {
     var model = new Backbone.Model({ name: "old" })
       , markup = '<div class = "model-"><input type="text" class = "name-"></div>'
       , template = generateTemplate({ model: model }, markup)
@@ -13,11 +13,11 @@ describe("when the template has an input", function() {
     $(".name-").val("new").change()
     expect(model.get("name")).to.be("new")
   })
-  it("should update the model when it changes to it's change", function() {
+  it("should update the DOM with a radio button to the value of the model", function() {
     var model = new Backbone.Model({ name: 1 })
       , markup = '<div class = "model-">' +
-                   '<input type="radio" class="name-" value="1">' +
-                   '<input type="radio" class="name-" value="2">' +
+                   '<input type="radio" name="name" class="name-" value="1">' +
+                   '<input type="radio" name="name" class="name-" value="2">' +
                  '</div>'
 
       , template = generateTemplate({ model: model }, markup)
