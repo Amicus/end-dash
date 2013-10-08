@@ -4,7 +4,7 @@ var path = require("path")
   , Backbone = require("backbone")
   , _ = require("underscore")
   , jqts = require("../lib/util").jqts
-  , EndDash = require("../lib/end-dash")
+  , EndDash = require("../lib/configured_parser")
   , generateTemplate = require("./util").generateTemplate
 
 describe("A template with partials", function() {
@@ -17,7 +17,7 @@ describe("A template with partials", function() {
 
     var model = {
       items: new Backbone.Collection([{ variable: "wat1" }, { variable: "wat2" }]),
-      thing: new Backbone.Model({ name: "Zach" }) 
+      thing: new Backbone.Model({ name: "Zach" })
     }
 
     _(templates).each(function(template) {

@@ -1,5 +1,5 @@
 function generateTemplate(model, markup) {
-  var EndDash = require("../lib/end-dash")
+  var EndDash = require("../lib/configured_parser")
     , Template, template
   if(markup.charAt(0) === '/') {
     Template = new EndDash.getTemplate(markup)
