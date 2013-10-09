@@ -10,16 +10,8 @@ describe("loading EndDash on the page", function() {
       , $ = window.$
     window.document.body.innerHTML = html
     var EndDash = require('../lib/end-dash')
-    expect(EndDash.UnparsedTemplates["testing"]).to.be(" <div class='test'></div> ")
-  })
-
-  it("should store all the scripts of type EndDash as templates", function() {
-    var EndDash = require('../lib/end-dash')
-    expect(EndDash.UnparsedTemplates["testing"]).to.be(" <div class='test'></div> ")
-    expect(EndDash.UnparsedTemplates["helloWorld"]).to.be(" <div id='baller'> <span></span> </div> <div id='test' class='name-'></div> ")
-  })
-  it("should create a a new template with the given model on request", function() {
-    var EndDash = require('../lib/end-dash')
+    expect(EndDash.rawTemplate("testing")).to.be("<div class='test'></div>")
+    expect(EndDash.rawTemplate("helloWorld")).to.be("<div id='baller'> <span></span> </div> <div id='test' class='name-'></div>")
   })
 })
 
