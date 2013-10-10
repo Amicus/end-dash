@@ -2,7 +2,7 @@ class EndDashTemplateAggregator
   @@files = {}
   def aggregate!(opts = {})
     @templateDir = @pwd = opts[:templateDir] || "templates/"
-    @aggregatedFilesDir = opts[:serveRoot] || File.dirname(__FILE__)
+    @aggregatedFilesDir = opts[:serveRoot] || "#{File.dirname(__FILE__)}/"
     @files = @@files
     loadFiles!
     writeFiles!
