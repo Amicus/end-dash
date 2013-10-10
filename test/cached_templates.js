@@ -4,9 +4,6 @@ _ = require('underscore')
   , Backbone = require("backbone")
   , EndDash = require('../lib/end-dash')
 
-  //Still test template starting with text as well as
-  //When no templates are on the page
-
 require("./helper")
 
 describe('With EndDash loaded on a page', function(){
@@ -20,10 +17,40 @@ describe('With EndDash loaded on a page', function(){
     this.endDash = new EndDash()
   })
 
+
   describe("loading EndDash on a page with scripts of type EndDash", function() {
     it("should cause EndDash to store the templates with the right name", function() {
       expect(this.endDash.getHTMLTemplate("testing")).to.be('<div class="test"></div>')
     })
+  })
+
+  describe("With no EndDash templates on the page", function(){
+    beforeEach(function(){
+      var html =  '<div> This is the main body </div>'
+      window.document.body.innerHTML = html
+    })
+    it(" creating EndDash should not break anything", function(){
+      this.endDash = new EndDash()
+    })
+
+  })
+
+  describe("When the page has a template beginning with text", function(){
+    beforeEach(function(){
+      var html =  '<div> This is the main body </div>' +
+                  '<script type="EndDash" name="testing">' +
+                    ' Hello leading text world<div class="test"></div>' +
+                  '</script>'
+      window.document.body.innerHTML = html
+    })
+    it(" creating EndDash should not break anything", function(){
+      this.endDash = new EndDash()
+    })
+    it("should store template with the leading text", function(){
+      this.endDash = new EndDash()
+      expect(this.endDash.getHTMLTemplate("testing")).to.be('Hello leading text world<div class="test"></div>')
+    })
+
   })
 
   describe("Loading new html onto the page and refreshing EndDash", function() {
