@@ -3,13 +3,26 @@
 Getting started
 ===============
 
+```bash
+npm install
+
+# if you don't have grunt
+npm install -g grunt-cli
+
+# Run tests
+grunt simplemocha
+
+# If you don't want grunt
+mocha test
+
+# To run tests and watch for changes:
+grunt watch
 ```
-  npm install
-  mocha test
-```
+
 Or, as a bower component,
-```
-  bower install
+
+```bash
+bower install
 ```
 
 Example
