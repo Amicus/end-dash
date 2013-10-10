@@ -50,16 +50,8 @@ describe('With EndDash loaded on a page', function(){
       var template = this.endDash.createTemplate("helloWorld", model)
       $("body").html(template.template)
       expect($($('.name-')).text()).to.be("Devon")
-
-      describe("Changing the model", function(){
-        beforeEach(function() {
-          model.set("name", "Brian")
-        })
-        it("The template should reflect the change", function() {
-          expect($($('.name-')).text()).to.be("Brian")
-        })
-      })
-
+      model.set("name", "Brian")
+      expect($($('.name-')).text()).to.be("Brian")
     })
   })
 
