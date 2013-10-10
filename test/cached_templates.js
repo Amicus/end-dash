@@ -13,7 +13,7 @@ describe("loading EndDash on the page", function() {
     window.document.body.innerHTML = html
     var EndDash = require('../lib/end-dash')
     var endDash = new EndDash()
-    expect(endDash.getHTMLTemplate("testing")).to.be(" <div class='test'></div> ")
+    expect(endDash.getHTMLTemplate("testing")).to.be('<div class="test"></div>')
   })
 })
 
@@ -27,9 +27,10 @@ describe("binding a new model on the page", function() {
     window.document.body.innerHTML = html
     var EndDash = require('../lib/end-dash')
     var endDash = new EndDash()
-    var template = endDash.createTemplate("helloWorld", {name: "Devon"})
-    window.document.body.innerHTML = template.template
-    expect($($('#test')).text()).to.be("Devon")
+    var model = {name: "Devon"}
+    var template = endDash.createTemplate("helloWorld", model)
+    $("body").html(template.template)
+    expect($($('.name-')).text()).to.be("Devon")
   })
 })
 
