@@ -4,6 +4,9 @@ _ = require('underscore')
   , Backbone = require("backbone")
   , EndDash = require('../lib/end-dash')
 
+  //Still test template starting with text as well as
+  //When no templates are on the page
+
 require("./helper")
 
 describe('With EndDash loaded on a page', function(){
