@@ -26,8 +26,6 @@ describe("when integrating with backbone", function() {
         , markup = '<div><div class = "name-"></div><div class = "title-"></div></div>'
         , template = generateTemplate(model, markup)
 
-      $("body").html(template.template)
-
       expect($(".name-").html()).to.be("q1")
       expect($(".title-").html()).to.be("herp")
     })
