@@ -2,9 +2,9 @@ _ = require('underscore')
   , expect = require("expect.js")
   , jsdom = require("jsdom")
   , Backbone = require("backbone")
-  , EndDash = require('../lib/end-dash')
+  , EndDash = require('../../lib/end-dash')
 
-require("./helper")
+require("../helper")
 
 describe("With Endash templates loaded on the page", function() {
   beforeEach(function(){
