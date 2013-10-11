@@ -34,6 +34,20 @@ describe("With a set of templates in a directory aggregated to one file", functi
       expect(this.endDash.getHTMLTemplate("show")).not.to.be(undefined)
     })
 
+    it("should allow template creation", function(){
+      var model = new Backbone.Model({name: "Servus"})
+      var template = this.endDash.createTemplate("show", model)
+      $('body').html(template.template)
+      expect($($('#A')).text()).to.be("Servus")
+    })
+
+    it("should correctly handle nexted templates", function(){
+      var model = new Backbone.Model({name: "Servus"})
+      var template = this.endDash.createTemplate("homepage/intro_content", model)
+      $('body').html(template.template)
+      expect($($('#A')).text()).to.be("Servus")
+    })
+
   })
 
 })
