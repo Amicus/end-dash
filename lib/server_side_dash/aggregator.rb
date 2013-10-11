@@ -33,7 +33,11 @@ class EndDashTemplateAggregator
     File.open(path, "r").each_line do |line|
       fileStr = fileStr + line
     end
-    @files[path.to_sym] = fileStr
+    @files[normalized_name(path).to_sym] = fileStr
+  end
+
+  def normalized_name(name)
+    name.gsub(/(.js$)|(.js.ed$)|(.html$)/, "")
   end
 
   def handleDirectory!(nextDir)
