@@ -1,6 +1,7 @@
 var jsdom = require("jsdom")
 
 before(function(done) {
+  require('../lib/end-dash');
   jsdom.env({
     html: "<html><head></head><body></body></html>",
     scripts: [__dirname + "/../vendor/jquery.js"],
