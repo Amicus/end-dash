@@ -59,8 +59,3 @@ class EndDashTemplateAggregator
   end
 
 end
-
-EndDashTemplateAggregator.new.aggregate!({
-  templateDir: "/Users/TheOwner/Amicus/end-dash/test/support/templates/",
-  serveRoot: "/Users/TheOwner/Amicus/end-dash/test/"
-})
