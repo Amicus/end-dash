@@ -5,13 +5,13 @@ var Aggregator = require('../../lib/server_side_dash/aggregator')
     require('../helper')
 
 describe('Using the Javascript aggregator', function(){
-
   describe('With a templates directory', function(){
     beforeEach(function(done){
       var aggregator = new Aggregator({templateDir: __dirname + "/../support/templates/", serveRoot: __dirname})
       aggregator.loadFiles()
       done()
     })
+
     afterEach(function(){
       fs.unlinkSync(__dirname + '/EndDashTemplates.js')
     })
@@ -26,9 +26,6 @@ describe('Using the Javascript aggregator', function(){
       var templates = aggregate_file.split("</script>")
       expect(templates.length).to.be(4)
       expect(templates[templates.length-1]).to.be('\n') //Account for extra \n in templates
-
     })
-
   })
-
 })

@@ -20,7 +20,6 @@ describe("With a set of templates in a directory aggregated to one file", functi
   })
 
   describe("With a web page with EndDash and the templates loaded", function(){
-
     beforeEach(function(){
       var html = fs.readFileSync(__dirname + "/EndDashTemplates.js", 'utf8')
         , $ = window.$
@@ -47,7 +46,5 @@ describe("With a set of templates in a directory aggregated to one file", functi
       $('body').html(template.template)
       expect($($('#A')).text()).to.be("Servus")
     })
-
   })
-
 })

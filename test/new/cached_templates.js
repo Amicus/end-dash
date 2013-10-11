@@ -17,7 +17,6 @@ describe('With EndDash loaded on a page', function(){
     this.endDash = new EndDash()
   })
 
-
   describe("loading EndDash on a page with scripts of type EndDash", function() {
     it("should cause EndDash to store the templates with the right name", function() {
       expect(this.endDash.getHTMLTemplate("testing")).to.be('<div class="test"></div>')
@@ -29,10 +28,10 @@ describe('With EndDash loaded on a page', function(){
       var html =  '<div> This is the main body </div>'
       window.document.body.innerHTML = html
     })
+
     it(" creating EndDash should not break anything", function(){
       this.endDash = new EndDash()
     })
-
   })
 
   describe("When the page has a template beginning with text", function(){
@@ -43,14 +42,15 @@ describe('With EndDash loaded on a page', function(){
                   '</script>'
       window.document.body.innerHTML = html
     })
+
     it(" creating EndDash should not break anything", function(){
       this.endDash = new EndDash()
     })
+
     it("should store template with the leading text", function(){
       this.endDash = new EndDash()
       expect(this.endDash.getHTMLTemplate("testing")).to.be('Hello leading text world<div class="test"></div>')
     })
-
   })
 
   describe("Loading new html onto the page and refreshing EndDash", function() {
@@ -61,6 +61,7 @@ describe('With EndDash loaded on a page', function(){
       window.document.body.innerHTML = html
       this.endDash.reloadTemplates()
     })
+
     it("EndDash should have the new templates but not the old templates", function() {
       expect(this.endDash.getHTMLTemplate("testing")).to.be(undefined)
       expect(this.endDash.getHTMLTemplate("helloWorld")).to.be('<div class="name-"></div>')
@@ -75,6 +76,7 @@ describe('With EndDash loaded on a page', function(){
       window.document.body.innerHTML = html
       this.endDash.reloadTemplates()
     })
+
     it("EndDash should return a template with the model passed in bound to the DOM elements", function() {
       var model = new Backbone.Model({name: "Devon"})
       var template = this.endDash.createTemplate("helloWorld", model)
@@ -84,6 +86,5 @@ describe('With EndDash loaded on a page', function(){
       expect($($('.name-')).text()).to.be("Brian")
     })
   })
-
 })
 
