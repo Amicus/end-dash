@@ -1,7 +1,7 @@
-var TemplateStore = require('../lib/template_store'),
+var TemplateStore = require('../../lib/template_store'),
     testTemplateCount = 0;
 
-exports.generateTemplate = function(model, markupOrPath) {
+module.exports = function(model, markupOrPath) {
   var Template, templatePath;
 
   if (markupOrPath.charAt(0) === '/') {

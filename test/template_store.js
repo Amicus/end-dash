@@ -1,3 +1,5 @@
+require('./support/helper');
+
 var expect = require("expect.js"),
     Parser = require('../lib/parser'),
     Template = require('../lib/template'),
