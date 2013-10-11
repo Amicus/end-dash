@@ -1,7 +1,9 @@
+require('./support/helper');
+
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
-  , generateTemplate = require("./util").generateTemplate
+  , generateTemplate = require("./support/generate_template")
 
 describe("An embedded model", function() {
   it("should set all the values in the html", function () {

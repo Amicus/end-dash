@@ -1,10 +1,11 @@
-var jsdom = require("jsdom")
+var jsdom = require("jsdom");
 
 before(function(done) {
-  require('../lib/end-dash');
+  require('../../lib/end-dash');
+
   jsdom.env({
     html: "<html><head></head><body></body></html>",
-    scripts: [__dirname + "/../vendor/jquery.js"],
+    scripts: [__dirname + "/../../vendor/jquery.js"],
     done: jsDomLoaded
   })
 
@@ -17,6 +18,5 @@ before(function(done) {
     window.document.implementation.addFeature('ProcessExternalResources', ['script'])
     window.document.implementation.addFeature('MutationEvents', ['1.0'])
     done()
-
   }
 })
