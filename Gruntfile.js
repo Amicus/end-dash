@@ -10,22 +10,15 @@ module.exports = function(grunt) {
         reporter: 'spec'
       },
 
-      all: {src: ['test/**/*.js']}
+      all: {src: ['test/**/*.js', '!test/support/**/*.js']}
     },
 
     watch: {
       all: {
         files: ['test/**/*.js'],
-        tasks: ['simplemocha'],
-        options: {spawn: false}
+        tasks: ['simplemocha']
       }
     }
-  });
-
-  // Only run tests for the changed files. See:
-  // https://github.com/gruntjs/grunt-contrib-watch#compiling-files-as-needed
-  grunt.event.on('watch', function(action, filepath) {
-    grunt.config('simplemocha.all.src', filepath);
   });
 
   grunt.registerTask('default', ['simplemocha']);
