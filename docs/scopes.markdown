@@ -2,7 +2,7 @@
 ```coffeescript
 require("../test/helper")
 Model = require("Backbone").Model
-EndDash = require("../lib/configured_parser").generateTemplate
+EndDash = require("../lib/end-dash")
 ```
 
 #Modifying the Scope
