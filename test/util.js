@@ -1,16 +1,17 @@
-var TemplateStore = require('../lib/template_store'),
+var EndDash = require('../lib/end-dash'),
     testTemplateCount = 0;
+
+  require('./helper')
 
 exports.generateTemplate = function(model, markupOrPath) {
   var Template, templatePath;
 
   if (markupOrPath.charAt(0) === '/') {
     templatePath = markupOrPath;
-    Template = TemplateStore.getTemplate(templatePath);
-
+    Template = EndDash.getTemplate(templatePath);
   } else {
     templatePath = generateTestTemplatePath();
-    Template = TemplateStore.loadAndParse(templatePath, markupOrPath);
+    Template = EndDash.registerTemplate(templatePath, markupOrPath);
   }
 
   var template = new Template(model, {

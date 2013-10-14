@@ -2,7 +2,7 @@
 ```coffeescript
 require("../test/helper")
 Model = require("Backbone").Model
-EndDash = require("../lib/end-dash").generateTemplate
+EndDash = require("../lib/end-dash")
 ```
 
 #Modifying the Scope
@@ -12,8 +12,8 @@ scope.
 
 ##Accessing a Variable from a Parent
 
-  An example would be where you're building a blog and you need to 
-access a the post's title from within each comment. 
+  An example would be where you're building a blog and you need to
+access a the post's title from within each comment.
 
   [](./templates/blog_post.ed "inline")
 
@@ -36,7 +36,7 @@ $("body").html(blogPost.template)
   This will cause the title element with `data-scope="../.."` to be the blog
 post's title instead of the comment's title.
 
-  Using `data-scope="../.."` goes up two scopes, the scope chain in this 
+  Using `data-scope="../.."` goes up two scopes, the scope chain in this
 instance looks like:
 
   * BlogPost

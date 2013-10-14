@@ -2,7 +2,7 @@
 ```coffeescript
 require("../test/helper")
 Model = require("backbone").Model
-EndDash = require("../lib/end-dash").generateTemplate
+EndDash = require("../lib/end-dash")
 ```
 ##Attribute Interpolation
 
@@ -43,4 +43,4 @@ However, if we pass an object with a user value equal to john into the template,
   expect($(".user-").attr('class')).to.be("user- Aaron")
 ```
 
-Notice that we could also populate the name as an attribute of a named 
+Notice that we could also populate the name as an attribute of a named
