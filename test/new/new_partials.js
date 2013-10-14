@@ -21,13 +21,13 @@ describe("With Endash templates loaded on the page", function() {
                '</script>'
       , $ = window.$
       window.document.body.innerHTML = html
-      this.endDash = new EndDash()
+      EndDash.clearAndReload()
   })
 
   describe("Render the partial on the page", function(){
     it("Should correctly render the partials as well the models", function(){
       var bossPerson = new Backbone.Model({firstName: "Alec", lastName: "Baldwin"})
-      var template = this.endDash.createTemplate("mainContent", bossPerson)
+      var template = EndDash.bindTemplate("mainContent", bossPerson)
       $("body").html(template.template)
       expect($("#A").text()).to.be(bossPerson.get('firstName'))
       expect($("#B").text()).to.be(bossPerson.get('lastName'))
