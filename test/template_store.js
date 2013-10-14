@@ -10,7 +10,7 @@ var expect = require("expect.js"),
     isParsed = TemplateStore.isParsed,
     load = TemplateStore.load,
     loadAndParse = TemplateStore.loadAndParse,
-    getTemplate = TemplateStore.getTemplate;
+    getTemplateClass = TemplateStore.getTemplateClass;
 
 describe('TemplateStore', function() {
   describe('.load', function() {
@@ -21,17 +21,17 @@ describe('TemplateStore', function() {
     });
   });
 
-  describe('.getTemplate', function() {
+  describe('.getTemplateClass', function() {
     it('retrieves loaded templates', function() {
       load('user', '<div id="user"></div>');
-      var UserTemplate = getTemplate('user');
+      var UserTemplate = getTemplateClass('user');
       expect(UserTemplate).to.be.a(Template.constructor);
     });
 
     it('returns the same Template object when called repeatedly', function() {
       load('user', '<div id="user"></div>');
-      var UserTemplate = getTemplate('user'),
-          UserTemplate2 = getTemplate('user');
+      var UserTemplate = getTemplateClass('user'),
+          UserTemplate2 = getTemplateClass('user');
 
       expect(UserTemplate2).to.equal(UserTemplate);
     });
@@ -39,14 +39,14 @@ describe('TemplateStore', function() {
     it('retrieves templates using a normalized path', function() {
       var BarTemplate = loadAndParse('/foo/bar', '<div id="bar"></div>');
 
-      expect(getTemplate('/foo/bar')).to.equal(BarTemplate);
-      expect(getTemplate('/foo/bar/baz/..')).to.equal(BarTemplate);
-      expect(getTemplate('/foo/baz/../bar')).to.equal(BarTemplate);
+      expect(getTemplateClass('/foo/bar')).to.equal(BarTemplate);
+      expect(getTemplateClass('/foo/bar/baz/..')).to.equal(BarTemplate);
+      expect(getTemplateClass('/foo/baz/../bar')).to.equal(BarTemplate);
     });
 
     it('errors when it can\'t find a template', function() {
       expect(function() {
-        getTemplate('notLoaded')
+        getTemplateClass('notLoaded')
       }).to.throwError(/Could not find template/);
     });
 
@@ -54,7 +54,7 @@ describe('TemplateStore', function() {
       load('user', '<div id="user"></div>');
 
       expect(isParsed('user')).to.be(false);
-      getTemplate('user');
+      getTemplateClass('user');
       expect(isParsed('user')).to.be(true);
     });
   });

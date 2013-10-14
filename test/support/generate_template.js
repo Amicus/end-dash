@@ -1,23 +1,24 @@
-var TemplateStore = require('../../lib/template_store'),
+var EndDash = require('../../lib/end-dash'),
+    TemplateStore = require('../../lib/template_store'),
+    PageHelper = require('../../lib/page_helper'),
     testTemplateCount = 0;
+
+  require('./helper');
 
 module.exports = function(model, markupOrPath) {
   var Template, templatePath;
 
   if (markupOrPath.charAt(0) === '/') {
     templatePath = markupOrPath;
-    Template = TemplateStore.getTemplate(templatePath);
 
   } else {
     templatePath = generateTestTemplatePath();
-    Template = TemplateStore.loadAndParse(templatePath, markupOrPath);
+    EndDash.registerTemplate(templatePath, markupOrPath);
   }
 
-  var template = new Template(model, {
-    templateName: templatePath+'.html'
-  });
-
+  var template = EndDash.getTemplate(templatePath, model);
   $('body').html(template.template);
+
   return template;
 }
 
