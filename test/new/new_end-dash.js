@@ -24,25 +24,25 @@ describe("With a set of templates in a directory aggregated to one file", functi
       var html = fs.readFileSync(__dirname + "/EndDashTemplates.js", 'utf8')
         , $ = window.$
       window.document.body.innerHTML = html
-      this.endDash = new EndDash()
+      EndDash.clearAndReload()
     })
 
     it("should load the templates into EndDash", function(){
-      expect(this.endDash.getHTMLTemplate("homepage/intro_content")).not.to.be(undefined)
-      expect(this.endDash.getHTMLTemplate("ordered_list")).not.to.be(undefined)
-      expect(this.endDash.getHTMLTemplate("show")).not.to.be(undefined)
+      expect(EndDash.isLoaded("homepage/intro_content")).to.be(true)
+      expect(EndDash.isLoaded("ordered_list")).to.be(true)
+      expect(EndDash.isLoaded("show")).to.be(true)
     })
 
     it("should allow template creation", function(){
       var model = new Backbone.Model({name: "Servus"})
-      var template = this.endDash.createTemplate("show", model)
+      var template = EndDash.bindTemplate("show", model)
       $('body').html(template.template)
       expect($($('#A')).text()).to.be("Servus")
     })
 
     it("should correctly handle nexted templates", function(){
       var model = new Backbone.Model({name: "Servus"})
-      var template = this.endDash.createTemplate("homepage/intro_content", model)
+      var template = EndDash.bindTemplate("homepage/intro_content", model)
       $('body').html(template.template)
       expect($($('#A')).text()).to.be("Servus")
     })
