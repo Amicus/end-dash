@@ -3,13 +3,26 @@
 Getting started
 ===============
 
+```bash
+npm install
+
+# if you don't have grunt
+npm install -g grunt-cli
+
+# Run tests
+grunt simplemocha
+
+# If you don't want grunt
+mocha test
+
+# To run tests and watch for changes:
+grunt watch
 ```
-  npm install
-  mocha test
-```
+
 Or, as a bower component,
-```
-  bower install
+
+```bash
+bower install
 ```
 
 Example
@@ -17,14 +30,14 @@ Example
 
 Here's an example of a typical end-dash template:
 
-```
-<div class = "message">
-Hey <a class = "name-" href = "/users/{user_id}"></a>,
+```html
+<div class="message">
+Hey <a class="name-" href="/users/{user_id}"></a>,
 Here are some things to try in end dash:
-<ul class = "things-">
-  <li class = "thing-">
-    <div class = "title-"></div>
-    <div class = "description-"></div>
+<ul class="things-">
+  <li class="thing-">
+    <div class="title-"></div>
+    <div class="description-"></div>
   </li>
 </ul>
 ```
@@ -40,11 +53,11 @@ Defining Collections in end-dash is really easy.
 example
 -------
 
-```
-<ul class = "things-">
-  <li class = "thing-">
-    <div class = "title-"></div>
-    <div class = "description-"></div>
+```html
+<ul class="things-">
+  <li class="thing-">
+    <div class="title-"></div>
+    <div class="description-"></div>
   </li>
 </ul>
 ```
@@ -59,9 +72,8 @@ implicitly in the router, i.e. given the router classname and method, we
 get the correct template, and render it.  Unless you explicity declare what template
 you want.
 
-```
+```coffeescript
 class SocialMail extends BaseRouter
-
   "users/:userId/social_mail":"show"
 
   @before ->
@@ -74,7 +86,7 @@ class SocialMail extends BaseRouter
 
 behind the scenes this would basically do. 
 
-```
+```coffeescript
 Template = EndDash.getTemplate("/new/templates/social_mails/show") 
 
 @template = new Template 

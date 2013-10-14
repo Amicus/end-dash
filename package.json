@@ -1,7 +1,7 @@
 {
   "name": "end-dash",
   "description": "",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "repository": {
     "type": "git",
     "url": "git://github.com/Amicus/end-dash.git"
@@ -19,6 +19,9 @@
     "jsdom": "0.8.x",
     "expect.js": "0.x.x",
     "test-things": "git+ssh://git@github.com/Amicus/test-things.git",
-    "awesome-docs": "git+ssh://git@github.com/Amicus/awesome-docs.git"
+    "awesome-docs": "git+ssh://git@github.com/Amicus/awesome-docs.git",
+    "grunt": "~0.4.1",
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }
