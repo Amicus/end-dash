@@ -2,7 +2,7 @@
 ```coffeescript
 require("../test/helper")
 Model = require("backbone").Model
-EndDash = require("../lib/configured_parser").generateTemplate
+EndDash = require("../lib/end-dash")
 ```
 ##Attribute Interpolation
 
