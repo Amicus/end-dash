@@ -22,7 +22,7 @@ describe('With EndDash loaded on a page', function(){
   })
   describe("loading EndDash on a page with scripts of type EndDash", function() {
     it("should cause EndDash to store the templates with the right name", function() {
-      var TemplateClass = EndDash.getTemplateClass("testing")
+      var TemplateClass = EndDash.getTemplate("testing")
       var template = new TemplateClass({name: "Drake"})
       expect(outerHTML(template.el)).to.be('<div class="test"></div>')
     })
@@ -91,7 +91,7 @@ describe('With EndDash loaded on a page', function(){
 
   //   it("should store template with the leading text", function(){
   //     EndDash.clearAndReload()
-  //     var TemplateClass = EndDash.getTemplateClass("testing")
+  //     var TemplateClass = EndDash.getTemplate("testing")
   //     var template = new TemplateClass({name: "Devon"})
   //     expect(outerHTML(template.el)).to.be('Hello leading text world<div class="test"></div>')
   //   })

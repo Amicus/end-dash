@@ -8,10 +8,10 @@ exports.generateTemplate = function(model, markupOrPath) {
 
   if (markupOrPath.charAt(0) === '/') {
     templatePath = markupOrPath;
-    Template = EndDash.getTemplateClass(templatePath);
+    Template = EndDash.getTemplate(templatePath);
   } else {
     templatePath = generateTestTemplatePath();
-    Template = EndDash.RegisterTemplate(templatePath, markupOrPath);
+    Template = EndDash.registerTemplate(templatePath, markupOrPath);
   }
 
   var template = new Template(model, {
