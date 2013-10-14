@@ -1,8 +1,8 @@
+require('./support/helper');
+
 var expect = require("expect.js")
   , fs = require("fs")
-  , generateTemplate = require("./util").generateTemplate
-
-require("./helper")
+  , generateTemplate = require("./support/generate_template")
 
 describe("An template", function() {
   describe("which has data-scope attributes", function() {

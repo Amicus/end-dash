@@ -1,3 +1,5 @@
+require('./support/helper');
+
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
@@ -6,7 +8,7 @@ var path = require("path")
   , jqts = require("../lib/util").jqts
   , EndDash = require("../lib/end-dash")
   , TemplateStore = require('../lib/template_store')
-  , generateTemplate = require("./util").generateTemplate
+  , generateTemplate = require("./support/generate_template")
 
 describe("A template with partials", function() {
   it("should do collections", function() {

@@ -1,10 +1,12 @@
+require('./support/helper');
+
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
   , Model = Backbone.Model
   , Collection = Backbone.Collection
-  , generateTemplate = require("./util").generateTemplate
+  , generateTemplate = require("./support/generate_template")
 
 describe("When I initialize a template with a model", function() {
 

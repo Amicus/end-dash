@@ -1,8 +1,10 @@
+require('./support/helper');
+
 var path = require("path")
   , Model = require("backbone").Model
   , expect = require("expect.js")
   , fs = require("fs")
-  , generateTemplate = require("./util").generateTemplate
+  , generateTemplate = require("./support/generate_template")
 
 describe("An element with an attribute", function() {
   beforeEach(function() {
