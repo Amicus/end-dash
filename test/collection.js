@@ -5,11 +5,13 @@ var path = require("path")
   , generateTemplate = require("./util").generateTemplate
 
 describe("A collection template", function() {
-
-
   describe("when I bind to the collection", function() {
     beforeEach(function () {
-      this.things = new Backbone.Collection([ new Backbone.Model({ type: "awesome" }), new Backbone.Model({ type: "cool" }) ])
+      this.things = new Backbone.Collection([
+        new Backbone.Model({ type: "awesome" }),
+        new Backbone.Model({ type: "cool" })
+      ]);
+
       this.markup = fs.readFileSync(__dirname + "/support/polymorphic.html").toString()
       this.template = generateTemplate({ things: this.things }, this.markup)
     })
