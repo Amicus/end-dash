@@ -11,7 +11,8 @@ exports.generateTemplate = function(model, markupOrPath) {
     Template = EndDash.getTemplate(templatePath);
   } else {
     templatePath = generateTestTemplatePath();
-    Template = EndDash.registerTemplate(templatePath, markupOrPath);
+    EndDash.registerTemplate(templatePath, markupOrPath);
+    Template = EndDash.getTemplate(templatePath);
   }
 
   var template = new Template(model, {
