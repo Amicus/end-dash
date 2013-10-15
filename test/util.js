@@ -1,9 +1,18 @@
 var EndDash = require('../lib/end-dash'),
+    TemplateStore = require('../lib/template_store'),
+    PageHelper = require('../lib/page_helper'),
     testTemplateCount = 0;
 
   require('./helper')
 
-  EndDash.bark = function(){console.log("roof roof roof roof")}
+EndDash.isTemplateLoaded = function(templatePath) {
+  return TemplateStore.isLoaded(templatePath)
+}
+
+EndDash.clearAndReload = function() {
+  TemplateStore.clear()
+  this.loadTemplatesFromPage()
+}
 
 exports.generateTemplate = function(model, markupOrPath) {
   var Template, templatePath;
@@ -23,6 +32,10 @@ exports.generateTemplate = function(model, markupOrPath) {
 
   $('body').html(template.template);
   return template;
+}
+
+exports.outerHTML = function(el) {
+  return $('<div>').append(el.clone()).html()
 }
 
 // We need to generate random, unique names for templates so we don't

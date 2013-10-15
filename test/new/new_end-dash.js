@@ -3,11 +3,9 @@ var expect = require("expect.js")
   , Backbone = require("backbone")
   , EndDash = require('../../lib/end-dash')
   , fs = require('fs')
+  , util = require("../util")
 
-require("../util")
 _ = require('underscore')
-
-EndDash.bark()
 
 var partials = fs.readFileSync(__dirname + "/../support/partials.html", 'utf8')
 var embedded_partial = fs.readFileSync(__dirname + "/../support/embedded_partial.html", 'utf8')

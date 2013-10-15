@@ -3,12 +3,7 @@ _ = require('underscore')
   , jsdom = require("jsdom")
   , Backbone = require("backbone")
   , EndDash = require('../../lib/end-dash')
-
-require("../helper")
-
-var outerHTML = function(el) {
-  return $('<div>').append(el.clone()).html()
-}
+  , util = require("../util")
 
 describe('With EndDash loaded on a page', function(){
   beforeEach(function() {
@@ -24,7 +19,7 @@ describe('With EndDash loaded on a page', function(){
     it("should cause EndDash to store the templates with the right name", function() {
       var TemplateClass = EndDash.getTemplate("testing")
       var template = new TemplateClass({name: "Drake"})
-      expect(outerHTML(template.el)).to.be('<div class="test"></div>')
+      expect(util.outerHTML(template.el)).to.be('<div class="test"></div>')
     })
   })
 
@@ -51,7 +46,7 @@ describe('With EndDash loaded on a page', function(){
 
     it("EndDash should have the new templates but not the old templates", function() {
       expect(EndDash.isTemplateLoaded("testing")).to.be(false)
-      expect(outerHTML(EndDash.boundTemplate("helloWorld", {name: "Jay-Z"}).el)).to.be('<div class="name-">Jay-Z</div>')
+      expect(util.outerHTML(EndDash.boundTemplate("helloWorld", {name: "Jay-Z"}).el)).to.be('<div class="name-">Jay-Z</div>')
     })
   })
 
