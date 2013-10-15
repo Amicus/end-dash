@@ -15,15 +15,24 @@ var scopes = fs.readFileSync(__dirname + "/../support/scopes.html", 'utf8')
 describe("With a set of templates loaded into EndDash", function(){
   beforeEach(function(){
     EndDash.registerTemplate("partials", partials)
-    EndDash.registerTemplate("embedded_partial", embedded_partial)
-    EndDash.registerTemplate("list_item", list_item)
+    EndDash.registerTemplate("embedded_partial.html", embedded_partial)
+    EndDash.registerTemplate("list_item.html", list_item)
     EndDash.registerTemplate("scopes", scopes)
   })
   it("should have all the teamples interanlly", function(){
     expect(EndDash.isTemplateLoaded("partials")).to.be(true)
-    expect(EndDash.isTemplateLoaded("embedded_partial")).to.be(true)
-    expect(EndDash.isTemplateLoaded("list_item")).to.be(true)
+    expect(EndDash.isTemplateLoaded("embedded_partial.html")).to.be(true)
+    expect(EndDash.isTemplateLoaded("list_item.html")).to.be(true)
     expect(EndDash.isTemplateLoaded("scopes")).to.be(true)
+  })
+  it("binding templates should work", function(){
+    var items = new Backbone.Collection()
+    var item1 = new Backbone.Model({variable: "Candy"})
+    var item2 = new Backbone.Model({variable: "Cane"})
+    var item3 = new Backbone.Model({variable: "Good"})
+    items.add(item1).add(item2).add(item3)
+    var root = new Backbone.Model({items: items, thing: {name: "very"}})
+    EndDash.bindTemplate("partials", root)
   })
 })
 
