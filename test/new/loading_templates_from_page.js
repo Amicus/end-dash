@@ -15,6 +15,7 @@ describe('With EndDash loaded on a page', function(){
     window.document.body.innerHTML = html
     EndDash.clearAndReload()
   })
+
   describe("loading EndDash on a page with scripts of type EndDash", function() {
     it("should cause EndDash to store the templates with the right name", function() {
       var TemplateClass = EndDash.getTemplate("testing")
@@ -33,7 +34,6 @@ describe('With EndDash loaded on a page', function(){
       EndDash.clearAndReload()
     })
   })
-
 
   describe("Loading new html onto the page and refreshing EndDash", function() {
     beforeEach(function() {
