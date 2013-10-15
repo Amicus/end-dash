@@ -1,16 +1,29 @@
-var TemplateStore = require('../lib/template_store'),
+var EndDash = require('../lib/end-dash'),
+    TemplateStore = require('../lib/template_store'),
+    PageHelper = require('../lib/page_helper'),
     testTemplateCount = 0;
+
+  require('./helper')
+
+EndDash.isTemplateLoaded = function(templatePath) {
+  return TemplateStore.isLoaded(templatePath)
+}
+
+EndDash.clearAndReload = function() {
+  TemplateStore.clear()
+  this.loadTemplatesFromPage()
+}
 
 exports.generateTemplate = function(model, markupOrPath) {
   var Template, templatePath;
 
   if (markupOrPath.charAt(0) === '/') {
     templatePath = markupOrPath;
-    Template = TemplateStore.getTemplate(templatePath);
-
+    Template = EndDash.getTemplate(templatePath);
   } else {
     templatePath = generateTestTemplatePath();
-    Template = TemplateStore.loadAndParse(templatePath, markupOrPath);
+    EndDash.registerTemplate(templatePath, markupOrPath);
+    Template = EndDash.getTemplate(templatePath);
   }
 
   var template = new Template(model, {
@@ -19,6 +32,10 @@ exports.generateTemplate = function(model, markupOrPath) {
 
   $('body').html(template.template);
   return template;
+}
+
+exports.outerHTML = function(el) {
+  return $('<div>').append(el.clone()).html()
 }
 
 // We need to generate random, unique names for templates so we don't
