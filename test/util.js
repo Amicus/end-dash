@@ -1,16 +1,31 @@
-var TemplateStore = require('../lib/template_store'),
-    testTemplateCount = 0;
+var EndDash = require('../lib/end-dash'),
+    TemplateStore = require('../lib/template_store'),
+    testTemplateCount = 0,
+    _ = require('underscore');
 
-exports.generateTemplate = function(model, markupOrPath) {
-  var Template, templatePath;
+exports.resetStore = function() {
+  EndDash.templateStore = TemplateStore.create();
+};
+
+exports.generateTemplate = function(model, markupOrPath, options) {
+  options = _.extend({
+    shouldResetStore: true
+  }, options);
+
+  if (options.shouldResetStore) {
+    exports.resetStore();
+  };
+
+  var templateStore = EndDash.templateStore,
+      Template, templatePath;
 
   if (markupOrPath.charAt(0) === '/') {
     templatePath = markupOrPath;
-    Template = TemplateStore.getTemplate(templatePath);
+    Template = templateStore.getTemplate(templatePath);
 
   } else {
     templatePath = generateTestTemplatePath();
-    Template = TemplateStore.loadAndParse(templatePath, markupOrPath);
+    Template = templateStore.loadAndParse(templatePath, markupOrPath);
   }
 
   var template = new Template(model, {

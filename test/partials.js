@@ -5,7 +5,6 @@ var path = require("path")
   , _ = require("underscore")
   , jqts = require("../lib/util").jqts
   , EndDash = require("../lib/end-dash")
-  , TemplateStore = require('../lib/template_store')
   , generateTemplate = require("./util").generateTemplate
 
 describe("A template with partials", function() {
@@ -22,10 +21,11 @@ describe("A template with partials", function() {
     }
 
     _(templates).each(function(template) {
-      TemplateStore.load(template, fs.readFileSync(__dirname + template).toString())
+      var templatePath = __dirname + template;
+      EndDash.templateStore.load(template, fs.readFileSync(templatePath).toString())
     })
 
-    var template = generateTemplate(model, '/support/partials.html')
+    var template = generateTemplate(model, '/support/partials.html', {shouldResetStore: false})
 
     expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
     expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")
