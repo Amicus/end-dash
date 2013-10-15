@@ -4,11 +4,11 @@
 
 [](root)
 ```coffeescript
-require("../test/helper")
+require("../test/support/helper")
 Model = require("Backbone").Model
 EndDash = require("../lib/end-dash").generateTemplate
 ```
-The above code just imports test/helper and the backbone default model.
+The above code just imports test/support/helper and the backbone default model.
 
 [](beforeEach)
 ```coffeescript

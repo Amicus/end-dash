@@ -1,6 +1,6 @@
 [](root)
 ```coffeescript
-require("../test/helper")
+require("../test/support/helper")
 Model = require("backbone").Model
 EndDash = require("../lib/end-dash").generateTemplate
 ```

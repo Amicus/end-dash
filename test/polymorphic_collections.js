@@ -1,8 +1,10 @@
+require('./support/helper');
+
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
-  , generateTemplate = require("./util").generateTemplate
+  , generateTemplate = require("./support/generate_template")
 
 describe("A polymporhic template", function() {
 
