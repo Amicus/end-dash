@@ -28,21 +28,21 @@ describe("With a set of templates in a directory aggregated to one file", functi
     })
 
     it("should load the templates into EndDash", function(){
-      expect(EndDash.isLoaded("homepage/intro_content")).to.be(true)
-      expect(EndDash.isLoaded("ordered_list")).to.be(true)
-      expect(EndDash.isLoaded("show")).to.be(true)
+      expect(EndDash.isTemplateLoaded("homepage/intro_content")).to.be(true)
+      expect(EndDash.isTemplateLoaded("ordered_list")).to.be(true)
+      expect(EndDash.isTemplateLoaded("show")).to.be(true)
     })
 
     it("should allow template creation", function(){
       var model = new Backbone.Model({name: "Servus"})
-      var template = EndDash.bindTemplate("show", model)
+      var template = EndDash.boundTemplate("show", model)
       $('body').html(template.template)
       expect($($('#A')).text()).to.be("Servus")
     })
 
     it("should correctly handle nexted templates", function(){
       var model = new Backbone.Model({name: "Servus"})
-      var template = EndDash.bindTemplate("homepage/intro_content", model)
+      var template = EndDash.boundTemplate("homepage/intro_content", model)
       $('body').html(template.template)
       expect($($('#A')).text()).to.be("Servus")
     })

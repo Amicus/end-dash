@@ -50,8 +50,8 @@ describe('With EndDash loaded on a page', function(){
     })
 
     it("EndDash should have the new templates but not the old templates", function() {
-      expect(EndDash.isLoaded("testing")).to.be(false)
-      expect(outerHTML(EndDash.bindTemplate("helloWorld", {name: "Jay-Z"}).el)).to.be('<div class="name-">Jay-Z</div>')
+      expect(EndDash.isTemplateLoaded("testing")).to.be(false)
+      expect(outerHTML(EndDash.boundTemplate("helloWorld", {name: "Jay-Z"}).el)).to.be('<div class="name-">Jay-Z</div>')
     })
   })
 
@@ -66,7 +66,7 @@ describe('With EndDash loaded on a page', function(){
 
     it("EndDash should return a template with the model passed in bound to the DOM elements", function() {
       var model = new Backbone.Model({name: "Devon"})
-      var template = EndDash.bindTemplate("helloWorld", model)
+      var template = EndDash.boundTemplate("helloWorld", model)
       $("body").html(template.template)
       expect($($('.name-')).text()).to.be("Devon")
       model.set("name", "Brian")

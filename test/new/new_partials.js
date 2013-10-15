@@ -27,7 +27,7 @@ describe("With Endash templates loaded on the page", function() {
   describe("Render the partial on the page", function(){
     it("Should correctly render the partials as well the models", function(){
       var bossPerson = new Backbone.Model({firstName: "Alec", lastName: "Baldwin"})
-      var template = EndDash.bindTemplate("mainContent", bossPerson)
+      var template = EndDash.boundTemplate("mainContent", bossPerson)
       $("body").html(template.template)
       expect($("#A").text()).to.be(bossPerson.get('firstName'))
       expect($("#B").text()).to.be(bossPerson.get('lastName'))
