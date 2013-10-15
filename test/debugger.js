@@ -1,4 +1,6 @@
-var generateTemplate = require('./util').generateTemplate,
+require('./support/helper');
+
+var generateTemplate = require('./support/generate_template')
     DebuggerReaction = require('../lib/reactions/debugger'),
     Backbone = require('backbone'),
     Model = Backbone.Model,

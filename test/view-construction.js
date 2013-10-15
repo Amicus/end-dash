@@ -1,3 +1,5 @@
+require('./support/helper');
+
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
@@ -5,10 +7,8 @@ var path = require("path")
   , ViewReaction = require("../lib/reactions/view")
   , Model = Backbone.Model
   , Collection = Backbone.Collection
-  , generateTemplate = require("./util").generateTemplate
+  , generateTemplate = require("./support/generate_template")
   , views = {}
-
-require("./helper")
 
 describe("When I initialize a template with a view bound to it", function() {
   beforeEach(function() {

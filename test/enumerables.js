@@ -1,6 +1,8 @@
+require('./support/helper');
+
 var expect = require("expect.js")
   , fs = require("fs")
-  , generateTemplate = require("./util").generateTemplate
+  , generateTemplate = require("./support/generate_template")
 
 describe("An enumerable template", function() {
 

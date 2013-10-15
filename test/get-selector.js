@@ -1,9 +1,9 @@
+require('./support/helper');
+
 var util = require("../lib/util")
   , path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
-
-require("./helper")
 
 describe("getSelector", function() {
   it("should return a selector unique within root", function() {
