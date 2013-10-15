@@ -73,28 +73,5 @@ describe('With EndDash loaded on a page', function(){
       expect($($('.name-')).text()).to.be("Brian")
     })
   })
-    // Note that html that begins with a text string will not validate in JQuery
-  // We can either ignore this and document or add a span around text and a
-  // a warning
-  // describe("When the page has a template beginning with text", function(){
-  //   beforeEach(function(){
-  //     var html =  '<div> This is the main body </div>' +
-  //                 '<script type="EndDash" name="testing">' +
-  //                   ' Hello leading text world<div class="test"></div>' +
-  //                 '</script>'
-  //     window.document.body.innerHTML = html
-  //   })
-
-  //   it(" creating EndDash should not break anything", function(){
-  //     EndDash.clearAndReload()
-  //   })
-
-  //   it("should store template with the leading text", function(){
-  //     EndDash.clearAndReload()
-  //     var TemplateClass = EndDash.getTemplate("testing")
-  //     var template = new TemplateClass({name: "Devon"})
-  //     expect(outerHTML(template.el)).to.be('Hello leading text world<div class="test"></div>')
-  //   })
-  // })
 })
 

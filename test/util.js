@@ -3,6 +3,8 @@ var EndDash = require('../lib/end-dash'),
 
   require('./helper')
 
+  EndDash.bark = function(){console.log("roof roof roof roof")}
+
 exports.generateTemplate = function(model, markupOrPath) {
   var Template, templatePath;
 

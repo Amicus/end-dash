@@ -2,49 +2,30 @@ var expect = require("expect.js")
   , jsdom = require("jsdom")
   , Backbone = require("backbone")
   , EndDash = require('../../lib/end-dash')
-  , Aggregator = require('../../lib/server_side_dash/aggregator.js')
   , fs = require('fs')
 
-require("../helper")
-_ = require('underscore') //Global for EndDash
+require("../util")
+_ = require('underscore')
 
+EndDash.bark()
 
+var partials = fs.readFileSync(__dirname + "/../support/partials.html", 'utf8')
+var embedded_partial = fs.readFileSync(__dirname + "/../support/embedded_partial.html", 'utf8')
+var list_item = fs.readFileSync(__dirname + "/../support/list_item.html", 'utf8')
+var scopes = fs.readFileSync(__dirname + "/../support/scopes.html", 'utf8')
 
-describe("With a set of templates in a directory aggregated to one file", function(){
+describe("With a set of templates loaded into EndDash", function(){
   beforeEach(function(){
-    var aggregator = new Aggregator({templateDir: __dirname + "/../support/templates/", serveRoot: __dirname})
-    aggregator.loadFiles()
+    EndDash.registerTemplate("partials", partials)
+    EndDash.registerTemplate("embedded_partial", embedded_partial)
+    EndDash.registerTemplate("list_item", list_item)
+    EndDash.registerTemplate("scopes", scopes)
   })
-  afterEach(function(){
-    fs.unlinkSync(__dirname + '/EndDashTemplates.js')
-  })
-
-  describe("With a web page with EndDash and the templates loaded", function(){
-    beforeEach(function(){
-      var html = fs.readFileSync(__dirname + "/EndDashTemplates.js", 'utf8')
-        , $ = window.$
-      window.document.body.innerHTML = html
-      EndDash.clearAndReload()
-    })
-
-    it("should load the templates into EndDash", function(){
-      expect(EndDash.isTemplateLoaded("homepage/intro_content")).to.be(true)
-      expect(EndDash.isTemplateLoaded("ordered_list")).to.be(true)
-      expect(EndDash.isTemplateLoaded("show")).to.be(true)
-    })
-
-    it("should allow template creation", function(){
-      var model = new Backbone.Model({name: "Servus"})
-      var template = EndDash.boundTemplate("show", model)
-      $('body').html(template.template)
-      expect($($('#A')).text()).to.be("Servus")
-    })
-
-    it("should correctly handle nexted templates", function(){
-      var model = new Backbone.Model({name: "Servus"})
-      var template = EndDash.boundTemplate("homepage/intro_content", model)
-      $('body').html(template.template)
-      expect($($('#A')).text()).to.be("Servus")
-    })
+  it("should have all the teamples interanlly", function(){
+    expect(EndDash.isTemplateLoaded("partials")).to.be(true)
+    expect(EndDash.isTemplateLoaded("embedded_partial")).to.be(true)
+    expect(EndDash.isTemplateLoaded("list_item")).to.be(true)
+    expect(EndDash.isTemplateLoaded("scopes")).to.be(true)
   })
 })
+
