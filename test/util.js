@@ -10,38 +10,21 @@ EndDash.isTemplateLoaded = function(templatePath) {
   return TemplateStore.isLoaded(templatePath)
 }
 
-EndDash.clearAndReload = function() {
-  TemplateStore.clear()
-  this.loadTemplatesFromPage()
-}
-
 exports.generateTemplate = function(model, markupOrPath) {
   var Template, templatePath;
 
   if (markupOrPath.charAt(0) === '/') {
     templatePath = markupOrPath;
+
   } else {
     templatePath = generateTestTemplatePath();
     EndDash.registerTemplate(templatePath, markupOrPath);
   }
 
-  if (whichTemplateLoad == 0) { // Alternate how template is created
-    var TemplateClass = EndDash.getTemplateClass(templatePath)
-    var template = new TemplateClass(model, {
-      templateName: templatePath+'.html'
-    });
-    whichTemplateLoad++
-  } else {
-    var template = EndDash.getTemplate(templatePath, model)
-    whichTemplateLoad--
-  }
-
+  var template = EndDash.getTemplate(templatePath, model);
   $('body').html(template.template);
-  return template;
-}
 
-exports.outerHTML = function(el) {
-  return $('<div>').append(el.clone()).html()
+  return template;
 }
 
 // We need to generate random, unique names for templates so we don't
