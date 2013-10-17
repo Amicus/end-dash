@@ -1,0 +1,7 @@
+<script type="EndDash" name="crow">
+  <div class="crowName-"></div>
+</script>
+
+<script name="non-end-dash">
+  <p>This should not be loaded.</p>
+</script>

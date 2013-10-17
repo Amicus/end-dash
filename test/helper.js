@@ -17,6 +17,5 @@ before(function(done) {
     window.document.implementation.addFeature('ProcessExternalResources', ['script'])
     window.document.implementation.addFeature('MutationEvents', ['1.0'])
     done()
-
   }
 })
