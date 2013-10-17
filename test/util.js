@@ -1,6 +1,7 @@
 var EndDash = require('../lib/end-dash'),
     TemplateStore = require('../lib/template_store'),
     PageHelper = require('../lib/page_helper'),
+    whichTemplateLoad = 0
     testTemplateCount = 0;
 
   require('./helper')
@@ -19,16 +20,21 @@ exports.generateTemplate = function(model, markupOrPath) {
 
   if (markupOrPath.charAt(0) === '/') {
     templatePath = markupOrPath;
-    Template = EndDash.getTemplate(templatePath);
   } else {
     templatePath = generateTestTemplatePath();
     EndDash.registerTemplate(templatePath, markupOrPath);
-    Template = EndDash.getTemplate(templatePath);
   }
 
-  var template = new Template(model, {
-    templateName: templatePath+'.html'
-  });
+  if (whichTemplateLoad == 0) { // Alternate how template is created
+    var TemplateClass = EndDash.getTemplateClass(templatePath)
+    var template = new TemplateClass(model, {
+      templateName: templatePath+'.html'
+    });
+    whichTemplateLoad++
+  } else {
+    var template = EndDash.getTemplate(templatePath, model)
+    whichTemplateLoad--
+  }
 
   $('body').html(template.template);
   return template;

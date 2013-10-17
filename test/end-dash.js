@@ -30,7 +30,7 @@ describe("With a set of templates loaded into EndDash", function(){
   it("should be possible to return a template class", function() {
     var templateClass = EndDash.getTemplateClass("partials")
     expect(typeof templateClass).to.be('function')
-    templateClass = EndDash.getTemplate("partials")
+    templateClass = EndDash.getTemplateClass("partials")
     expect(typeof templateClass).to.be('function')
   }) //This functionality is tested by test/util.js via the function GenerateTemplate
 
@@ -84,7 +84,7 @@ describe('With a set of EndDash templates on a page', function(){
   })
 
   it("should cause EndDash to store the templates with the right name", function() {
-    var TemplateClass = EndDash.getTemplate("testing")
+    var TemplateClass = EndDash.getTemplateClass("testing")
     var template = new TemplateClass({name: "Drake"})
     expect(util.outerHTML(template.el)).to.be('<div class="test"></div>')
   })
