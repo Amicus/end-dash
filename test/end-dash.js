@@ -34,7 +34,7 @@ describe("With a set of templates loaded into EndDash", function(){
     expect(typeof templateClass).to.be('function')
   }) //This functionality is tested by test/util.js via the function GenerateTemplate
 
-  describe("Binding a template on the page", function(){
+  describe("Binding a template on the page with #getTemplateClass", function(){
     beforeEach(function(){
       this.items = new Backbone.Collection()
       this.item1 = new Backbone.Model({variable: "Candy"})
@@ -57,6 +57,54 @@ describe("With a set of templates loaded into EndDash", function(){
       expect($('.item-:nth-child(1) div', this.template.el).text()).to.be("Steak")
       this.item2.set("variable", "Also")
       expect($('.item-:nth-child(2) div', this.template.el).text()).to.be("Also")
+    })
+  })
+  describe("Binding a template on the page with #getTemplate", function(){
+    beforeEach(function(){
+      this.items = new Backbone.Collection()
+      this.item1 = new Backbone.Model({variable: "Candy"})
+      this.item2 = new Backbone.Model({variable: "Cane"})
+      this.item3 = new Backbone.Model({variable: "Good"})
+      this.items.add(this.item1)
+      this.items.add(this.item2)
+      this.items.add(this.item3)
+      this.root = new Backbone.Model({items: this.items, thing: {name: "very"}})
+
+    })
+    describe("and getting the instance then binding", function(){
+      beforeEach(function(){
+        this.template = EndDash.getTemplate("partials")
+        this.template.bind(this.root)
+      })
+      it("EndDash should fill in the model values in the template", function(){
+        expect($('.item-:nth-child(1) div', this.template.el).text()).to.be("Candy")
+        expect($('.item-:nth-child(2) div', this.template.el).text()).to.be("Cane")
+        expect($('.item-:nth-child(3) div', this.template.el).text()).to.be("Good")
+        expect($('.name-', this.template.el).text()).to.be("very")
+      })
+      it("Should update when a model changes", function(){
+        this.item1.set("variable", "Steak")
+        expect($('.item-:nth-child(1) div', this.template.el).text()).to.be("Steak")
+        this.item2.set("variable", "Also")
+        expect($('.item-:nth-child(2) div', this.template.el).text()).to.be("Also")
+      })
+    })
+    describe("and getting the instance then forgetting to binding", function(){
+      beforeEach(function(){
+        this.template = EndDash.getTemplate("partials")
+      })
+      it("EndDash should not fill in the model values in the template", function(){
+        expect($('.item-:nth-child(1) div', this.template.el).text()).to.be("")
+        expect($('.item-:nth-child(2) div', this.template.el).text()).to.be("")
+        expect($('.item-:nth-child(3) div', this.template.el).text()).to.be("")
+        expect($('.name-', this.template.el).text()).to.be("")
+      })
+      it("Should not update when a model changes", function(){
+        this.item1.set("variable", "Steak")
+        expect($('.item-:nth-child(1) div', this.template.el).text()).to.be("")
+        this.item2.set("variable", "Also")
+        expect($('.item-:nth-child(2) div', this.template.el).text()).to.be("")
+      })
     })
   })
 })
