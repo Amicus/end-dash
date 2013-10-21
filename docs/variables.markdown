@@ -6,7 +6,7 @@
 ```coffeescript
 require("../test/support/helper")
 Model = require("Backbone").Model
-EndDash = require("../lib/end-dash").generateTemplate
+EndDash = require("../lib/end-dash")
 ```
 The above code just imports test/support/helper and the backbone default model.
 
