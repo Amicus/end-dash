@@ -28,7 +28,7 @@ describe("An template", function() {
           }
         }
       }
-      var template = generateTemplate(root, fs.readFileSync(__dirname + "/support/scopes.html").toString())
+      var template = generateTemplate(root, fs.readFileSync(__dirname + "/support/templates/scopes.html").toString())
     })
 
     it("should be able to access the root scope", function() {

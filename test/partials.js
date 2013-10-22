@@ -13,9 +13,9 @@ var path = require("path")
 describe("A template with partials", function() {
   it("should do collections", function() {
     var templates = [
-      "/support/partials.html",
-      "/support/embedded_partial.html",
-      "/support/list_item.html"
+      "/support/templates/partials.html",
+      "/support/templates/embedded_partial.html",
+      "/support/templates/list_item.html"
     ]
 
     var model = {
@@ -27,7 +27,7 @@ describe("A template with partials", function() {
       TemplateStore.load(template, fs.readFileSync(__dirname + template).toString())
     })
 
-    var template = generateTemplate(model, '/support/partials.html')
+    var template = generateTemplate(model, '/support/templates/partials.html')
 
     expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
     expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")
