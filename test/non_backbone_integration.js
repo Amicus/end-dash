@@ -5,12 +5,11 @@ var path = require("path")
   , fs = require("fs")
   , generateTemplate = require("./support/generate_template")
   , Backbone = require('Backbone')
-  , modelReaction = require('../lib/reactions/model')
 
 delete require.cache[require.resolve('Backbone')]
-var BackboneClone = require('Backbone') // To Test Bug. EndDash module might have a different Backbone then a client's
-                                        // main application. Internally we use !(model instanceof Backbone.Model || ... instanceof Backbone.Collection)
-                                        // this test is intended to check that our code now handles this case
+var BackboneClone = require('Backbone') // Internally we use !(model instanceof Backbone.Model || ... instanceof Backbone.Collection)
+                                        // If the Backbone for EndDash is different then the clients, we want to handle this case.
+                                        // See lib/reactions/model.js for fix.
 
 describe("With a backbone model from a different backbone object", function(){
   it("Should still work properly", function(){
@@ -81,4 +80,105 @@ describe("With a backbone collection from a different backbone object", function
     })
   })
 
+  describe("With a mix of different model kinds", function(){
+    it("Should still work properly", function(){
+      var model1 = new BackboneClone.Model({persisted: "Chelsa Piers", hook: '1'})
+        , model2 = {persisted: "Columbus circle", hook: '2'}
+        , model3 = new Backbone.Model({persisted: "Soho", hook: '3'})
+      this.collection.add([model1, model2, model3])
+      var template = generateTemplate({users: this.collection}, this.templateString)
+      expect($('.1').html()).to.be(model1.get('persisted'))
+      expect($('.2').html()).to.be(model2.persisted)
+      expect($('.3').html()).to.be(undefined)
+      model1.set('persisted', 'Changed1')
+      model2.persisted = 'Changed2'
+      model3.set('persisted', 'Changed3')
+      expect($('.1').html()).to.be(model1.get('persisted'))
+      expect($('.2').html()).to.be("Columbus circle")
+      expect($('.3').html()).to.be(undefined)
+    })
+  })
+})
+
+describe("With a backbone collection from the same backbone object", function(){
+  beforeEach(function(){
+    this.collection = new Backbone.Collection()
+    this.templateString = "<div class='users-'><div class ='user-'><div class=' #{hook} persisted-'></div></div></div>"
+  })
+
+  describe("With models from a different backbone object", function(){
+    it("Does not work properly", function(){
+      var model1 = new BackboneClone.Model({persisted: "Chelsa Piers", hook: '1'})
+        , model2 = new BackboneClone.Model({persisted: "Columbus circle", hook: '2'})
+        , model3 = new BackboneClone.Model({persisted: "Soho", hook: '3'})
+      this.collection.add([model1, model2, model3])
+      var template = generateTemplate({users: this.collection}, this.templateString)
+      expect($('.1').html()).to.be(undefined)
+      expect($('.2').html()).to.be(undefined)
+      expect($('.3').html()).to.be(undefined)
+      model1.set('persisted', 'Changed1')
+      model2.set('persisted', 'Changed2')
+      model3.set('persisted', 'Changed3')
+      expect($('.1').html()).to.be(undefined)
+      expect($('.2').html()).to.be(undefined)
+      expect($('.3').html()).to.be(undefined)
+    })
+  })
+
+  describe("With models from the same backbone object", function(){
+    it("Does not work properly", function(){
+      var model1 = new Backbone.Model({persisted: "Chelsa Piers", hook: '1'})
+        , model2 = new Backbone.Model({persisted: "Columbus circle", hook: '2'})
+        , model3 = new Backbone.Model({persisted: "Soho", hook: '3'})
+      this.collection.add([model1, model2, model3])
+      var template = generateTemplate({users: this.collection}, this.templateString)
+      expect($('.1').html()).to.be(model1.get('persisted'))
+      expect($('.2').html()).to.be(model2.get('persisted'))
+      expect($('.3').html()).to.be(model3.get('persisted'))
+      model1.set('persisted', 'Changed1')
+      model2.set('persisted', 'Changed2')
+      model3.set('persisted', 'Changed3')
+      expect($('.1').html()).to.be(model1.get('persisted'))
+      expect($('.2').html()).to.be(model2.get('persisted'))
+      expect($('.3').html()).to.be(model3.get('persisted'))
+    })
+  })
+
+  describe("With anonymous models", function(){
+    it("Should still interpolate values but changes will not be updated", function(){
+      var model1 = {persisted: "Chelsa Piers", hook: '1'}
+        , model2 = {persisted: "Columbus circle", hook: '2'}
+        , model3 = {persisted: "Soho", hook: '3'}
+      this.collection.add([model1, model2, model3])
+      var template = generateTemplate({users: this.collection}, this.templateString)
+      expect($('.1').html()).to.be(model1.persisted)
+      expect($('.2').html()).to.be(model2.persisted)
+      expect($('.3').html()).to.be(model3.persisted)
+      model1.persisted = 'Changed1'
+      model2.persisted = 'Changed2'
+      model3.persisted = 'Changed3'
+      expect($('.1').html()).to.be("Chelsa Piers")
+      expect($('.2').html()).to.be("Columbus circle")
+      expect($('.3').html()).to.be("Soho")
+    })
+  })
+
+  describe("With a mix of different model kinds", function(){
+    it("Should still work properly", function(){
+      var model1 = new Backbone.Model({persisted: "Chelsa Piers", hook: '1'})
+        , model2 = {persisted: "Columbus circle", hook: '2'}
+        , model3 = new BackboneClone.Model({persisted: "Soho", hook: '3'})
+      this.collection.add([model1, model2, model3])
+      var template = generateTemplate({users: this.collection}, this.templateString)
+      expect($('.1').html()).to.be(model1.get('persisted'))
+      expect($('.2').html()).to.be(model2.persisted)
+      expect($('.3').html()).to.be(undefined)
+      model1.set('persisted', 'Changed1')
+      model2.persisted = 'Changed2'
+      model3.set('persisted', 'Changed3')
+      expect($('.1').html()).to.be(model1.get('persisted'))
+      expect($('.2').html()).to.be("Columbus circle")
+      expect($('.3').html()).to.be(undefined)
+    })
+  })
 })
