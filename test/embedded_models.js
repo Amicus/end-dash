@@ -7,7 +7,7 @@ var path = require("path")
 
 describe("An embedded model", function() {
   it("should set all the values in the html", function () {
-    var template = generateTemplate({ survey: { name: "A Survey", person: { name: "Zach" } } }, fs.readFileSync(__dirname + "/support/embedded_models.html").toString())
+    var template = generateTemplate({ survey: { name: "A Survey", person: { name: "Zach" } } }, fs.readFileSync(__dirname + "/support/templates/embedded_models.html").toString())
 
     expect($("#surveyName").html()).to.be("A Survey")
     expect($(".person- .name-").html()).to.be("Zach")
