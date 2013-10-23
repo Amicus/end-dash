@@ -4,7 +4,7 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
-  , ViewReaction = require("../lib/reactions/view")
+  , ViewStore = require("../lib/view_store")
   , Model = Backbone.Model
   , Collection = Backbone.Collection
   , generateTemplate = require("./support/generate_template")
@@ -12,10 +12,13 @@ var path = require("path")
 
 describe("When I initialize a template with a view bound to it", function() {
   beforeEach(function() {
-    ViewReaction.setGetView(function(name) {
-      return views[name]
+    ViewStore.setCustomGetView(function(name) {
+      return views[name];
     })
-  })
+  });
+
+  afterEach(function() { ViewStore.setCustomGetView(null); });
+
   it("it should initialize the view correctly", function(done) {
 
     function MockView(opts) {

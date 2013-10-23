@@ -4,14 +4,23 @@ var expect = require('expect.js'),
     Backbone = require('backbone'),
     EndDash = require('../lib/end-dash'),
     TemplateStore = require('../lib/template_store'),
+    ViewStore = require('../lib/view_store'),
     Template = require('../lib/template'),
     _ = require('underscore');
 
 describe('EndDash', function(){
   describe('.registerTemplate', function() {
-    it('loads the template to the store', function(){
+    it('loads templates to the store', function(){
       EndDash.registerTemplate('partials', '<div></div>');
       expect(TemplateStore.isLoaded('partials')).to.be(true);
+    });
+  });
+
+  describe('.registerView', function() {
+    it('loads views to the store', function(){
+      var EndDashTestView = {};
+      EndDash.registerView('test view', EndDashTestView);
+      expect(ViewStore.getView('test view')).to.be(EndDashTestView);
     });
   });
 
