@@ -1,14 +1,8 @@
 var expect = require("expect.js"),
-    Parser = require('../lib/parser'),
-    Template = require('../lib/template'),
     TemplateStore = require('../lib/template_store'),
 
     // easier to read..
-    isLoaded = TemplateStore.isLoaded,
-    isParsed = TemplateStore.isParsed,
     load = TemplateStore.load,
-    loadAndParse = TemplateStore.loadAndParse,
-    getTemplateClass = TemplateStore.getTemplateClass,
     rootElements = TemplateStore.rootElements;
 
 describe('rootElements', function() {
