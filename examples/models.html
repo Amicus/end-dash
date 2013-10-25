@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The King of Pop</title>
+  <meta name="description" content="A quick EndDash example.">
+  <meta name="author" content="Amicus">
+</head>
+
+<body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore.js"></script>
+  <script src="http://backbonejs.org/backbone.js"></script>
+  <script src="../build/end-dash.js"></script>
+
+  <div id="content"></div>
+
+  <script type="text/enddash" name="user">
+    <div class="user">
+      <p>
+        Hello, my name is <span class="firstName-"></span>
+        <span class="lastName-"></span>! I have something to tell you...
+      </p>
+
+      <strong class="catchphrase-"></strong>
+    </div>
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+      // Load all the templates on the page.
+      EndDash.bootstrap();
+
+      var michael = new Backbone.Model({
+        firstName: 'Michael',
+        lastName: 'Jackson',
+        catchphrase: "You've been hit and struck by a smooth criminal!"
+      });
+
+      var template = EndDash.getTemplate('user', michael);
+
+      $('#content').html(template.el);
+    });
+  </script>
+</body>
+</html>
