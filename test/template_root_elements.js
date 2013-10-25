@@ -24,4 +24,9 @@ describe('rootElements', function() {
       expect(rootElements(multiElementMarkup)[1]).to.be(secondElementMarkup);
     });
   });
+  it('errors if multiple root elements are present by default', function() {
+    RAW_TEMPLATES = {}
+    multiRootParse = function() {new Parser(multiElementMarkup, {templateName: 'test',templates: RAW_TEMPLATES}) }
+    expect(multiRootParse).to.throwError(/multiple root elements/);
+  });
 });
