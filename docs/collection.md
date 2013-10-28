@@ -2,10 +2,7 @@ Collections
 ===========
 
 
-What if I have a colletion of models that each need
-to use the same template?
-
-Great! EndDash lets you render a single template
+In EndDash its easy to render a single template
 once for every model in a collection.
 
 
@@ -74,7 +71,7 @@ or remove models.
 bondCharacters.remove(bond);
 ```
 
-After the above line is ran, your page will look like this:
+After the above line is run, your page will look like this:
 
 ```
 The name is Drax, Hugo Drax
@@ -85,12 +82,9 @@ The name is Lynd, Vesper Lynd
 Polymorphic Collections
 =======================
 
-What if I want to render a collection with different templates
-for some models?
-
-
-No problem! In your HTML just add ' yourKeyPolymorphic- ' to the top level DOM element
-of the collection. Where ' yourKey ' is the attribute that determines which template to
+If you want to render a collection with different templates
+based on on the model's attributes, first add ' yourKeyPolymorphic- ' to the top level DOM element
+of the collection. Where ' yourKey ' is a attribute that determines which template to
 render.
 
 ```html
@@ -110,7 +104,17 @@ Then for each template add a 'when' clause:
 
 </div>
 ```
-Put it all together now.
+
+Finally, define this attribute on your models as desired.
+
+```javascript
+var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond', type: 'Bond'});
+var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax', type: 'notBond'});
+var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd', type: 'notBond'});
+```
+
+
+All together:
 
 
 ## In your HTML
@@ -130,8 +134,6 @@ Put it all together now.
 </div>
 ```
 
-Now update the JS so which
-character is Bond is clear.
 
 ## In your Javascript
 
@@ -145,7 +147,7 @@ var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters})
 $('body').html(template.el);
 ```
 
-Now you have that classic catch phrase properly scoped to just Bond!
+Now our HTML has Bond's catch phrase displayed accurately.
 
 ```
 The name is Bond, James Bond
