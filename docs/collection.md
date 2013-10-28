@@ -110,8 +110,10 @@ Then for each template add a 'when' clause:
 	//Your template HTML for when the model is Bond
 </div>
 ```
+Put it all together now.
 
-## All together then
+
+## In your HTML
 
 ```html
 <div class='characters- typePolymorphic-'>
