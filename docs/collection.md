@@ -6,12 +6,11 @@ What if I have a colletion of models that each need
 to use the same template?
 
 Great! EndDash lets you render a single template
-once for every model with a collection with no
+once for every model in a collection with almost no
 extra work!
 
 
-In your HTML
-============
+## In your HTML
 
 
 ```html
@@ -25,12 +24,11 @@ In your HTML
 ```
 
 
-In your Javscript
-=================
+## In your Javscript
 
 
-(note: Check desired templates & views are loaded
-in EndDash)
+
+(note: Load desired templates & views in EndDash first)
 
 ```javascript
 var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond'});
@@ -42,9 +40,9 @@ var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters})
 $('body').html(template.el);
 ```
 
-Volia!
+There you go!
 
-And on your page:
+On your page:
 
 ```
 The name is Bond, James Bond
@@ -53,8 +51,7 @@ The name is Lynd, Vesper Lynd
 ```
 
 
-Does this HTML update on model changes?
-=============================================
+## Does this HTML update on model changes?
 
 
 Yes!
@@ -63,7 +60,7 @@ Yes!
 drax.set('lastName', 'Jaws');
 ```
 
-Then on your page:
+Your page changes to:
 
 ```
 The name is Bond, James Bond
@@ -71,8 +68,9 @@ The name is Jaws, Hugo Jaws
 The name is Lynd, Vesper Lynd
 ```
 
-It also updates when a model is added or removed 
-(At the correct index no less!)
+It also updates correctly if you add or remove a model
+and preserves the correct ordering if the collection's
+models on the page.
 
 ```javascript
 bondCharacters.remove(bond);
@@ -93,8 +91,9 @@ What if I want to render a collection with different templates
 for some models?
 
 
-No problem! In your HTML just add 'yourKeyPolymorphic-' to the top level DOM element
-of the collection. Where 'yourkey' is the attribute to determines the template by
+No problem! In your HTML just add ' yourKeyPolymorphic- ' to the top level DOM element
+of the collection. Where ' yourKey ' is the attribute which determines the template to
+render.
 
 ```html
 <div class='characters- bondPolymorphic-'>
@@ -104,7 +103,7 @@ of the collection. Where 'yourkey' is the attribute to determines the template b
 </div>
 ```
 
-Then for each template add a 'when' clause
+Then for each template add a 'when' clause:
 
 ```html
 <div class='character- whenBond-'>
@@ -112,7 +111,7 @@ Then for each template add a 'when' clause
 </div>
 ```
 
-All together then:
+## All together then
 
 ```html
 <div class='characters- typePolymorphic-'>
@@ -130,19 +129,21 @@ All together then:
 ```
 
 Now update that JS so that it knows which
-character is Bond! 
+character is Bond!
+
+## In your Javascript
 
 ```javascript
-var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond', type:'Bond'});
-var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax', type:'notBond'});
-var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd', type:'notBond'});
+var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond', type: 'Bond'});
+var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax', type: 'notBond'});
+var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd', type: 'notBond'});
 
 var bondCharacters = New Backbone.Collection([bond, drax, lynd]);
 var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
 $('body').html(template.el);
 ```
 
-Now you have that classic catch phrase properly scopped to just him!
+Now you have that classic catch phrase properly scoped to just him!
 
 ```
 The name is Bond, James Bond
