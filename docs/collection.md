@@ -6,8 +6,7 @@ What if I have a colletion of models that each need
 to use the same template?
 
 Great! EndDash lets you render a single template
-once for every model in a collection with almost no
-extra work!
+once for every model in a collection.
 
 
 ## In your HTML
@@ -40,9 +39,9 @@ var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters})
 $('body').html(template.el);
 ```
 
-There you go!
+There you go.
 
-On your page:
+Displayed on your page will be:
 
 ```
 The name is Bond, James Bond
@@ -54,13 +53,13 @@ The name is Lynd, Vesper Lynd
 ## Does this HTML update on model changes?
 
 
-Yes!
+Yes it will. Doing:
 
 ```javascript
 drax.set('lastName', 'Jaws');
 ```
 
-Your page changes to:
+Will cause the page to change to:
 
 ```
 The name is Bond, James Bond
@@ -68,15 +67,14 @@ The name is Jaws, Hugo Jaws
 The name is Lynd, Vesper Lynd
 ```
 
-It also updates correctly if you add or remove a model
-and preserves the correct ordering if the collection's
-models on the page.
+Your HTML will also update automatically when you add
+or remove models.
 
 ```javascript
 bondCharacters.remove(bond);
 ```
 
-Now on your page:
+After the above line is ran, your page will look like this:
 
 ```
 The name is Drax, Hugo Drax
@@ -92,7 +90,7 @@ for some models?
 
 
 No problem! In your HTML just add ' yourKeyPolymorphic- ' to the top level DOM element
-of the collection. Where ' yourKey ' is the attribute which determines the template to
+of the collection. Where ' yourKey ' is the attribute that determines which template to
 render.
 
 ```html
@@ -107,7 +105,9 @@ Then for each template add a 'when' clause:
 
 ```html
 <div class='character- whenBond-'>
+
 	//Your template HTML for when the model is Bond
+
 </div>
 ```
 Put it all together now.
@@ -130,8 +130,8 @@ Put it all together now.
 </div>
 ```
 
-Now update that JS so that it knows which
-character is Bond!
+Now update the JS so which
+character is Bond is clear.
 
 ## In your Javascript
 
@@ -145,7 +145,7 @@ var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters})
 $('body').html(template.el);
 ```
 
-Now you have that classic catch phrase properly scoped to just him!
+Now you have that classic catch phrase properly scoped to just Bond!
 
 ```
 The name is Bond, James Bond
@@ -153,5 +153,4 @@ My name is Hugo Drax
 My name is Vesper Lynd
 ```
 
-There you go! Now EndDashify some collections!
 
