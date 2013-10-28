@@ -158,3 +158,57 @@ My name is Vesper Lynd
 ```
 
 
+Attributes on Collections
+=========================
+
+
+
+If you extend Collections to have an attributes interface identical
+to Backbone Models, EndDash will correctly render and update these attributes
+as if they were properties on a Model.
+
+## In your Javascript
+
+
+```javascript
+
+var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond'});
+var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax'});
+var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd'});
+
+var bondCharacters = New Backbone.ExtendCollection([bond, drax, lynd]);
+bondCharacters.set('description', 'There once were a great set of characters:');
+var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
+$('body').html(template.el);
+```
+
+## In your HTML
+
+
+```html
+<div>
+	<div class='characters-'>
+		<div class='description-'></div>
+	</div>
+	<div class='characters-'>
+		<div class='character-'>
+		The name is <span class='firstName-'></span>
+		, <span class='lastName-'></span>
+		<span class='firstName-'></span>
+	</div>
+</div>
+```
+
+Your page now display:
+
+```
+There once was a great set of characters:
+The name is Bond, James Bond
+The name is Drax, Hugo Drax
+The name is Lynd, Vesper Lynd
+```
+
+
+note: This assumes you extended Collections with getters, setters, and 
+events as described earlier.
+
