@@ -2,7 +2,8 @@ Collections
 ===========
 
 
-In EndDash its easy to render a single template
+
+In EndDash it is easy to render a single template
 once for every model in a collection.
 
 
@@ -50,6 +51,7 @@ The name is Lynd, Vesper Lynd
 ## Does this HTML update on model changes?
 
 
+
 Yes it will. Doing:
 
 ```javascript
@@ -95,7 +97,7 @@ render.
 </div>
 ```
 
-Then for each template add a 'when' clause:
+Then for each nested template add a 'when' clause:
 
 ```html
 <div class='character- whenBond-'>
@@ -147,7 +149,7 @@ var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters})
 $('body').html(template.el);
 ```
 
-Now our HTML has Bond's catch phrase displayed accurately.
+Now our HTML displays Bond's catch phrase in a cinematically accurate way.
 
 ```
 The name is Bond, James Bond
