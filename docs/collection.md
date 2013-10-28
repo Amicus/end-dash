@@ -3,24 +3,24 @@ Collections
 
 
 To bind a collection's model to a set of DOM elements, add a DOM element
-with a plural class and a direct child elment that has a class name that
-is the singluar of that class name.
+with a plural class and a direct child whose class is the singluar version of
+this class.
 
 
 ```html
-<div class='characters-'>
-	<div class='character-'>
+<div class='objects-'>
+	<div class='object-'>
 		<div class='firstName-'></div>
 	</div>
 </div>
 ```
 
-The html within the 'character-' div will then be copied and bound n-times, where
-n is the number of models in the 'characters' collection. Normal EndDash
-variable/attribute interpolation for each model, and corresponding html, apply.
+The html inside the 'character-' div will then be copied and bound once to each model inside
+the collection. Normal EndDash variable/attribute interpolation for each model, and corresponding 
+html, will apply.
 
-For this to work, the top-level collection must be referenced as a property of another
-model. This can be done with a simple anonymous model:
+For this to work, EndDash must be able to scope into the collection you wish to iterate over.
+For exmaple, using a simple anonymous model:
 
 ```javascript
 var template = EndDash.getTemplate(yourTemplatesName, {characters: yourCollection});
@@ -34,11 +34,9 @@ Polymorphic Collections
 
 
 
-Instead of binding each model in a collection to a copy of the same
-DOM elements, it is possible to bind each model to a different set of DOM elements
-based on a single attribute of that model.
-
-To do this add ' keyNamePolymorphic- ' to the top level collection scoping.
+Each model may be bound to different DOM elmenets based on a single attribute of that model. 
+To do this follow the normal EndDash collection pattern (see above) and add ' attributeKeyPolymorphic- ' 
+as a class to the parent element with the plural class.
 
 ```html
 <div class='objects- typePolymorphic-'>
@@ -46,7 +44,8 @@ To do this add ' keyNamePolymorphic- ' to the top level collection scoping.
 </div>
 ```
 
-And add a 'when' clause to the root of each set of DOM elements.
+Then create a series of single-root child elements that have a class that is the singular of their parent 
+and also a 'when' clause.
 
 ```html
 <div class='objects- typePolymoprhic-'>
