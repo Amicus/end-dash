@@ -3,16 +3,17 @@ require('./support/helper');
 var expect = require("expect.js"),
     Parser = require('../lib/parser'),
     Template = require('../lib/template'),
-    TemplateStore = require('../lib/template_store'),
+    templateStore = require('../lib/template_store').create(),
+    _ = require('underscore'),
 
     // easier to read..
-    isLoaded = TemplateStore.isLoaded,
-    isParsed = TemplateStore.isParsed,
-    load = TemplateStore.load,
-    loadAndParse = TemplateStore.loadAndParse,
-    getTemplateClass = TemplateStore.getTemplateClass;
+    isLoaded = _.bind(templateStore.isLoaded, templateStore),
+    isParsed = _.bind(templateStore.isParsed, templateStore),
+    load = _.bind(templateStore.load, templateStore),
+    loadAndParse = _.bind(templateStore.loadAndParse, templateStore),
+    getTemplate = _.bind(templateStore.getTemplate, templateStore);
 
-describe('TemplateStore', function() {
+describe('templateStore', function() {
   describe('.load', function() {
     it('loads markup without parsing', function() {
       load('user', '<div id="user"></div>');
