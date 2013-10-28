@@ -1,11 +1,12 @@
 Collections
 ===========
 
-How do I use them?
-===================
+What if I have a colletion of models that each need
+to use the same template?
 
-EndDash will allow you to render a single template
-once for each item in your collection!
+Great! EndDash lets you render a single template
+once for every model with a collection with no
+extra work!
 
 In your HTML
 ============
@@ -35,11 +36,11 @@ var lynd = new Backbone.Model({firstname: 'Vesper', lastName: 'Lynd'});
 var bondCharacters = New Backbone.Collection([bond, drax, lynd]);
 var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
 $('body').html(template.el);
-```javascript
+```
 
 Volia!
 
-In your page:
+And on your page:
 
 ```
 The name is Bond, James Bond
@@ -47,16 +48,16 @@ The name is Drax, Hugo Drax
 The name is Lynd, Vesper Lynd
 ```
 
-Does this HTML also  update on model changes?
+Does this HTML update on model changes?
 =============================================
 
-Yep!
-
+Yes!
 
 ```javascript
 drax.set('lastName', 'Jaws');
 ```
-In the browser now:
+
+Then on your page:
 
 ```
 The name is Bond, James Bond
@@ -64,13 +65,14 @@ The name is Jaws, Hugo Jaws
 The name is Lynd, Vesper Lynd
 ```
 
-Or:
+It also updates when a model is added or removed 
+(At the correct index no less!)
 
 ```javascript
 bondCharacters.remove(bond);
 ```
 
-In the browser now:
+Now on your page:
 
 ```
 The name is Drax, Hugo Drax
@@ -79,4 +81,68 @@ The name is Lynd, Vesper Lynd
 
 Polymorphic Collections
 =======================
+
+What if I want to render a collection with different templates
+for some models?
+
+
+No problem! In your HTML just add 'yourKeyPolymorphic-' to the top level DOM element
+of the collection. Where 'yourkey' is the attribute to determines the template by
+
+```html
+<div class='characters- bondPolymorphic-'>
+
+//all of your templates
+
+</div>
+```
+
+Then for each template add a 'when' clause
+
+```html
+<div class='character- whenBond-'>
+	//Your template HTML for when the model is Bond
+</div>
+```
+
+All together then:
+
+```html
+<div class='characters- typePolymorphic-'>
+	<div class='character- whenBond-'>
+		The name is
+		<div class='firstName-'></div>
+		, <div class='lastName-'></div>
+		<div class='firstName-'></div>
+	</div>
+	<div class='character- whenNotBond-'>
+		My name is
+		<div class='firstName-'></div>
+		<div class='lastName-'></div>
+	</div>
+</div>
+```
+
+Now update that JS so that it knows which
+character is Bond! 
+
+```javascript
+var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond', type:'Bond'});
+var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax', type:'notBond'});
+var lynd = new Backbone.Model({firstname: 'Vesper', lastName: 'Lynd', type:'notBond'});
+
+var bondCharacters = New Backbone.Collection([bond, drax, lynd]);
+var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
+$('body').html(template.el);
+```
+
+Now you have that classic catch phrase properly scopped to just him!
+
+```
+The name is Bond, James Bond
+My name is Hugo Drax 
+My name is Vesper Lynd
+```
+
+There you go! Now EndDashify some collections!
 
