@@ -1,10 +1,10 @@
-Collections
-===========
+Collection Iteration
+====================
 
 
-To bind a collection's model to a set of DOM elements, add a DOM element
-with a plural class and a direct child whose class is the singluar version of
-this class.
+To iterate over a collection in EndDash, add a DOM element with a plural
+class that has a single direct child with a class that is the singluar of its
+parent's. 
 
 
 ```html
@@ -15,28 +15,29 @@ this class.
 </div>
 ```
 
-The html inside the 'character-' div will then be copied and bound once to each model inside
+Any HTML inside the child div ($('.object-')) will be copied and bound once to each model in
 the collection. Normal EndDash variable/attribute interpolation for each model, and corresponding 
 html, will apply.
 
 For this to work, EndDash must be able to scope into the collection you wish to iterate over.
-For exmaple, using a simple anonymous model:
+You can use a simple anonymous model to acomplish this.
 
 ```javascript
-var template = EndDash.getTemplate(yourTemplatesName, {characters: yourCollection});
+var template = EndDash.getTemplate(theTemplateName, {objects: yourCollection});
 ```
 
 
 
 
-Polymorphic Collections
-=======================
+Polymorphic Collections Iteration
+=================================
 
 
 
-Each model may be bound to different DOM elmenets based on a single attribute of that model. 
-To do this follow the normal EndDash collection pattern (see above) and add ' attributeKeyPolymorphic- ' 
-as a class to the parent element with the plural class.
+To iterate over a collection, and bind models to a different set of DOM elements based on a single attribute 
+of the model. Follow the normal EndDash collection iteration rules (see above) and add a class 
+' attributeKeyPolymorphic- ' to the top level element.
+
 
 ```html
 <div class='objects- typePolymorphic-'>
@@ -44,19 +45,20 @@ as a class to the parent element with the plural class.
 </div>
 ```
 
-Then create a series of single-root child elements that have a class that is the singular of their parent 
-and also a 'when' clause.
+Add your desired HTML element sets as single-root children elements of the top level element, with one class that is 
+the singular of the root element and another that is a 'when' clause class.
+
 
 ```html
 <div class='objects- typePolymoprhic-'>
 	<div class='object- whenA-'>
-		Models with Model.get('type') == 'A' will be bound to any HTML elements here
+		Models with Model.get('type') == 'A' will be bound to HTML elements here
 	</div>
 	<div class='object- whenB-'>
-		Models with Model.get('type') == 'B' will be bound to any HTML elements here
+		Models with Model.get('type') == 'B' will be bound to HTML elements here
 	</div>
 	<div class='object- whenC-'>
-		Models with Model.get('type') == 'C' will be bound to any HTML elements here
+		Models with Model.get('type') == 'C' will be bound to HTML elements here
 	</div>
 </div>
 ```
