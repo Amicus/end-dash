@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-browserify');
 
   grunt.initConfig({
     simplemocha: {
@@ -10,16 +12,30 @@ module.exports = function(grunt) {
         reporter: 'spec'
       },
 
-      all: {src: ['test/**/*.js', '!test/support/**/*.js']}
+      dist: {src: ['test/**/*.js', '!test/support/**/*.js']}
     },
 
     watch: {
-      all: {
+      dist: {
         files: ['test/**/*.js'],
         tasks: ['simplemocha']
+      }
+    },
+
+    browserify: {
+      dist: {
+        files: {'build/end-dash.js': ['lib/end-dash.js']}
+      }
+    },
+
+    uglify: {
+      dist: {
+        files: {'build/end-dash.min.js': ['build/enddash.js']}
       }
     }
   });
 
-  grunt.registerTask('default', ['simplemocha']);
+  grunt.registerTask('default', ['build']);
+  grunt.registerTask('build', ['browserify', 'uglify']);
+  grunt.registerTask('test', ['simplemocha']);
 };

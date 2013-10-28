@@ -53,12 +53,12 @@ describe('EndDash', function(){
     });
   });
 
-  describe('loadTemplatesFromPage', function() {
+  describe('bootstrap', function() {
     describe('when loaded correctly', function() {
       before(function() {
         var fs = require('fs');
         window.document.body.innerHTML = fs.readFileSync(__dirname+'/support/templates/script_tags.js.ed');
-        EndDash.loadTemplatesFromPage();
+        EndDash.bootstrap();
       });
 
       it('loads templates from script tags', function() {
@@ -94,7 +94,7 @@ describe('EndDash', function(){
       });
 
       it('errors if a name isn\'t provided', function() {
-        expect(EndDash.loadTemplatesFromPage).to.throwError(/must have a 'name' attribute/);
+        expect(EndDash.bootstrap).to.throwError(/must have a 'name' attribute/);
       });
     });
   });
