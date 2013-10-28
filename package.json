@@ -22,6 +22,9 @@
     "awesome-docs": "git+ssh://git@github.com/Amicus/awesome-docs.git",
     "grunt": "~0.4.1",
     "grunt-simple-mocha": "~0.4.0",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "browserify": "~2.35.0",
+    "grunt-browserify": "~1.2.9",
+    "grunt-contrib-uglify": "~0.2.4"
   }
 }
