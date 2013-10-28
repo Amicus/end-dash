@@ -1,5 +1,3 @@
-require('./support/helper');
-
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
@@ -7,15 +5,14 @@ var path = require("path")
   , _ = require("underscore")
   , jqts = require("../lib/util").jqts
   , EndDash = require("../lib/end-dash")
-  , TemplateStore = require('../lib/template_store')
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
 
 describe("A template with partials", function() {
   it("should do collections", function() {
     var templates = [
-      "/support/templates/partials.html",
-      "/support/templates/embedded_partial.html",
-      "/support/templates/list_item.html"
+      "/support/partials.html",
+      "/support/embedded_partial.html",
+      "/support/list_item.html"
     ]
 
     var model = {
@@ -24,10 +21,11 @@ describe("A template with partials", function() {
     }
 
     _(templates).each(function(template) {
-      TemplateStore.load(template, fs.readFileSync(__dirname + template).toString())
+      var templatePath = __dirname + template;
+      EndDash.templateStore.load(template, fs.readFileSync(templatePath).toString())
     })
 
-    var template = generateTemplate(model, '/support/templates/partials.html')
+    var template = generateTemplate(model, '/support/partials.html', {shouldResetStore: false})
 
     expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
     expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")

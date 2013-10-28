@@ -1,5 +1,3 @@
-require('./support/helper');
-
 var expect = require("expect.js"),
     Parser = require('../lib/parser'),
     Template = require('../lib/template'),
@@ -22,17 +20,17 @@ describe('templateStore', function() {
     });
   });
 
-  describe('.getTemplateClass', function() {
+  describe('.getTemplate', function() {
     it('retrieves loaded templates', function() {
       load('user', '<div id="user"></div>');
-      var UserTemplate = getTemplateClass('user');
+      var UserTemplate = getTemplate('user');
       expect(UserTemplate).to.be.a(Template.constructor);
     });
 
     it('returns the same Template object when called repeatedly', function() {
       load('user', '<div id="user"></div>');
-      var UserTemplate = getTemplateClass('user'),
-          UserTemplate2 = getTemplateClass('user');
+      var UserTemplate = getTemplate('user'),
+          UserTemplate2 = getTemplate('user');
 
       expect(UserTemplate2).to.equal(UserTemplate);
     });
@@ -40,14 +38,14 @@ describe('templateStore', function() {
     it('retrieves templates using a normalized path', function() {
       var BarTemplate = loadAndParse('/foo/bar', '<div id="bar"></div>');
 
-      expect(getTemplateClass('/foo/bar')).to.equal(BarTemplate);
-      expect(getTemplateClass('/foo/bar/baz/..')).to.equal(BarTemplate);
-      expect(getTemplateClass('/foo/baz/../bar')).to.equal(BarTemplate);
+      expect(getTemplate('/foo/bar')).to.equal(BarTemplate);
+      expect(getTemplate('/foo/bar/baz/..')).to.equal(BarTemplate);
+      expect(getTemplate('/foo/baz/../bar')).to.equal(BarTemplate);
     });
 
     it('errors when it can\'t find a template', function() {
       expect(function() {
-        getTemplateClass('notLoaded')
+        getTemplate('notLoaded')
       }).to.throwError(/Could not find template/);
     });
 
@@ -55,7 +53,7 @@ describe('templateStore', function() {
       load('user', '<div id="user"></div>');
 
       expect(isParsed('user')).to.be(false);
-      getTemplateClass('user');
+      getTemplate('user');
       expect(isParsed('user')).to.be(true);
     });
   });

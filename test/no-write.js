@@ -1,8 +1,8 @@
-require('./support/helper');
-
 var Model = require("backbone").Model
   , expect = require("expect.js")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
+
+require("./helper")
 
 describe("An element with data-readonly", function() {
 

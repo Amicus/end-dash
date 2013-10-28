@@ -1,6 +1,7 @@
 require('./support/helper');
 
-var ViewStore = require('../lib/view_store');
+var ViewStore = require('../lib/view_store'),
+    expect = require("expect.js");
 
 describe('ViewStore', function() {
   it('loads views using .load', function() {

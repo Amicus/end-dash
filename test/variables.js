@@ -1,8 +1,6 @@
-require('./support/helper');
-
 var path = require("path")
   , expect = require("expect.js")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
   , Backbone = require('backbone')
 
 require("../lib/template")

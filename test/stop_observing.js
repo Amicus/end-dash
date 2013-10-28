@@ -1,10 +1,10 @@
-require('./support/helper');
-
 var path = require("path")
   , Model = require("backbone").Model
   , expect = require("expect.js")
   , fs = require("fs")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
+
+require("./helper")
 
 describe("When I clean up a template", function() { 
   it("should remove listeners from the model on a variable", function() {

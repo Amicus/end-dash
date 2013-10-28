@@ -1,5 +1,5 @@
 var EndDash = require('../../lib/end-dash'),
-    TemplateStore = require('../../lib/template_store'),
+    templateStore = require('../../lib/template_store').create(),
     PageHelper = require('../../lib/page_helper'),
     testTemplateCount = 0;
 

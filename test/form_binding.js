@@ -1,10 +1,8 @@
-require('./support/helper');
-
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
 
 describe("when the template has an input", function() {
   it("should update the model when the DOM changes", function() {

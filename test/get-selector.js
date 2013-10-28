@@ -1,9 +1,9 @@
-require('./support/helper');
-
 var util = require("../lib/util")
   , path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
+
+require("./helper")
 
 describe("getSelector", function() {
   it("should return a selector unique within root", function() {
@@ -26,7 +26,7 @@ describe("getSelector", function() {
     expect($(util.getSelector(element, root), root).is(element)).to.be(true)
   })
   it("should create a unique selector for every element in complex markup", function() {
-    var markup = fs.readFileSync(__dirname + "/support/templates/complex_markup.html")
+    var markup = fs.readFileSync(__dirname + "/support/complex_markup.html")
       , $ = window.$
     window.document.body.innerHTML = markup
 

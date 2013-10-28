@@ -1,8 +1,8 @@
-require('./support/helper');
-
 var expect = require("expect.js")
   , fs = require("fs")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
+
+require("./helper")
 
 describe("An template", function() {
   describe("which has data-scope attributes", function() {
@@ -28,7 +28,7 @@ describe("An template", function() {
           }
         }
       }
-      var template = generateTemplate(root, fs.readFileSync(__dirname + "/support/templates/scopes.html").toString())
+      var template = generateTemplate(root, fs.readFileSync(__dirname + "/support/scopes.html").toString())
     })
 
     it("should be able to access the root scope", function() {
