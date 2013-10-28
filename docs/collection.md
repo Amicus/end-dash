@@ -1,6 +1,7 @@
 Collections
 ===========
 
+
 What if I have a colletion of models that each need
 to use the same template?
 
@@ -8,22 +9,25 @@ Great! EndDash lets you render a single template
 once for every model with a collection with no
 extra work!
 
+
 In your HTML
 ============
+
 
 ```html
 <div class='characters-'>
 	<div class='character-'>
-		The name is
-		<div class='firstName-'></div>
-		, <div class='lastName-'></div>
-		<div class='firstName-'></div>
+		The name is <span class='firstName-'></span>
+		, <span class='lastName-'></span>
+		<span class='firstName-'></span>
 	</div>
 </div>
 ```
 
+
 In your Javscript
 =================
+
 
 (note: Check desired templates & views are loaded
 in EndDash)
@@ -31,7 +35,7 @@ in EndDash)
 ```javascript
 var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond'});
 var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax'});
-var lynd = new Backbone.Model({firstname: 'Vesper', lastName: 'Lynd'});
+var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd'});
 
 var bondCharacters = New Backbone.Collection([bond, drax, lynd]);
 var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
@@ -48,8 +52,10 @@ The name is Drax, Hugo Drax
 The name is Lynd, Vesper Lynd
 ```
 
+
 Does this HTML update on model changes?
 =============================================
+
 
 Yes!
 
@@ -78,6 +84,7 @@ Now on your page:
 The name is Drax, Hugo Drax
 The name is Lynd, Vesper Lynd
 ```
+
 
 Polymorphic Collections
 =======================
@@ -110,15 +117,14 @@ All together then:
 ```html
 <div class='characters- typePolymorphic-'>
 	<div class='character- whenBond-'>
-		The name is
-		<div class='firstName-'></div>
-		, <div class='lastName-'></div>
-		<div class='firstName-'></div>
+		The name is <span class='firstName-'></span>
+		, <span class='lastName-'></span>
+		<span class='firstName-'></span>
 	</div>
 	<div class='character- whenNotBond-'>
 		My name is
-		<div class='firstName-'></div>
-		<div class='lastName-'></div>
+		<span class='firstName-'></span>
+		<span class='lastName-'></span>
 	</div>
 </div>
 ```
@@ -129,7 +135,7 @@ character is Bond!
 ```javascript
 var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond', type:'Bond'});
 var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax', type:'notBond'});
-var lynd = new Backbone.Model({firstname: 'Vesper', lastName: 'Lynd', type:'notBond'});
+var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd', type:'notBond'});
 
 var bondCharacters = New Backbone.Collection([bond, drax, lynd]);
 var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
