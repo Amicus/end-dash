@@ -20,7 +20,7 @@ describe("A template with partials", function() {
 
     var model = {
       items: new Backbone.Collection([{ variable: "wat1" }, { variable: "wat2" }]),
-      thing: new Backbone.Model({ name: "Zach" }) 
+      thing: new Backbone.Model({ name: "Zach" })
     }
 
     _(templates).each(function(template) {
@@ -29,8 +29,8 @@ describe("A template with partials", function() {
 
     var template = generateTemplate(model, '/support/templates/partials.html')
 
-    expect($(".items- li:nth-child(1) .variable-").html()).to.be("wat1")
-    expect($(".items- li:nth-child(2) .variable-").html()).to.be("wat2")
+    expect($(".items- li div div:nth-child(1)").html()).to.be("wat1")
+    expect($(".items- li div div:nth-child(2)").html()).to.be("wat2")
     expect($(".thing- .name-").html()).to.be("Zach")
     expect($("embed").length).to.be(0)
   })

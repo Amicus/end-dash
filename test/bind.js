@@ -30,26 +30,26 @@ describe("when I initialize a collection", function() {
 
   beforeEach(function() {
     this.models = new Collection([new Model({ name: "Hawg" })])
-    this.markup = '<ul class="peeps-"><li data-each><div class="name-"></div></li></ul>'
+    this.markup = '<ul class="peeps-"><li data-each><div><div class="name-"></div></div></li></ul>'
     this.template = generateTemplate({ peeps: this.models }, this.markup)
   })
 
   it("should bind to a collection", function () {
     this.models.add(new Model({ name: "Dawg" }))
-    expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Hawg")
-    expect($(".peeps- li:nth-child(2) .name-").html()).to.be("Dawg")
+    expect($(".peeps- li div:nth-child(1) .name-").html()).to.be("Hawg")
+    expect($(".peeps- li div:nth-child(2) .name-").html()).to.be("Dawg")
   })
 
   it("should bind to a collection's changes", function () {
-    expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Hawg")
-    expect($(".peeps- li:nth-child(2) .name-").html()).to.be(undefined)
+    expect($(".peeps- li div:nth-child(1) .name-").html()).to.be("Hawg")
+    expect($(".peeps- li div:nth-child(2) .name-").html()).to.be(undefined)
 
     this.models.add(new Model({ name: "Dawg" }))
-    expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Hawg")
-    expect($(".peeps- li:nth-child(2) .name-").html()).to.be("Dawg")
+    expect($(".peeps- li div:nth-child(1) .name-").html()).to.be("Hawg")
+    expect($(".peeps- li div:nth-child(2) .name-").html()).to.be("Dawg")
 
     this.models.shift()
-    expect($(".peeps- li:nth-child(1) .name-").html()).to.be("Dawg")
-    expect($(".peeps- li:nth-child(2) .name-").html()).to.be(undefined)
+    expect($(".peeps- li div:nth-child(1) .name-").html()).to.be("Dawg")
+    expect($(".peeps- li div:nth-child(2) .name-").html()).to.be(undefined)
   })
 })

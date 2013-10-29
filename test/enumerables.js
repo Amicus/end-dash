@@ -10,14 +10,14 @@ describe("A collection", function() {
     var model = { people: [{name: "Zach"}, {name: "Dog"}] }
       , template = generateTemplate(model, fs.readFileSync(__dirname + "/support/templates/enumerable.html").toString())
 
-    expect($(".people- li:nth-child(1) .name-").html()).to.be("Zach")
-    expect($(".people- li:nth-child(2) .name-").html()).to.be("Dog")
+    expect($(".people- li div:nth-child(1)").html()).to.be("Zach")
+    expect($(".people- li div:nth-child(2)").html()).to.be("Dog")
   })
 
   it("should make the collection empty", function () {
     var model = { people: [] }
       , template = generateTemplate(model, fs.readFileSync(__dirname + "/support/templates/enumerable.html").toString())
 
-    expect($(".people-").children().length).to.be(0)
+    expect($(".people- li").children().length).to.be(0)
   })
 })
