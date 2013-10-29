@@ -1,9 +1,8 @@
 var EndDash = require('../../lib/end-dash'),
-    TemplateStore = require('../../lib/template_store'),
     PageHelper = require('../../lib/page_helper'),
     testTemplateCount = 0;
 
-  require('./helper');
+require('./helper');
 
 module.exports = function(model, markupOrPath) {
   var Template, templatePath;

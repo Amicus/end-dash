@@ -3,7 +3,7 @@ require('./support/helper');
 var expect = require('expect.js'),
     Backbone = require('backbone'),
     EndDash = require('../lib/end-dash'),
-    TemplateStore = require('../lib/template_store'),
+    templateStore = EndDash.templateStore,
     ViewStore = require('../lib/view_store'),
     Template = require('../lib/template'),
     _ = require('underscore');
@@ -12,7 +12,7 @@ describe('EndDash', function(){
   describe('.registerTemplate', function() {
     it('loads templates to the store', function(){
       EndDash.registerTemplate('partials', '<div></div>');
-      expect(TemplateStore.isLoaded('partials')).to.be(true);
+      expect(templateStore.isLoaded('partials')).to.be(true);
     });
   });
 
@@ -62,11 +62,11 @@ describe('EndDash', function(){
       });
 
       it('loads templates from script tags', function() {
-        expect(TemplateStore.isLoaded('crow')).to.be(true);
+        expect(templateStore.isLoaded('crow')).to.be(true);
       });
 
       it('does not load non-EndDash script tags', function() {
-        expect(TemplateStore.isLoaded('non-end-dash')).to.be(false);
+        expect(templateStore.isLoaded('non-end-dash')).to.be(false);
       });
 
       describe('when retrieved with getTemplate', function() {
