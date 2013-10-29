@@ -1,65 +1,99 @@
-Collection Iteration
-====================
+Iterating through a Collection
+==============================
 
+Given a populated Backbone Collection.
 
-To iterate over a collection in EndDash, add a DOM element with a plural
-class that has a single direct child with a class that is the singluar of its
-parent's. 
+```javascript
+var user1 = new Backbone.Model({firstName: 'Brian', lastName: 'Newman', type: 'basic'});
+var user2 = new Backbone.Model({firstName: 'Sarah', lastName: 'Berlow', type: 'admin'});
+var user3 = new Backbone.Model({firstName: 'Sam', lastName: 'Jenkins', type: 'basic'});
 
+var usersCollection = new Backbone.Collection([user1, user2, user3]);
+```
+
+Iterate through this collection using a DOM element with a plural
+class name ending in a dash.
 
 ```html
-<div class='objects-'>
-	<div class='object-'>
+<div class='users-'>
+</div>
+```
+
+Add a child element with the singular version of its parent's class name.
+
+```html
+<div class='users-'>
+	<div class='user-'>
+	</div>
+</div>
+```
+
+Add any HTML into this child you would like.
+
+```html
+<div class='users-'>
+	<div class='user-'>
 		<div class='firstName-'></div>
 	</div>
 </div>
 ```
 
-Any HTML inside the child div ($('.object-')) will be copied and bound once to each model in
-the collection. Normal EndDash variable/attribute interpolation for each model, and corresponding 
-html, will apply.
+Each child model in the collection will bind to the HTML in
+this child element.
 
-For this to work, EndDash must be able to scope into the collection you wish to iterate over.
-You can use a simple anonymous model to acomplish this.
+```
+Brian
+Sarah
+Sam
+```
+
+EndDash needs to scope into this collection, so add it to a
+a higher level object as a property. You can use a simple anonymous 
+model.
 
 ```javascript
-var template = EndDash.getTemplate(theTemplateName, {objects: yourCollection});
+var template = EndDash.getTemplate(theTemplateName, {users: yourCollection});
 ```
 
+## Iterating with more then one template
 
-
-
-Polymorphic Collections Iteration
-=================================
-
-
-
-To iterate over a collection, and bind models to a different set of DOM elements based on a single attribute 
-of the model. Follow the normal EndDash collection iteration rules (see above) and add a class 
-' attributeKeyPolymorphic- ' to the top level element.
-
+To iterate over a collection, binding each model 
+to an object based on its attribute, add a polymorphic
+key to your plural, collection, class name.
 
 ```html
-<div class='objects- typePolymorphic-'>
-	//innerHTML
+<div class='users- typePolymorphic-'>
 </div>
 ```
 
-Add your desired HTML element sets as single-root children elements of the top level element, with one class that is 
-the singular of the root element and another that is a 'when' clause class.
+The above makes EndDash bind models based on their
+'type' property.
 
+Next create a relationship between values of the 'type'
+property and HTML elements. Use the EndDash 'when' clause.
 
 ```html
-<div class='objects- typePolymoprhic-'>
-	<div class='object- whenA-'>
-		Models with Model.get('type') == 'A' will be bound to HTML elements here
-	</div>
-	<div class='object- whenB-'>
-		Models with Model.get('type') == 'B' will be bound to HTML elements here
-	</div>
-	<div class='object- whenC-'>
-		Models with Model.get('type') == 'C' will be bound to HTML elements here
+<div class='users-'>
+	<div class='user'->
+		<div class='whenAdmin-'>
+			Models with Model.get('type') == 'admin' will bind to HTML here.
+			See, <div class='firstName-'></div> is here.
+		</div>
+		<div class='whenBasic-'>
+			Models with Model.get('type') == 'basic' will bind to HTML here. 
+			See, <div class='firstName-'></div> is here.
+		</div>
 	</div>
 </div>
 ```
 
+Now you get.
+
+```
+Models with Model.get('type') == 'basic' will bind to HTML here. 
+See, Brian is here.
+Models with Model.get('type') == 'admin' will bind to HTML here.
+See, Sarah is here.
+Models with Model.get('type') == 'basic' will bind to HTML here. 
+See, Sam is here.
+```
