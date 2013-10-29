@@ -4,7 +4,8 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
-  , ViewStore = require("../lib/view_store")
+  , EndDash = require("../lib/end-dash")
+  , viewStore = EndDash.viewStore
   , Model = Backbone.Model
   , Collection = Backbone.Collection
   , generateTemplate = require("./support/generate_template")
@@ -12,12 +13,12 @@ var path = require("path")
 
 describe("When I initialize a template with a view bound to it", function() {
   beforeEach(function() {
-    ViewStore.setCustomGetView(function(name) {
+    viewStore.setCustomGetView(function(name) {
       return views[name];
     })
   });
 
-  afterEach(function() { ViewStore.setCustomGetView(null); });
+  afterEach(function() { viewStore.setCustomGetView(null); });
 
   it("it should initialize the view correctly", function(done) {
 
