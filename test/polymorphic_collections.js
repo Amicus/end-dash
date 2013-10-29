@@ -6,8 +6,6 @@ var path = require("path")
   , Backbone = require("backbone")
   , generateTemplate = require("./support/generate_template")
 
-require("./helper")
-
 describe("A polymporhic template", function() {
 
   it("should display the correct item based on type", function() {
@@ -15,11 +13,11 @@ describe("A polymporhic template", function() {
       , markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString()
       , template = generateTemplate(model, markup)
 
-    expect($(".things- li:nth-child(1)").html()).to.be("awesome")
-    expect($(".things- li:nth-child(2)").html()).to.be("cool")
+    expect($(".things- li div:nth-child(1)").html()).to.be("awesome")
+    expect($(".things- li div:nth-child(2)").html()).to.be("cool")
 
-    expect($(".things- li:nth-child(1)").hasClass("whenAwesome-")).to.be(true)
-    expect($(".things- li:nth-child(2)").hasClass("whenCool-")).to.be(true)
+    expect($(".things- li div:nth-child(1)").hasClass("whenAwesome-")).to.be(true)
+    expect($(".things- li div:nth-child(2)").hasClass("whenCool-")).to.be(true)
   })
 
   describe("when I bind to the collection", function() {
@@ -28,20 +26,20 @@ describe("A polymporhic template", function() {
         , markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString()
         , template = generateTemplate({ things: things }, markup)
 
-      expect($(".things- li:nth-child(1)").html()).to.be("awesome")
-      expect($(".things- li:nth-child(2)").html()).to.be("cool")
+      expect($(".things- li div:nth-child(1)").html()).to.be("awesome")
+      expect($(".things- li div:nth-child(2)").html()).to.be("cool")
 
-      expect($(".things- li:nth-child(1)").hasClass("whenAwesome-")).to.be(true)
-      expect($(".things- li:nth-child(2)").hasClass("whenCool-")).to.be(true)
+      expect($(".things- li div:nth-child(1)").hasClass("whenAwesome-")).to.be(true)
+      expect($(".things- li div:nth-child(2)").hasClass("whenCool-")).to.be(true)
 
       things.at(0).set("type", "cool")
       things.at(1).set("type", "awesome")
 
-      expect($(".things- li:nth-child(1)").html()).to.be("cool")
-      expect($(".things- li:nth-child(2)").html()).to.be("awesome")
+      expect($(".things- li div:nth-child(1)").html()).to.be("cool")
+      expect($(".things- li div:nth-child(2)").html()).to.be("awesome")
 
-      expect($(".things- li:nth-child(1)").hasClass("whenCool-")).to.be(true)
-      expect($(".things- li:nth-child(2)").hasClass("whenAwesome-")).to.be(true)
+      expect($(".things- li div:nth-child(1)").hasClass("whenCool-")).to.be(true)
+      expect($(".things- li div:nth-child(2)").hasClass("whenAwesome-")).to.be(true)
     })
   }) 
 })
