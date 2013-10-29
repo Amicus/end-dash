@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 
     uglify: {
       dist: {
-        files: {'build/end-dash.min.js': ['build/enddash.js']}
+        files: {'build/end-dash.min.js': ['build/end-dash.js']}
       }
     }
   });
