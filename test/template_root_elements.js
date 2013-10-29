@@ -12,6 +12,6 @@ describe('multiple rootElements', function() {
     multiRootParse = function() {
       new Parser(multiElementMarkup, {templateName: 'test',templates: {}})
     }
-    expect(multiRootParse).to.throwError(/multiple root elements/);
+    expect(multiRootParse).to.throwError(/invalid/);
   });
 });
