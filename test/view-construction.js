@@ -23,60 +23,60 @@ describe("When I initialize a template with a view bound to it", function() {
   it("it should initialize the view correctly", function(done) {
 
     function MockView(opts) {
-      var that = this
-      expect(this).to.be.a(MockView)
-      expect(opts.model).to.be(model)
+      var that = this;
+      expect(this).to.be.a(MockView);
+      expect(opts.model).to.be(model);
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect($(".ohHi-").data("view")).to.be(that)
-        expect(opts.el.is($(".ohHi-"))).to.be(true)
-        done()
-      })
-    }
-    views.testView = MockView
+        expect($(".ohHi-").data("view")).to.be(that);
+        expect(opts.el.is($(".ohHi-"))).to.be(true);
+        done();
+      });
+    };
+    views.testView = MockView;
 
     var model = new Model({ ohHi: "Hello There" })
-      , template = generateTemplate(model, '<div class = "ohHi- testView-"></div>')
+      , template = generateTemplate(model, '<div class = "ohHi- testView-"></div>');
   })
 
    it("should setup the view heirarchy correctly", function(done) {
     function Parent() {}
     function MockView(opts) {
-      var that = this
-      expect(this).to.be.a(MockView)
-      expect(opts.model).to.be(model)
+      var that = this;
+      expect(this).to.be.a(MockView);
+      expect(opts.model).to.be(model);
 
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect($(".ohHi-").data("view")).to.be(that)
-        expect(opts.el.is($(".ohHi-"))).to.be(true)
-        done()
-      })
-    }
+        expect($(".ohHi-").data("view")).to.be(that);
+        expect(opts.el.is($(".ohHi-"))).to.be(true);
+        done();
+      });
+    };
 
     views.embeddedTestView = MockView
     views.testView = Parent
 
     var model = new Model({ ohHi: "Hello There" })
-      , template = generateTemplate(model, '<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>')
+      , template = generateTemplate(model, '<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>');
   })
   it("should setup a view for collections", function(done) {
 
-    function Parent() {}
+    function Parent() {};
     function MockView(opts) {
-      var that = this
-      expect(this).to.be.a(MockView)
-      expect(opts.collection).to.be(model.herp.things)
+      var that = this;
+      expect(this).to.be.a(MockView);
+      expect(opts.collection).to.be(model.herp.things);
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect($(".things-").data("view")).to.be(that)
-        expect(opts.el.is($(".things-"))).to.be(true)
+        expect($(".things-").data("view")).to.be(that);
+        expect(opts.el.is($(".things-"))).to.be(true);
         done()
-      })
-    }
+      });
+    };
 
     views.testCollectionView = MockView
     views.testView = Parent
@@ -85,35 +85,36 @@ describe("When I initialize a template with a view bound to it", function() {
       , template = generateTemplate(model, '<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div></div>')
   })
   it("should bind a view to submodels", function(done) {
-    function Parent() {}
+    function Parent() {};
 
     function MockView(opts) {
-      var that = this
-      expect(this).to.be.a(MockView)
-      expect(opts.model.attributes).to.eql(model.thing)
+      var that = this;
+      expect(this).to.be.a(MockView);
+      expect(opts.model.attributes).to.eql(model.thing);
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect(opts.el.is(".thing-")).to.be(true)
-        done()
+        expect(opts.el.is(".thing-")).to.be(true);
+        done();
       })
     }
-    views.testCollectionView = MockView
-    views.testView = Parent
+    views.testCollectionView = MockView;
+    views.testView = Parent;
 
     var model = { thing: { value: "derp" } }
-      , template = generateTemplate(model, '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>')
-  })
+      , template = generateTemplate(model
+      , '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>');
+  });
 
   it("should setup the view with the correct scope, once", function(done) {
     var model = { currentUser: new Model() }
-      , template
+      , template;
 
     views["navigation/menu_view"] = function(opts) {
-      expect(opts.model).to.be(model.currentUser)
-      done()
+      expect(opts.model).to.be(model.currentUser);
+      done();
     }
 
-    template = generateTemplate(model, '<div data-scope="/currentUser" data-view="navigation/menu_view"></div>')
-  })
-})
+    template = generateTemplate(model, '<div data-scope="/currentUser" data-view="navigation/menu_view"></div>');
+  });
+});
