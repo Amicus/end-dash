@@ -12,10 +12,12 @@ once for every model in a collection.
 
 ```html
 <div class='characters-'>
-	<div class='character-'>
-		The name is <span class='firstName-'></span>
-		, <span class='lastName-'></span>
-		<span class='firstName-'></span>
+	<div data-each>
+		<div>
+			The name is <span class='firstName-'></span>
+			, <span class='lastName-'></span>
+			<span class='firstName-'></span>
+		</div>
 	</div>
 </div>
 ```
@@ -90,19 +92,19 @@ of the collection. Where ' yourKey ' is a attribute that determines which templa
 render.
 
 ```html
-<div class='characters- bondPolymorphic-'>
-
-//all of your templates
-
+<div class='characters-'>
+	<div class='typePolymorphic-' data-each>
+		//all of your templates
+	</div>
 </div>
 ```
 
 Then for each nested template add a 'when' clause:
 
 ```html
-<div class='character- whenBond-'>
+<div class='whenBond-'>
 
-	//Your template HTML for when the model is Bond
+	//Your template HTML for when the model's type is Bond
 
 </div>
 ```
@@ -122,16 +124,18 @@ All together:
 ## In your HTML
 
 ```html
-<div class='characters- typePolymorphic-'>
-	<div class='character- whenBond-'>
-		The name is <span class='firstName-'></span>
-		, <span class='lastName-'></span>
-		<span class='firstName-'></span>
-	</div>
-	<div class='character- whenNotBond-'>
-		My name is
-		<span class='firstName-'></span>
-		<span class='lastName-'></span>
+<div class='characters-'>
+	<div class='typePolymorphic-' data-each>
+		<div class='whenBond-'>
+			The name is <span class='firstName-'></span>
+			, <span class='lastName-'></span>
+			<span class='firstName-'></span>
+		</div>
+		<div class='whenNotBond-'>
+			My name is
+			<span class='firstName-'></span>
+			<span class='lastName-'></span>
+		</div>
 	</div>
 </div>
 ```
@@ -153,7 +157,7 @@ Now our HTML displays Bond's catch phrase in a cinematically accurate way.
 
 ```
 The name is Bond, James Bond
-My name is Hugo Drax 
+My name is Hugo Drax
 My name is Vesper Lynd
 ```
 
