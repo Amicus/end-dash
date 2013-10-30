@@ -81,7 +81,7 @@ describe("When I initialize a template with a view bound to it", function() {
     views.testView = Parent
 
     var model = { herp: { things: new Collection([]) } }
-      , template = generateTemplate(model, '<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div></div>')
+      , template = generateTemplate(model, '<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li data-each><div></div></li></ul></div></div>')
   })
   it("should bind a view to submodels", function(done) {
     function Parent() {}
