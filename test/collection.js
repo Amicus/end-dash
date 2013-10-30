@@ -1,10 +1,8 @@
-require('./support/helper');
-
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
 
 describe("A collection template", function() {
   describe("when I bind to the collection", function() {
@@ -14,7 +12,7 @@ describe("A collection template", function() {
         new Backbone.Model({ type: "cool" })
       ]);
 
-      this.markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString()
+      this.markup = fs.readFileSync(__dirname + "/support/polymorphic.html").toString()
       this.template = generateTemplate({ things: this.things }, this.markup)
     })
  

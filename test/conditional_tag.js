@@ -1,10 +1,9 @@
-require('./support/helper');
-
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
+  , helper = require("./helper")
   , Backbone = require("backbone")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
 
 describe("A conditional tag", function() {
   beforeEach(function() {

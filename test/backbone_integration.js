@@ -1,14 +1,12 @@
-require('./support/helper');
-
 var expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
   , Factory = require("test-things").Factory
 
 describe("when integrating with backbone", function() {
   beforeEach(function() {
-    this.markup = fs.readFileSync(__dirname + "/support/templates/complex_nested.html").toString()
+    this.markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
     this.answerFactory = new Factory(Backbone.Model, { 
       name: "a{{sequence(1)}}" 
     })
@@ -35,7 +33,7 @@ describe("when integrating with backbone", function() {
 
   it("it should populate a collection within a model", function() {
     var script = this.scriptFactory.generate()
-      , markup = fs.readFileSync(__dirname + "/support/templates/complex_nested.html").toString()
+      , markup = fs.readFileSync(__dirname + "/support/complex_nested.html").toString()
       , template = generateTemplate({ script: script }, this.markup) 
 
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")

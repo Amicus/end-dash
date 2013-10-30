@@ -1,12 +1,11 @@
-require('./support/helper');
-
-var generateTemplate = require("./support/generate_template")
+var generateTemplate = require("./util").generateTemplate
   , ViewReaction = require("../lib/reactions/view")
   , Backbone = require("backbone")
   , expect = require("expect.js")
   , _ = require("underscore")
   , fs = require("fs")
   , views = { }
+
 
 describe("When I replace an embedded model", function() {
   beforeEach(function() {

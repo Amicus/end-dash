@@ -1,10 +1,10 @@
-require('./support/helper');
-
 var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , Backbone = require("backbone")
-  , generateTemplate = require("./support/generate_template")
+  , generateTemplate = require("./util").generateTemplate
+
+require("./helper")
 
 describe("A conditional attribute", function() {
 

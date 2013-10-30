@@ -1,18 +1,17 @@
-require('./support/helper');
-
 var expect = require("expect.js"),
     Parser = require('../lib/parser'),
     Template = require('../lib/template'),
-    TemplateStore = require('../lib/template_store'),
+    templateStore = require('../lib/template_store').create(),
+    _ = require('underscore'),
 
     // easier to read..
-    isLoaded = TemplateStore.isLoaded,
-    isParsed = TemplateStore.isParsed,
-    load = TemplateStore.load,
-    loadAndParse = TemplateStore.loadAndParse,
-    getTemplateClass = TemplateStore.getTemplateClass;
+    isLoaded = _.bind(templateStore.isLoaded, templateStore),
+    isParsed = _.bind(templateStore.isParsed, templateStore),
+    load = _.bind(templateStore.load, templateStore),
+    loadAndParse = _.bind(templateStore.loadAndParse, templateStore),
+    getTemplate = _.bind(templateStore.getTemplate, templateStore);
 
-describe('TemplateStore', function() {
+describe('templateStore', function() {
   describe('.load', function() {
     it('loads markup without parsing', function() {
       load('user', '<div id="user"></div>');
@@ -21,17 +20,17 @@ describe('TemplateStore', function() {
     });
   });
 
-  describe('.getTemplateClass', function() {
+  describe('.getTemplate', function() {
     it('retrieves loaded templates', function() {
       load('user', '<div id="user"></div>');
-      var UserTemplate = getTemplateClass('user');
+      var UserTemplate = getTemplate('user');
       expect(UserTemplate).to.be.a(Template.constructor);
     });
 
     it('returns the same Template object when called repeatedly', function() {
       load('user', '<div id="user"></div>');
-      var UserTemplate = getTemplateClass('user'),
-          UserTemplate2 = getTemplateClass('user');
+      var UserTemplate = getTemplate('user'),
+          UserTemplate2 = getTemplate('user');
 
       expect(UserTemplate2).to.equal(UserTemplate);
     });
@@ -39,14 +38,14 @@ describe('TemplateStore', function() {
     it('retrieves templates using a normalized path', function() {
       var BarTemplate = loadAndParse('/foo/bar', '<div id="bar"></div>');
 
-      expect(getTemplateClass('/foo/bar')).to.equal(BarTemplate);
-      expect(getTemplateClass('/foo/bar/baz/..')).to.equal(BarTemplate);
-      expect(getTemplateClass('/foo/baz/../bar')).to.equal(BarTemplate);
+      expect(getTemplate('/foo/bar')).to.equal(BarTemplate);
+      expect(getTemplate('/foo/bar/baz/..')).to.equal(BarTemplate);
+      expect(getTemplate('/foo/baz/../bar')).to.equal(BarTemplate);
     });
 
     it('errors when it can\'t find a template', function() {
       expect(function() {
-        getTemplateClass('notLoaded')
+        getTemplate('notLoaded')
       }).to.throwError(/Could not find template/);
     });
 
@@ -54,7 +53,7 @@ describe('TemplateStore', function() {
       load('user', '<div id="user"></div>');
 
       expect(isParsed('user')).to.be(false);
-      getTemplateClass('user');
+      getTemplate('user');
       expect(isParsed('user')).to.be(true);
     });
   });
