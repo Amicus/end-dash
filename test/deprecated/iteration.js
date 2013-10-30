@@ -14,7 +14,7 @@ describe("A collection template", function() {
         new Backbone.Model({ type: "cool" })
       ]);
 
-      this.markup = fs.readFileSync(__dirname + "/templates/deprecated_polymorphic.html").toString()
+      this.markup = fs.readFileSync(__dirname + "/templates/polymorphic.html").toString()
       this.template = generateTemplate({ things: this.things }, this.markup)
     })
 

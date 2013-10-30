@@ -10,7 +10,7 @@ describe("A polymporhic template", function() {
 
   it("should display the correct item based on type", function() {
     var model = { things: [{ type: "awesome" }, { type: "cool" }] }
-      , markup = fs.readFileSync(__dirname + "/templates/deprecated_polymorphic.html").toString()
+      , markup = fs.readFileSync(__dirname + "/templates/polymorphic.html").toString()
       , template = generateTemplate(model, markup)
 
     expect($(".things- .thing-:nth-child(1)").html()).to.be("awesome")
@@ -23,7 +23,7 @@ describe("A polymporhic template", function() {
   describe("when I bind to the collection", function() {
     it("should change the item when the type changes", function() {
       var things = new Backbone.Collection([ new Backbone.Model({ type: "awesome" }), new Backbone.Model({ type: "cool" }) ])
-        , markup = fs.readFileSync(__dirname + "/templates/deprecated_polymorphic.html").toString()
+        , markup = fs.readFileSync(__dirname + "/templates/polymorphic.html").toString()
         , template = generateTemplate({ things: things }, markup)
 
       expect($(".things- .thing-:nth-child(1)").html()).to.be("awesome")
