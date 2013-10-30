@@ -108,26 +108,46 @@ describe("A collection template", function() {
   })
 })
 
-// describe("With a nested collection template", function(){
-//   describe("Binding to a Backbone Model with a literal array as a property", function(){
-//     beforeEach(function(){
-//         this.things = [
-//         new Backbone.Model({ type: "awesome" }),
-//         new Backbone.Model({ type: "cool" })
-//         ];
-//         this.markup = "<div class='things-'>" +
-//                           "<div data-each>" +
-//                             "<div>" +
-//                               "<div class='type-'>" +
-//                               "</div>" +
-//                             "</div>" +
-//                           "</div>" +
-//                       "</div>"
-//         this.template = generateTemplate({ things: this.things }, this.markup)
-//       ];
+describe("With a nested collection template", function(){
+  describe("Binding to a Backbone Model with a literal array as a property", function(){
+    beforeEach(function(){
+        this.things = [
+          new Backbone.Model({ type: "awesome" }),
+          new Backbone.Model({ type: "cool" })
+        ];
+        this.topLevelObject = new Backbone.Model({ things: this.things })
+        this.markup = "<div class='things-'>" +
+                          "<div data-each>" +
+                            "<div>" +
+                              "<div class=type-'>" +
+                              "</div>" +
+                            "</div>" +
+                          "</div>" +
+                      "</div>"
+        this.template = generateTemplate(this.topLevelObject, this.markup)
+    })
+    it("should change when the types change", function(){
+      expect($(".things- div div:nth-child(1) div").html()).to.be("awesome")
+      expect($(".things- div div:nth-child(2) div").html()).to.be("cool")
 
-//     })
-//   })
-// })
+      this.things[0].set("type", "cool")
+      this.things[1].set("type", "awesome")
+
+      expect($(".things- div div:nth-child(1) div").html()).to.be("cool")
+      expect($(".things- div div:nth-child(2) div").html()).to.be("awesome")
+    })
+    it("should not support updates when objects are removed from the array", function(){
+      this.things.pop()
+      expect($(".things- div div:nth-child(1) div").html()).to.be("awesome")
+    })
+    it("should not support updates when moving the objects within the array literal", function(){
+      var model1 = this.things[0]
+      this.things[0] = this.things[1]
+      this.things[1] = model1
+      expect($(".things- div div:nth-child(1) div").html()).to.be("awesome")
+      expect($(".things- div div:nth-child(2) div").html()).to.be("cool")
+    })
+  })
+})
 
 
