@@ -48,6 +48,20 @@ describe("A collection template", function() {
       // and expect the first one to be awesome
       expect($(".things- li div:nth-child(1)").html()).to.be("awesome")
     })
+
+    it("should support iterating on a collection multiple times in a single template", function() {
+      var name1 = "Zach"
+        , name2 = "Dog"
+        , age1  = "26"
+        , age2  = "6"
+        , model = { people: [{name: name1, age: age1}, {name: name2, age: age2}] }
+        , template = generateTemplate(model, fs.readFileSync(__dirname + "/support/templates/multiple_iteration.html").toString())
+      expect($(".people- ul.names li div:nth-child(1)").html()).to.be(name1)
+      expect($(".people- ul.names li div:nth-child(2)").html()).to.be(name2)
+
+      expect($(".people- ul.ages li div:nth-child(1)").html()).to.be(age1)
+      expect($(".people- ul.ages li div:nth-child(2)").html()).to.be(age2)
+    })
   })
 
   describe("when I bind to an array literal", function() {
