@@ -1,0 +1,15 @@
+<ol class="interactions-">
+  <li class="interaction- isNotDismissed-">
+    <div class="user-">
+    </div>
+    <span class="isRespondable-">
+      <button class="respond responseText- hasResponseText- submit communityBtn"></button>
+    </span>
+    <ul class="interactionResponses-">
+      <li class="interactionResponse-">
+        <div class="responseIcon"></div>
+        <div class="content-"></div>
+      </li>
+    </ul>
+  </li>
+</ol>
