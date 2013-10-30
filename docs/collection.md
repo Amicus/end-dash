@@ -1,164 +1,61 @@
-Collections
-===========
+Iterating through a Collection
+==============================
 
+Given a populated Backbone Collection.
 
+```javascript
+var user1 = new Backbone.Model({firstName: 'Brian', lastName: 'Newman', permission: 'basic'});
+var user2 = new Backbone.Model({firstName: 'Sarah', lastName: 'Berlow', permission: 'admin'});
+var user3 = new Backbone.Model({firstName: 'Sam', lastName: 'Jenkins', permission: 'basic'});
 
-In EndDash it is easy to render a single template
-once for every model in a collection.
+var usersCollection = new Backbone.Collection([user1, user2, user3]);
+```
 
-
-## In your HTML
-
+Iterate through the collection using data-each.
+(You must be in scope of the collection)
 
 ```html
-<div class='characters-'>
-	<div data-each>
-		<div>
-			The name is <span class='firstName-'></span>
-			, <span class='lastName-'></span>
-			<span class='firstName-'></span>
-		</div>
-	</div>
+<div data-each>
+  <div>
+    <div class='firstName-'></div>
+  </div>
 </div>
 ```
 
+Inside data-each there must be a single root with a set of dom elements.
+This set will be bound once to each model.
 
-## In your Javscript
-
-
-
-(note: Load desired templates & views in EndDash first)
-
-```javascript
-var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond'});
-var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax'});
-var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd'});
-
-var bondCharacters = New Backbone.Collection([bond, drax, lynd]);
-var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
-$('body').html(template.el);
-```
-
-There you go.
-
-Displayed on your page will be:
+On the resulting page you would see:
 
 ```
-The name is Bond, James Bond
-The name is Drax, Hugo Drax
-The name is Lynd, Vesper Lynd
+Brian
+Sarah
+Sam
 ```
 
+Polymorphic Iteration
+=====================
 
-## Does this HTML update on model changes?
-
-
-
-Yes it will. Doing:
-
-```javascript
-drax.set('lastName', 'Jaws');
-```
-
-Will cause the page to change to:
-
-```
-The name is Bond, James Bond
-The name is Jaws, Hugo Jaws
-The name is Lynd, Vesper Lynd
-```
-
-Your HTML will also update automatically when you add
-or remove models.
-
-```javascript
-bondCharacters.remove(bond);
-```
-
-After the above line is run, your page will look like this:
-
-```
-The name is Drax, Hugo Drax
-The name is Lynd, Vesper Lynd
-```
-
-
-Polymorphic Collections
-=======================
-
-If you want to render a collection with different templates
-based on on the model's attributes, first add ' yourKeyPolymorphic- ' to the top level DOM element
-of the collection. Where ' yourKey ' is a attribute that determines which template to
-render.
+To iterate over a collection, passing each model to a
+different template, based on a model attribute, add '<modelAttribute>Polymorphic-'
 
 ```html
-<div class='characters-'>
-	<div class='typePolymorphic-' data-each>
-		//all of your templates
-	</div>
+<div class='permissionPolymorphic-' data-each>
+  <div class='whenAdmin-'>
+    // Models with Model.get('permission') == 'admin' will bind to HTML here.
+    See, <div class='firstName-'></div> is here for support.
+  </div>
+  <div class='whenBasic-'>
+    // Models with Model.get('permission') == 'basic' will bind to HTML here.
+    See, <div class='firstName-'></div> is here as a user.
+  </div>
 </div>
 ```
 
-Then for each nested template add a 'when' clause:
-
-```html
-<div class='whenBond-'>
-
-	//Your template HTML for when the model's type is Bond
-
-</div>
-```
-
-Finally, define this attribute on your models as desired.
-
-```javascript
-var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond', type: 'Bond'});
-var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax', type: 'notBond'});
-var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd', type: 'notBond'});
-```
-
-
-All together:
-
-
-## In your HTML
-
-```html
-<div class='characters-'>
-	<div class='typePolymorphic-' data-each>
-		<div class='whenBond-'>
-			The name is <span class='firstName-'></span>
-			, <span class='lastName-'></span>
-			<span class='firstName-'></span>
-		</div>
-		<div class='whenNotBond-'>
-			My name is
-			<span class='firstName-'></span>
-			<span class='lastName-'></span>
-		</div>
-	</div>
-</div>
-```
-
-
-## In your Javascript
-
-```javascript
-var bond = new Backbone.Model({firstName: 'James', lastName: 'Bond', type: 'Bond'});
-var drax = new Backbone.Model({firstName: 'Hugo', lastName: 'Drax', type: 'notBond'});
-var lynd = new Backbone.Model({firstName: 'Vesper', lastName: 'Lynd', type: 'notBond'});
-
-var bondCharacters = New Backbone.Collection([bond, drax, lynd]);
-var template = EndDash.getTemplate('whatBondSays', {characters: bondCharacters});
-$('body').html(template.el);
-```
-
-Now our HTML displays Bond's catch phrase in a cinematically accurate way.
+On the resulting page you will see:
 
 ```
-The name is Bond, James Bond
-My name is Hugo Drax
-My name is Vesper Lynd
+See, Brian is here as a user.
+See, Sarah is here for support.
+See, Sam is here as a user.
 ```
-
-
