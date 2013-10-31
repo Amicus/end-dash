@@ -1,4 +1,5 @@
 node_modules
+bower_components
 components
 .idea
 .DS_Store
