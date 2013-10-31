@@ -9,6 +9,7 @@ var expect = require("expect.js"),
     isLoaded = TemplateStore.isLoaded,
     isParsed = TemplateStore.isParsed,
     load = TemplateStore.load,
+    getParsed = TemplateStore.getParsed,
     loadParsed = TemplateStore.loadParsed;
 
 describe('TemplateStore', function() {
@@ -23,9 +24,16 @@ describe('TemplateStore', function() {
   describe('.loadParsed', function(){
     it('loads the parsed template', function(){
       loadParsed('user', 'blah');
-      expect(isParsed).to.be(true);
+      expect(isParsed('user')).to.be(true);
     });
   });
+
+  describe('.getParsed', function(){
+    it('Should return a loaded template', function(){
+      loadParsed('user', 'blah');
+      expect(getParsed('user')).to.be('blah');
+    })
+  })
 
   // describe('.getTemplateClass', function() {
   //   it('retrieves loaded templates', function() {
