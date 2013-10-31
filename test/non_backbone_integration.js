@@ -4,13 +4,22 @@ var path = require("path")
   , expect = require("expect.js")
   , fs = require("fs")
   , generateTemplate = require("./support/generate_template")
-  , Backbone = require('Backbone');
+  , Backbone = require('Backbone')
+  , BackboneClone;
 
-delete require.cache[require.resolve('Backbone')];
-var BackboneClone = require('Backbone');// Internally we use !(model instanceof Backbone.Model || ... instanceof Backbone.Collection)
+
+
+describe("With two copies of Backbone", function(){
+  before(function(){
+    delete require.cache[require.resolve('Backbone')];
+    BackboneClone = require('Backbone');// Internally we use !(model instanceof Backbone.Model || ... instanceof Backbone.Collection)
                                         // If the Backbone for EndDash is different then the clients, we want to handle this case.
                                         // See lib/reactions/model.js for fix.
-describe("With a set of models, collections, and templates", function(){
+  })
+  after(function(){
+    delete require.cache[require.resolve('Backbone')]
+    require.cache[require.resolve('Backbone')] = Backbone
+  })
   beforeEach(function(){
     this.literalModel1 = {persisted: "Chelsa Piers"};
     this.literalModel2 = {persisted: "Columbus circle"};
@@ -177,7 +186,6 @@ describe("With a set of models, collections, and templates", function(){
     });
   });
 });
-
 
 
 
