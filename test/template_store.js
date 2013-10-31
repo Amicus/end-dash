@@ -10,6 +10,7 @@ var expect = require("expect.js"),
     isParsed = TemplateStore.isParsed,
     load = TemplateStore.load,
     getParsed = TemplateStore.getParsed,
+    getLoaded = TemplateStore.getLoaded,
     loadParsed = TemplateStore.loadParsed;
 
 describe('TemplateStore', function() {
@@ -32,6 +33,13 @@ describe('TemplateStore', function() {
     it('Should return a loaded template', function(){
       loadParsed('user', 'blah');
       expect(getParsed('user')).to.be('blah');
+    })
+  })
+
+  describe('.getLoaded', function(){
+    it('Should return a raw template', function(){
+      load('user', '<div id="user"></div>');
+      expect(getLoaded('user')).to.be('<div id="user"></div>');
     })
   })
 
