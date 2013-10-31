@@ -1,7 +1,7 @@
 {
   "name": "end-dash",
   "description": "templates with a dash at the end",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/Amicus/end-dash.git"
