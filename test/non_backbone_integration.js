@@ -17,8 +17,8 @@ describe("With two copies of Backbone", function(){
                                         // See lib/reactions/model.js for fix.
   })
   after(function(){
-    delete require.cache[require.resolve('backbone')]
-    require.cache[require.resolve('backbone')] = Backbone
+    delete require.cache[require.resolve('backbone')];
+    require.cache[require.resolve('backbone')] = Backbone;
   })
   beforeEach(function(){
     this.literalModel1 = {persisted: "Chelsa Piers"};
