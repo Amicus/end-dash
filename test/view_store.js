@@ -1,13 +1,16 @@
 require('./support/helper');
 
-var ViewStore = require('../lib/view_store'),
+var expect = require("expect.js"),
+    _ = require('underscore'),
+    ViewStore = require('../lib/view_store'),
     viewStore = new ViewStore();
 
 describe('viewStore', function() {
   it('loads views using .load', function() {
     var MyView = {};
     viewStore.load('my view', MyView);
-    expect(viewStore.getView('my view')).to.be(MyView);
+    gottenView = viewStore.getView('my view');
+    expect(MyView).to.be(gottenView);
   });
 
   it('falls back to a getView function if one is provided', function(done) {
@@ -21,11 +24,11 @@ describe('viewStore', function() {
   });
 
   it('prefers `.load`ed functions to getView if both are specified', function() {
+    var LoadedView = {};
     viewStore.setCustomGetView(function(name) {
-      return {};
+      return LoadedView;
     });
 
-    var LoadedView = {};
     viewStore.load('my loaded view', LoadedView);
     expect(viewStore.getView('my loaded view')).to.be(LoadedView);
     viewStore.setCustomGetView(null);
@@ -33,7 +36,8 @@ describe('viewStore', function() {
 
   it('errors when template isn\'t found', function() {
     expect(function() {
-      viewStore.getView('not loaded');
+      viewStore = new ViewStore();
+      viewStore.getView('not really here');
     }).to.throwError(/Could not find view/);
   });
 });
