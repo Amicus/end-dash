@@ -6,7 +6,7 @@ Given a populated Backbone Collection.
 ```javascript
 var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', characterType: 'hero'});
 var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', characterType: 'hero'});
-var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', characterType: 'civillian' });
+var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', characterType: 'civilian' });
 
 var peopleCollection = new Backbone.Collection([person1, person2, person3]);
 ```
@@ -49,9 +49,9 @@ different template, based on a model attribute, add '<modelAttribute>Polymorphic
     // Models with Model.get('characterType') == 'villain' will bind to HTML here.
     <span class='firstName-'></span> says: I'm going to kill Iron Man!
   </div>
-  <div class='whenCivillian-'>
-    // Models with Model.get('characterType') == 'civillian' will bind to HTML here.
-    <span class='firstName-'></span> says: I'm just a civillian!
+  <div class='whenCivilian-'>
+    // Models with Model.get('characterType') == 'civilian' will bind to HTML here.
+    <span class='firstName-'></span> says: I'm just a civilian!
   </div>
 </div>
 ```
@@ -66,8 +66,8 @@ The resulting HTML will be:
   <div class='whenHero-'>
     <span class='firstName-'>James</span> says: Don't worry.  I'll probably save you.
   </div>
-  <div class='whenCivillian-'>
-    <span class='firstName-'>Piper</span> says: I'm just a civillian!
+  <div class='whenCivilian-'>
+    <span class='firstName-'>Piper</span> says: I'm just a civilian!
   </div>
 </div>
 ```
