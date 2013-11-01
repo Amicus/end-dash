@@ -4,11 +4,11 @@ Iterating through a Collection
 Given a populated Backbone Collection.
 
 ```javascript
-var user1 = new Backbone.Model({firstName: 'Brian', lastName: 'Newman', permission: 'basic'});
-var user2 = new Backbone.Model({firstName: 'Sarah', lastName: 'Berlow', permission: 'admin'});
-var user3 = new Backbone.Model({firstName: 'Sam', lastName: 'Jenkins', permission: 'basic'});
+var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', alias: 'IronMan'});
+var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', alias: 'WarMachine'});
+var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', alias: 'none' });
 
-var usersCollection = new Backbone.Collection([user1, user2, user3]);
+var peopleCollection = new Backbone.Collection([person1, person2, person3]);
 ```
 
 Iterate through the collection using data-each.
@@ -28,9 +28,9 @@ This set will be bound once to each model.
 On the resulting page you would see:
 
 ```
-Brian
-Sarah
-Sam
+Tony
+James
+Pepper
 ```
 
 Polymorphic Iteration
@@ -40,14 +40,19 @@ To iterate over a collection, passing each model to a
 different template, based on a model attribute, add '<modelAttribute>Polymorphic-'
 
 ```html
-<div class='permissionPolymorphic-' data-each>
-  <div class='whenAdmin-'>
-    // Models with Model.get('permission') == 'admin' will bind to HTML here.
-    See, <div class='firstName-'></div> is here for support.
+<div class='aliasPolymorphic-' data-each>
+  <div class='whenIronMan-'>
+    // Models with Model.get('alias') == 'IronMan' will bind to HTML here.
+    <span class='firstName-'></span> says: The truth is...  I am Iron Man.
   </div>
-  <div class='whenBasic-'>
-    // Models with Model.get('permission') == 'basic' will bind to HTML here.
-    See, <div class='firstName-'></div> is here as a user.
+  <div class='whenWarMachine-'>
+    // Models with Model.get('alias') == 'WarMachine' will bind to HTML here.
+    <span class='firstName-'></span> says: Lt. Col. <span class='firstName-'></span>
+    <span class='lastName-'></span> reporting for duty.
+  </div>
+  <div class='whenNone-'>
+    // Models with Model.get('alias') == 'none' will bind to HTML here.
+    <span class='firstName-'></span> says: I'm just a civillian!
   </div>
 </div>
 ```
@@ -55,9 +60,9 @@ different template, based on a model attribute, add '<modelAttribute>Polymorphic
 On the resulting page you will see:
 
 ```
-See, Brian is here as a user.
-See, Sarah is here for support.
-See, Sam is here as a user.
+Tony says: The truth is...  I am Iron Man.
+James says: Lt. Col. James Rhodes reporting for duty.
+Piper says: I'm just a civillian!
 ```
 
 Collection Attributes
@@ -72,14 +77,16 @@ the collection, such as total size (if the collection is paginated and this is
 different than length), as in the example below:
 
 ```html
-<div class='users-' >
-  <p>There are <span class='totalCount-'></span> people registered for the service.
-  Here is their information:</p>
+<div class='people-' >
+  <p>
+    There are <span class='totalCount-'></span> people allowed in Tony's basement.
+    Here are their names:
+  </p>
   <div data-each>
-    <div class='userData'>
+    <div class='authorizedPerson'>
       <div class='firstName-'></div>
       <div class='lastName-'></div>
-      <div class='email-'></div>
+      <div class='alias-'></div>
     </div>
   </div>
 </div>
