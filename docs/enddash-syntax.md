@@ -23,29 +23,35 @@ template.bind({
 
 ```html
 <div class="user">
-  <p>Hello, <span class="resident-"></span>! You live at:</p>
+  <p>Hello, <span class="resident-"></span>! Your home is listed as:</p>
 
-  <address data-scope="/addresses" class="home-">
-    <p class="homeName-"></p>
-    <p class="areaName-"></p>
-    <p class="cityName-"></p>
-    <p class="state-"></p>
-  </address>
+  <p data-scope="/placeList" class="home-">
+    <span class="home-"></span>,
+    which is in
+    <span class="areaNickname-"></span>,
+    a neighborhood in <span class="city-"></span>, <span class="state-"></span>
+  </p>
 </div>
 ```
 
 ```js
 var mansion = new Backbone.Model({
   resident: 'Tony',
-  addresses: {
+  placeList: {
     home: {
-      homeName: 'Mansion',
-      areaName: 'Point Dume',
-      cityName: 'Malibu',
+      home: 'Stark Mansion',
+      areaNickname: 'Point Dume',
+      city: 'Malibu',
       state: 'CA'
     }
   }
 });
 
 template.bind(mansion);
+```
+For this template and this model, `template.template` will output:
+
+```
+Hello, Tony! Your home is listed as:
+Stark Mansion, which is in Point Dume, a neighborhood in Malibu, CA
 ```
