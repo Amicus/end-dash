@@ -6,7 +6,8 @@ var expect = require("expect.js")
   , Backbone = require('backbone')
   , variableReaction = require('../lib/reactions/variable');
 
-  describe ("With a template that has a polymorphic key but no scope changes", function(){
+describe('scope', function(){
+  describe ("polymorphic key but no scope changes", function(){
     beforeEach(function(){
       this.markup = "<div class='permissionsPolymorphic-' data-each>" +
                       "<div class='whenUser-'>" +
@@ -17,24 +18,29 @@ var expect = require("expect.js")
                       "</div>" +
                     "</div>";
     });
-    it("should not record any model/scoping reactions", function(){
-      var users = [
-                     new Backbone.Model({permissions: 'user'}),
-                     new Backbone.Model({permissions: 'admin'})
-                  ]
-        , collection = new Backbone.Collection(users)
-        , savedFn = variableReaction.prototype.init;
-
-      variableReaction.prototype.init = function() {
-        throw new Error('Variable reaction should not occur in this scope.js test');
-      };
-
-      generateTemplate(collection, this.markup);
-      variableReaction.prototype.init = savedFn;
-
-
-      expect($('[data-each] div:nth-child(1)').html()).to.be("Is User");
-      expect($('[data-each] div:nth-child(2)').html()).to.be("Is Admin");
+    describe('model scoping reactions stubbed out', function(){
+      beforeEach(function(){
+        var users = [
+                      new Backbone.Model({permissions: 'user'}),
+                      new Backbone.Model({permissions: 'admin'})
+                    ];
+        this.savedFn = variableReaction.prototype.init;
+        this.collection = new Backbone.Collection(users);
+        variableReaction.prototype.init = function() {
+          throw new Error('Variable reaction should not occur in this scope.js test');
+        };
+      });
+      afterEach(function(){
+        variableReaction.prototype.init = this.savedFn;
+      });
+      it("should not record user variable interpolation", function(){
+        generateTemplate(this.collection, this.markup);
+        expect($('[data-each] div:nth-child(1)').html()).to.be("Is User");
+      });
+      it("should not record admin variable interpolation", function(){
+        generateTemplate(this.collection, this.markup);
+        expect($('[data-each] div:nth-child(2)').html()).to.be("Is Admin");
+      });
     });
   });
-
+});
