@@ -3,7 +3,7 @@ Variable Interpolation
 
 ## Variables
 
-EndDash variables are rendered into HTML elements when for display to the user:
+EndDash variables are rendered into the body of HTML elements, displaying their values as ordinary text:
 
 ```html
 <div class="user-">
