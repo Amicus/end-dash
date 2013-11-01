@@ -17,6 +17,10 @@ But they may also be used to interpolate class names, id's or other attributes a
   My name is <span class="firstName-"></span> <span class="lastName-"></span>.
 </div>
 ```
+
+Conditionals
+============
+
 And a ternary operator is available for presence handling via 'truthiness' for attributes
 that may be present, with or without a false condition:
 
@@ -28,6 +32,10 @@ that may be present, with or without a false condition:
 </div>
 ```
 
+The same truthiness controls conditional visibility EndDash class elements that start with `is` or `has`,
+and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`.  EndDash will hide (via a
+`display:none` style attribute) any such element when it's named attribute is falsy (or hide when truthy in
+the case of `isNot` and `hasNot`.)
 
 
 ```js
