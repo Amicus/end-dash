@@ -19,13 +19,14 @@
 
   <script type="text/enddash" name="user">
     <div class="user">
-      <p>Hello, <span class="nickname-"></span>! You live at:</p>
+      <p>Hello, <span class="resident-"></span>! Your home is listed as:</p>
 
-      <address data-scope="/addresses" class="home-">
-        <p class="nickname-"></p>
-        <p class="line1-"></p>
-        <p class="line2-"></p>
-      </address>
+      <p data-scope="/placeList" class="home-">
+        <span class="home-"></span>,
+        which is in
+        <span class="area-"></span>,
+        a neighborhood in <span class="city-"></span>, <span class="state-"></span>
+      </p>
     </div>
   </script>
 
@@ -34,18 +35,19 @@
       // Load all the templates on the page.
       EndDash.bootstrap();
 
-      var elvis = new Backbone.Model({
-        nickname: 'Elvis',
-        addresses: {
+      var mansion = new Backbone.Model({
+        resident: 'Tony',
+        placeList: {
           home: {
-            nickname: 'Graceland',
-            line1: '3717 Elvis Presley Blvd.',
-            line2: 'Memphis, TN 38116'
+            home: 'Stark Mansion',
+            area: 'Point Dume',
+            city: 'Malibu',
+            state: 'CA'
           }
         }
       });
 
-      var template = EndDash.getTemplate('user', elvis);
+      var template = EndDash.getTemplate('user', mansion);
 
       $('#content').html(template.el);
     });
