@@ -59,3 +59,28 @@ See, Brian is here as a user.
 See, Sarah is here for support.
 See, Sam is here as a user.
 ```
+
+Collection Attributes
+=====================
+
+Backbone.Collection does not support attributes natively, but there are a number of
+options for extending collections to do so.  EndDash supports collection attributes
+as long as they are implemented as they are on Backbone.Model via the `get` method
+(which Backbone.Collection natively uses only for getting a model by id, not an
+attribute by name).  Typically collection attributes are used for metadata about
+the collection, such as total size (if the collection is paginated and this is
+different than length), as in the example below:
+
+```html
+<div class='users-' >
+  <p>There are <span class='totalCount-'></span> people registered for the service.
+  Here is their information:</p>
+  <div data-each>
+    <div class='userData'>
+      <div class='firstName-'></div>
+      <div class='lastName-'></div>
+      <div class='email-'></div>
+    </div>
+  </div>
+</div>
+```
