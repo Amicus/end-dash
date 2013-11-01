@@ -4,9 +4,9 @@ Iterating through a Collection
 Given a populated Backbone Collection.
 
 ```javascript
-var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', alias: 'IronMan'});
-var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', alias: 'WarMachine'});
-var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', alias: 'none' });
+var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', characterType: 'hero'});
+var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', characterType: 'hero'});
+var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', characterType: 'civillian' });
 
 var peopleCollection = new Backbone.Collection([person1, person2, person3]);
 ```
@@ -40,22 +40,17 @@ To iterate over a collection, passing each model to a
 different template, based on a model attribute, add '<modelAttribute>Polymorphic-'
 
 ```html
-<div class='aliasPolymorphic-' data-each>
-  <div class='whenIronMan-'>
-    // Models with Model.get('alias') == 'IronMan' will bind to HTML here.
-    <span class='firstName-'></span> says: The truth is...  I am Iron Man.
+<div class='characterTypePolymorphic-' data-each>
+  <div class='whenHero-'>
+    // Models with Model.get('characterType') == 'hero' will bind to HTML here.
+    <span class='firstName-'></span> says: Don't worry.  I'll probably save you.
   </div>
-  <div class='whenWarMachine-'>
-    // Models with Model.get('alias') == 'WarMachine' will bind to HTML here.
-    <span class='firstName-'></span> says: Lt. Col. <span class='firstName-'></span>
-    <span class='lastName-'></span> reporting for duty.
-  </div>
-  <div class='whenIronMonger-'>
-    // Models with Model.get('alias') == 'IronMonger' will bind to HTML here.
+  <div class='whenVillain-'>
+    // Models with Model.get('characterType') == 'villain' will bind to HTML here.
     <span class='firstName-'></span> says: I'm going to kill Iron Man!
   </div>
-  <div class='whenNone-'>
-    // Models with Model.get('alias') == 'none' will bind to HTML here.
+  <div class='whenCivillian-'>
+    // Models with Model.get('characterType') == 'civillian' will bind to HTML here.
     <span class='firstName-'></span> says: I'm just a civillian!
   </div>
 </div>
@@ -64,15 +59,14 @@ different template, based on a model attribute, add '<modelAttribute>Polymorphic
 The resulting HTML will be:
 
 ```
-<div class='aliasPolymorphic-' data-each>
-  <div class='whenIronMan-'>
-    <span class='firstName-'>Tony</span> says: The truth is...  I am Iron Man.
+<div class='characterTypePolymorphic-' data-each>
+  <div class='whenHero-'>
+    <span class='firstName-'>Tony</span> says: Don't worry.  I'll probably save you.
   </div>
-  <div class='whenWarMachine-'>
-    <span class='firstName-'>James</span> says: Lt. Col. <span class='firstName-'>James</span>
-    <span class='lastName-'>Rhodes</span> reporting for duty.
+  <div class='whenHero-'>
+    <span class='firstName-'>James</span> says: Don't worry.  I'll probably save you.
   </div>
-  <div class='whenNone-'>
+  <div class='whenCivillian-'>
     <span class='firstName-'>Piper</span> says: I'm just a civillian!
   </div>
 </div>

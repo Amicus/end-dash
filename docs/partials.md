@@ -15,6 +15,8 @@ var people = new Backbone.Collection([person1, person2, person3]);
 
 Iterate through the collection using data-each.
 
+The data-replace attribute tells EndDash to substitute the partial's root element for this element.
+Without data-replace, EndDash will embed the root element beneath the partial's element and leave it.
 
 ```html
 <h2>Characters</h2>
@@ -44,6 +46,3 @@ and in your partials folder another EndDash template such as:
   <td class="alias-"></td>
 </tr>
 ```
-
-The data-replace attribute tells EndDash to substitute the partial's root element for this element.
-Without data-replace, EndDash will embed the root element beneat the partial's element and leave it.
