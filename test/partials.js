@@ -19,11 +19,11 @@ describe("A template with partials", function() {
 
     var model = {
       items: new Backbone.Collection([{ variable: "wat1" }, { variable: "wat2" }]),
-      thing: new Backbone.Model({ name: "Zach" }) 
+      thing: new Backbone.Model({ name: "Zach" })
     }
 
     _(templates).each(function(template) {
-      EndDash.templateStore.load(template, fs.readFileSync(__dirname + template).toString())
+      EndDash.registerTemplate(template, fs.readFileSync(__dirname + template).toString())
     })
 
     var template = generateTemplate(model, '/support/templates/partials.html')

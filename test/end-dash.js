@@ -4,7 +4,7 @@ var expect = require('expect.js'),
     Backbone = require('backbone'),
     EndDash = require('../lib/end-dash'),
     templateStore = EndDash.templateStore,
-    ViewStore = require('../lib/view_store'),
+    viewStore = EndDash.viewStore,
     Template = require('../lib/template'),
     _ = require('underscore');
 
@@ -20,7 +20,7 @@ describe('EndDash', function(){
     it('loads views to the store', function(){
       var EndDashTestView = {};
       EndDash.registerView('test view', EndDashTestView);
-      expect(ViewStore.getView('test view')).to.be(EndDashTestView);
+      expect(viewStore.getView('test view')).to.be(EndDashTestView);
     });
   });
 
