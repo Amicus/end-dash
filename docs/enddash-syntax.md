@@ -13,8 +13,7 @@ Syntax Overview
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
-    lastName: 'Stark',
-    alias: 'IronMan'
+    lastName: 'Stark'
   });
 });
 ```
@@ -28,7 +27,7 @@ template.bind({
   <p data-scope="/placeList" class="home-">
     <span class="home-"></span>,
     which is in
-    <span class="areaNickname-"></span>,
+    <span class="area-"></span>,
     a neighborhood in <span class="city-"></span>, <span class="state-"></span>
   </p>
 </div>
@@ -40,7 +39,7 @@ var mansion = new Backbone.Model({
   placeList: {
     home: {
       home: 'Stark Mansion',
-      areaNickname: 'Point Dume',
+      area: 'Point Dume',
       city: 'Malibu',
       state: 'CA'
     }
@@ -49,9 +48,19 @@ var mansion = new Backbone.Model({
 
 template.bind(mansion);
 ```
-For this template and this model, `template.el` will output:
+##Usage
 
-```
-Hello, Tony! Your home is listed as:
-Stark Mansion, which is in Point Dume, a neighborhood in Malibu, CA
+For the above example template and model, `template.el` will output:
+
+```html
+<div class="user">
+  <p>Hello, <span class="resident-">Tony</span>! Your home is listed as:</p>
+
+  <p data-scope="/placeList" class="home-">
+    <span class="home-">Stark Mansion</span>,
+    which is in
+    <span class="area-">Point Dume</span>,
+    a neighborhood in <span class="city-">Malibu</span>, <span class="state-">CA</span>
+  </p>
+</div>
 ```
