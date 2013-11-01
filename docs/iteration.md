@@ -28,9 +28,9 @@ This set will be bound once to each model.
 On the resulting page you would see:
 
 ```
-Tony
-James
-Pepper
+<div class='firstName-'>Tony</div>
+<div class='firstName-'>James</div>
+<div class='firstName-'>Pepper</div>
 ```
 
 Polymorphic Iteration
@@ -50,6 +50,10 @@ different template, based on a model attribute, add '<modelAttribute>Polymorphic
     <span class='firstName-'></span> says: Lt. Col. <span class='firstName-'></span>
     <span class='lastName-'></span> reporting for duty.
   </div>
+  <div class='whenIronMonger-'>
+    // Models with Model.get('alias') == 'IronMonger' will bind to HTML here.
+    <span class='firstName-'></span> says: I'm going to kill Iron Man!
+  </div>
   <div class='whenNone-'>
     // Models with Model.get('alias') == 'none' will bind to HTML here.
     <span class='firstName-'></span> says: I'm just a civillian!
@@ -57,12 +61,21 @@ different template, based on a model attribute, add '<modelAttribute>Polymorphic
 </div>
 ```
 
-On the resulting page you will see:
+The resulting HTML will be:
 
 ```
-Tony says: The truth is...  I am Iron Man.
-James says: Lt. Col. James Rhodes reporting for duty.
-Piper says: I'm just a civillian!
+<div class='aliasPolymorphic-' data-each>
+  <div class='whenIronMan-'>
+    <span class='firstName-'>Tony</span> says: The truth is...  I am Iron Man.
+  </div>
+  <div class='whenWarMachine-'>
+    <span class='firstName-'>James</span> says: Lt. Col. <span class='firstName-'>James</span>
+    <span class='lastName-'>Rhodes</span> reporting for duty.
+  </div>
+  <div class='whenNone-'>
+    <span class='firstName-'>Piper</span> says: I'm just a civillian!
+  </div>
+</div>
 ```
 
 Collection Attributes
