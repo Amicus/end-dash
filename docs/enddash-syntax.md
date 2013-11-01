@@ -49,7 +49,7 @@ var mansion = new Backbone.Model({
 
 template.bind(mansion);
 ```
-For this template and this model, `template.template` will output:
+For this template and this model, `template.el` will output:
 
 ```
 Hello, Tony! Your home is listed as:
