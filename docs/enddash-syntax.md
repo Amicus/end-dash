@@ -1,4 +1,5 @@
-# EndDash Syntax Documentation
+Syntax Overview
+===============
 
 ## Variables
 
@@ -11,8 +12,9 @@
 ```js
 template.bind({
   user: new Backbone.Model({
-    firstName: 'Michael',
-    lastName: 'Jackson'
+    firstName: 'Tony',
+    lastName: 'Stark',
+    alias: 'IronMan'
   });
 });
 ```
@@ -21,27 +23,29 @@ template.bind({
 
 ```html
 <div class="user">
-  <p>Hello, <span class="nickname-"></span>! You live at:</p>
+  <p>Hello, <span class="resident-"></span>! You live at:</p>
 
   <address data-scope="/addresses" class="home-">
-    <p class="nickname-"></p>
-    <p class="line1-"></p>
-    <p class="line2-"></p>
+    <p class="homeName-"></p>
+    <p class="areaName-"></p>
+    <p class="cityName-"></p>
+    <p class="state-"></p>
   </address>
 </div>
 ```
 
 ```js
-var elvis = new Backbone.Model({
-  nickname: 'Elvis',
+var mansion = new Backbone.Model({
+  resident: 'Tony',
   addresses: {
     home: {
-      nickname: 'Graceland',
-      line1: '3717 Elvis Presley Blvd.',
-      line2: 'Memphis, TN 38116'
+      homeName: 'Mansion',
+      areaName: 'Point Dume',
+      cityName: 'Malibu',
+      state: 'CA'
     }
   }
 });
 
-template.bind(elvis);
+template.bind(mansion);
 ```
