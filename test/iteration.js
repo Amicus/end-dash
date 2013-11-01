@@ -19,19 +19,13 @@ describe("A collection template", function() {
     })
  
     it("should change the item when the type changes", function() {
-      expect($(".things- li div:nth-child(1)").html()).to.be("awesome")
-      expect($(".things- li div:nth-child(2)").html()).to.be("cool")
-
-      expect($(".things- li div:nth-child(1)").hasClass("whenAwesome-")).to.be(true)
-      expect($(".things- li div:nth-child(2)").hasClass("whenCool-")).to.be(true)
-
       this.things.at(0).set("type", "cool")
       this.things.at(1).set("type", "awesome")
 
       expect($(".things- li div:nth-child(1)").html()).to.be("cool")
-      expect($(".things- li div:nth-child(2)").html()).to.be("awesome")
-
       expect($(".things- li div:nth-child(1)").hasClass("whenCool-")).to.be(true)
+
+      expect($(".things- li div:nth-child(2)").html()).to.be("awesome")
       expect($(".things- li div:nth-child(2)").hasClass("whenAwesome-")).to.be(true)
     })
 
@@ -93,19 +87,13 @@ describe("A collection template", function() {
     })
 
     it("should change the item when the type changes", function() {
-      expect($(".things- li div:nth-child(1)").html()).to.be("awesome")
-      expect($(".things- li div:nth-child(2)").html()).to.be("cool")
-
-      expect($(".things- li div:nth-child(1)").hasClass("whenAwesome-")).to.be(true)
-      expect($(".things- li div:nth-child(2)").hasClass("whenCool-")).to.be(true)
-
       this.things[0].set("type", "cool")
       this.things[1].set("type", "awesome")
 
       expect($(".things- li div:nth-child(1)").html()).to.be("cool")
-      expect($(".things- li div:nth-child(2)").html()).to.be("awesome")
-
       expect($(".things- li div:nth-child(1)").hasClass("whenCool-")).to.be(true)
+
+      expect($(".things- li div:nth-child(2)").html()).to.be("awesome")
       expect($(".things- li div:nth-child(2)").hasClass("whenAwesome-")).to.be(true)
     })
 
@@ -144,9 +132,6 @@ describe("With a nested collection template", function(){
         this.template = generateTemplate(this.topLevelObject, this.markup)
     })
     it("should change when the types change", function(){
-      expect($(".things- div div:nth-child(1) div").html()).to.be("awesome")
-      expect($(".things- div div:nth-child(2) div").html()).to.be("cool")
-
       this.things[0].set("type", "cool")
       this.things[1].set("type", "awesome")
 
