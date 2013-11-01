@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The King of Pop</title>
+  <title>Tony Stark</title>
   <meta name="description" content="A quick EndDash example.">
   <meta name="author" content="Amicus">
 </head>
@@ -33,13 +33,13 @@
       // Load all the templates on the page.
       EndDash.bootstrap();
 
-      var michael = new Backbone.Model({
-        firstName: 'Michael',
-        lastName: 'Jackson',
-        catchphrase: "You've been hit and struck by a smooth criminal!"
+      var tony = new Backbone.Model({
+        firstName: 'Tony',
+        lastName: 'Stark',
+        catchphrase: "I am Iron Man!"
       });
 
-      var template = EndDash.getTemplate('user', michael);
+      var template = EndDash.getTemplate('user', tony);
 
       $('#content').html(template.el);
     });
