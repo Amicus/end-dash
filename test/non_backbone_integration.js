@@ -35,7 +35,7 @@ describe("With two copies of Backbone", function(){
                                 "</div>" +
                               "</div>";
     this.collectionHTMLTemplate = "<div class='users-'>" +
-                                    "<div class ='user-'>" +
+                                    "<div data-each>" +
                                       "<div class=' persisted-'>" +
                                       "</div>" +
                                     "</div>" +
@@ -72,15 +72,15 @@ describe("With two copies of Backbone", function(){
       it("binding the collection and models to a template should work normally", function(){
         this.collection.add([this.cloneModel1, this.cloneModel2, this.cloneModel3]);
         var template = generateTemplate({users: this.collection}, this.collectionHTMLTemplate);
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.cloneModel2.get('persisted'));
-        expect($('.users- .user-:nth-child(3)').text()).to.be(this.cloneModel3.get('persisted'));
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.cloneModel2.get('persisted'));
+        expect($('.users- div div:nth-child(3)').text()).to.be(this.cloneModel3.get('persisted'));
         this.cloneModel1.set('persisted', 'Changed1');
         this.cloneModel2.set('persisted', 'Changed2');
         this.cloneModel3.set('persisted', 'Changed3');
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.cloneModel2.get('persisted'));
-        expect($('.users- .user-:nth-child(3)').text()).to.be(this.cloneModel3.get('persisted'));
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.cloneModel2.get('persisted'));
+        expect($('.users- div div:nth-child(3)').text()).to.be(this.cloneModel3.get('persisted'));
       });
     });
 
@@ -88,15 +88,15 @@ describe("With two copies of Backbone", function(){
       it("should interpolate values but not update on model changes", function(){
         this.collection.add([this.literalModel1, this.literalModel2, this.literalModel3]);
         var template = generateTemplate({users: this.collection}, this.collectionHTMLTemplate);
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.literalModel1.persisted);
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.literalModel2.persisted);
-        expect($('.users- .user-:nth-child(3)').text()).to.be(this.literalModel3.persisted);
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.literalModel1.persisted);
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.literalModel2.persisted);
+        expect($('.users- div div:nth-child(3)').text()).to.be(this.literalModel3.persisted);
         this.literalModel1.persisted = 'Changed1';
         this.literalModel2.persisted = 'Changed2';
         this.literalModel3.persisted = 'Changed3';
-        expect($('.users- .user-:nth-child(1)').text()).to.be("Chelsa Piers");
-        expect($('.users- .user-:nth-child(2)').text()).to.be("Columbus circle");
-        expect($('.users- .user-:nth-child(3)').text()).to.be("Soho");
+        expect($('.users- div div:nth-child(1)').text()).to.be("Chelsa Piers");
+        expect($('.users- div div:nth-child(2)').text()).to.be("Columbus circle");
+        expect($('.users- div div:nth-child(3)').text()).to.be("Soho");
       });
     });
 
@@ -104,15 +104,15 @@ describe("With two copies of Backbone", function(){
       it("binding them to a template should still work for each as expected", function(){
         this.collection.add([this.cloneModel1, this.literalModel2, this.backboneModel3]);
         var template = generateTemplate({users: this.collection}, this.collectionHTMLTemplate);
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.literalModel2.persisted);
-        expect($('.users- .user-:nth-child(3)').text()).to.be('');
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.literalModel2.persisted);
+        expect($('.users- div div:nth-child(3)').text()).to.be('');
         this.cloneModel1.set('persisted', 'Changed1');
         this.literalModel2.persisted = 'Changed2';
         this.backboneModel3.set('persisted', 'Changed3');
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be("Columbus circle");
-        expect($('.users- .user-:nth-child(3)').text()).to.be('');
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.cloneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be("Columbus circle");
+        expect($('.users- div div:nth-child(3)').text()).to.be('');
       });
     });
   });
@@ -125,15 +125,15 @@ describe("With two copies of Backbone", function(){
       it("Binding them to a template should not work properly", function(){
         this.collection.add([this.cloneModel1, this.cloneModel2, this.cloneModel3]);
         var template = generateTemplate({users: this.collection}, this.collectionHTMLTemplate);
-        expect($('.users- .user-:nth-child(1)').text()).to.be('');
-        expect($('.users- .user-:nth-child(2)').text()).to.be('');
-        expect($('.users- .user-:nth-child(3)').text()).to.be('');
+        expect($('.users- div div:nth-child(1)').text()).to.be('');
+        expect($('.users- div div:nth-child(2)').text()).to.be('');
+        expect($('.users- div div:nth-child(3)').text()).to.be('');
         this.cloneModel1.set('persisted', 'Changed1');
         this.cloneModel2.set('persisted', 'Changed2');
         this.cloneModel3.set('persisted', 'Changed3');
-        expect($('.users- .user-:nth-child(1)').text()).to.be('');
-        expect($('.users- .user-:nth-child(2)').text()).to.be('');
-        expect($('.users- .user-:nth-child(3)').text()).to.be('');
+        expect($('.users- div div:nth-child(1)').text()).to.be('');
+        expect($('.users- div div:nth-child(2)').text()).to.be('');
+        expect($('.users- div div:nth-child(3)').text()).to.be('');
       });
     });
 
@@ -141,15 +141,15 @@ describe("With two copies of Backbone", function(){
       it("binding them to a template should work normally", function(){
         this.collection.add([this.backboneModel1, this.backboneModel2, this.backboneModel3]);
         var template = generateTemplate({users: this.collection}, this.collectionHTMLTemplate);
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.backboneModel2.get('persisted'));
-        expect($('.users- .user-:nth-child(3)').text()).to.be(this.backboneModel3.get('persisted'));
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.backboneModel2.get('persisted'));
+        expect($('.users- div div:nth-child(3)').text()).to.be(this.backboneModel3.get('persisted'));
         this.backboneModel1.set('persisted', 'Changed1');
         this.backboneModel2.set('persisted', 'Changed2');
         this.backboneModel3.set('persisted', 'Changed3');
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.backboneModel2.get('persisted'));
-        expect($('.users- .user-:nth-child(3)').text()).to.be(this.backboneModel3.get('persisted'));
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.backboneModel2.get('persisted'));
+        expect($('.users- div div:nth-child(3)').text()).to.be(this.backboneModel3.get('persisted'));
       });
     });
 
@@ -157,15 +157,15 @@ describe("With two copies of Backbone", function(){
       it("should still interpolate values but changes will not be updated", function(){
         this.collection.add([this.literalModel1, this.literalModel2, this.literalModel3]);
         var template = generateTemplate({users: this.collection}, this.collectionHTMLTemplate);
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.literalModel1.persisted);
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.literalModel2.persisted);
-        expect($('.users- .user-:nth-child(3)').text()).to.be(this.literalModel3.persisted);
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.literalModel1.persisted);
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.literalModel2.persisted);
+        expect($('.users- div div:nth-child(3)').text()).to.be(this.literalModel3.persisted);
         this.literalModel1.persisted = 'Changed1';
         this.literalModel2.persisted = 'Changed2';
         this.literalModel3.persisted = 'Changed3';
-        expect($('.users- .user-:nth-child(1)').text()).to.be("Chelsa Piers");
-        expect($('.users- .user-:nth-child(2)').text()).to.be("Columbus circle");
-        expect($('.users- .user-:nth-child(3)').text()).to.be("Soho");
+        expect($('.users- div div:nth-child(1)').text()).to.be("Chelsa Piers");
+        expect($('.users- div div:nth-child(2)').text()).to.be("Columbus circle");
+        expect($('.users- div div:nth-child(3)').text()).to.be("Soho");
       });
     });
 
@@ -173,15 +173,15 @@ describe("With two copies of Backbone", function(){
       it("binding them to a template should still work for each type as expected", function(){
         this.collection.add([this.backboneModel1, this.literalModel2, this.cloneModel3]);
         var template = generateTemplate({users: this.collection}, this.collectionHTMLTemplate);
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be(this.literalModel2.persisted);
-        expect($('.users- .user-:nth-child(3)').text()).to.be('');
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be(this.literalModel2.persisted);
+        expect($('.users- div div:nth-child(3)').text()).to.be('');
         this.backboneModel1.set('persisted', 'Changed1');
         this.literalModel2.persisted = 'Changed2';
         this.cloneModel3.set('persisted', 'Changed3');
-        expect($('.users- .user-:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
-        expect($('.users- .user-:nth-child(2)').text()).to.be("Columbus circle");
-        expect($('.users- .user-:nth-child(3)').text()).to.be('');
+        expect($('.users- div div:nth-child(1)').text()).to.be(this.backboneModel1.get('persisted'));
+        expect($('.users- div div:nth-child(2)').text()).to.be("Columbus circle");
+        expect($('.users- div div:nth-child(3)').text()).to.be('');
       });
     });
   });

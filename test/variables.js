@@ -35,7 +35,6 @@ describe("Setting a single variable", function() {
   //       this.model.set('singleVariable', 'not the other value')
   //     })
   // })
-
   
   // it("should set the value on select menus when given a string", function() {
   //   var template = generateTemplate({ singleVariable: "false" }, 
