@@ -25,11 +25,11 @@ describe("when integrating with backbone", function() {
   describe("I pass a backbone model to set", function() {
     it("should set it's attributes", function() {
       var model = new Backbone.Model({ name: "q1", title: "herp" })
-        , markup = '<div><div class = "name-"></div><div class = "title-"></div></div>'
+        , markup = '<div><div class = "name">#{name}</div><div class = "title">#{title}</div></div>'
         , template = generateTemplate(model, markup)
 
-      expect($(".name-").html()).to.be("q1")
-      expect($(".title-").html()).to.be("herp")
+      expect($(".name").html()).to.be("q1")
+      expect($(".title").html()).to.be("herp")
     })
   })
 
@@ -38,10 +38,10 @@ describe("when integrating with backbone", function() {
       , markup = fs.readFileSync(__dirname + "/support/templates/complex_nested.html").toString()
       , template = generateTemplate({ script: script }, this.markup) 
 
-    expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
+    expect($(".script- .name:nth-child(1)").html()).to.be("the name")
     script.get("questions").each(function(question, i) {
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name").html()).to.be(question.get("name"))
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name").html()).to.be(question.get("answer").get("name"))
     }) 
   })
 
@@ -51,10 +51,10 @@ describe("when integrating with backbone", function() {
 
     script.get("questions").reset(this.questionCollectionFactory.generate().models)
 
-    expect($(".script- .name-:nth-child(1)").html()).to.be(script.get("name"))
+    expect($(".script- .name:nth-child(1)").html()).to.be(script.get("name"))
     script.get("questions").each(function(question, i) {
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name").html()).to.be(question.get("name"))
+      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name").html()).to.be(question.get("answer").get("name"))
     })
   }) 
 })
