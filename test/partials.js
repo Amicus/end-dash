@@ -30,7 +30,7 @@ describe("A template with partials", function() {
 
     expect($(".items- li div div:nth-child(1)").html()).to.be("wat1")
     expect($(".items- li div div:nth-child(2)").html()).to.be("wat2")
-    expect($(".thing- .name-").html()).to.be("Zach")
+    expect($(".thing- .name").html()).to.be("Zach")
     expect($("embed").length).to.be(0)
   })
 })

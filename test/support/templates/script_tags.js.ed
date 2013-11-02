@@ -1,5 +1,5 @@
 <script type="text/enddash" name="crow">
-  <div class="crowName-"></div>
+  <div class="crowName">#{crowName}</div>
 </script>
 
 <script name="non-end-dash">

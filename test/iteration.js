@@ -66,7 +66,7 @@ describe("A collection template", function() {
         , model = { people: new Backbone.Collection([{name: name1, age: age1}, {name: name2, age: age2}]) }
       model['people'].get = function(attribute) { return totalCount.toString() }
       var template = generateTemplate(model, fs.readFileSync(__dirname + "/support/templates/multiple_iteration.html").toString())
-      expect($(".people- span.totalCount-").html()).to.be(totalCount.toString())
+      expect($(".people- span.totalCount").html()).to.be(totalCount.toString())
       expect($(".people- ul.names li div:nth-child(1)").html()).to.be(name1)
       expect($(".people- ul.names li div:nth-child(2)").html()).to.be(name2)
 
@@ -123,14 +123,13 @@ describe("With a nested collection template", function(){
         this.markup = "<div class='things-'>" +
                           "<div data-each>" +
                             "<div>" +
-                              "<div class=type-'>" +
-                              "</div>" +
+                              "<div class=type>#{type}</div>" +
                             "</div>" +
                           "</div>" +
                       "</div>"
         this.template = generateTemplate(this.topLevelObject, this.markup)
     })
-    it("should change when the types change", function(){
+    it("should change when the types change", function() {
       this.things[0].set("type", "cool")
       this.things[1].set("type", "awesome")
 

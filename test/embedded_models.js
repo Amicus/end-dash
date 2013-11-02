@@ -10,6 +10,6 @@ describe("An embedded model", function() {
     var template = generateTemplate({ survey: { name: "A Survey", person: { name: "Zach" } } }, fs.readFileSync(__dirname + "/support/templates/embedded_models.html").toString())
 
     expect($("#surveyName").html()).to.be("A Survey")
-    expect($(".person- .name-").html()).to.be("Zach")
+    expect($(".person- .name").html()).to.be("Zach")
   })
 })

@@ -31,13 +31,11 @@ describe("With two copies of Backbone", function(){
     this.backboneModel2 = new Backbone.Model({persisted: "Columbus circle"});
     this.backboneModel3 = new Backbone.Model({persisted: "Soho"});
     this.modelHTMLTemplate = "<div class='user-'>" +
-                                "<div class='persisted-'>" +
-                                "</div>" +
+                                "<div class='persisted'>#{persisted}</div>" +
                               "</div>";
     this.collectionHTMLTemplate = "<div class='users-'>" +
                                     "<div data-each>" +
-                                      "<div class=' persisted-'>" +
-                                      "</div>" +
+                                      "<div class='persisted'>#{persisted}</div>" +
                                     "</div>" +
                                   "</div>";
   });
@@ -47,20 +45,20 @@ describe("With two copies of Backbone", function(){
       this.template = generateTemplate({user: this.cloneModel1}, this.modelHTMLTemplate);
     });
     it("should interpolate the model's attribute into the html", function(){
-      expect($('.persisted-').html()).to.be('Chelsa Piers');
+      expect($('.persisted').html()).to.be('Chelsa Piers');
     });
     it("should update the corrosponding attribute", function(){
       this.cloneModel1.set('persisted', 'Changed');
-      expect($('.persisted-').html()).to.be('Changed');
+      expect($('.persisted').html()).to.be('Changed');
     });
   });
 
   describe("With a backbone model", function(){
     it("binding it to a template should work normally", function(){
       var template = generateTemplate({user: this.backboneModel1}, this.modelHTMLTemplate);
-      expect($('.persisted-').html()).to.be('Chelsa Piers');
+      expect($('.persisted').html()).to.be('Chelsa Piers');
       this.backboneModel1.set('persisted', 'Changed');
-      expect($('.persisted-').html()).to.be('Changed');
+      expect($('.persisted').html()).to.be('Changed');
     });
   });
 
