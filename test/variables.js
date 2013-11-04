@@ -89,7 +89,6 @@ describe("Setting multiple variables", function() {
   })
 })
 
-
 describe("Template with interpolated values and nested elements", function() {
     beforeEach(function(){
       this.nestedModel = new Backbone.Model({nestedOne: "I'm nested!"})
@@ -108,7 +107,6 @@ describe("Template with interpolated values and nested elements", function() {
       expect($(".test").html().match(/goodbye/)).to.be.ok()
     })
     it("should set nested values", function () {
-      console.log($('.test').html())
       expect($(".test .nested-").html()).to.be("I'm nested!")
     })
 })
