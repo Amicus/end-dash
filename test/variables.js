@@ -22,8 +22,8 @@ describe("Setting a single variable", function() {
   describe("inputs", function() {
       beforeEach(function() {
         this.model = new Backbone.Model({ singleVariable: "this is value" })
-        this.template = generateTemplate(this.model, '<div><input class="singleVariable-" /></div>')
-        this.el = $('.singleVariable-')
+        this.template = generateTemplate(this.model, '<div><input class="singleVariable" value="singleVariable-" /></div>')
+        this.el = $('.singleVariable')
       })
       it("should set the value on inputs", function() {
         expect(this.el.val()).to.be("this is value")
