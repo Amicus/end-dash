@@ -62,9 +62,53 @@ describe("Setting a single variable", function() {
   })
 })
 
-describe("Setting a multiple variables", function() {
-    it("should be set both variables", function () {
-      var template = generateTemplate({ variableOne: "hello", variableTwo: "goodbye" }, '<div class="test">This is #{variableOne} and #{variableTwo}</div>')
-      expect($(".test").html()).to.be("This is hello and goodbye")
+describe("Setting multiple variables", function() {
+  beforeEach(function(){
+    this.model = new Backbone.Model({ variableOne: "hello", variableTwo: "goodbye" })
+    generateTemplate(this.model, '<div class="test">This is #{variableOne} and #{variableTwo}</div>')
   })
+
+  it("should be set both variables", function () {
+    expect($(".test").html()).to.be("This is hello and goodbye")
+  })
+
+  it("changing one variable should update the dom", function () {
+    this.model.set('variableTwo', 'seeYa')
+    expect($(".test").html()).to.be("This is hello and seeYa")
+  })
+
+  it("changing the other variable should update the dom", function () {
+    this.model.set('variableOne', 'welcome')
+    expect($(".test").html()).to.be("This is welcome and goodbye")
+  })
+
+  it("changing both variables should update the dom", function () {
+    this.model.set('variableOne', 'welcome')
+    this.model.set('variableTwo', 'seeYa')
+    expect($(".test").html()).to.be("This is welcome and seeYa")
+  })
+})
+
+
+describe("Template with interpolated values and nested elements", function() {
+    beforeEach(function(){
+      this.nestedModel = new Backbone.Model({nestedOne: "I'm nested!"})
+      this.model = new Backbone.Model({ variableOne: "hello", variableTwo: "goodbye", nested: this.nestedModel})
+      this.markup = '<div class="test"> #{variableOne} ' +
+                      '<div class="nested-">' +
+                          '#{nestedOne}' +
+                      '</div>' +
+                      '#{variableTwo}' +
+                    '</div>';
+
+      generateTemplate(this.model, this.markup)
+    })
+    it("should set interpoated values", function () {
+      expect($(".test").html().match(/hello/)).to.be.ok()
+      expect($(".test").html().match(/goodbye/)).to.be.ok()
+    })
+    it("should set nested values", function () {
+      console.log($('.test').html())
+      expect($(".test .nested-").html()).to.be("I'm nested!")
+    })
 })
