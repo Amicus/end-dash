@@ -61,3 +61,10 @@ describe("Setting a single variable", function() {
     expect($(".singleVariable-").val()).to.be("false")
   })
 })
+
+describe("Setting a multiple variables", function() {
+    it("should be set both variables", function () {
+      var template = generateTemplate({ variableOne: "hello", variableTwo: "goodbye" }, '<div class="test">This is #{variableOne} and #{variableTwo}</div>')
+      expect($(".test").html()).to.be("This is hello and goodbye")
+  })
+})
