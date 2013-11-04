@@ -1,4 +1,5 @@
-# EndDash Syntax Documentation
+Syntax Overview
+===============
 
 ## Variables
 
@@ -11,8 +12,8 @@
 ```js
 template.bind({
   user: new Backbone.Model({
-    firstName: 'Michael',
-    lastName: 'Jackson'
+    firstName: 'Tony',
+    lastName: 'Stark'
   });
 });
 ```
@@ -21,27 +22,45 @@ template.bind({
 
 ```html
 <div class="user">
-  <p>Hello, <span class="nickname-"></span>! You live at:</p>
+  <p>Hello, <span class="resident-"></span>! Your home is listed as:</p>
 
-  <address data-scope="/addresses" class="home-">
-    <p class="nickname-"></p>
-    <p class="line1-"></p>
-    <p class="line2-"></p>
-  </address>
+  <p data-scope="/placeList" class="home-">
+    <span class="home-"></span>,
+    which is in
+    <span class="area-"></span>,
+    a neighborhood in <span class="city-"></span>, <span class="state-"></span>
+  </p>
 </div>
 ```
 
 ```js
-var elvis = new Backbone.Model({
-  nickname: 'Elvis',
-  addresses: {
+var mansion = new Backbone.Model({
+  resident: 'Tony',
+  placeList: {
     home: {
-      nickname: 'Graceland',
-      line1: '3717 Elvis Presley Blvd.',
-      line2: 'Memphis, TN 38116'
+      home: 'Stark Mansion',
+      area: 'Point Dume',
+      city: 'Malibu',
+      state: 'CA'
     }
   }
 });
 
-template.bind(elvis);
+template.bind(mansion);
+```
+##Usage
+
+For the above example template and model, `template.el` will output:
+
+```html
+<div class="user">
+  <p>Hello, <span class="resident-">Tony</span>! Your home is listed as:</p>
+
+  <p data-scope="/placeList" class="home-">
+    <span class="home-">Stark Mansion</span>,
+    which is in
+    <span class="area-">Point Dume</span>,
+    a neighborhood in <span class="city-">Malibu</span>, <span class="state-">CA</span>
+  </p>
+</div>
 ```
