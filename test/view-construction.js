@@ -29,15 +29,15 @@ describe("When I initialize a template with a view bound to it", function() {
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect($(".ohHi-").data("view")).to.be(that);
-        expect(opts.el.is($(".ohHi-"))).to.be(true);
+        expect($(".testView-").data("view")).to.be(that);
+        expect(opts.el.is($(".testView-"))).to.be(true);
         done();
       });
     };
     views.testView = MockView;
 
     var model = new Model({ ohHi: "Hello There" })
-      , template = generateTemplate(model, '<div class = "ohHi- testView-"></div>');
+      , template = generateTemplate(model, '<div class = "testView-"></div>');
   })
 
    it("should setup the view heirarchy correctly", function(done) {
@@ -50,8 +50,8 @@ describe("When I initialize a template with a view bound to it", function() {
       //next tick because we have to allow the template constructor to return
       //in order to check that it passed itself in
       process.nextTick(function() {
-        expect($(".ohHi-").data("view")).to.be(that);
-        expect(opts.el.is($(".ohHi-"))).to.be(true);
+        expect($(".embeddedTestView-").data("view")).to.be(that);
+        expect(opts.el.is($(".embeddedTestView-"))).to.be(true);
         done();
       });
     };
@@ -60,7 +60,7 @@ describe("When I initialize a template with a view bound to it", function() {
     views.testView = Parent
 
     var model = new Model({ ohHi: "Hello There" })
-      , template = generateTemplate(model, '<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>');
+      , template = generateTemplate(model, '<div class = "testView-"><div class = "embeddedTestView-"></div></div>');
   })
   it("should setup a view for collections", function(done) {
 

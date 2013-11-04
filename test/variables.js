@@ -22,7 +22,8 @@ describe("Setting a single variable", function() {
   describe("inputs", function() {
       beforeEach(function() {
         this.model = new Backbone.Model({ singleVariable: "this is value" })
-        this.template = generateTemplate(this.model, '<div><input value="#{singleVariable}" /></div>')
+        this.template = generateTemplate(this.model, '<div><input class="singleVariable" value="singleVariable-" /></div>')
+        this.el = $('.singleVariable')
       })
       it("should set the value on inputs", function() {
         expect(this.el.val()).to.be("this is value")
@@ -35,9 +36,9 @@ describe("Setting a single variable", function() {
         this.model.set('singleVariable', 'not the other value')
       })
   })
-  
+
   it("should set the value on select menus when given a string", function() {
-    var template = generateTemplate({ singleVariable: "false" }, 
+    var template = generateTemplate({ singleVariable: "false" },
                                     '<div>' +
                                         '<select class="singleVariable-">' +
                                           '<option value="true">Yes</option>' +
@@ -47,9 +48,9 @@ describe("Setting a single variable", function() {
                                     )
     expect($(".singleVariable-").val()).to.be("false")
   })
-  
+
   it("should set the value on select menus when given a boolean", function() {
-    var template = generateTemplate({ singleVariable: false }, 
+    var template = generateTemplate({ singleVariable: false },
                                     '<div>' +
                                         '<select class="singleVariable-">' +
                                           '<option value="true">Yes</option>' +
@@ -59,4 +60,53 @@ describe("Setting a single variable", function() {
                                     )
     expect($(".singleVariable-").val()).to.be("false")
   })
+})
+
+describe("Setting multiple variables", function() {
+  beforeEach(function(){
+    this.model = new Backbone.Model({ variableOne: "hello", variableTwo: "goodbye" })
+    generateTemplate(this.model, '<div class="test">This is #{variableOne} and #{variableTwo}</div>')
+  })
+
+  it("should be set both variables", function () {
+    expect($(".test").html()).to.be("This is hello and goodbye")
+  })
+
+  it("changing one variable should update the dom", function () {
+    this.model.set('variableTwo', 'seeYa')
+    expect($(".test").html()).to.be("This is hello and seeYa")
+  })
+
+  it("changing the other variable should update the dom", function () {
+    this.model.set('variableOne', 'welcome')
+    expect($(".test").html()).to.be("This is welcome and goodbye")
+  })
+
+  it("changing both variables should update the dom", function () {
+    this.model.set('variableOne', 'welcome')
+    this.model.set('variableTwo', 'seeYa')
+    expect($(".test").html()).to.be("This is welcome and seeYa")
+  })
+})
+
+describe("Template with interpolated values and nested elements", function() {
+    beforeEach(function(){
+      this.nestedModel = new Backbone.Model({nestedOne: "I'm nested!"})
+      this.model = new Backbone.Model({ variableOne: "hello", variableTwo: "goodbye", nested: this.nestedModel})
+      this.markup = '<div class="test"> #{variableOne} ' +
+                      '<div class="nested-">' +
+                          '#{nestedOne}' +
+                      '</div>' +
+                      '#{variableTwo}' +
+                    '</div>';
+
+      generateTemplate(this.model, this.markup)
+    })
+    it("should set interpoated values", function () {
+      expect($(".test").html().match(/hello/)).to.be.ok()
+      expect($(".test").html().match(/goodbye/)).to.be.ok()
+    })
+    it("should set nested values", function () {
+      expect($(".test .nested-").html()).to.be("I'm nested!")
+    })
 })
