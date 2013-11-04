@@ -1,73 +1,73 @@
-Iterating through a Collection
-==============================
+Collections
+===========
 
-Given a populated Backbone Collection.
+EndDash lets you display properties of objects in a collection.
 
 ```javascript
-var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', characterType: 'hero'});
-var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', characterType: 'hero'});
-var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', characterType: 'civilian' });
+var characters = new Backbone.Collection([
+  new Backbone.Model({
+    firstName: 'Tony',
+    lastName: 'Stark',
+    role: 'hero'
+  }),
 
-var peopleCollection = new Backbone.Collection([person1, person2, person3]);
+  new Backbone.Model({
+    firstName: 'Pepper',
+    lastName: 'Potts',
+    role: 'civilian'
+  },
+
+  new Backbone.Model({
+    firstName: 'Iron',
+    lastName: 'Monger',
+    role: 'villain'
+  }),
+
+  new Backbone.Model({
+    firstName: 'James',
+    lastName: 'Rhodes',
+    role: 'hero'
+  })
+)
+]);
 ```
 
-Iterate through the collection using data-each.
-(You must be in scope of the collection)
-
 ```html
-<div data-each>
-  <div>
-    <div class='firstName-'></div>
+<div class="characters-">
+  <div class="character-">
+    <div class="firstName-"></div>
   </div>
 </div>
 ```
 
-Inside data-each there must be a single root with a set of dom elements.
-This set will be bound once to each model.
+## Polymorphic attributes
 
-On the resulting page you would see:
+If your objects have an enum (or [Enumerated type](http://en.wikipedia.org/wiki/Enumerated_type)) field, you can specify handling based on which type it is. This is best explained with an example.
 
-```
-<div class='firstName-'>Tony</div>
-<div class='firstName-'>James</div>
-<div class='firstName-'>Pepper</div>
-```
-
-Polymorphic Iteration
-=====================
-
-To iterate over a collection, passing each model to a
-different template, based on a model attribute, add '<modelAttribute>Polymorphic-'
+In this case, `role` is behaving as a polymorphic attribute.
 
 ```html
-<div class='characterTypePolymorphic-' data-each>
-  <div class='whenHero-'>
-    // Models with Model.get('characterType') == 'hero' will bind to HTML here.
-    <span class='firstName-'></span> says: Don't worry.  I'll probably save you.
-  </div>
-  <div class='whenVillain-'>
-    // Models with Model.get('characterType') == 'villain' will bind to HTML here.
-    <span class='firstName-'></span> says: I'm going to kill Iron Man!
-  </div>
-  <div class='whenCivilian-'>
-    // Models with Model.get('characterType') == 'civilian' will bind to HTML here.
-    <span class='firstName-'></span> says: I'm just a civilian!
-  </div>
+<div class="rolePolymorphic-" data-each>
+  <p><span class="firstName-"></span> says:</p>
+
+  <div class="whenHero-"><span class="firstName-"></span> says: Don't worry. I'll probably save you.</div>
+  <div class="whenVillain-"><span class="firstName-"></span> <span class="lastName-"></span> says: Worry.</div>
+  <div class="whenCivilian-"><span class="firstName-"></span> says: Get me outta here!</div>
 </div>
 ```
-
 The resulting HTML will be:
 
 ```
-<div class='characterTypePolymorphic-' data-each>
-  <div class='whenHero-'>
-    <span class='firstName-'>Tony</span> says: Don't worry.  I'll probably save you.
+<div class="characterTypePolymorphic-" data-each>
+  <div class="whenHero-">
+    <span class="firstName-">Tony</span> says: Don't worry.  I'll probably save you.
   </div>
-  <div class='whenHero-'>
-    <span class='firstName-'>James</span> says: Don't worry.  I'll probably save you.
+  <div class="whenCivilian-">
+    <span class="firstName-">Piper</span> says: Get me outta here!
   </div>
-  <div class='whenCivilian-'>
-    <span class='firstName-'>Piper</span> says: I'm just a civilian!
+  <div class="whenVillain-"><span class="firstName-">Iron</span> <span class="lastName-">Monger</span> says: Worry.</div>
+  <div class="whenHero-">
+    <span class="firstName-">James</span> says: Don't worry.  I'll probably save you.
   </div>
 </div>
 ```
@@ -75,26 +75,18 @@ The resulting HTML will be:
 Collection Attributes
 =====================
 
-Backbone.Collection does not support attributes natively, but there are a number of
-options for extending collections to do so.  EndDash supports collection attributes
-as long as they are implemented as they are on Backbone.Model via the `get` method
-(which Backbone.Collection natively uses only for getting a model by id, not an
-attribute by name).  Typically collection attributes are used for metadata about
+*Please note:* Backbone.Collection does *not* support attributes natively for its collections,
+but there are a number of options for extending collections to do so.  EndDash supports
+collection attributes as long as they are implemented according to Backbone.Model API, via
+the `get` method (which Backbone.Collection natively uses only for getting a model by id,
+not an attribute by name).  Typically collection attributes are used for metadata about
 the collection, such as total size (if the collection is paginated and this is
 different than length), as in the example below:
 
 ```html
-<div class='people-' >
+<div class="authorizedPeople-" >
   <p>
-    There are <span class='totalCount-'></span> people allowed in Tony's basement.
-    Here are their names:
+    There are <span class="totalCount-"></span> people allowed in Tony's basement.
   </p>
-  <div data-each>
-    <div class='authorizedPerson'>
-      <div class='firstName-'></div>
-      <div class='lastName-'></div>
-      <div class='alias-'></div>
-    </div>
-  </div>
 </div>
 ```
