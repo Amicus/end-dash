@@ -168,7 +168,7 @@ describe("With a template with no scoping reactions", function(){
           new Backbone.Model({ type: "awesome" }),
           new Backbone.Model({ type: "cool" })
         ];
-        this.template = generateTemplate(this.topLevelObject, this.markup)
+        this.template = generateTemplate(this.things, this.markup)
     })
     it("should properly interpolate values", function(){
       generateTemplate(this.things, this.markup)
@@ -176,17 +176,6 @@ describe("With a template with no scoping reactions", function(){
       expect($("div div:nth-child(1) div").html()).to.be("awesome")
       expect($("div div:nth-child(2) div").html()).to.be("cool")
     })
-    // it("should not support updates when objects are removed from the array", function(){
-    //   this.things.pop()
-    //   expect($(".things- div div:nth-child(1) div").html()).to.be("awesome")
-    // })
-    // it("should not support updates when moving the objects within the array literal", function(){
-    //   var model1 = this.things[0]
-    //   this.things[0] = this.things[1]
-    //   this.things[1] = model1
-    //   expect($(".things- div div:nth-child(1) div").html()).to.be("awesome")
-    //   expect($(".things- div div:nth-child(2) div").html()).to.be("cool")
-    // })
   })
 })
 
