@@ -9,18 +9,18 @@ var expect = require("expect.js")
 describe("when integrating with backbone", function() {
   beforeEach(function() {
     this.markup = fs.readFileSync(__dirname + "/support/templates/complex_nested.html").toString()
-    this.answerFactory = new Factory(Backbone.Model, { 
-      name: "a{{sequence(1)}}" 
+    this.answerFactory = new Factory(Backbone.Model, {
+      name: "a{{sequence(1)}}"
     })
-    this.questionFactory = new Factory(Backbone.Model, { 
-      name: "q{{sequence(1)}}", 
-      answer: this.answerFactory 
+    this.questionFactory = new Factory(Backbone.Model, {
+      name: "q{{sequence(1)}}",
+      answer: this.answerFactory
     })
     this.questionCollectionFactory = this.questionFactory.collectionFactory(Backbone.Collection, 3)
-    this.scriptFactory = new Factory(Backbone.Model, { 
-      name: "the name", 
+    this.scriptFactory = new Factory(Backbone.Model, {
+      name: "the name",
       questions: this.questionCollectionFactory
-    }) 
+    })
   })
   describe("I pass a backbone model to set", function() {
     it("should set it's attributes", function() {
@@ -36,7 +36,7 @@ describe("when integrating with backbone", function() {
   it("it should populate a collection within a model", function() {
     var script = this.scriptFactory.generate()
       , markup = fs.readFileSync(__dirname + "/support/templates/complex_nested.html").toString()
-      , template = generateTemplate({ script: script }, this.markup) 
+      , template = generateTemplate({ script: script }, this.markup)
 
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
     script.get("questions").each(function(question, i) {
@@ -47,7 +47,7 @@ describe("when integrating with backbone", function() {
 
   it("it should update the collection after reset", function() {
     var script = this.scriptFactory.generate({ questions: this.questionCollectionFactory.generate(0) })
-      , template = generateTemplate({ script: script }, this.markup) 
+      , template = generateTemplate({ script: script }, this.markup)
 
     script.get("questions").reset(this.questionCollectionFactory.generate().models)
 
@@ -56,5 +56,5 @@ describe("when integrating with backbone", function() {
       expect($(".questions- li div:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
       expect($(".questions- li div:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
     })
-  }) 
+  })
 })
