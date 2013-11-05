@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "underscore": "1.x.x",
-    "backbone": "x.x.x",
-    "inflection": "x.x.x"
+    "backbone": "x.x.x"
   },
   "engines": {
     "node": ">=0.6.0"
