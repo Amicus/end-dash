@@ -17,7 +17,7 @@ describe("A collection template", function() {
       this.markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString()
       this.template = generateTemplate({ things: this.things }, this.markup)
     })
- 
+
     it("should change the item when the type changes", function() {
       this.things.at(0).set("type", "cool")
       this.things.at(1).set("type", "awesome")
@@ -148,6 +148,32 @@ describe("With a nested collection template", function(){
       this.things[1] = model1
       expect($(".things- div div:nth-child(1) div").html()).to.be("awesome")
       expect($(".things- div div:nth-child(2) div").html()).to.be("cool")
+    })
+  })
+})
+
+describe("With a template with no scoping reactions", function(){
+  beforeEach(function(){
+    this.markup = "<div data-each>" +
+                    "<div>" +
+                      "<div class=type-'>" +
+                      "</div>" +
+                    "</div>" +
+                  "</div>"
+  })
+  describe("and an array literal with backbone models", function(){
+    beforeEach(function(){
+        this.things = [
+          new Backbone.Model({ type: "awesome" }),
+          new Backbone.Model({ type: "cool" })
+        ];
+        this.template = generateTemplate(this.things, this.markup)
+    })
+    it("should properly interpolate values", function(){
+      generateTemplate(this.things, this.markup)
+
+      expect($("div div:nth-child(1) div").html()).to.be("awesome")
+      expect($("div div:nth-child(2) div").html()).to.be("cool")
     })
   })
 })
