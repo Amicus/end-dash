@@ -60,9 +60,7 @@ describe('scope', function(){
         var bindTemplate = function() {
           generateTemplate(that.model, that.markup);
         };
-        expect(bindTemplate).to.throwError(function(e){
-          expect(!!e.message.match(/to a number, but templates can only be bound to objects/)).to.be(true);
-        });
+        expect(bindTemplate).to.throwError(/to a number, but templates can only be bound to objects/);
       });
     });
     describe('scope into a string', function(){
@@ -74,9 +72,7 @@ describe('scope', function(){
         var bindTemplate = function() {
           generateTemplate(that.model, that.markup);
         };
-        expect(bindTemplate).to.throwError(function(e){
-          expect(!!e.message.match(/ to a string, but templates can only be bound to objects/)).to.be(true);
-        });
+        expect(bindTemplate).to.throwError(/ to a string, but templates can only be bound to objects/);
       });
     });
   });
