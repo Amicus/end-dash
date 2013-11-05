@@ -2,4 +2,5 @@
 --compilers docjs:awesome-docs,markdown:awesome-docs,md:awesome-docs
 --ui bdd
 --globals window,$
+--recursive
 --reporter spec
