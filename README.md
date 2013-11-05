@@ -10,19 +10,29 @@ Include the library and dependencies:
 <script src="/scripts/end-dash.js"></script>
 ```
 
+## Templating from models
+
 Define your templates:
 ```html
-<script type="text/enddash" name="user">
+<script type="text/enddash" name="character">
   <div class="user">
     <p>
       Hello, my name is <span class="firstName-"></span>
-      <span class="lastName-"></span>! I have something to tell you...
+      <span class="lastName-"></span>...
     </p>
 
-    <strong class="catchphrase-"></strong>
+    <strong class="quip-"></strong>
   </div>
 </script>
 ```
+Note: We are in the process of changing the syntax of EndDash to support
+text interpolation without a span or div element as shown above.  This is working
+in the branch `interpolated-variables` and `interpolated-variables-inputs`
+but we're still in the process of adding tests and deciding whether to handle
+deprecating the old syntax with warnings, or dropping it entirely.
+If evaluating EndDash please consider using one of these branches until it's
+merged into master if you prefer `#{attribute}` to `<span class="attribute-"></span>`
+
 
 Bind templates to models in your application code:
 ```javascript
@@ -30,13 +40,13 @@ $.ready(function() {
   // Load all the templates on the page.
   EndDash.bootstrap();
 
-  var michael = new Backbone.Model({
-    firstName: 'Michael',
-    lastName: 'Jackson',
-    catchphrase: "You've been hit and struck by a smooth criminal!"
+  var tony = new Backbone.Model({
+    firstName: 'Tony',
+    lastName: 'Stark',
+    quip: "You know, the question I get asked most often is, 'Tony, how do you go to the bathroom in your suit?'"
   });
 
-  var template = EndDash.getTemplate('user', michael);
+  var template = EndDash.getTemplate('character', tony);
 
   $('#content').html(template.el);
 });
