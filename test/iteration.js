@@ -17,7 +17,7 @@ describe("A collection template", function() {
       this.markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString()
       this.template = generateTemplate({ things: this.things }, this.markup)
     })
- 
+
     it("should change the item when the type changes", function() {
       this.things.at(0).set("type", "cool")
       this.things.at(1).set("type", "awesome")
@@ -107,8 +107,10 @@ describe("A collection template", function() {
       expect($('.things- li div:nth-child(1)').html()).to.be('cool')
       // then we remove cool
       this.things.pop()
-      // and expect the first one to be awesome
-      expect($(".things- li div:nth-child(1)").html()).to.be("cool")
+      // and expect the first one to be cool and second to be awesome
+      //array literals don't fire change events
+      expect($('.things- li div:nth-child(1)').html()).to.be('cool')
+      expect($(".things- li div:nth-child(2)").html()).to.be("awesome")
     })
   })
 })
