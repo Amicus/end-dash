@@ -75,16 +75,16 @@ The resulting HTML will be:
 Collection Attributes
 =====================
 
-Backbone.Collection does not support attributes natively, but there are a number of
-options for extending collections to do so.  EndDash supports collection attributes
-as long as they are implemented as they are on Backbone.Model via the `get` method
-(which Backbone.Collection natively uses only for getting a model by id, not an
-attribute by name).  Typically collection attributes are used for metadata about
-the collection, such as total size (if the collection is paginated and this is
-different than length), as in the example below:
+Backbone.Collection does not support attributes natively, but there are a number of 
+options for extending collections to do so. EndDash supports collection in the same way 
+as Backbone.Model, via the 'get' method. (Backbone.Collection natively supports 'get' 
+only for getting a model by id, not an attribute by name). Typically collection 
+attributes are used for metadata about the collection, such as attributes the
+models have in common, total size, or collection number (e.g. when using pagination).  
+Here is an example of a template using collection attributes:
 
 ```html
-<div class='people-' >
+<div class='people-'>
   <p>
     There are <span class='totalCount-'></span> people allowed in Tony's basement.
     Here are their names:
