@@ -43,4 +43,23 @@ describe('scope', function(){
       });
     });
   });
+  describe ("scope changes", function(){
+    beforeEach(function(){
+      this.markup = "<div class='bird-'>" +
+                      "<div>" +
+                        "Is User" +
+                      "</div>" +
+                    "</div>";
+    });
+    describe('scope into a number', function(){
+      beforeEach(function(){
+        this.model = new Backbone.Model({bird: 1});
+      });
+      it("should not record user variable interpolation", function(){
+        generateTemplate(this.model, this.markup);
+      });
+    });
+  });
 });
+
+
