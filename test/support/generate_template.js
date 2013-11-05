@@ -14,7 +14,7 @@ module.exports = function(model, markupOrPath) {
   }
 
   var template = EndDash.getTemplate(templatePath, model);
-  $('body').html(template.template);
+  $('body').html(template.el);
 
   return template;
 }
