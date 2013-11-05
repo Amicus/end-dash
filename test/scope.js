@@ -43,4 +43,39 @@ describe('scope', function(){
       });
     });
   });
+  describe ("scope changes", function(){
+    beforeEach(function(){
+      this.markup = "<div class='bird-'>" +
+                      "<div>" +
+                        "Is User" +
+                      "</div>" +
+                    "</div>";
+    });
+    describe('scope into a number', function(){
+      beforeEach(function(){
+        this.model = new Backbone.Model({bird: 1});
+      });
+      it("should not record user variable interpolation", function(){
+        var that = this;
+        var bindTemplate = function() {
+          generateTemplate(that.model, that.markup);
+        };
+        expect(bindTemplate).to.throwError(/to a number, but templates can only be bound to objects/);
+      });
+    });
+    describe('scope into a string', function(){
+      beforeEach(function(){
+        this.model = new Backbone.Model({bird: "weee"});
+      });
+      it("should not record user variable interpolation", function(){
+        var that = this;
+        var bindTemplate = function() {
+          generateTemplate(that.model, that.markup);
+        };
+        expect(bindTemplate).to.throwError(/ to a string, but templates can only be bound to objects/);
+      });
+    });
+  });
 });
+
+
