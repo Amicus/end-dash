@@ -25,13 +25,6 @@ Define your templates:
   </div>
 </script>
 ```
-Note: We are in the process of changing the syntax of EndDash to support
-text interpolation without a span or div element as shown above.  This is working
-in the branch `interpolated-variables` and `interpolated-variables-inputs`
-but we're still in the process of adding tests and deciding whether to handle
-deprecating the old syntax with warnings, or dropping it entirely.
-If evaluating EndDash please consider using one of these branches until it's
-merged into master if you prefer `#{attribute}` to `<span class="attribute-"></span>`
 
 
 Bind templates to models in your application code:
