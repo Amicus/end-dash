@@ -42,7 +42,8 @@ var characters = new Backbone.Collection([
 
 ## Polymorphic attributes
 
-If your objects have an enum (or [Enumerated type](http://en.wikipedia.org/wiki/Enumerated_type)) field, you can specify handling based on which type it is. This is best explained with an example.
+If your objects have an enum (or Enumerated type) field, you can specify handling based on which type it is.
+This is best explained with an example.
 
 In this case, `role` is behaving as a polymorphic attribute.
 
