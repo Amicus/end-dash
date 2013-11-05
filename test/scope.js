@@ -56,7 +56,27 @@ describe('scope', function(){
         this.model = new Backbone.Model({bird: 1});
       });
       it("should not record user variable interpolation", function(){
-        generateTemplate(this.model, this.markup);
+        var that = this;
+        var bindTemplate = function() {
+          generateTemplate(that.model, that.markup);
+        };
+        expect(bindTemplate).to.throwError(function(e){
+          expect(e.message).to.be("EndDash--Error, trying to wrap a number which is not an object");
+        });
+      });
+    });
+    describe('scope into a string', function(){
+      beforeEach(function(){
+        this.model = new Backbone.Model({bird: "weee"});
+      });
+      it("should not record user variable interpolation", function(){
+        var that = this;
+        var bindTemplate = function() {
+          generateTemplate(that.model, that.markup);
+        };
+        expect(bindTemplate).to.throwError(function(e){
+          expect(e.message).to.be("EndDash--Error, trying to wrap a string which is not an object");
+        });
       });
     });
   });
