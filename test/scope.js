@@ -61,7 +61,7 @@ describe('scope', function(){
           generateTemplate(that.model, that.markup);
         };
         expect(bindTemplate).to.throwError(function(e){
-          expect(e.message).to.be("EndDash--Error, trying to wrap a number which is not an object");
+          expect(!!e.message.match(/to a number, but templates can only be bound to objects/)).to.be(true);
         });
       });
     });
@@ -75,7 +75,7 @@ describe('scope', function(){
           generateTemplate(that.model, that.markup);
         };
         expect(bindTemplate).to.throwError(function(e){
-          expect(e.message).to.be("EndDash--Error, trying to wrap a string which is not an object");
+          expect(!!e.message.match(/ to a string, but templates can only be bound to objects/)).to.be(true);
         });
       });
     });
