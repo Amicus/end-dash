@@ -24,7 +24,7 @@ describe("A template with partials", function() {
     }
 
     _(templates).each(function(template) {
-      TemplateStore.load(template, fs.readFileSync(__dirname + template).toString())
+      EndDash.templateStore.load(template, fs.readFileSync(__dirname + template).toString())
     })
 
     var template = generateTemplate(model, '/templates/partials.html')
