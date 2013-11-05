@@ -40,9 +40,9 @@ describe("when integrating with backbone", function() {
 
     expect($(".script- .name-:nth-child(1)").html()).to.be("the name")
     script.get("questions").each(function(question, i) {
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
-    }) 
+      expect($(".questions- li div:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
+      expect($(".questions- li div:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+    })
   })
 
   it("it should update the collection after reset", function() {
@@ -53,8 +53,8 @@ describe("when integrating with backbone", function() {
 
     expect($(".script- .name-:nth-child(1)").html()).to.be(script.get("name"))
     script.get("questions").each(function(question, i) {
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
-      expect($(".script- .question-:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
+      expect($(".questions- li div:nth-child(" + (i + 1) + ") > .arb > .name-").html()).to.be(question.get("name"))
+      expect($(".questions- li div:nth-child(" + (i + 1) + ") > .answer- > .name-").html()).to.be(question.get("answer").get("name"))
     })
   }) 
 })
