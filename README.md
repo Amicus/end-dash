@@ -12,7 +12,7 @@ Include the library and dependencies:
 
 ## Templating from models
 
-Define your templates<sup>see note below</sup>:
+Define your templates:
 ```html
 <script type="text/enddash" name="character">
   <div class="user">
