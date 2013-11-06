@@ -154,4 +154,30 @@ describe("With a nested collection template", function(){
   })
 })
 
+describe("With a template with no scoping reactions", function(){
+  beforeEach(function(){
+    this.markup = "<div data-each>" +
+                    "<div>" +
+                      "<div class=type-'>" +
+                      "</div>" +
+                    "</div>" +
+                  "</div>"
+  })
+  describe("and an array literal with backbone models", function(){
+    beforeEach(function(){
+        this.things = [
+          new Backbone.Model({ type: "awesome" }),
+          new Backbone.Model({ type: "cool" })
+        ];
+        this.template = generateTemplate(this.things, this.markup)
+    })
+    it("should properly interpolate values", function(){
+      generateTemplate(this.things, this.markup)
+
+      expect($("div div:nth-child(1) div").html()).to.be("awesome")
+      expect($("div div:nth-child(2) div").html()).to.be("cool")
+    })
+  })
+})
+
 
