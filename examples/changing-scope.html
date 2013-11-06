@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The King of Rock</title>
+  <title>The Mansion</title>
   <meta name="description" content="A quick EndDash example.">
   <meta name="author" content="Amicus">
 </head>
@@ -19,13 +19,18 @@
 
   <script type="text/enddash" name="user">
     <div class="user">
-      <p>Hello, <span class="nickname-"></span>! You live at:</p>
+      <p>Hello, <span class="resident-"></span>! Your home is listed as:</p>
 
-      <address data-scope="/addresses" class="home-">
-        <p class="nickname-"></p>
-        <p class="line1-"></p>
-        <p class="line2-"></p>
-      </address>
+      <p class="places-">
+        <span class="home-">
+          <span class="name-"></span>,
+          which is in
+          <span class="area-"></span>,
+          a neighborhood in
+          <span class="city-"></span>,
+          <span class="state-"></span>
+        </span>
+      </p>
     </div>
   </script>
 
@@ -34,18 +39,27 @@
       // Load all the templates on the page.
       EndDash.bootstrap();
 
-      var elvis = new Backbone.Model({
-        nickname: 'Elvis',
-        addresses: {
+      var mansion = new Backbone.Model({
+        resident: 'Tony',
+        places: {
           home: {
-            nickname: 'Graceland',
-            line1: '3717 Elvis Presley Blvd.',
-            line2: 'Memphis, TN 38116'
+            name: 'Stark Mansion',
+            city: 'Malibu',
+            state: 'CA',
+            area: 'Point Dume'
+          },
+          work: {
+            name: 'Stark Industries',
+            street: '200 Park Ave.',
+            city: 'New York City',
+            state: 'NY',
+            zip: '10023',
+            area: 'Manhattan'
           }
         }
       });
 
-      var template = EndDash.getTemplate('user', elvis);
+      var template = EndDash.getTemplate('user', mansion);
 
       $('#content').html(template.el);
     });
