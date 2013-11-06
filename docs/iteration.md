@@ -49,29 +49,39 @@ In this case, `role` is behaving as a polymorphic attribute.
 
 ```html
 <div class="rolePolymorphic-" data-each>
-  <span class="firstName-"></span>
-
-  <div class="whenHero-"> says: Don't worry. I'll probably save you.</div>
-  <div class="whenVillain-"><span class="lastName-"></span> says: Worry.</div>
-  <div class="whenCivilian-"> says: Get me outta here!</div>
+  <div class="whenHero-">
+    <span class="firstName-"></span>
+    says: Don't worry. I'll probably save you.
+  </div>
+  <div class="whenVillain-">
+    <span class="firstName-"></span>
+    <span class="lastName-"></span>
+    says: Worry.</div>
+  <div class="whenCivilian-">
+   <span class="firstName-"></span>
+   says: Get me outta here!
+   </div>
 </div>
 ```
 The resulting HTML will be:
 
 ```
 <div class="characterTypePolymorphic-" data-each>
-  <span class="firstName-">Tony</span>
   <div class="whenHero-">
+    <span class="firstName-">Tony</span>
     says: Don't worry.  I'll probably save you.
   </div>
-  <span class="firstName-">Piper</span>
   <div class="whenCivilian-">
+    <span class="firstName-">Piper</span>
     says: Get me outta here!
   </div>
-  <span class="firstName-">Iron</span>
-  <div class="whenVillain-"><span class="lastName-">Monger</span> says: Worry.</div>
-  <span class="firstName-">James</span>
+  <div class="whenVillain-">
+    <span class="firstName-">Iron</span>
+    <span class="lastName-">Monger</span>
+    says: Worry.
+  </div>
   <div class="whenHero-">
+    <span class="firstName-">James</span>
     says: Don't worry.  I'll probably save you.
   </div>
 </div>
