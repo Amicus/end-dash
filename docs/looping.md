@@ -15,7 +15,7 @@ var characters = new Backbone.Collection([
     firstName: 'Pepper',
     lastName: 'Potts',
     role: 'civilian'
-  },
+  }),
 
   new Backbone.Model({
     firstName: 'Iron',
@@ -28,7 +28,6 @@ var characters = new Backbone.Collection([
     lastName: 'Rhodes',
     role: 'hero'
   })
-)
 ]);
 ```
 
