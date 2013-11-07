@@ -8,7 +8,7 @@ var path = require("path"),
 
 describe("A polymporhic template", function() {
 
-  it("should display the correct item based on type", function() {
+  it("looping through a collection will display the correct item given the model type", function() {
     var model = { things: [{ type: "awesome" }, { type: "cool" }] },
         markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString(),
         template = generateTemplate(model, markup);
@@ -20,8 +20,8 @@ describe("A polymporhic template", function() {
     expect($(".things- li div:nth-child(2)").hasClass("whenCool-")).to.be(true);
   });
 
-  describe("when I bind to the collection", function() {
-    it("should change the item when the type changes", function() {
+  describe("when I loop through a collection", function() {
+    it("the dom will change when a child model type changes", function() {
       var things = new Backbone.Collection([ new Backbone.Model({ type: "awesome" }), new Backbone.Model({ type: "cool" }) ]),
           markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString(),
           template = generateTemplate({ things: things }, markup);
