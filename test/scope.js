@@ -1,10 +1,10 @@
 require('./support/helper');
 
-var expect = require("expect.js")
-  , fs = require("fs")
-  , generateTemplate = require("./support/generate_template")
-  , Backbone = require('backbone')
-  , variableReaction = require('../lib/reactions/variable');
+var expect = require("expect.js"),
+    fs = require("fs"),
+    generateTemplate = require("./support/generate_template"),
+    Backbone = require('backbone'),
+    variableReaction = require('../lib/reactions/variable');
 
 describe('scope', function(){
   describe ("polymorphic key but no scope changes", function(){
