@@ -3,8 +3,9 @@ Inputs
 
 ## Text Inputs
 
-EndDash does two-way binding of model attributes to inputs.  This is simple for
-text inputs by adding the attribute classname with a dash at the end
+EndDash does two-way binding of model attributes to inputs. On text inputs,
+the input's value is bound by EndDash to the referenced model's attribute
+when you add a classname of the attribute with a dash at the end.
 
 ```html
 <p>
