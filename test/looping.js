@@ -18,7 +18,7 @@ describe("A template with looping", function() {
       this.template = generateTemplate({ things: this.things }, this.markup);
     });
 
-    it("should update the dom when the type of its children objects change", function() {
+    it("the dom will update when the type of a child object changes", function() {
       this.things.at(0).set("type", "cool");
       this.things.at(1).set("type", "awesome");
 
@@ -35,13 +35,13 @@ describe("A template with looping", function() {
         el.insertBefore($('.things- li div:nth-child(1)'));
         expect($('.things- li div:nth-child(1)').html()).to.be('cool');
       });
-      it("removing a child should still remove the right child object from the dom", function() {
+      it("removing a child will remove the right child object from the dom", function() {
         this.things.remove(this.things[1]);
         expect($(".things- li div:nth-child(1)").html()).to.be("cool");
       });
     });
 
-    it("should support looping through a collection multiple times in a single template", function() {
+    it("will support looping through a collection multiple times in a single template", function() {
       var name1 = "Zach",
           name2 = "Dog",
           age1  = "26",
@@ -55,7 +55,7 @@ describe("A template with looping", function() {
       expect($(".people- ul.ages li div:nth-child(2)").html()).to.be(age2);
     });
 
-    it("should support collection attributes if model's attribute interface is extended to collections", function() {
+    it("will support collection attributes if model's attribute interface is extended to collections", function() {
       var name1 = "Zach",
           name2 = "Dog",
           age1  = "26",
@@ -84,7 +84,7 @@ describe("A template with looping", function() {
       this.template = generateTemplate({ things: this.things }, this.markup);
     });
 
-    it("the item should change when the type changes", function() {
+    it("the items displayed will change when the type changes", function() {
       this.things[0].set("type", "cool");
       this.things[1].set("type", "awesome");
 
@@ -101,7 +101,7 @@ describe("A template with looping", function() {
         el.insertBefore($('.things- li div:nth-child(1)'));
         expect($('.things- li div:nth-child(1)').html()).to.be('cool');
       });
-      it("removing a child should still remove the right child object from the dom", function() {
+      it("removing a child will not remove the right child object from the dom", function() {
         this.things.pop();
         expect($(".things- li div:nth-child(1)").html()).to.be("cool");
         expect($(".things- li div:nth-child(2)").html()).to.be("awesome");
@@ -128,7 +128,7 @@ describe("A template with looping after scoping", function(){
                       "</div>";
         this.template = generateTemplate(this.topLevelObject, this.markup);
     });
-    it("looping should change when an object types change", function(){
+    it("looping will change when an object types change", function(){
       this.things[0].set("type", "cool");
       this.things[1].set("type", "awesome");
 
@@ -166,7 +166,7 @@ describe("A template with no looping and no scoping", function(){
         ];
         this.template = generateTemplate(this.things, this.markup);
     })
-    it("should interpolate the models values", function(){
+    it("will interpolate values correctly", function(){
       generateTemplate(this.things, this.markup);
 
       expect($("div div:nth-child(1) div").html()).to.be("awesome");
