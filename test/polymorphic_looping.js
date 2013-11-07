@@ -64,3 +64,29 @@ describe("A polymorphic template with model reactions", function(){
     expect($('.jobPolymorphic- div:nth-child(2)').html()).to.be('I am your teacher and I am <div class="kind-">tough</div>');
   });
 });
+
+describe("A polymorphic template with a default case", function(){
+  beforeEach(function(){
+    this.collection = new Backbone.Collection([new Backbone.Model({firstName: "Bill", job: "scientist"}),
+                                               new Backbone.Model({kind: "tough", job: "teacher"}),
+                                               new Backbone.Model({name: "Joe", job: ""})
+                                              ]);
+    this.markup = "<div class='jobPolymorphic-' data-each>" +
+                    "<div class='whenScientist-'>" +
+                      "Scientists welcome you, signed by <div class='firstName-'></div>" +
+                    "</div>" +
+                    "<div class='whenTeacher-'>" +
+                      "I am your teacher and I am <div class='kind-'></div>" +
+                    "</div>" +
+                    "<div>" +
+                      "Default here: <div class='name-'></div>" +
+                    "</div>" +
+                  "</div>";
+    generateTemplate(this.collection, this.markup);
+  });
+  it("will interpolate the values", function(){
+    expect($('.jobPolymorphic- div:nth-child(1)').html()).to.be('Scientists welcome you, signed by <div class="firstName-">Bill</div>');
+    expect($('.jobPolymorphic- div:nth-child(2)').html()).to.be('I am your teacher and I am <div class="kind-">tough</div>');
+    expect($('.jobPolymorphic- div:nth-child(3)').html()).to.be('Default here: <div class="name-">Joe</div>');
+  });
+});
