@@ -43,3 +43,24 @@ describe("A polymporhic template", function() {
     });
   });
 });
+
+describe("A polymorphic template with model reactions", function(){
+  beforeEach(function(){
+    this.collection = new Backbone.Collection([new Backbone.Model({firstName: "Bill", job: "scientist"}),
+                                               new Backbone.Model({kind: "tough", job: "teacher"})
+                                              ]);
+    this.markup = "<div class='jobPolymorphic-' data-each>" +
+                    "<div class='whenScientist-'>" +
+                      "Scientists welcome you, signed by <div class='firstName-'></div>" +
+                    "</div>" +
+                    "<div class='whenTeacher-'>" +
+                      "I am your teacher and I am <div class='kind-'></div>" +
+                    "</div>" +
+                  "</div>";
+    generateTemplate(this.collection, this.markup);
+  });
+  it("will interpolate the values", function(){
+    expect($('.jobPolymorphic- div:nth-child(1)').html()).to.be('Scientists welcome you, signed by <div class="firstName-">Bill</div>');
+    expect($('.jobPolymorphic- div:nth-child(2)').html()).to.be('I am your teacher and I am <div class="kind-">tough</div>');
+  });
+});
