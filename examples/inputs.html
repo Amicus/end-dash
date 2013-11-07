@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Inputs Are Great!</title>
+  <meta name="description" content="A quick EndDash example.">
+  <meta name="author" content="Amicus">
+</head>
+
+<body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore.js"></script>
+  <script src="http://backbonejs.org/backbone.js"></script>
+  <script src="../build/end-dash.js"></script>
+
+  <div id="content"></div>
+  <div id="content2"></div>
+  <div id="content3"></div>
+
+  <script type="text/enddash" name="inputName">
+    <div>
+      <p>
+        What is your name?
+        <input  type="text" class="name-">
+      </p>
+      <p>
+        Your name is <span class='name-'></span>.
+      </p>
+    </div>
+  </script>
+
+  <script type="text/enddash" name="whichCharacter">
+  <div>
+    <p>Who is your favorite character?</p>
+    <input type="radio" class="name-" name="name-" value="tony" id="tony"/>
+    <label for="tony">Tony</label>
+    <input type="radio" class="name-" name="name-" value="pepper" id="pepper"/>
+    <label for="pepper">Pepper</label>
+    <input type="radio" class="name-" name="name-" value="james" id="james"/>
+    <label for="james">James</label>
+    <p>Wow! Your favorite character is <span class='name-'></name></p>
+  </div>
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+      // Load all the templates on the page.
+      EndDash.bootstrap();
+
+      var you = new Backbone.Model({
+        name: 'YourName',
+      });
+
+      var favoriteCharacter = new Backbone.Model({
+        name: 'tony'
+      });
+
+      var template = EndDash.getTemplate('inputName', you),
+          template2 = EndDash.getTemplate('whichCharacter', favoriteCharacter);
+
+      $('#content').html(template.el);
+      $('#content2').html(template2.el);
+    });
+  </script>
+</body>
+</html>
