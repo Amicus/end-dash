@@ -19,16 +19,12 @@ EndDash also does two way binding with radio buttons, binding the selected radio
 button's value to the referenced model attribute.
 
 ```html
-<p>Who is your favorite character?</p>
-<div class="character">
+<div>
+  <p>Who is your favorite character?</p>
   <input type="radio" class="name-" name="name-" value="tony" id="tony"/>
   <label for="tony">Tony</label>
-</div>
-<div class="character">
   <input type="radio" class="name-" name="name-" value="pepper" id="pepper"/>
   <label for="pepper">Pepper</label>
-</div>
-<div class="character">
   <input type="radio" class="name-" name="name-" value="james" id="james"/>
   <label for="james">James</label>
 </div>
