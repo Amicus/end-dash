@@ -6,8 +6,8 @@ var path = require("path"),
     Backbone = require("backbone"),
     generateTemplate = require("./support/generate_template");
 
-describe("A collection template", function() {
-  describe("when I bind to a Backbone collection", function() {
+describe("A template with looping", function() {
+  describe("bound to a Backbone collection", function() {
     beforeEach(function () {
       this.things = new Backbone.Collection([
         new Backbone.Model({ type: "awesome" }),
@@ -18,7 +18,7 @@ describe("A collection template", function() {
       this.template = generateTemplate({ things: this.things }, this.markup);
     });
 
-    it("should change the item when the type changes", function() {
+    it("the dom will update when the type of a child object changes", function() {
       this.things.at(0).set("type", "cool");
       this.things.at(1).set("type", "awesome");
 
@@ -29,21 +29,19 @@ describe("A collection template", function() {
       expect($(".things- li div:nth-child(2)").hasClass("whenAwesome-")).to.be(true);
     });
 
-    it("should remove the correct element on remove even if the element has moved", function() {
-      var model = this.things.last();
-      expect($(".things- li div:nth-child(2)").html()).to.be("cool");
-      var el = $(".things- li div:nth-child(2)");
-      // move cool from second position to the first position (outside of endDash)
-      el.insertBefore($('.things- li div:nth-child(1)'));
-      //we expect the first one to be cool now
-      expect($('.things- li div:nth-child(1)').html()).to.be('cool');
-      // then we remove cool
-      this.things.remove(model);
-      // and expect the first one to be awesome
-      expect($(".things- li div:nth-child(1)").html()).to.be("awesome");
+    describe("whose bound dom elements are moved on the page", function() {
+      beforeEach(function(){
+        var el = $(".things- li div:nth-child(2)");
+        el.insertBefore($('.things- li div:nth-child(1)'));
+        expect($('.things- li div:nth-child(1)').html()).to.be('cool');
+      });
+      it("removing a child will remove the right child object from the dom", function() {
+        this.things.remove(this.things[1]);
+        expect($(".things- li div:nth-child(1)").html()).to.be("cool");
+      });
     });
 
-    it("should support iterating on a collection multiple times in a single template", function() {
+    it("will support looping through a collection multiple times in a single template", function() {
       var name1 = "Zach",
           name2 = "Dog",
           age1  = "26",
@@ -57,7 +55,7 @@ describe("A collection template", function() {
       expect($(".people- ul.ages li div:nth-child(2)").html()).to.be(age2);
     });
 
-    it("should support collection attributes if model's attribute interface is extended to collections", function() {
+    it("will support collection attributes if model's attribute interface is extended to collections", function() {
       var name1 = "Zach",
           name2 = "Dog",
           age1  = "26",
@@ -75,7 +73,7 @@ describe("A collection template", function() {
     });
   });
 
-  describe("when I bind to an array literal", function() {
+  describe("when I loop through an array literal", function() {
     beforeEach(function () {
       this.things = [
         new Backbone.Model({ type: "awesome" }),
@@ -86,7 +84,7 @@ describe("A collection template", function() {
       this.template = generateTemplate({ things: this.things }, this.markup);
     });
 
-    it("should change the item when the type changes", function() {
+    it("the items displayed will change when the type changes", function() {
       this.things[0].set("type", "cool");
       this.things[1].set("type", "awesome");
 
@@ -97,26 +95,23 @@ describe("A collection template", function() {
       expect($(".things- li div:nth-child(2)").hasClass("whenAwesome-")).to.be(true);
     });
 
-    it("should not support updating when array elements are removed", function() {
-      var model = this.things[1];
-      expect($(".things- li div:nth-child(2)").html()).to.be("cool");
-      var el = $(".things- li div:nth-child(2)");
-      // move cool from second position to the first position (outside of endDash)
-      el.insertBefore($('.things- li div:nth-child(1)'));
-      //we expect the first one to be cool now
-      expect($('.things- li div:nth-child(1)').html()).to.be('cool');
-      // then we remove cool
-      this.things.pop();
-      // and expect the first one to be cool and second to be awesome
-      //array literals don't fire change events
-      expect($('.things- li div:nth-child(1)').html()).to.be('cool');
-      expect($(".things- li div:nth-child(2)").html()).to.be("awesome");
+    describe("whose bound dom elements are moved on the page", function() {
+      beforeEach(function(){
+        var el = $(".things- li div:nth-child(2)");
+        el.insertBefore($('.things- li div:nth-child(1)'));
+        expect($('.things- li div:nth-child(1)').html()).to.be('cool');
+      });
+      it("removing a child will not remove the right child object from the dom", function() {
+        this.things.pop();
+        expect($(".things- li div:nth-child(1)").html()).to.be("cool");
+        expect($(".things- li div:nth-child(2)").html()).to.be("awesome");
+      });
     });
   });
 });
 
-describe("With a nested collection template", function(){
-  describe("Binding to a Backbone Model with a literal array as a property", function(){
+describe("A template with looping after scoping", function(){
+  describe("with an array in a Backbone Model", function(){
     beforeEach(function(){
         this.things = [
           new Backbone.Model({ type: "awesome" }),
@@ -133,18 +128,18 @@ describe("With a nested collection template", function(){
                       "</div>";
         this.template = generateTemplate(this.topLevelObject, this.markup);
     });
-    it("should change when the types change", function(){
+    it("looping will change when an object types change", function(){
       this.things[0].set("type", "cool");
       this.things[1].set("type", "awesome");
 
       expect($(".things- div div:nth-child(1) div").html()).to.be("cool");
       expect($(".things- div div:nth-child(2) div").html()).to.be("awesome");
     });
-    it("should not support updates when objects are removed from the array", function(){
+    it("the dom will not update when objects are removed from the array", function(){
       this.things.pop();
       expect($(".things- div div:nth-child(1) div").html()).to.be("awesome");
     });
-    it("should not support updates when moving the objects within the array literal", function(){
+    it("the dom will not update when objects are moved in the array", function(){
       var model1 = this.things[0];
       this.things[0] = this.things[1];
       this.things[1] = model1;
@@ -154,7 +149,7 @@ describe("With a nested collection template", function(){
   });
 });
 
-describe("With a template with no scoping reactions", function(){
+describe("A template with no looping and no scoping", function(){
   beforeEach(function(){
     this.markup = "<div data-each>" +
                     "<div>" +
@@ -163,7 +158,7 @@ describe("With a template with no scoping reactions", function(){
                     "</div>" +
                   "</div>";
   });
-  describe("and an array literal with backbone models", function(){
+  describe("bound to an array literal containing backbone models", function(){
     beforeEach(function(){
         this.things = [
           new Backbone.Model({ type: "awesome" }),
@@ -171,7 +166,7 @@ describe("With a template with no scoping reactions", function(){
         ];
         this.template = generateTemplate(this.things, this.markup);
     })
-    it("should properly interpolate values", function(){
+    it("will interpolate values correctly", function(){
       generateTemplate(this.things, this.markup);
 
       expect($("div div:nth-child(1) div").html()).to.be("awesome");
