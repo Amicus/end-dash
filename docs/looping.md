@@ -1,7 +1,7 @@
-Collections
+Looping
 ===========
 
-EndDash lets you display properties of objects in a collection.
+EndDash lets you loop through objects in a collection.
 
 ```javascript
 var characters = new Backbone.Collection([
