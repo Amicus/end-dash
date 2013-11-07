@@ -1,0 +1,88 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Looping the Characters</title>
+  <meta name="description" content="A quick EndDash example.">
+  <meta name="author" content="Amicus">
+</head>
+
+<body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore.js"></script>
+  <script src="http://backbonejs.org/backbone.js"></script>
+  <script src="../build/end-dash.js"></script>
+
+  <p>Just loop through the characters and print first names:</p>
+  <div id="loopContent"></div>
+  <p>Loop through and use polymorphic templates depending on characters role:</p>
+  <div id="polymorphicContent"></div>
+
+  <script type="text/enddash" name="looping">
+    <div class="characters-">
+      <div data-each>
+        <div class="firstName-"></div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/enddash" name="polymorphic">
+    <div class="rolePolymorphic-" data-each>
+      <div class="whenHero-">
+        <span class="firstName-"></span>
+        says: Don't worry. I'll probably save you.
+      </div>
+      <div class="whenVillain-">
+        <span class="firstName-"></span>
+        <span class="lastName-"></span>
+        says: Worry.</div>
+      <div class="whenCivilian-">
+       <span class="firstName-"></span>
+       says: Get me outta here!
+       </div>
+    </div>
+  </script>
+
+
+  <script type="text/javascript">
+    $(function() {
+      // Load all the templates on the page.
+      EndDash.bootstrap();
+
+      var characters = new Backbone.Collection([
+        new Backbone.Model({
+          firstName: 'Tony',
+          lastName: 'Stark',
+          role: 'hero'
+        }),
+
+        new Backbone.Model({
+          firstName: 'Pepper',
+          lastName: 'Potts',
+          role: 'civilian'
+        }),
+
+        new Backbone.Model({
+          firstName: 'Iron',
+          lastName: 'Monger',
+          role: 'villain'
+        }),
+
+        new Backbone.Model({
+          firstName: 'James',
+          lastName: 'Rhodes',
+          role: 'hero'
+        })
+      ]);
+
+      var loopTemplate        = EndDash.getTemplate('looping', {characters: characters}),
+          polymorphicTemplate = EndDash.getTemplate('polymorphic', characters)
+
+      $('#loopContent').html(loopTemplate.el);
+      $('#polymorphicContent').html(polymorphicTemplate.el);
+    });
+  </script>
+</body>
+</html>
