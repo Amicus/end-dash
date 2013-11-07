@@ -38,6 +38,6 @@ button's value to the referenced model attribute.
 
 Checkboxes work too, though only for boolean attributes at the moment.
 ```html
-<p>Which of the characters do you want to receive notifications about?</p>
+<p>Do you want to receive notifications about Iron Man?</p>
 <input type="checkbox" name="notifyList" class="notify-" />
 ```
