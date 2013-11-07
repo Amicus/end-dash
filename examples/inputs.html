@@ -33,7 +33,7 @@
 
   <script type="text/enddash" name="whichCharacter">
   <div>
-  <p>Who is your favorite character?</p>
+    <p>Who is your favorite character?</p>
     <input type="radio" class="name-" name="name-" value="tony" id="tony"/>
     <label for="tony">Tony</label>
     <input type="radio" class="name-" name="name-" value="pepper" id="pepper"/>
@@ -55,10 +55,6 @@
 
       var favoriteCharacter = new Backbone.Model({
         name: 'tony'
-      });
-
-      var yesOrNo = new Backbone.Model({
-        notify: ""
       });
 
       var template = EndDash.getTemplate('inputName', you),
