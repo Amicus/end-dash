@@ -1,8 +1,8 @@
 require('./support/helper');
 
-var expect = require("expect.js")
-  , fs = require("fs")
-  , generateTemplate = require("./support/generate_template")
+var expect = require("expect.js"),
+    fs = require("fs"),
+    generateTemplate = require("./support/generate_template");
 
 describe("An template", function() {
   describe("which has data-scope attributes", function() {
@@ -27,28 +27,28 @@ describe("An template", function() {
             }
           }
         }
-      }
-      var template = generateTemplate(root, fs.readFileSync(__dirname + "/support/templates/scopes.html").toString())
-    })
+      };
+      var template = generateTemplate(root, fs.readFileSync(__dirname + "/support/templates/scopes.html").toString());
+    });
 
     it("should be able to access the root scope", function() {
-      expect($("#rootName").html()).to.be("root")
-    })
+      expect($("#rootName").html()).to.be("root");
+    });
 
     it("should be able to access child models of the root scope", function() {
-      expect($("#modelName").html()).to.be("model")
-    })
+      expect($("#modelName").html()).to.be("model");
+    });
 
     it("should be able to access a relative scope", function() {
-      expect($("#thingName").html()).to.be("thing")
-    })
+      expect($("#thingName").html()).to.be("thing");
+    });
 
     it("should be able to access a model after relative scope", function() {
-      expect($("#itemName").html()).to.be("item")
-    })
+      expect($("#itemName").html()).to.be("item");
+    });
 
     it("should be able to modify the scope of a model", function() {
-      expect($("#sockName").html()).to.be("sock")
-    })
-  })
-})
+      expect($("#sockName").html()).to.be("sock");
+    });
+  });
+});

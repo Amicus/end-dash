@@ -1,21 +1,21 @@
 require('./support/helper');
 
-var path = require("path")
-  , expect = require("expect.js")
-  , fs = require("fs")
-  , Backbone = require("backbone")
-  , EndDash = require("../lib/end-dash")
-  , viewStore = EndDash.viewStore
-  , Model = Backbone.Model
-  , Collection = Backbone.Collection
-  , generateTemplate = require("./support/generate_template")
-  , views = {}
+var path = require("path"),
+    expect = require("expect.js"),
+    fs = require("fs"),
+    Backbone = require("backbone"),
+    EndDash = require("../lib/end-dash"),
+    viewStore = EndDash.viewStore,
+    Model = Backbone.Model,
+    Collection = Backbone.Collection,
+    generateTemplate = require("./support/generate_template"),
+    views = {};
 
 describe("When I initialize a template with a view bound to it", function() {
   beforeEach(function() {
     viewStore.setCustomGetView(function(name) {
       return views[name];
-    })
+    });
   });
 
   afterEach(function() { viewStore.setCustomGetView(null); });
@@ -36,12 +36,12 @@ describe("When I initialize a template with a view bound to it", function() {
     };
     views.testView = MockView;
 
-    var model = new Model({ ohHi: "Hello There" })
-      , template = generateTemplate(model, '<div class = "ohHi- testView-"></div>');
-  })
+    var model = new Model({ ohHi: "Hello There" }),
+        template = generateTemplate(model, '<div class = "ohHi- testView-"></div>');
+  });
 
    it("should setup the view heirarchy correctly", function(done) {
-    function Parent() {}
+    function Parent() {};
     function MockView(opts) {
       var that = this;
       expect(this).to.be.a(MockView);
@@ -56,11 +56,11 @@ describe("When I initialize a template with a view bound to it", function() {
       });
     };
 
-    views.embeddedTestView = MockView
-    views.testView = Parent
+    views.embeddedTestView = MockView;
+    views.testView = Parent;
 
-    var model = new Model({ ohHi: "Hello There" })
-      , template = generateTemplate(model, '<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>');
+    var model = new Model({ ohHi: "Hello There" }),
+        template = generateTemplate(model, '<div class = "testView-"><div class = "ohHi- embeddedTestView-"></div></div>');
   })
   it("should setup a view for collections", function(done) {
 
@@ -74,15 +74,15 @@ describe("When I initialize a template with a view bound to it", function() {
       process.nextTick(function() {
         expect($(".things-").data("view")).to.be(that);
         expect(opts.el.is($(".things-"))).to.be(true);
-        done()
+        done();
       });
     };
 
-    views.testCollectionView = MockView
-    views.testView = Parent
+    views.testCollectionView = MockView;
+    views.testView = Parent;
 
-    var model = { herp: { things: new Collection([]) } }
-      , template = generateTemplate(model, '<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div></div>')
+    var model = { herp: { things: new Collection([]) } },
+        template = generateTemplate(model, '<div class = "herp-"><div class = "testView-"><ul class = "things- testCollectionView-"><li class = "thing-"></li></ul></div></div>');
   })
   it("should bind a view to submodels", function(done) {
     function Parent() {};
@@ -96,19 +96,19 @@ describe("When I initialize a template with a view bound to it", function() {
       process.nextTick(function() {
         expect(opts.el.is(".thing-")).to.be(true);
         done();
-      })
-    }
+      });
+    };
     views.testCollectionView = MockView;
     views.testView = Parent;
 
-    var model = { thing: { value: "derp" } }
-      , template = generateTemplate(model
-      , '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>');
+    var model = { thing: { value: "derp" } },
+        template = generateTemplate(model,
+          '<div class = "testView-"><div class = "thing- testCollectionView-"><div class = "value-"></div></div></div>');
   });
 
   it("should setup the view with the correct scope, once", function(done) {
-    var model = { currentUser: new Model() }
-      , template;
+    var model = { currentUser: new Model() },
+        template;
 
     views["navigation/menu_view"] = function(opts) {
       expect(opts.model).to.be(model.currentUser);

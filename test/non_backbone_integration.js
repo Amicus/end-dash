@@ -1,13 +1,11 @@
 require('./support/helper');
 
-var path = require("path")
-  , expect = require("expect.js")
-  , fs = require("fs")
-  , generateTemplate = require("./support/generate_template")
-  , Backbone = require('backbone')
-  , BackboneClone;
-
-
+var path = require("path"),
+    expect = require("expect.js"),
+    fs = require("fs"),
+    generateTemplate = require("./support/generate_template"),
+    Backbone = require('backbone'),
+    BackboneClone;
 
 describe("With two copies of Backbone", function(){
   before(function(){
