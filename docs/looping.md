@@ -65,7 +65,7 @@ In this case, `role` is behaving as a polymorphic attribute.
 The resulting HTML will be:
 
 ```
-<div class="characterTypePolymorphic-" data-each>
+<div class="rolePolymorphic-" data-each>
   <div class="whenHero-">
     <span class="firstName-">Tony</span>
     says: Don't worry.  I'll probably save you.
