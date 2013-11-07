@@ -1,14 +1,14 @@
 require('../support/helper');
 
-var path = require("path")
-  , expect = require("expect.js")
-  , fs = require("fs")
-  , Backbone = require("backbone")
-  , _ = require("underscore")
-  , jqts = require("../../lib/util").jqts
-  , EndDash = require("../../lib/end-dash")
-  , TemplateStore = require('../../lib/template_store')
-  , generateTemplate = require("../support/generate_template")
+var path = require("path"),
+    expect = require("expect.js"),
+    fs = require("fs"),
+    Backbone = require("backbone"),
+    _ = require("underscore"),
+    jqts = require("../../lib/util").jqts,
+    EndDash = require("../../lib/end-dash"),
+    TemplateStore = require('../../lib/template_store'),
+    generateTemplate = require("../support/generate_template");
 
 describe("A template with partials", function() {
   it("should do collections", function() {
@@ -16,22 +16,22 @@ describe("A template with partials", function() {
       "/templates/partials.html",
       "/templates/embedded_partial.html",
       "/templates/list_item.html"
-    ]
+    ];
 
     var model = {
       items: new Backbone.Collection([{ variable: "wat1" }, { variable: "wat2" }]),
       thing: new Backbone.Model({ name: "Zach" })
-    }
+    };
 
     _(templates).each(function(template) {
-      EndDash.templateStore.load(template, fs.readFileSync(__dirname + template).toString())
-    })
+      EndDash.templateStore.load(template, fs.readFileSync(__dirname + template).toString());
+    });
 
-    var template = generateTemplate(model, '/templates/partials.html')
+    var template = generateTemplate(model, '/templates/partials.html');
 
-    expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1")
-    expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2")
-    expect($(".thing- .name-").html()).to.be("Zach")
-    expect($("embed").length).to.be(0)
-  })
-})
+    expect($(".items- .item-:nth-child(1) .variable-").html()).to.be("wat1");
+    expect($(".items- .item-:nth-child(2) .variable-").html()).to.be("wat2");
+    expect($(".thing- .name-").html()).to.be("Zach");
+    expect($("embed").length).to.be(0);
+  });
+});
