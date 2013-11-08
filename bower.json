@@ -5,6 +5,7 @@
   "dependencies": {
     "jquery": "1.8.x",
     "inflection": "x.x.x",
-    "underscore": "1.4.x"
+    "underscore": "1.4.x",
+    "bower-logger": "0.2.1"
   }
 }

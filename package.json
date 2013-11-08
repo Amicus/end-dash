@@ -10,7 +10,7 @@
     "underscore": "1.x.x",
     "backbone": "x.x.x",
     "inflection": "x.x.x",
-    "bower-logger": "0.2.1"
+    "underscore.logger": "0.3.1"
   },
   "engines": {
     "node": ">=0.6.0"
