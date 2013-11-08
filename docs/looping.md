@@ -86,6 +86,26 @@ The resulting HTML will be:
 </div>
 ```
 
+To add a, catch-all, base case; add a child div without a
+class name ending in a dash.
+
+```
+<div class='rolePolymorphic-'>
+  <div class="whenHero-">
+    <span class="firstName-"></span>
+    says: Don't worry.  I'll probably save you.
+  </div>
+  <div>
+    <span class="firstName-"></span>
+    says: I've lost my memory.  I don't know who I am!
+  </div>
+</div>
+```
+
+Any models in the collection without the named polymorphic attribute, or with an attribute
+value not specified with a `whenValue-` condition, will have this default template rendered
+for them when looping through the collection.
+
 Collection Attributes
 =====================
 
