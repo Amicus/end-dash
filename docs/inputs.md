@@ -6,7 +6,8 @@ EndDash does two-way binding between model properties and input elements.
 ## Text Inputs
 
 Text inputs are bound to a referenced property on the model in scope.
-To create this binding, add the property name with a dash at the end as a classname.
+To create this binding, add the property name with a dash at the end as a classname
+in the template.
 
 ```html
 <p>
