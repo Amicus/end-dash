@@ -1,3 +1,10 @@
+* {
+  -webkit-transition: all 150ms ease-out 1s;
+  -moz-transition: all 150ms ease-out 1s;
+  -o-transition: all 150ms ease-out 1s;
+  transition: all 150ms ease-out 1s;
+}
+
 body{
   font-family: 'Lato', sans-serif;
 }
