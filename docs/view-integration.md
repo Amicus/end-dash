@@ -1,15 +1,9 @@
 View Integration
 ================
 
-Though EndDash let's you avoid having to create Backbone Views for many pieces
-of dynamic behavior in your application by putting view logic in models/presenters
-and changing the view state based on their state directly, it also helps simplify
-configuring and initializing them when you need view logic.
-
-Since Backbone view's are initialized with a model and a DOM element, and EndDash
-integrates both of these, it makes it simple to declare a view to be bound to
-a particular DOM element, and will automatically pass in the current model on the
-top of it's stack when the view is initalized.
+EndDash provides dynamic behavior often otherwise handled by views in Backbone.
+If more specific dynamic behavior is required, take advantadge of EndDash's hooks to Backbone Views. Simply add
+the html attribute `data-view` with the value of your viewName, to the template.
 
 ```html
 <div>
@@ -22,6 +16,21 @@ top of it's stack when the view is initalized.
 </div>
 ```
 
-EndDash has a simple view store built in that you can register your views with by
-calling `EndDash.registerView` with the view name and the view class, or you can
-define your own getView function and pass it in to `EndDash.setCustomGetView`
+When EndDash runs into a `data-view`, it will lookup the view and initalize it with the model
+in scope.
+
+To lookup the view, EndDash uses a simple view store. You can register views by
+calling `EndDash.registerView` with the view name and the view class object. You can
+also define your own function and pass it into `EndDash.setCustomGetView`
+
+```js
+EndDash.registerView('myViewName', viewObj);
+```
+
+```js
+var views = {},
+    getViews = function(name) {
+      return views[name];
+};
+EndDash.setCustomGetView(getViews);
+```
