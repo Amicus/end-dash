@@ -54,7 +54,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
   //User scope
   <div class='hobby-'>
   //Hobby scope
-    <div data-scope='..'>
+    <div data-scope='../'>
     //Back in User Scope
       <div data-scope='/user/hobby'>
       //Back in Hobby scope
