@@ -86,6 +86,21 @@ The resulting HTML will be:
 </div>
 ```
 
+To add a, catch-all, base case; add a child div without a
+class name ending in a dash.
+
+```
+<div class='rolePolymorphic-'>
+  <div class="whenHero-">
+    <span class="firstName-">James</span>
+    says: Don't worry.  I'll probably save you.
+  </div>
+  <div>
+    This is a base case!
+  </div>
+</div>
+```
+
 Collection Attributes
 =====================
 
