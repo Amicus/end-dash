@@ -1,4 +1,13 @@
-End Dash is a bindings-aware client-side templating language built on top of valid HTML.
+EndDash
+=======
+
+EndDash is a bindings-aware client-side templating language built on top of valid HTML.
+
+[Getting started](#getting-started)
+[Templating from models](#templating-from-models)
+[Building and testing](#building-and-testing)
+[Play with examples](#play-with-examples)
+
 
 ## Getting started
 
@@ -75,3 +84,5 @@ open up any of the example html files in the examples directory
 in your browser (`open examples/looping.html` for example works
 on OS X), and you can edit the templates or models directly in the
 html file if you want to experiment.
+
+
