@@ -64,3 +64,14 @@ grunt test
 # Watch for changes and run tests
 grunt watch
 ```
+
+## Play with examples
+
+If you clone this repo and install grunt as described above
+you can play with some end-dash examples in your browser.
+Just type `grunt` in the root directory to build the current
+version of end-dash into the build directory, and then
+open up any of the example html files in the examples directory
+in your browser (`open examples/looping.html` for example works
+on OS X), and you can edit the templates or models directly in the
+html file if you want to experiment.
