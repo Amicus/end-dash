@@ -1,0 +1,33 @@
+{
+  "name": "end-dash",
+  "repo": "Amicus/end-dash",
+  "description": "templates",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "lib/compile.js",
+    "lib/end-dash.js",
+    "lib/page_helper.js",
+    "lib/parser.js",
+    "lib/reaction.js",
+    "lib/reactions/attribute.js",
+    "lib/reactions/collection.js",
+    "lib/reactions/conditional.js",
+    "lib/reactions/debugger.js",
+    "lib/reactions/model.js",
+    "lib/reactions/partial.js",
+    "lib/reactions/scope.js",
+    "lib/reactions/variable.js",
+    "lib/reactions/view.js",
+    "lib/rules.js",
+    "lib/template.js",
+    "lib/template_store.js",
+    "lib/util.js",
+    "lib/view_store.js",
+    "index.js"
+  ]
+}
