@@ -64,6 +64,6 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 </div>
 ```
 
-'`class='user-'` is actually syntatic sugar for `data-scope='./user-'`.
+'`class='user-'` is actually syntatic sugar for `data-scope='./user'`.
 
 
