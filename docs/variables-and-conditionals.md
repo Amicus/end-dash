@@ -10,14 +10,6 @@ EndDash variables are rendered into the body of HTML elements, displaying their 
   My name is <span class="firstName-"></span> <span class="lastName-"></span>.
 </div>
 ```
-But they may also be used to interpolate class names, id's or other attributes as below,
-using the #{variableName} syntax . Note the absence of the trailing dash:
-
-```html
-<div class="user-" id="#{alias}">
-  My name is <span class="firstName-"></span> <span class="lastName-"></span>.
-</div>
-```
 
 Conditionals
 ============
