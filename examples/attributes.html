@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Keep Tony Stark Stylish</title>
+  <meta name="description" content="A quick EndDash example.">
+  <meta name="author" content="Amicus">
+</head>
+
+<body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore.js"></script>
+  <script src="http://backbonejs.org/backbone.js"></script>
+  <script src="../build/end-dash.js"></script>
+
+  <div id="content"></div>
+
+  <script type="text/enddash" name="suitColor">
+    <div>
+      <p>The <span class='chose#{color}' style='color:#{color}'>Iron Man suit</span> should be</p>
+      <input type="radio" class="color-" name="color-" value="Red" id="classic"/>
+      <label for="classic">Classic</label>
+      <input type="radio" class="color-" name="color-" value="Brown" id="brown"/>
+      <label for="brown">Brown</label>
+      <input type="radio" class="color-" name="color-" value="Pink" id="pink"/>
+      <label for="pink">Pink</label>
+    </div>
+
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+      // Load all the templates on the page.
+      EndDash.bootstrap();
+
+      var color = new Backbone.Model({
+        color: 'Red'
+      });
+
+      var template = EndDash.getTemplate('suitColor', color);
+
+      $('#content').html(template.el);
+    });
+  </script>
+</body>
+</html>
