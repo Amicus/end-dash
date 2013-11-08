@@ -1,9 +1,9 @@
 What is Scoping?
 ================
 
-Scope in EndDash refers to the model that is on top of the EndDash stack.
-Every template and partial has its own scope. The `root` scope is always the object passed
-to EndDash's `bind` or `getTemplate`.
+Scope in EndDash refers to the model on the top of the EndDash stack.
+Each template and partial is given its own scope. The 'root' scope is always the object passed
+to EndDash's 'bind' or 'getTemplate' function.
 
 ```js
 template.bind({
@@ -17,7 +17,7 @@ template.bind({
 });
 ```
 
-The root object is the literal object with the property `user`.
+The root object is the object literal with the property 'user'.
 
 Scope can change in two ways:
 
@@ -29,11 +29,10 @@ Scope can change in two ways:
 </div>
 ```
 
-Scopes down into the Backbone Model with properties: `firstName`, `lastName`, and `hobby`.
-Notice this only allows scopping down.
+Scopes into the Backbone Model with properties: 'firstName', 'lastName', and 'hobby'.
+This syntax only allows scopping down.
 
-
-## Scoping Relatively (UNIX style)
+## Scoping With Paths (UNIX style)
 
 ```html
 <div class='user-'>
@@ -43,10 +42,11 @@ Notice this only allows scopping down.
 </div>
 ```
 
-We scope down into user and then, via the data-scope property, scope back to the root level object
-(the literal array with propery `user`).
+Scopes down into the user object and then, via the data-scope property, scopes back to the root object
+(the object literal with propery 'user').
 
-Normal UNIX path shorthand apply: `..` to move back up a scope level, `/` to seperate scope levels.
+Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to seperate scope levels,
+`.` for the current scope'.
 
 
 ```html
@@ -54,14 +54,16 @@ Normal UNIX path shorthand apply: `..` to move back up a scope level, `/` to sep
   //User scope
   <div class='hobby-'>
   //Hobby scope
-    <div class='../'>
+    <div data-scope='../'>
     //Back in User Scope
-      <div class='/user/hobby'>
+      <div data-scope='/user/hobby'>
       //Back in Hobby scope
       </div>
     </div>
   </div>
 </div>
 ```
+
+'`class='user-'` is actually syntatic sugar for `data-scope='./user'`.
 
 
