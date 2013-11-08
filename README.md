@@ -113,6 +113,15 @@ Documentation
   * [Scoping Down with a Dash](#scoping-down-with-a-dash)
   * [Scoping With Paths](#scoping-with-paths)
 
+[Presenters](#presenters)
+
+[View Integration](#view-integration)
+
+[Partials](#partials)
+
+[Debugger](#debugger)
+
+
 
 Using Model Attributes
 ======================
@@ -420,5 +429,166 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 
 '`class='user-'` is actually syntatic sugar for `data-scope='./user'`.
 
+Presenters
+==========
+
+If you wish to follow the Model-View-Presenter pattern, EndDash supports a hook
+to specify what presenter to use for a given model.  By default, this function
+simple returns the model itself, a simple identity function, but by passing in
+your own lookup function to `EndDash.setGetPresenter` EndDash will run your code
+instead to load a presenter if one is found.  Here's an example getPresenter
+function being defined and passed in to EndDash that looks for a custom presenter
+in config.presenterDirectory and uses a default base presenter or base collection
+presenter when no presenter specific to the model's name attribute is defined:
+
+```js
+  getPresenter = function(model) {
+    var modelName = inflection.underscore(model.name || "")
+      , id = model.cid
+      , Presenter
+      , basePresenter
+
+    if(!(model instanceof Backbone.Model) && !(model instanceof Backbone.Collection))
+      return model
+    //give collections a unique id
+    if(model instanceof Backbone.Collection) {
+      if(!model.cid) id = model.cid = _.uniqueId("collection")
+      basePresenter = "/base_collection_presenter"
+    } else {
+      basePresenter = "/base_presenter"
+    }
+    if(presenters[id]) {
+      return presenters[id]
+    } else {
+      try {
+        Presenter = require(config.presenterDirectory + "/" + modelName + "_presenter")
+      } catch(e) {
+        if(e.code !== "MODULE_NOT_FOUND") {
+          throw e
+
+        }
+        Presenter = require(config.presenterDirectory + basePresenter)
+      }
+      return presenters[id] = new Presenter(model)
+    }
+  }
+
+  EndDash.setGetPresenter(getPresenter)
+```
+
+Presenters are useful for wrapping the same model for use in different contexts, and for storing
+view specific state not intended to be saved to the server.  Taken further, models may be used as
+a repository for persisted data only, and presenters may be used for all behavior and view state,
+which is how we use them at Amicus.
+
+View Integration
+================
+
+EndDash provides dynamic behavior often otherwise handled by views in Backbone.
+If more specific dynamic behavior is required, take advantadge of EndDash's hooks to Backbone Views. Simply add
+the html attribute `data-view` with the value of your viewName, to the template.
+
+```html
+<div>
+  <h2>
+    Configure Iron Man's suit below:
+  </h2>
+  <div class="suit-" data-view="iron_man_suit_view">
+    <div id="suitConfig">
+  </div>
+</div>
+```
+
+When EndDash runs into a `data-view`, it will lookup the view and initalize it with the model
+in scope.
+
+To lookup the view, EndDash uses a simple view store. You can register views by
+calling `EndDash.registerView` with the view name and the view class object. You can
+also define your own function and pass it into `EndDash.setCustomGetView`
+
+```js
+EndDash.registerView('myViewName', viewObj);
+```
+
+```js
+var views = {},
+    getViews = function(name) {
+      return views[name];
+};
+EndDash.setCustomGetView(getViews);
+```
+
+Partials
+========
+
+Small, reusable components of HTML can be templated in EndDash as partials.
+One common use for partials is iterating through a collection.
 
 
+```javascript
+var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', alias: 'IronMan'});
+var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', alias: 'WarMachine'});
+var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', alias: 'none' });
+
+var people = new Backbone.Collection([person1, person2, person3]);
+```
+
+Iterate through the collection using data-each.
+
+The data-replace attribute tells EndDash to substitute the partial's root element for this element.
+Without data-replace, EndDash will embed the root element beneath the partial's element and leave it.
+
+```html
+<h2>Characters</h2>
+<h3>Cast of characters include:</h3>
+<table id="members_list">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Alias</th>
+    </tr>
+  </thead>
+  <tbody class="people-">
+    <div data-each>
+      <div src='./partials/person' data-replace></div>
+    </div>
+  </tbody>
+</table>
+```
+
+and in your partials folder another EndDash template such as:
+
+```html
+<tr class="userRow">
+  <td class="firstName-"></td>
+  <td class="lastName-"></td>
+  <td class="alias-"></td>
+</tr>
+```
+
+
+Debugger
+======
+
+## Debugging
+
+Open up a debugger in development mode to inspect the context of the
+template.
+
+Open a context in the highest template scope:
+```html
+<body>
+  <div debugger />
+</body>
+```
+
+In a child model scope:
+```html
+<body>
+  <div class="questions-">
+    <!-- Open a debugger in the scope of get('questions') -->
+    <div debugger />
+  </div>
+</body>
+```
