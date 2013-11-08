@@ -55,9 +55,8 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    color:#fff;
-    background:#021D3C;
-    border-bottom:3px solid #021D3C;
+    background:#D2DDE8;
+    /*border-bottom:3px solid #021D3C;*/
 }
 
 .docs{
