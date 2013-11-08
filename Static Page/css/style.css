@@ -9,6 +9,10 @@ nav{
     position:fixed;
 }
 
+nav .logoWrapper {
+  position: relative;
+}
+
 nav h1{
     width:150px;
     font-size: 1.8em;
@@ -22,9 +26,23 @@ nav h1{
     cursor: pointer;
 }
 
-nav h1:hover {
+nav .logoWrapper:hover h1 {
     background-color: #021D3C;
     color: white;
+}
+
+nav .logoWrapper:hover .logoDash {
+  height: 5px;
+  width: 20px;
+}
+
+nav .logoDash {
+  position: absolute;
+  right: 0;
+  top: 48%;
+  height: 0px;
+  width: 0px;
+  background-color: #021D3C;
 }
 
 nav ul li a{
