@@ -33,14 +33,16 @@
 
   <script type="text/enddash" name="whichCharacter">
   <div>
-    <p>Who is your favorite character?</p>
-    <input type="radio" class="name-" name="name-" value="tony" id="tony"/>
+    <p>Love to hate?</p>
+    <input type="checkbox" class="disliked-"/>
+    <p>Who is your <span class="isDisliked-">least</span> favorite character?</p>
+    <input type="radio" class="name-" name="name-" value="Tony" id="tony"/>
     <label for="tony">Tony</label>
-    <input type="radio" class="name-" name="name-" value="pepper" id="pepper"/>
+    <input type="radio" class="name-" name="name-" value="Pepper" id="pepper"/>
     <label for="pepper">Pepper</label>
-    <input type="radio" class="name-" name="name-" value="james" id="james"/>
+    <input type="radio" class="name-" name="name-" value="James" id="james"/>
     <label for="james">James</label>
-    <p>Wow! Your favorite character is <span class='name-'></name></p>
+    <p>Wow! Your <span class="isDisliked-">least</span> favorite character is <span class='name-'></name></p>
   </div>
   </script>
 
@@ -53,12 +55,12 @@
         name: 'YourName',
       });
 
-      var favoriteCharacter = new Backbone.Model({
-        name: 'tony'
+      var extremeCharacter = new Backbone.Model({
+        name: 'Tony'
       });
 
       var template = EndDash.getTemplate('inputName', you),
-          template2 = EndDash.getTemplate('whichCharacter', favoriteCharacter);
+          template2 = EndDash.getTemplate('whichCharacter', extremeCharacter);
 
       $('#content').html(template.el);
       $('#content2').html(template2.el);
