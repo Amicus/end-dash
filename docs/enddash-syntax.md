@@ -18,12 +18,6 @@ template.bind({
 });
 ```
 
-## Attributes
-
-```html
-<a href='/person/#{firstName}'>
-```
-
 ## Changing scope
 
 ```html
