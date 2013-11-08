@@ -1,11 +1,13 @@
 Inputs
 ======
 
+EndDash does two-way binding between model properties and input elements.
+
 ## Text Inputs
 
-EndDash does two-way binding of model attributes to inputs. On text inputs,
-the input's value is bound by EndDash to the referenced model's attribute
-when you add a classname of the attribute with a dash at the end.
+Text inputs are bound to a referenced property on the model in scope.
+To create this binding, add the property name with a dash at the end as a classname
+in the template.
 
 ```html
 <p>
@@ -16,8 +18,7 @@ when you add a classname of the attribute with a dash at the end.
 
 ## Radio buttons
 
-EndDash also does two way binding with radio buttons, binding the selected radio
-button's value to the referenced model attribute.
+Radio buttons bind the selected button's value to the model's referenced property.
 
 ```html
 <div>
@@ -33,7 +34,10 @@ button's value to the referenced model attribute.
 
 ## Checkboxes
 
-Checkboxes work too, though only for boolean attributes at the moment.
+Checkboxes are trickier. When unchecked, the referenced property on the model will
+be 'false'. When checked, the referenced model's property will be set to
+the attribute value on the input element (or 'true' if no value is defined).
+
 ```html
 <p>Do you want to receive notifications about Iron Man?</p>
 <input type="checkbox" name="notifyList" class="notify-" />

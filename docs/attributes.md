@@ -1,7 +1,7 @@
 Attribute Interpolation
 =======================
 
-Model properties can also be interpolated into any html tag attribute.
+Model properties can be interpolated into html tag attributes.
 
 ```html
 <a href='/person/#{firstName}'> Home Page </a>
@@ -11,7 +11,7 @@ Model properties can also be interpolated into any html tag attribute.
 template.bind(new Backbone.Model({firstName: 'Derrick'}));
 ```
 
-Resulting Tag:
+Resulting tag:
 
 ```html
 <a href='/person/Derrick'> Home Page </a>
