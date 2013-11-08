@@ -15,6 +15,7 @@
     "lib/parser.js",
     "lib/reaction.js",
     "lib/reactions/attribute.js",
+    "lib/reactions/input.js",
     "lib/reactions/collection.js",
     "lib/reactions/conditional.js",
     "lib/reactions/debugger.js",
