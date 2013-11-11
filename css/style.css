@@ -5,6 +5,10 @@
   transition: all 150ms ease-out;
 }
 
+.hidden{
+    display:none;
+}
+
 body{
   font-family: 'Lato', sans-serif;
 }
@@ -14,6 +18,12 @@ nav{
     width: 15%;
     background:white;
     position:fixed;
+}
+
+
+
+nav ul li ul li a{
+    padding-left:55px;
 }
 
 nav .logoWrapper {
@@ -39,7 +49,7 @@ nav .logoWrapper:hover h1 {
     color: white;
 }
 
-nav .logoDash {
+/*nav .logoDash {
   position: absolute;
   z-index: 1000;
   right: 0px;
@@ -50,24 +60,24 @@ nav .logoDash {
   width: 0px;
   height: 8px;
   background-color: #fff;
-}
+}*/
 
-nav .logoWrapper:hover .logoDash {
+/*nav .logoWrapper:hover .logoDash {
   width: 22px;
-}
+}*/
 
-nav .nameDash {
+/*nav .nameDash {
   position: absolute;
   left: 0;
   top: 46%;
   width: 0%;
   height: 8px;
   background-color: #021D3C;
-}
+}*/
 
-nav .logoWrapper:hover .nameDash {
+/*nav .logoWrapper:hover .nameDash {
   width: 95%;
-}
+}*/
 
 nav ul li a{
     padding:20px 20px 17px 35px;
@@ -91,7 +101,8 @@ nav ul li a:hover{
     float:right;
     width:85%;
     background: #D2DDE8;
-    overflow: auto
+    overflow: auto;
+    padding-top:20px;
 }
 
 article{
