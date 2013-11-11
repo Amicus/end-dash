@@ -120,7 +120,7 @@ Documentation
 
 [View Integration](#view-integration)
 
-[Templates: Registering & Binding](#using-templates)
+[Templates](#templates)
 
 [Partials](#partials)
 
@@ -525,8 +525,10 @@ var views = {},
 EndDash.setCustomGetView(getViews);
 ```
 
-Templates: Registering & Binding
-================================
+Templates
+=========
+
+## Registering & Binding
 
 First, register a template in EndDash.
 
