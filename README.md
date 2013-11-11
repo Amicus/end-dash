@@ -120,6 +120,8 @@ Documentation
 
 [View Integration](#view-integration)
 
+[Templates: Registering & Binding](#using-templates)
+
 [Partials](#partials)
 
 [Debugger](#debugger)
@@ -522,6 +524,29 @@ var views = {},
 };
 EndDash.setCustomGetView(getViews);
 ```
+
+Using Templates
+===============
+
+First, register a template in EndDash.
+
+  `EndDash.registerTemplate(templateName, template);`.
+
+Next, bind to that template. To start, get the EndDash parsed template.
+
+  `var template = EndDash.getTemplate(templateName);`.
+
+Then actually bind a model to that template.
+
+  `var boundTemplate = template.bind(myModel);`.
+
+The above two steps can be combined into one.
+
+  `var boundTemplate = EndDash.registerTemplate(templateName, myModel);`
+
+Next, display the HTML for this template on the page.
+
+  `someElem.html(boundTemplate.el);`.
 
 Partials
 ========
