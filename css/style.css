@@ -18,6 +18,17 @@ nav{
     width: 18%;
     background:white;
     position:fixed;
+    height: 100%;
+}
+
+.navigation{
+    overflow-y:scroll;
+    display:block;
+    position:absolute;
+    top:83px;
+    left: 0;
+    bottom:0;
+    width: 100%;
 }
 
 nav ul li ul li a{
@@ -27,12 +38,14 @@ nav ul li ul li a{
 nav .logoWrapper {
   position: relative;
   margin: 16px;
+  height:51px;
+  box-sizing: border-box;
+    box-shadow: 0 5px 5px rgba(255,255,255,.5)
 }
 
 nav h1{
     width:150px;
     font-size: 1.8em;
-    height:100%;
     vertical-align: middle;
     padding:10px;
     font-weight: 300;
@@ -47,36 +60,6 @@ nav .logoWrapper:hover h1 {
     color: white;
 }
 
-/*nav .logoDash {
-  position: absolute;
-  z-index: 1000;
-  right: 0px;
-  top: 46%;
-  left: 151px;
-  transition-delay: 150ms;
-  transition-duration: 50ms;
-  width: 0px;
-  height: 8px;
-  background-color: #fff;
-}*/
-
-/*nav .logoWrapper:hover .logoDash {
-  width: 22px;
-}*/
-
-/*nav .nameDash {
-  position: absolute;
-  left: 0;
-  top: 46%;
-  width: 0%;
-  height: 8px;
-  background-color: #021D3C;
-}*/
-
-/*nav .logoWrapper:hover .nameDash {
-  width: 95%;
-}*/
-
 nav ul li a{
     padding:20px 20px 17px 35px;
     display: block;
@@ -89,7 +72,6 @@ nav ul li a{
 nav ul li a:hover{
     background:#D2DDE8;
     text-decoration: none;
-    /*border-bottom:3px solid #021D3C;*/
 }
 
 .docs{
@@ -98,7 +80,7 @@ nav ul li a:hover{
 
 .container{
     float:right;
-    width:83%;
+    width:82%;
     background: #D2DDE8;
     overflow: auto;
     padding-top:20px;
