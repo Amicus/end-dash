@@ -42,7 +42,7 @@ Define your templates:
   </div>
 </script>
 ```
-
+WARNING: A template can only have one root element. In the above case, it is the div with class 'user'.
 
 Bind templates to models in your application code:
 ```javascript
