@@ -3,6 +3,9 @@ EndDash
 
 EndDash is a bindings-aware client-side templating language built on top of valid HTML.
 
+At this point EndDash relies on Backbone or Backbone style objects for full functionality.
+Please [see the dependency section](#dependencies) for further details.
+
 [Getting started](#getting-started)
 
 [Templating from models](#templating-from-models)
@@ -428,7 +431,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 ```
 
 '`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
-at the current scope, is mainly useful for accessing a property of a nested model in the same DOM 
+at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
 Presenters
@@ -594,3 +597,20 @@ In a child model scope:
   </div>
 </body>
 ```
+
+Misc
+======
+
+## Dependencies
+
+In its current release, EndDash relies on Backbone style events to update
+the DOM when a bound object changes. This means only objects which define an interface
+with Backbone's "on, once, set, get" will interpolate model attributes into the DOM and
+update the DOM on model changes.
+
+EndDash used without Backbone style getting & setting will still interpolate
+a bound object's attributes into the DOM but will not update the DOM on model changes.
+
+
+
+
