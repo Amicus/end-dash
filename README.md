@@ -6,7 +6,7 @@ EndDash is a bindings-aware client-side templating language built on top of vali
 At this point EndDash relies on Backbone or Backbone style objects for full funtionality.
 Please see the depndency section for me details.
 
-[Dependencies](#backbone-dependency)
+[Dependencies](#dependencies)
 
 [Getting started](#getting-started)
 
@@ -603,7 +603,15 @@ In a child model scope:
 Misc
 ======
 
-## Backbone Dependency
+## Dependencies
+
+In its current release, EndDash relies on Backbone style events to update
+the DOM when a bound object changes. This means only objects which define an interface
+with Backbone's "on, once, set, get" will interpolate model attributes into the DOM and
+update the DOM on model changes.
+
+EndDash used without Backbone style getting & setting will still interpolate
+a bound object's attributes into the DOM but wiil not update the DOM on model changes.
 
 
 
