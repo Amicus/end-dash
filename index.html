@@ -25,11 +25,11 @@
 
         <nav>
             <div class="logoWrapper">
-              <h1>
-                  END DASH
-              </h1>
-              <div class="logoDash"></div>
-              <div class="nameDash"></div>
+                <h1>
+                    END DASH
+                </h1>
+                <div class="logoDash"></div>
+                <div class="nameDash"></div>
             </div>
 
             <div class="navigation">
@@ -81,48 +81,70 @@
         </nav>
 
         <div class="container">
+
             <article class="markdown-body entry-content" itemprop="mainContentOfPage">
-            <h1><a name="enddash" class="anchor" href="#enddash"><span class="octicon octicon-link"></span></a>EndDash</h1>
+
+                <h1>
+                    <a name="enddash" class="anchor" href="#enddash">
+                        <span class="octicon octicon-link"></span>
+                    </a>
+                    EndDash
+                </h1>
 
             <p>EndDash is a bindings-aware client-side templating language built on top of valid HTML.</p>
 
             <div class="hidden">
-                    <p><a href="#getting-started">Getting started</a></p>
-
-                    <p><a href="#templating-from-models">Templating from models</a></p>
-
-                    <p><a href="#building-and-testing">Building and testing</a></p>
-
-                    <p><a href="#play-with-examples">Play with examples</a></p>
+                <p>
+                    <a href="#getting-started">Getting started</a>
+                </p>
+                <p>
+                    <a href="#templating-from-models">Templating from models</a>
+                </p>
+                <p>
+                    <a href="#building-and-testing">Building and testing</a>
+                </p>
+                <p>
+                    <a href="#play-with-examples">Play with examples</a>
+                </p>
             </div>
 
             <h2>
-            <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+                <a name="getting-started" class="anchor" href="#getting-started">
+                    <span class="octicon octicon-link"></span>
+                </a>
+                Getting started
+            </h2>
 
             <p>Include the library and dependencies:</p>
 
-            <div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-            <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://underscorejs.org/underscore.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-            <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://backbonejs.org/backbone.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-            <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/scripts/end-dash.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-            </pre></div>
+            <div class="highlight highlight-html">
+                <pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://underscorejs.org/underscore.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://backbonejs.org/backbone.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/scripts/end-dash.js"</span><span class="nt">&gt;&lt;/script&gt;</span></pre>
+            </div>
 
             <h2>
-            <a name="templating-from-models" class="anchor" href="#templating-from-models"><span class="octicon octicon-link"></span></a>Templating from models</h2>
+                <a name="templating-from-models" class="anchor" href="#templating-from-models">
+                    <span class="octicon octicon-link"></span>
+                </a>
+                Templating from models
+            </h2>
 
             <p>Define your templates:</p>
 
-            <div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/enddash"</span> <span class="na">name=</span><span class="s">"character"</span><span class="nt">&gt;</span>
-              <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"user"</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
-                  <span class="nx">Hello</span><span class="p">,</span> <span class="nx">my</span> <span class="nx">name</span> <span class="nx">is</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"firstName-"</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;</span>
-                  <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"lastName-"</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;...</span>
-                <span class="o">&lt;</span><span class="err">/p&gt;</span>
+            <div class="highlight highlight-html">
+            <pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/enddash"</span> <span class="na">name=</span><span class="s">"character"</span><span class="nt">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"user"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+            <span class="nx">Hello</span><span class="p">,</span> <span class="nx">my</span> <span class="nx">name</span> <span class="nx">is</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"firstName-"</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;</span>
+            <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"lastName-"</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;...</span>
+        <span class="o">&lt;</span><span class="err">/p&gt;</span>
 
-                <span class="o">&lt;</span><span class="nx">strong</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"quip-"</span><span class="o">&gt;&lt;</span><span class="err">/strong&gt;</span>
-              <span class="o">&lt;</span><span class="err">/div&gt;</span>
-            <span class="nt">&lt;/script&gt;</span>
-            </pre></div>
+        <span class="o">&lt;</span><span class="nx">strong</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"quip-"</span><span class="o">&gt;&lt;</span><span class="err">/strong&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="nt">&lt;/script&gt;</span></pre>
+            </div>
 
             <p>Bind templates to models in your application code:</p>
 
@@ -640,6 +662,7 @@
               <span class="nt">&lt;/div&gt;</span>
             <span class="nt">&lt;/body&gt;</span>
             </pre></div></article>
+        </div>
 
         <footer>
             <h1>cool riding, crazy horse</h1>
