@@ -4,7 +4,7 @@ EndDash
 EndDash is a bindings-aware client-side templating language built on top of valid HTML.
 
 At this point EndDash relies on Backbone or Backbone style objects for full funtionality.
-Please see the depndency section for me details.
+Please see the depndency section for further details.
 
 [Dependencies](#dependencies)
 
@@ -611,7 +611,7 @@ with Backbone's "on, once, set, get" will interpolate model attributes into the 
 update the DOM on model changes.
 
 EndDash used without Backbone style getting & setting will still interpolate
-a bound object's attributes into the DOM but wiil not update the DOM on model changes.
+a bound object's attributes into the DOM but will not update the DOM on model changes.
 
 
 
