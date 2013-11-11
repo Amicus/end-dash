@@ -525,8 +525,8 @@ var views = {},
 EndDash.setCustomGetView(getViews);
 ```
 
-Using Templates
-===============
+Templates: Registering & Binding
+================================
 
 First, register a template in EndDash.
 
