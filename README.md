@@ -598,9 +598,9 @@ Small, reusable, components of HTML can be templated in EndDash as partials.
 To use a partial, add `src='templateName'` as an attribute to an element with no children.
 
 ```html
-<script type='text/enddash' name='superheros'>
+<script type='text/enddash' name='superheroes'>
   <img src="#{logo}" />
-  <div class='heros-'>
+  <div class='heroes-'>
     <div src='superhero-navigation' data-replace></div>
   </div>
 </script>
@@ -625,10 +625,10 @@ If elsewhere you define this partial as:
 And bind to the top level template with:
 
 ```js
-template.bind({heros: new Backbone.Collection([
-                   new Backbone.Model({name: 'Iron Man', url: 'http://marvel.com/characters/bio/1009368/iron_man'}),
-                   new Backbone.Model({name: 'Spiderman', url: 'http://marvel.com/characters/bio/1009610/spider-man'}),
-                   new Backbone.Model({name: 'Superwoman', url: 'http://dc.wikia.com/wiki/Super-Woman_(Earth-Three)'})
+template.bind({heroes: new Backbone.Collection([
+                   new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
+                   new Backbone.Model({name: 'Spiderman', url: '/superheroes/webMaster'}),
+                   new Backbone.Model({name: 'Superwoman', url: '/superheroes/strong'})
                  ]),
                logo: '/public/emblems/protectTheWorld'
               });
@@ -638,11 +638,11 @@ This will result in:
 
 ```html
 <img class='/public/emblems/protectTheWorld'>
-<div class='heros-'>
+<div class='heroes-'>
   <ul>
-    <li><a href='http://marvel.com/characters/bio/1009368/iron_man'>Iron Man</a></li>
-    <li><a href='http://marvel.com/characters/bio/1009610/spider-man'>Spiderman</a></li>
-    <li><a href='http://dc.wikia.com/wiki/Super-Woman_(Earth-Three)'>Superwoman</a></li>
+    <li><a href='/superheroes/techGenius'>Iron Man</a></li>
+    <li><a href='/superheroes/webMaster'>Spiderman</a></li>
+    <li><a href='/superheroes/strong'>Superwoman</a></li>
   </ul>
 </div>
 ```
