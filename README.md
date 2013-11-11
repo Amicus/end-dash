@@ -120,6 +120,8 @@ Documentation
 
 [View Integration](#view-integration)
 
+[Templates](#templates)
+
 [Partials](#partials)
 
 [Debugger](#debugger)
@@ -522,6 +524,49 @@ var views = {},
 };
 EndDash.setCustomGetView(getViews);
 ```
+
+Templates
+=========
+
+## Registering & Binding
+
+First, register a template in EndDash.
+
+  ```js
+  EndDash.registerTemplate('superpower',
+            '<div>' +
+              '<span class="name-"></span>' +
+              'has the ability to' +
+              '<span class="power-"></span>' +
+            '</div>'
+          );
+  ```
+
+Next, bind to that template. To start, get the EndDash parsed template.
+
+  ```js
+  var template = EndDash.getTemplate('superpower');
+  ```
+
+Then actually bind a model to that template.
+
+  ```js
+  var hero = new Backbone.Model({name: 'Superman', power: 'strength'}),
+      boundTemplate = template.bind(hero);
+  ```
+
+Retrieving and binding to the template can be combined into one step.
+
+  ```js
+  var hero = new Backbone.Model({name: 'Superman', power: 'strength'}),
+      boundTemplate = EndDash.getTemplate('superhero', hero);
+  ```
+
+Next, display the HTML for this template on the page.
+
+  ```js
+  $('.content').html(boundTemplate.el);
+  ```
 
 Partials
 ========
