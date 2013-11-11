@@ -4,9 +4,7 @@ EndDash
 EndDash is a bindings-aware client-side templating language built on top of valid HTML.
 
 At this point EndDash relies on Backbone or Backbone style objects for full funtionality.
-Please see the depndency section for further details.
-
-[Dependencies](#dependencies)
+Please [see the dependency section](#dependencies) for further details.
 
 [Getting started](#getting-started)
 
