@@ -15,12 +15,10 @@ body{
 
 nav{
     float:left;
-    width: 15%;
+    width: 18%;
     background:white;
     position:fixed;
 }
-
-
 
 nav ul li ul li a{
     padding-left:55px;
@@ -40,7 +38,7 @@ nav h1{
     font-weight: 300;
     border:1px solid #021D3C;
     color:#021D3C;
-    margin: 0;
+    margin: 0 auto;
     cursor: pointer;
 }
 
@@ -90,6 +88,7 @@ nav ul li a{
 
 nav ul li a:hover{
     background:#D2DDE8;
+    text-decoration: none;
     /*border-bottom:3px solid #021D3C;*/
 }
 
@@ -99,7 +98,7 @@ nav ul li a:hover{
 
 .container{
     float:right;
-    width:85%;
+    width:83%;
     background: #D2DDE8;
     overflow: auto;
     padding-top:20px;
