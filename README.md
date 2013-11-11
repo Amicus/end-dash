@@ -110,6 +110,8 @@ Documentation
   * [Collection Attributes](#collection-attributes)
 
 [Conditionals](#conditionals)
+  * [Ternary](#ternary)
+  * [Visibility Conditionals](#visibility-conditionals)
 
 [Scoping](#scoping)
   * [What is scoping?](#what-is-scoping)
@@ -247,8 +249,8 @@ var characters = new Backbone.Collection([
 
 ## Polymorphic attributes
 
-If your objects have an enum (or Enumerated type) field, you can specify handling based on which type it is.
-This is best explained with an example.
+If your objects have an enum (or Enumerated type) field, you can specify handling based on
+which type it is. This is best explained with an example.
 
 In this case, `role` is behaving as a polymorphic attribute.
 
@@ -333,32 +335,61 @@ different than length), as in the example below:
 Conditionals
 ============
 
+## Ternary
+
 A ternary operator is available for presence handling via 'truthiness' for attributes
 that may be present, with or without a false condition:
 
 ```html
-<div class="user- #{availability ? available : unavailable}">
+<div class="user- #{availabile ? openings : unavailable}">
+</div>
+```
+
+or just
+
+```html
+<div class="user- #{availabile ? openings }">
+</div>
+```
+
+The full ternary with false condition will add the `available` class when availability is
+truth, and the `unavailable` class when falsy.  The second example will only add the
+`available` class when availability is truthy.
+
+## Visibility Conditionals
+
+EndDash has truthiness controls for conditional visibility. EndDash class elements that begin with `is` or `has`,
+(as well as their boolean opposites `isNot` and `hasNot`) will hide (via a `display:none` style attribute)
+the element when its named attribute, with its boolean evaluation prefix, is falsy ('isNotAvailable-' will return
+true if `!!model.get('available') === false`).
+
+```html
+<div class="user-">
   <p>
     My schedule is very full. <span class="isAvailable-">I just have a few openings</span>
   </p>
 </div>
 ```
 
-The same truthiness controls conditional visibility EndDash class elements that start with `is` or `has`,
-and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`.  EndDash will hide (via a
-`display:none` style attribute) any such element when its named attribute is falsy (or hide when truthy in
-the case of `isNot` and `hasNot`.)
-
-
 ```js
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
     lastName: 'Stark',
-    alias: 'IronMan'
-    availability: ['10am', '2pm']
+    alias: 'IronMan',
+    available: false
   });
 });
+```
+
+Outputs:
+
+```html
+<div class="user-">
+  <p>
+    My schedule is very full.
+  </p>
+</div>
 ```
 
 Scoping
@@ -527,50 +558,15 @@ Partials
 ========
 
 Small, reusable components of HTML can be templated in EndDash as partials.
-One common use for partials is iterating through a collection.
-
-
-```javascript
-var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', alias: 'IronMan'});
-var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', alias: 'WarMachine'});
-var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', alias: 'none' });
-
-var people = new Backbone.Collection([person1, person2, person3]);
-```
-
-Iterate through the collection using data-each.
-
-The data-replace attribute tells EndDash to substitute the partial's root element for this element.
-Without data-replace, EndDash will embed the root element beneath the partial's element and leave it.
+To use a partial, add `src='templateName'` as an attribute to an element with no children.
 
 ```html
-<h2>Characters</h2>
-<h3>Cast of characters include:</h3>
-<table id="members_list">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Alias</th>
-    </tr>
-  </thead>
-  <tbody class="people-">
-    <div data-each>
-      <div src='./partials/person' data-replace></div>
-    </div>
-  </tbody>
-</table>
+<div src='myPartial' data-replace></div>
 ```
+The `data-replace` attribute tells EndDash to substitute the partial's root element for this element.
+Without `data-replace`, EndDash will embed the root element beneath the partial's element and leave it.
 
-and in your partials folder another EndDash template such as:
-
-```html
-<tr class="userRow">
-  <td class="firstName-"></td>
-  <td class="lastName-"></td>
-  <td class="alias-"></td>
-</tr>
-```
+Load the partial you are referencing into EndDash before binding to the template.
 
 
 Debugger
