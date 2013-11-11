@@ -39,7 +39,7 @@ Define your templates:
   </div>
 </script>
 ```
-
+WARNING: A template can only have one root element. In the above case, it is the div with class 'user'.
 
 Bind templates to models in your application code:
 ```javascript
@@ -428,7 +428,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 ```
 
 '`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
-at the current scope, is mainly useful for accessing a property of a nested model in the same DOM 
+at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
 Presenters
