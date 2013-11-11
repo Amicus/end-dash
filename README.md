@@ -598,14 +598,56 @@ Small, reusable, components of HTML can be templated in EndDash as partials.
 To use a partial, add `src='templateName'` as an attribute to an element with no children.
 
 ```html
-<div src='myPartial' data-replace></div>
+<script type='text/enddash' name='superheros'>
+  <img src="#{logo}" />
+  <div class='heros-'>
+    <div src='superhero-navigation' data-replace></div>
+  </div>
+</script>
 ```
+The partial will be passed the model in scope as its root element.
 
 The data-replace attribute tells EndDash to substitute the partial's root element for its partial.
 Without data-replace, EndDash will embed the root element beneath the partial's element and leave it.
 
-Load the partial you are referencing into EndDash before binding to the template referencing the partial.
+If elsewhere you define this partial as:
 
+```html
+<script type='text/enddash' name='superhero-navigation'>
+  <ul data-each>
+    <li>
+      <a href='#{url}'><span class='name-'></span></a>
+    </li>
+  </ul>
+</script>
+```
+
+And bind to the top level template with:
+
+```js
+template.bind({heros: new Backbone.Collection([
+                   new Backbone.Model({name: 'Iron Man', url: 'http://marvel.com/characters/bio/1009368/iron_man'}),
+                   new Backbone.Model({name: 'Spiderman', url: 'http://marvel.com/characters/bio/1009610/spider-man'}),
+                   new Backbone.Model({name: 'Superwoman', url: 'http://dc.wikia.com/wiki/Super-Woman_(Earth-Three)'})
+                 ]),
+               logo: '/public/emblems/protectTheWorld'
+              });
+```
+
+This will result in:
+
+```html
+<img class='/public/emblems/protectTheWorld'>
+<div class='heros-'>
+  <ul>
+    <li><a href='http://marvel.com/characters/bio/1009368/iron_man'>Iron Man</a></li>
+    <li><a href='http://marvel.com/characters/bio/1009610/spider-man'>Spiderman</a></li>
+    <li><a href='http://dc.wikia.com/wiki/Super-Woman_(Earth-Three)'>Superwoman</a></li>
+  </ul>
+</div>
+```
+
+note: Load the partial you are referencing into EndDash before binding to the template referencing the partial.
 
 Debugger
 ======
