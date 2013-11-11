@@ -107,6 +107,8 @@ Documentation
   * [Collection Attributes](#collection-attributes)
 
 [Conditionals](#conditionals)
+  * [Ternary](#ternary)
+  * [EndDash Conditionals](#enddash-conditionals)
 
 [Scoping](#scoping)
   * [What is scoping?](#what-is-scoping)
@@ -244,8 +246,8 @@ var characters = new Backbone.Collection([
 
 ## Polymorphic attributes
 
-If your objects have an enum (or Enumerated type) field, you can specify handling based on which type it is.
-This is best explained with an example.
+If your objects have an enum (or Enumerated type) field, you can specify handling based on
+which type it is. This is best explained with an example.
 
 In this case, `role` is behaving as a polymorphic attribute.
 
@@ -330,21 +332,39 @@ different than length), as in the example below:
 Conditionals
 ============
 
+## Ternary
+
 A ternary operator is available for presence handling via 'truthiness' for attributes
 that may be present, with or without a false condition:
 
 ```html
-<div class="user- #{availability ? available : unavailable}">
+<div class="user- #{availabile ? openings : unavailable}">
+</div>
+```
+
+or just
+
+```html
+<div class="user- #{availabile ? openings }">
+</div>
+```
+
+The full ternary with false condition will add the `available` class when availability is
+truth, and the `unavailable` class when falsy.  The second example will only add the
+`available` class when availability is truthy.
+
+## EndDash Conditionals
+
+The same truthiness controls conditional visibility EndDash class elements that start with
+ `is` or `has`, and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`.
+ EndDash will hide (via a `display:none` style attribute) any such element when its named
+ attribute is falsy (or hide when truthy in the case of `isNot` and `hasNot`.)
+
+<div class="user- ">
   <p>
     My schedule is very full. <span class="isAvailable-">I just have a few openings</span>
   </p>
 </div>
-```
-
-The same truthiness controls conditional visibility EndDash class elements that start with `is` or `has`,
-and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`.  EndDash will hide (via a
-`display:none` style attribute) any such element when its named attribute is falsy (or hide when truthy in
-the case of `isNot` and `hasNot`.)
 
 
 ```js
@@ -353,7 +373,7 @@ template.bind({
     firstName: 'Tony',
     lastName: 'Stark',
     alias: 'IronMan'
-    availability: ['10am', '2pm']
+    availabile: ['10am', '2pm']
   });
 });
 ```
@@ -428,7 +448,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 ```
 
 '`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
-at the current scope, is mainly useful for accessing a property of a nested model in the same DOM 
+at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
 Presenters
