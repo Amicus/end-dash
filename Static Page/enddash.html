@@ -16,10 +16,6 @@
 
         <link rel="stylesheet" href="css/style.css">
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="js/interaction.js"></script>
-
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     </head>
     <body>
@@ -165,6 +161,12 @@
             in your browser (<code>open examples/looping.html</code> for example works
             on OS X), and you can edit the templates or models directly in the
             html file if you want to experiment.</p>
+
+            <p>You can also see some of them here:</p>
+            <div id="attributes"></div>
+            <div id="inputs"></div>
+            <div id="inputs2"></div>
+
 
 
             <h1>
@@ -638,4 +640,83 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
     </body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://underscorejs.org/underscore.js"></script>
+    <script src="http://backbonejs.org/backbone.js"></script>
+    <script src="js/interaction.js"></script>
+    <script src="js/end-dash.min.js"></script>
+    <script type="text/enddash" name="suitColor">
+    <div>
+      <p>The <span class='#{color}' style='color:#{color}'>Iron Man suit</span> should be</p>
+      <input type="radio" class="color-" name="color-" value="Red" id="classic"/>
+      <label for="classic">Classic</label>
+      <input type="radio" class="color-" name="color-" value="Brown" id="brown"/>
+      <label for="brown">Brown</label>
+      <input type="radio" class="color-" name="color-" value="Pink" id="pink"/>
+      <label for="pink">Pink</label>
+    </div>
+
+    </script>
+
+    <script type="text/javascript">
+    $(function() {
+      // Load all the templates on the page.
+      EndDash.bootstrap();
+
+      var color = new Backbone.Model({
+        color: 'Red'
+      });
+
+      var template = EndDash.getTemplate('suitColor', color);
+
+      $('#attributes').html(template.el);
+    });
+    </script>
+  <script type="text/enddash" name="inputName">
+    <div>
+      <p>
+        What is your name?
+        <input  type="text" class="name-">
+      </p>
+      <p>
+        Your name is <span class='name-'></span>.
+      </p>
+    </div>
+  </script>
+
+  <script type="text/enddash" name="whichCharacter">
+  <div>
+    <p>Love to hate?</p>
+    <input type="checkbox" class="disliked-"/>
+    <p>Who is your <span class="isDisliked-">least</span> favorite character?</p>
+    <input type="radio" class="name-" name="name-" value="Tony" id="tony"/>
+    <label for="tony">Tony</label>
+    <input type="radio" class="name-" name="name-" value="Pepper" id="pepper"/>
+    <label for="pepper">Pepper</label>
+    <input type="radio" class="name-" name="name-" value="James" id="james"/>
+    <label for="james">James</label>
+    <p>Wow! Your <span class="isDisliked-">least</span> favorite character is <span class='name-'></name></p>
+  </div>
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+      // Load all the templates on the page.
+      EndDash.bootstrap();
+
+      var you = new Backbone.Model({
+        name: 'YourName',
+      });
+
+      var extremeCharacter = new Backbone.Model({
+        name: 'Tony'
+      });
+
+      var template = EndDash.getTemplate('inputName', you),
+          template2 = EndDash.getTemplate('whichCharacter', extremeCharacter);
+
+      $('#inputs').html(template.el);
+      $('#inputs2').html(template2.el);
+    });
+  </script>
 </html>
