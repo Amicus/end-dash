@@ -19,6 +19,7 @@ nav{
     background:white;
     position:fixed;
     height: 100%;
+    overflow-x:hidden;
 }
 
 .navigation{
@@ -28,7 +29,7 @@ nav{
     top:83px;
     left: 0;
     bottom:0;
-    width: 100%;
+    width: 105%;
 }
 
 nav ul li ul li a{
@@ -70,7 +71,8 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    background:#D2DDE8;
+    background:#021D3C;
+    color:white;
     text-decoration: none;
 }
 
@@ -81,9 +83,11 @@ nav ul li a:hover{
 .container{
     float:right;
     width:82%;
-    background: #D2DDE8;
-    overflow: auto;
+    background: transparent;
+    overflow-x:hidden;
+    overflow-y:auto;
     padding-top:20px;
+    border-left:2px solid #021D3C;
 }
 
 article{
@@ -128,4 +132,6 @@ footer h1{
     display: block;
     font-size: 2em;
     padding:10px;
+    font-weight:100;
+    color:white;
 }
