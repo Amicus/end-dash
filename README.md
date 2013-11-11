@@ -625,13 +625,14 @@ If elsewhere you define this partial as:
 And bind to the top level template with:
 
 ```js
-template.bind({heroes: new Backbone.Collection([
-                   new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
-                   new Backbone.Model({name: 'Spiderman', url: '/superheroes/webMaster'}),
-                   new Backbone.Model({name: 'Superwoman', url: '/superheroes/strong'})
-                 ]),
-               logo: '/public/emblems/protectTheWorld'
-              });
+template.bind({
+    heroes: new Backbone.Collection([
+      new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
+      new Backbone.Model({name: 'Spiderman', url: '/superheroes/webMaster'}),
+      new Backbone.Model({name: 'Superwoman', url: '/superheroes/strong'})
+    ]),
+    logo: '/public/emblems/protectTheWorld'
+});
 ```
 
 This will result in:
