@@ -533,13 +533,13 @@ Templates
 First, register a template in EndDash.
 
   ```js
-  EndDash.registerTemplate(templateName, template);
+  EndDash.registerTemplate('templateName', template);
   ```
 
 Next, bind to that template. To start, get the EndDash parsed template.
 
   ```js
-  var template = EndDash.getTemplate(templateName);
+  var template = EndDash.getTemplate('templateName');
   ```
 
 Then actually bind a model to that template.
@@ -551,7 +551,7 @@ Then actually bind a model to that template.
 The above two steps can be combined into one.
 
   ```js
-  var boundTemplate = EndDash.registerTemplate(templateName, myModel);
+  var boundTemplate = EndDash.registerTemplate('templateName', myModel);
   ```
 
 Next, display the HTML for this template on the page.
