@@ -648,8 +648,6 @@ This will result in:
 </div>
 ```
 
-note: Load the partial you are referencing into EndDash before binding to the template referencing the partial.
-
 Debugger
 ======
 
