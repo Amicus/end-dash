@@ -1,0 +1,139 @@
+* {
+  -webkit-transition: all 150ms ease-out;
+  -moz-transition: all 150ms ease-out;
+  -o-transition: all 150ms ease-out;
+  transition: all 150ms ease-out;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+nav{
+    float:left;
+    width: 15%;
+    background:white;
+    position:fixed;
+}
+
+nav .logoWrapper {
+  position: relative;
+  margin: 16px;
+}
+
+nav h1{
+    width:150px;
+    font-size: 1.8em;
+    height:100%;
+    vertical-align: middle;
+    padding:10px;
+    font-weight: 300;
+    border:1px solid #021D3C;
+    color:#021D3C;
+    margin: 0;
+    cursor: pointer;
+}
+
+nav .logoWrapper:hover h1 {
+    background-color: #021D3C;
+    color: white;
+}
+
+nav .logoDash {
+  position: absolute;
+  z-index: 1000;
+  right: 0px;
+  top: 46%;
+  left: 151px;
+  transition-delay: 150ms;
+  transition-duration: 50ms;
+  width: 0px;
+  height: 8px;
+  background-color: #fff;
+}
+
+nav .logoWrapper:hover .logoDash {
+  width: 22px;
+}
+
+nav .nameDash {
+  position: absolute;
+  left: 0;
+  top: 46%;
+  width: 0%;
+  height: 8px;
+  background-color: #021D3C;
+}
+
+nav .logoWrapper:hover .nameDash {
+  width: 95%;
+}
+
+nav ul li a{
+    padding:20px 20px 17px 35px;
+    display: block;
+    border-bottom:3px solid transparent;
+    color:#021D3C;
+    text-decoration: none;
+    font-weight: 300;
+}
+
+nav ul li a:hover{
+    background:#D2DDE8;
+    /*border-bottom:3px solid #021D3C;*/
+}
+
+.docs{
+    display: none;
+}
+
+.container{
+    float:right;
+    width:85%;
+    background: #D2DDE8;
+    overflow: auto
+}
+
+article{
+  margin:10px;
+  padding:1em;
+}
+
+article h1{
+  font-size: 2em;
+  margin: 0 0 20px 0;
+}
+
+article h2{
+  font-size:1.5em;
+    margin: 0 0 15px 10px;
+    padding:5px;
+}
+
+article p{
+    font-size: 1.4em;
+    font-weight:300;
+    margin:0 0 10px 20px;
+    padding:5px;
+    line-height:1.3em;
+    letter-spacing:.005em;
+}
+
+article pre{
+    font-family: monospace;
+    margin: 0 0 10px 40px;
+}
+
+footer{
+    width: 100%;
+    height:200px;
+    float: left;
+}
+
+footer h1{
+    width: auto;
+    margin:auto;
+    display: block;
+    font-size: 2em;
+    padding:10px;
+}
