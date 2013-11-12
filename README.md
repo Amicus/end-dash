@@ -274,7 +274,7 @@ In this case, `role` is behaving as a polymorphic attribute.
 ```
 The resulting HTML will be:
 
-```
+```html
 <div class="rolePolymorphic-" data-each>
   <div class="whenHero-">
     <span class="firstName-">Tony</span>
@@ -299,7 +299,7 @@ The resulting HTML will be:
 To add a, catch-all, base case; add a child div without a
 class name ending in a dash.
 
-```
+```html
 <div class='rolePolymorphic-'>
   <div class="whenHero-">
     <span class="firstName-"></span>
