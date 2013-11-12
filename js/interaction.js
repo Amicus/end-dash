@@ -37,6 +37,8 @@ $(document).ready(function() {
   output.hide().html(html).show('slow');
 });
 
+$('.container').find('a').addClass('hidden');
+
 //interactive template example
 EndDash.bootstrap();
 var render = function(){
