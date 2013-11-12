@@ -40,8 +40,10 @@ $(document).ready(function() {
     .attr('href', $("a:contains('Dependencies')").attr('href'))
   $("p:contains('*')").addClass('hidden')
   $('ol').siblings().siblings().addClass('hidden');
+  $("li:contains('Documentation')").addClass('documentation')
   $('li').on('click', function(evt) {
-    if ($($(evt.target).parents()[2]).hasClass('toc')) {
+    if ($($(evt.target).parents()[2]).hasClass('toc') ||
+        $($(evt.target).parents()[2]).hasClass('documentation')) {
       $('ol').siblings().siblings().addClass('hidden');
       $(evt.target).siblings().removeClass('hidden');
       $(evt.target).siblings().children().addClass('subNav');
