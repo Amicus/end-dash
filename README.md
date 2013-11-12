@@ -624,7 +624,7 @@ If elsewhere you define this partial as:
 
 And bind to the top level template with:
 
-```js
+```javascript
 template.bind({
     heroes: new Backbone.Collection([
       new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
