@@ -7,124 +7,80 @@ layout: default
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>End Dash</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/syntax.css">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>End Dash</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/reset.css">
+      <link rel="stylesheet" href="css/syntax.css">
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="css/style.css">
-        <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+      <link rel="stylesheet" href="css/style.css">
+      <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-        <nav>
-            <div class="logoWrapper">
-              <h1>
-                  END DASH
-              </h1>
-              <div class="logoDash"></div>
-              <div class="nameDash"></div>
-            </div>
+    <nav>
+        <div class="logoWrapper">
+          <h1>
+              END DASH
+          </h1>
+          <div class="logoDash"></div>
+          <div class="nameDash"></div>
+        </div>
 
-            <ul>
-                <li><a href="#getting-started">Getting started</a></li>
-                <li><a href="#templating-from-models">Templating from models</a></li>
-                <li><a href="#building-and-testing">Building and testing</a></li>
-                <li><a href="#play-with-examples">Play with examples</a></li>
+        <ul id='navLinks'>
+        </ul>
+    </nav>
+    <div class="container">
+        {% capture docs_content %}
+        {% include README.md %}
+        {% endcapture %}
+        {{ docs_content | markdownify }}
 
-                <li><a href="#using-model-attributes">Using Model Attributes</a>
-                    <ul>
-                        <li><a href="#variables">Variables</a></li>
-                        <li><a href="#attribute-interpolation">Attribute Interpolation</a></li>
-                    </ul>
-                </li>
-                <li><a href="#inputs">Inputs</a>
-                    <ul>
-                        <li><a href="#text-inputs">Text Inputs</a></li>
-                        <li><a href="#radio-buttons">Radio Buttons</a></li>
-                        <li><a href="#checkboxes">Checkboxes</a></li>
-                    </ul>
-                </li>
-                <li><a href="#looping">Looping</a>
-                    <ul>
-                        <li><a href="#simple-looping">Simple Looping</a></li>
-                        <li><a href="#polymorphic-attributes">Polymorphic Attributes</a></li>
-                        <li><a href="#collection-attributes">Collection Attributes</a></li>
-                    </ul>
-                </li>
-                <li><a href="#conditionals">Conditionals</a>
-                    <ul>
-                        <li><a href="#ternary">Ternary</a></li>
-                        <li><a href="#visibility-conditionals">Visibility Conditionals</a></li>
-                    </ul>
-                </li>
-                <li><a href="#scoping">Scoping</a>
-                    <ul>
-                        <li><a href="#what-is-scoping">What is scoping?</a></li>
-                        <li><a href="#scoping-down-with-a-dash">Scoping Down with a Dash</a></li>
-                        <li><a href="#scoping-with-paths">Scoping With Paths</a></li>
-                    </ul>
-                </li>
-                <li><a href="#presenters">Presenters</a></li>
-                <li><a href="#view-integration">View Integration</a></li>
-                <li><a href="#partials">Partials</a></li>
-                <li><a href="#debugger">Debugger</a></li>
-            </ul>
-        </nav>
+        <p>You can also see some of the examples here:</p>
+        <div id="attributes"></div>
+        <div id="inputs"></div>
+        <div id="inputs2"></div>
+        <code id="template-edit" contenteditable>&lt;div&gt;&lt;!--Enter your own EndDash template here!--&gt;
+        &lt;div class="isName-"&gt;Hi &lt;span class="name-"&gt;!&lt;/span&gt;&lt;/div&gt;
+        &lt;div class="isNotName-"&gt;I don't know your name!&lt;/div&gt;&lt;/div&gt;
+        </code>
+        <br/>
+        <code id="model-edit" contenteditable>new Backbone.Model({text: "Edit this Backbone Model by adding a name attribute to see the text below change!"})</code>
+        <p> The results of your template and model or collection above can be previewed below:</p>
+        <div id="user-edit"></div>
+    </div>
+    <footer>
+        <h1>We're Hiring!</h1>
+    </footer>
 
-        <div class="container">
-            {% capture docs_content %}
-            {% include README.md %}
-            {% endcapture %}
-            {{ docs_content | markdownify }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 
-            <p>You can also see some of them here:</p>
-            <div id="attributes"></div>
-            <div id="inputs"></div>
-            <div id="inputs2"></div>
-            <code id="template-edit" contenteditable>&lt;div&gt;&lt;!--Enter your own EndDash template here!--&gt;
-            &lt;div class="isName-"&gt;Hi &lt;span class="name-"&gt;!&lt;/span&gt;&lt;/div&gt;
-            &lt;div class="isNotName-"&gt;I don't know your name!&lt;/div&gt;&lt;/div&gt;
-            </code>
-            <br/>
-            <code id="model-edit" contenteditable>new Backbone.Model({text: "Edit this Backbone Model by adding a name attribute to see the text below change!"})</code>
-            <p> The results of your template and model or collection above can be previewed below:</p>
-            <div id="user-edit"></div>
-
-        <footer>
-            <h1>We're Hiring!</h1>
-        </footer>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
-    </body>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://underscorejs.org/underscore.js"></script>
-    <script src="http://backbonejs.org/backbone.js"></script>
-    <script src="js/interaction.js"></script>
-    <script src="js/end-dash.min.js"></script>
-    <script type="text/enddash" name="suitColor">
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore.js"></script>
+  <script src="http://backbonejs.org/backbone.js"></script>
+  <script src="js/end-dash.min.js"></script>
+  <script type="text/enddash" name="suitColor">
     <div>
       <input type="radio" class="color-" name="color-" value="Red" id="classic"/>
       <label for="classic">Classic</label>
@@ -134,23 +90,8 @@ layout: default
       <label for="pink">Pink</label>
       <p>The <span class='#{color}' style='color:#{color}'>Iron Man suit</span> is <span class="color-"></span></p>
     </div>
+  </script>
 
-    </script>
-
-    <script type="text/javascript">
-    $(function() {
-      // Load all the templates on the page.
-      EndDash.bootstrap();
-
-      var color = new Backbone.Model({
-        color: 'Red'
-      });
-
-      var template = EndDash.getTemplate('suitColor', color);
-
-      $('#attributes').html(template.el);
-    });
-    </script>
   <script type="text/enddash" name="inputName">
     <div>
       <p>
@@ -164,61 +105,18 @@ layout: default
   </script>
 
   <script type="text/enddash" name="whichCharacter">
-  <div>
-    <p>Love to hate?</p>
-    <input type="checkbox" class="disliked-"/>
-    <p>Who is your <span class="isDisliked-">least</span> favorite character?</p>
-    <input type="radio" class="name-" name="name-" value="Tony" id="tony"/>
-    <label for="tony">Tony</label>
-    <input type="radio" class="name-" name="name-" value="Pepper" id="pepper"/>
-    <label for="pepper">Pepper</label>
-    <input type="radio" class="name-" name="name-" value="James" id="james"/>
-    <label for="james">James</label>
-    <p>Wow! Your <span class="isDisliked-">least</span> favorite character is <span class='name-'></name></p>
-  </div>
+    <div>
+      <p>Love to hate?</p>
+      <input type="checkbox" class="disliked-"/>
+      <p>Who is your <span class="isDisliked-">least</span> favorite character?</p>
+      <input type="radio" class="name-" name="name-" value="Tony" id="tony"/>
+      <label for="tony">Tony</label>
+      <input type="radio" class="name-" name="name-" value="Pepper" id="pepper"/>
+      <label for="pepper">Pepper</label>
+      <input type="radio" class="name-" name="name-" value="James" id="james"/>
+      <label for="james">James</label>
+      <p>Wow! Your <span class="isDisliked-">least</span> favorite character is <span class='name-'></name></p>
+    </div>
   </script>
-
-  <script type="text/javascript">
-    $(function() {
-      // Load all the templates on the page.
-      EndDash.bootstrap();
-
-      var you = new Backbone.Model({
-        name: 'YourName',
-      });
-
-      var extremeCharacter = new Backbone.Model({
-        name: 'Tony'
-      });
-
-      var template = EndDash.getTemplate('inputName', you),
-          template2 = EndDash.getTemplate('whichCharacter', extremeCharacter);
-
-      $('#inputs').html(template.el);
-      $('#inputs2').html(template2.el);
-    });
-  </script>
-
-  <script type="text/javascript">
-    $(function() {
-      // Load all the templates on the page.
-      var render = function(){
-        try {
-          var modelText = $('#model-edit').text(),
-              templateText = $('#template-edit').text();
-          EndDash.registerTemplate('custom', templateText);
-
-          var template = EndDash.getTemplate('custom', eval(modelText));
-          $('#user-edit').html(template.el);
-        }
-        catch(error) {
-           console.log("Error occurred:", error)
-        }
-      };
-      render();
-      $('#model-edit').on('change keyup keydown', render);
-      $('#template-edit').on('change keyup keydown', render);
-
-    });
-  </script>
+  <script src="js/interaction.js"></script>
 </html>
