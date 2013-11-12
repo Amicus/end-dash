@@ -122,6 +122,14 @@ nav ul li a:hover, nav ul li.active a{
     text-decoration: none;
 }
 
+nav ul li ul{
+    display: none;
+}
+
+nav ul li a.active ~ ul {
+    display: block;
+}
+
 .docs{
     display: none;
 }
