@@ -532,37 +532,56 @@ Templates
 
 First, register a template in EndDash.
 
+  This can be done manually:
+
+    ```js
+    EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="name-"></span></div>');
+    ```
+
+  Or, via ```EndDash.bootstrap```.
+
+    Have your template as a script of type EndDash on the page.
+
+    ```html
+    <script type='text/enddash' name='greetings'>
+      <div>
+        Hello Citizens, I am <span class="name-"></span>
+      </div>
+    </script>
+    ```
+
+    Then call ```EndDash.bootstrap```.
+
+    ```javascript
+    $.ready(function() {
+      // Load all the templates on the page.
+      EndDash.bootstrap();
+    )};
+    ```
+
+Next bind to that template.
+
+  First, get the EndDash-parsed version of your template.
+
   ```js
-  EndDash.registerTemplate('superpower',
-            '<div>' +
-              '<span class="name-"></span>' +
-              ' has ' +
-              '<span class="power-"></span>' +
-            '</div>'
-          );
+  var template = EndDash.getTemplate('greetings');
   ```
 
-Next, bind to that template. To start, get the EndDash parsed template.
+  Then bind this template to a model.
 
   ```js
-  var template = EndDash.getTemplate('superpower');
-  ```
-
-Then actually bind a model to that template.
-
-  ```js
-  var hero = new Backbone.Model({name: 'Superman', power: 'strength'}),
+  var hero = new Backbone.Model({name: 'Superman'}),
       boundTemplate = template.bind(hero);
   ```
 
-Retrieving and binding to the template can be combined into one step.
+  This can be combined into a single step.
 
   ```js
-  var hero = new Backbone.Model({name: 'Superman', power: 'strength'}),
-      boundTemplate = EndDash.getTemplate('superhero', hero);
+  var hero = new Backbone.Model({name: 'Superman'}),
+      boundTemplate = EndDash.getTemplate('greetings', hero);
   ```
 
-Next, display the HTML for this template on the page.
+Now just display the HTML of the template on the page.
 
   ```js
   $('.content').html(boundTemplate.el);
