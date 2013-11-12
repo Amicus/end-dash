@@ -416,7 +416,7 @@ Scopes down into the user object and then, via the data-scope property, scopes b
 (the object literal with propery 'user').
 
 Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to seperate scope levels,
-`.` for the current scope'.
+`.` for the current scope.
 
 ```html
 <div class='user-'>
