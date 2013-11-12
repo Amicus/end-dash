@@ -111,11 +111,7 @@ var footer = $("footer").offset().top,
     navSwap  = footer - inner,
     cssBottom = scrollTop - navSwap
 
-console.log(footer, inner, scrollTop)
-console.log(navSwap)
-
-if (navSwap <= scrollTop)
-    {console.log(cssBottom)
+if (navSwap <= scrollTop) {
     $("nav").css({
         "bottom": cssBottom,
         "transition": "all 0s linear"
@@ -125,6 +121,10 @@ if (navSwap <= scrollTop)
         "bottom": 0
     })
 }
+})
 
-
+$(window).ready(function() {
+  $(".endDashFold").css({
+        "min-height": $(window).innerHeight()
+  })
 })

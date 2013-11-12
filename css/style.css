@@ -130,6 +130,43 @@ nav ul li a.active ~ ul {
     display: block;
 }
 
+.endDashFold {
+    background-color: #021D3C;
+    margin-left: 245px;
+    color: white;
+    padding: 50px;
+}
+
+.endDashFold h1 {
+    text-align: center;
+    font-size: 4em;
+    font-weight: 100;
+}
+
+.endDashFold h3 {
+    font-size:2.4em;
+     text-align: center;
+    font-weight: 100;   
+    margin:0 10% 60px 10%;
+    line-height:1.4em;
+}
+
+.endDashFold #inputs p{
+    font-size:2em;
+    font-weight:100;
+
+}
+
+.endDashFold input {
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:15px solid white;
+    color: white;
+    font-size:6em;
+    outline:none;
+}
+
 .docs{
     display: none;
 }
