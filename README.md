@@ -388,9 +388,7 @@ true if `!!model.get('available') === false`).
 ```js
 template.bind({
   user: new Backbone.Model({
-    firstName: 'Tony',
-    lastName: 'Stark',
-    alias: 'IronMan',
+    name: 'Tony Stark',
     available: false
   });
 });
