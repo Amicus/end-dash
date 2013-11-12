@@ -528,64 +528,64 @@ EndDash.setCustomGetView(getViews);
 Templates
 =========
 
-## Registering & Binding
+## Registering a Template
 
-First, register a template in EndDash.
+This can be done manually:
 
-  This can be done manually:
+```js
+EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="name-"></span></div>');
+```
 
-    ```js
-    EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="name-"></span></div>');
-    ```
+Or, via ```EndDash.bootstrap```.
 
-  Or, via ```EndDash.bootstrap```.
+Have your template as a script of type EndDash on the page.
 
-    Have your template as a script of type EndDash on the page.
+```html
+<script type='text/enddash' name='greetings'>
+  <div>
+    Hello Citizens, I am <span class="name-"></span>
+  </div>
+</script>
+```
 
-    ```html
-    <script type='text/enddash' name='greetings'>
-      <div>
-        Hello Citizens, I am <span class="name-"></span>
-      </div>
-    </script>
-    ```
+Then call ```EndDash.bootstrap```.
 
-    Then call ```EndDash.bootstrap```.
+```javascript
+$.ready(function() {
+  // Load all the templates on the page.
+  EndDash.bootstrap();
+)};
+```
 
-    ```javascript
-    $.ready(function() {
-      // Load all the templates on the page.
-      EndDash.bootstrap();
-    )};
-    ```
+## Binding to a Template
 
-Next bind to that template.
+First, get the EndDash-parsed version of your template.
 
-  First, get the EndDash-parsed version of your template.
+```js
+var template = EndDash.getTemplate('greetings');
+```
 
-  ```js
-  var template = EndDash.getTemplate('greetings');
+Then bind this template to a model.
+
+```js
+var hero = new Backbone.Model({name: 'Superman'}),
+    boundTemplate = template.bind(hero);
+```
+
+This can be combined into a single step.
+
+```js
+var hero = new Backbone.Model({name: 'Superman'}),
+    boundTemplate = EndDash.getTemplate('greetings', hero);
   ```
 
-  Then bind this template to a model.
+## Displaying HTML of a bound Template
 
-  ```js
-  var hero = new Backbone.Model({name: 'Superman'}),
-      boundTemplate = template.bind(hero);
-  ```
+Show the el property of the template.
 
-  This can be combined into a single step.
-
-  ```js
-  var hero = new Backbone.Model({name: 'Superman'}),
-      boundTemplate = EndDash.getTemplate('greetings', hero);
-  ```
-
-Now just display the HTML of the template on the page.
-
-  ```js
-  $('.content').html(boundTemplate.el);
-  ```
+```js
+$('.content').html(boundTemplate.el);
+```
 
 Partials
 ========
