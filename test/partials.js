@@ -1,11 +1,9 @@
 require('./support/helper');
 
-var path = require("path"),
-    expect = require("expect.js"),
+var expect = require("expect.js"),
     fs = require("fs"),
     Backbone = require("backbone"),
     _ = require("underscore"),
-    jqts = require("../lib/util").jqts,
     EndDash = require("../lib/end-dash"),
     generateTemplate = require("./support/generate_template");
 

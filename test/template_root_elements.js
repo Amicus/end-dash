@@ -1,9 +1,8 @@
 var expect = require("expect.js"),
     Parser = require('../lib/parser'),
-    singleElemenetMarkup = '<div id="user"></div>',
+    singleElementMarkup = '<div id="user"></div>',
     secondElementMarkup  = '<div id="membership"></div>',
-    multiElementMarkup  = singleElemenetMarkup + secondElementMarkup;
-
+    multiElementMarkup  = singleElementMarkup + secondElementMarkup;
 
 describe('multiple rootElements', function() {
   it('errors if multiple root elements are present by default', function() {

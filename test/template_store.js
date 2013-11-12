@@ -2,7 +2,6 @@ require('./support/helper');
 
 var expect = require("expect.js"),
     _ = require('underscore'),
-    Parser = require('../lib/parser'),
     Template = require('../lib/template'),
     TemplateStore = require('../lib/template_store'),
     templateStore = new TemplateStore(),
