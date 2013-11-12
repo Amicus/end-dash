@@ -1,3 +1,4 @@
+
 EndDash
 =======
 
@@ -20,6 +21,7 @@ Please [see the dependency section](#dependencies) for further details.
 ## Getting started
 
 Include the library and dependencies:
+
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
@@ -30,6 +32,7 @@ Include the library and dependencies:
 ## Templating from models
 
 Define your templates:
+
 ```html
 <script type="text/enddash" name="character">
   <div class="user">
@@ -45,6 +48,7 @@ Define your templates:
 WARNING: A template can only have one root element. In the above case, it is the div with class 'user'.
 
 Bind templates to models in your application code:
+
 ```javascript
 $.ready(function() {
   // Load all the templates on the page.
@@ -147,7 +151,7 @@ Model properties can also be interpolated into any html tag attribute.
 <a href='/person/#{firstName}'> Home Page </a>
 ```
 
-```js
+```javascript
 template.bind(new Backbone.Model({firstName: 'Derrick'}));
 ```
 
@@ -349,8 +353,7 @@ and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`. 
 `display:none` style attribute) any such element when its named attribute is falsy (or hide when truthy in
 the case of `isNot` and `hasNot`.)
 
-
-```js
+```javascript
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
@@ -370,7 +373,7 @@ Scope in EndDash refers to the model on the top of the EndDash stack.
 Each template and partial is given its own scope. The 'root' scope is always the object passed
 to EndDash's 'bind' or 'getTemplate' function.
 
-```js
+```javascript
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
@@ -414,7 +417,6 @@ Scopes down into the user object and then, via the data-scope property, scopes b
 Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to seperate scope levels,
 `.` for the current scope'.
 
-
 ```html
 <div class='user-'>
   //User scope
@@ -446,7 +448,7 @@ function being defined and passed in to EndDash that looks for a custom presente
 in config.presenterDirectory and uses a default base presenter or base collection
 presenter when no presenter specific to the model's name attribute is defined:
 
-```js
+```javascript
   getPresenter = function(model) {
     var modelName = inflection.underscore(model.name || "")
       , id = model.cid
@@ -511,11 +513,11 @@ To lookup the view, EndDash uses a simple view store. You can register views by
 calling `EndDash.registerView` with the view name and the view class object. You can
 also define your own function and pass it into `EndDash.setCustomGetView`
 
-```js
+```javascript
 EndDash.registerView('myViewName', viewObj);
 ```
 
-```js
+```javascript
 var views = {},
     getViews = function(name) {
       return views[name];
