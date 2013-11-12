@@ -124,6 +124,8 @@ Documentation
 
 [View Integration](#view-integration)
 
+[Templates](#templates)
+
 [Partials](#partials)
 
 [Debugger](#debugger)
@@ -523,6 +525,69 @@ var views = {},
       return views[name];
 };
 EndDash.setCustomGetView(getViews);
+```
+
+Templates
+=========
+
+### Registering a Template
+
+This can be done manually.
+
+```js
+EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="name-"></span></div>');
+```
+
+Or, via ```EndDash.bootstrap```.
+
+To bootstrap, have your templates loaded as scripts of type 'enddash' on the page.
+
+```html
+<script type='text/enddash' name='greetings'>
+  <div>
+    Hello Citizens, I am <span class="name-"></span>
+  </div>
+</script>
+```
+
+Then call ```EndDash.bootstrap```.
+
+```javascript
+$.ready(function() {
+  // Load all the templates on the page.
+  EndDash.bootstrap();
+)};
+```
+
+### Binding to a Template
+
+First, get the EndDash-parsed version of your template.
+
+```js
+var template = EndDash.getTemplate('greetings');
+```
+
+Then bind it to a model.
+
+```js
+var hero = new Backbone.Model({name: 'Superman'}),
+    boundTemplate = template.bind(hero);
+```
+
+This can be done in a single step, by passing a model
+as a second argument to ```EndDash.getTemplate```.
+
+```js
+var hero = new Backbone.Model({name: 'Superman'}),
+    boundTemplate = EndDash.getTemplate('greetings', hero);
+  ```
+
+### Displaying HTML of a bound Template
+
+Show the el property of the template.
+
+```js
+$('.content').html(boundTemplate.el);
 ```
 
 Partials
