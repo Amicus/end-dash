@@ -39,14 +39,6 @@ $(document).ready(function() {
   $("a:contains('dependency')").removeClass('hidden')
     .attr('href', $("a:contains('Dependencies')").attr('href'))
   $("p:contains('*')").addClass('hidden')
-  $('ul').siblings().siblings().addClass('hidden');
-  $('li').on('click', function(evt) {
-    if ($($(evt.target).parents()[2]).hasClass('toc')) {
-      $('ul').siblings().siblings().addClass('hidden');
-      $(evt.target).siblings().removeClass('hidden');
-      $(evt.target).siblings().children().addClass('subNav');
-    }
-  });
 
   $('.toc').onePageNav({
       currentClass: 'active',
