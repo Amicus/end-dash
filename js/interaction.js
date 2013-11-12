@@ -39,13 +39,32 @@ $(document).ready(function() {
   $("a:contains('dependency')").removeClass('hidden')
     .attr('href', $("a:contains('Dependencies')").attr('href'))
   $("p:contains('*')").addClass('hidden')
-  $('ol').siblings().siblings().addClass('hidden');
+  $('ul').siblings().siblings().addClass('hidden');
   $('li').on('click', function(evt) {
     if ($($(evt.target).parents()[2]).hasClass('toc')) {
-      $('ol').siblings().siblings().addClass('hidden');
+      $('ul').siblings().siblings().addClass('hidden');
       $(evt.target).siblings().removeClass('hidden');
       $(evt.target).siblings().children().addClass('subNav');
     }
+  });
+
+  $('.toc').onePageNav({
+      currentClass: 'active',
+      changeHash: false,
+      scrollSpeed: 750,
+      scrollOffset: 30,
+      scrollThreshold: 0.5,
+      filter: '',
+      easing: 'swing',
+      begin: function() {
+          //I get fired when the animation is starting
+      },
+      end: function() {
+          //I get fired when the animation is ending
+      },
+      scrollChange: function($currentListItem) {
+          //I get fired when you enter a section and I pass the list item of the section
+      }
   });
 
   //interactive template example

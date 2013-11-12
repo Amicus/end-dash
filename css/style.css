@@ -34,7 +34,7 @@ nav{
     width: 105%;
 }
 
-nav ol li ol li a{
+nav ul li ul li a{
     padding-left:55px;
 }
 
@@ -63,7 +63,7 @@ nav .logoWrapper:hover h1 {
     color: white;
 }
 
-nav ol li a{
+nav ul li a{
     padding:20px 20px 17px 35px;
     display: block;
     border-bottom:3px solid transparent;
@@ -72,7 +72,7 @@ nav ol li a{
     font-weight: 300;
 }
 
-nav ol li a:hover{
+nav ul li a:hover{
     background:#021D3C;
     color:white;
     text-decoration: none;
