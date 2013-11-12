@@ -372,7 +372,7 @@ truth, and the `unavailable` class when falsy.  The second example will only add
 
 ## Visibility Conditionals
 
-EndDash has truthiness controls for conditional visibility. EndDash class elements that begin with `is` or `has`,
+EndDash has truthiness controls for conditional visibility. EndDash class names that begin with `is` or `has`,
 (as well as their boolean opposites `isNot` and `hasNot`) will hide (via a `display:none` style attribute)
 the element when its named attribute, with its boolean evaluation prefix, is falsy ('isNotAvailable-' will return
 true if `!!model.get('available') === false`).
