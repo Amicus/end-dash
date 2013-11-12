@@ -538,7 +538,7 @@ EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="nam
 
 Or, via ```EndDash.bootstrap```.
 
-To bootstrap, have your template loaded as scripts of type 'enddash' on the page.
+To bootstrap, have your templates loaded as scripts of type 'enddash' on the page.
 
 ```html
 <script type='text/enddash' name='greetings'>
@@ -565,14 +565,15 @@ First, get the EndDash-parsed version of your template.
 var template = EndDash.getTemplate('greetings');
 ```
 
-Then bind this template to a model.
+Then bind it to a model.
 
 ```js
 var hero = new Backbone.Model({name: 'Superman'}),
     boundTemplate = template.bind(hero);
 ```
 
-This can be combined into a single step.
+This can be done in a single step, by passing a model
+as a second argument to ```EndDash.getTemplate```.
 
 ```js
 var hero = new Backbone.Model({name: 'Superman'}),
