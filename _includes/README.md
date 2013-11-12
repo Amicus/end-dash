@@ -1,3 +1,4 @@
+
 EndDash
 =======
 
@@ -13,26 +14,28 @@ EndDash is a bindings-aware client-side templating language built on top of vali
 
 [Documentation](#documentation)
 
-
 ## Getting started
 
 Include the library and dependencies:
 ```html
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="http://backbonejs.org/backbone.js"></script>
 <script src="/assets/javascripts/end-dash.js"></script>
+
 ```
 
 ## Templating from models
 
 Define your templates:
+
 ```html
 <script type="text/enddash" name="character">
   <div class="user">
     <p>
       Hello, my name is <span class="firstName-"></span>
-      <span class="lastName-"></span>...
+      <span class="lastName-"></span>..
     </p>
 
     <strong class="quip-"></strong>
@@ -42,6 +45,7 @@ Define your templates:
 
 
 Bind templates to models in your application code:
+
 ```javascript
 $.ready(function() {
   // Load all the templates on the page.
