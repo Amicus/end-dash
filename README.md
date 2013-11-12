@@ -528,9 +528,9 @@ EndDash.setCustomGetView(getViews);
 Templates
 =========
 
-## Registering a Template
+### Registering a Template
 
-This can be done manually:
+This can be done manually.
 
 ```js
 EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="name-"></span></div>');
@@ -557,7 +557,7 @@ $.ready(function() {
 )};
 ```
 
-## Binding to a Template
+### Binding to a Template
 
 First, get the EndDash-parsed version of your template.
 
@@ -579,7 +579,7 @@ var hero = new Backbone.Model({name: 'Superman'}),
     boundTemplate = EndDash.getTemplate('greetings', hero);
   ```
 
-## Displaying HTML of a bound Template
+### Displaying HTML of a bound Template
 
 Show the el property of the template.
 
