@@ -1,4 +1,3 @@
-
 EndDash
 =======
 
@@ -9,8 +8,6 @@ Please [see the dependency section](#dependencies) for further details.
 
 [Getting started](#getting-started)
 
-[Templating from models](#templating-from-models)
-
 [Building and testing](#building-and-testing)
 
 [Play with examples](#play-with-examples)
@@ -20,7 +17,7 @@ Please [see the dependency section](#dependencies) for further details.
 
 ## Getting started
 
-Include the library and dependencies:
+Include the library and dependencies.
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -29,9 +26,7 @@ Include the library and dependencies:
 <script src="/scripts/end-dash.js"></script>
 ```
 
-## Templating from models
-
-Define your templates:
+Define your templates.
 
 ```html
 <script type="text/enddash" name="character">
@@ -45,15 +40,21 @@ Define your templates:
   </div>
 </script>
 ```
+
 WARNING: A template can only have one root element. In the above case, it is the div with class 'user'.
 
-Bind templates to models in your application code:
+Load your templates into EndDash.
 
 ```javascript
 $.ready(function() {
   // Load all the templates on the page.
   EndDash.bootstrap();
+)};
+```
 
+Bind your templates to models in your application code.
+
+```javascript
   var tony = new Backbone.Model({
     firstName: 'Tony',
     lastName: 'Stark',
@@ -66,7 +67,7 @@ $.ready(function() {
 });
 ```
 
-If your model changes, the DOM updates!
+If your models changes, the DOM will update to reflect the changes.
 
 ## Building and testing
 
@@ -123,6 +124,8 @@ Documentation
 [Presenters](#presenters)
 
 [View Integration](#view-integration)
+
+[Templates](#templates)
 
 [Partials](#partials)
 
@@ -415,7 +418,7 @@ Scopes down into the user object and then, via the data-scope property, scopes b
 (the object literal with propery 'user').
 
 Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to seperate scope levels,
-`.` for the current scope'.
+`.` for the current scope.
 
 ```html
 <div class='user-'>
@@ -432,7 +435,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 </div>
 ```
 
-'`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
+`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
 at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
@@ -525,55 +528,125 @@ var views = {},
 EndDash.setCustomGetView(getViews);
 ```
 
+Templates
+=========
+
+### Registering a Template
+
+This can be done manually.
+
+```js
+EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="name-"></span></div>');
+```
+
+Or, via ```EndDash.bootstrap```.
+
+To bootstrap, have your templates loaded as scripts of type 'enddash' on the page.
+
+```html
+<script type='text/enddash' name='greetings'>
+  <div>
+    Hello Citizens, I am <span class="name-"></span>
+  </div>
+</script>
+```
+
+Then call ```EndDash.bootstrap```.
+
+```javascript
+$.ready(function() {
+  // Load all the templates on the page.
+  EndDash.bootstrap();
+)};
+```
+
+### Binding to a Template
+
+First, get the EndDash-parsed version of your template.
+
+```js
+var template = EndDash.getTemplate('greetings');
+```
+
+Then bind it to a model.
+
+```js
+var hero = new Backbone.Model({name: 'Superman'}),
+    boundTemplate = template.bind(hero);
+```
+
+This can be done in a single step, by passing a model
+as a second argument to ```EndDash.getTemplate```.
+
+```js
+var hero = new Backbone.Model({name: 'Superman'}),
+    boundTemplate = EndDash.getTemplate('greetings', hero);
+  ```
+
+### Displaying HTML of a bound Template
+
+Show the el property of the template.
+
+```js
+$('.content').html(boundTemplate.el);
+```
+
 Partials
 ========
 
-Small, reusable components of HTML can be templated in EndDash as partials.
-One common use for partials is iterating through a collection.
+Small, reusable, components of HTML can be templated in EndDash as partials.
+To use a partial, add `src='templateName'` as an attribute to an element with no children.
 
-
-```javascript
-var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', alias: 'IronMan'});
-var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', alias: 'WarMachine'});
-var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', alias: 'none' });
-
-var people = new Backbone.Collection([person1, person2, person3]);
+```html
+<script type='text/enddash' name='superheroes'>
+  <img src="#{logo}" />
+  <div class='heroes-'>
+    <div src='superhero-navigation' data-replace></div>
+  </div>
+</script>
 ```
+The partial will be passed the model in scope as its root element.
 
-Iterate through the collection using data-each.
-
-The data-replace attribute tells EndDash to substitute the partial's root element for this element.
+The data-replace attribute tells EndDash to substitute the partial's root element for its partial.
 Without data-replace, EndDash will embed the root element beneath the partial's element and leave it.
 
-```html
-<h2>Characters</h2>
-<h3>Cast of characters include:</h3>
-<table id="members_list">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Alias</th>
-    </tr>
-  </thead>
-  <tbody class="people-">
-    <div data-each>
-      <div src='./partials/person' data-replace></div>
-    </div>
-  </tbody>
-</table>
-```
-
-and in your partials folder another EndDash template such as:
+If elsewhere you define this partial as:
 
 ```html
-<tr class="userRow">
-  <td class="firstName-"></td>
-  <td class="lastName-"></td>
-  <td class="alias-"></td>
-</tr>
+<script type='text/enddash' name='superhero-navigation'>
+  <ul data-each>
+    <li>
+      <a href='#{url}'><span class='name-'></span></a>
+    </li>
+  </ul>
+</script>
 ```
 
+And bind to the top level template with:
+
+```javascript
+template.bind({
+    heroes: new Backbone.Collection([
+      new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
+      new Backbone.Model({name: 'Spiderman', url: '/superheroes/webMaster'}),
+      new Backbone.Model({name: 'Superwoman', url: '/superheroes/strong'})
+    ]),
+    logo: '/public/emblems/protectTheWorld'
+});
+```
+
+This will result in:
+
+```html
+<img class='/public/emblems/protectTheWorld'>
+<div class='heroes-'>
+  <ul>
+    <li><a href='/superheroes/techGenius'>Iron Man</a></li>
+    <li><a href='/superheroes/webMaster'>Spiderman</a></li>
+    <li><a href='/superheroes/strong'>Superwoman</a></li>
+  </ul>
+</div>
+```
 
 Debugger
 ======
