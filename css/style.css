@@ -17,6 +17,7 @@ body{
 nav{
     float:left;
     width: 17%;
+    min-width:210px;
     background:white;
     position:fixed;
     height: 100%;
@@ -33,7 +34,7 @@ nav{
     width: 105%;
 }
 
-.subNav{
+nav ol li ol li a{
     padding-left:55px;
 }
 
@@ -62,7 +63,7 @@ nav .logoWrapper:hover h1 {
     color: white;
 }
 
-nav ul li a{
+nav ol li a{
     padding:20px 20px 17px 35px;
     display: block;
     border-bottom:3px solid transparent;
@@ -71,7 +72,7 @@ nav ul li a{
     font-weight: 300;
 }
 
-nav ul li a:hover{
+nav ol li a:hover{
     background:#021D3C;
     color:white;
     text-decoration: none;
@@ -123,7 +124,7 @@ article pre{
 }
 
 pre, code{
-    background:#f5f5f5;
+    //background:#444444;
 }
 
 /*EXAMPLESSSSS*/
@@ -146,7 +147,7 @@ pre, code{
 }
 
 #inputs div p input{
-    clear:both;
+
 }
 
 footer{

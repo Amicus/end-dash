@@ -14,13 +14,13 @@ layout: default
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="css/reset.css">
-      <link rel="stylesheet" href="css/syntax.css">
 
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 
-      <link rel="stylesheet" href="css/style.css">
-      <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/syntax.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
       <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   </head>
   <body>
@@ -37,9 +37,12 @@ layout: default
           <div class="nameDash"></div>
         </div>
 
-        <div class='toc'>
+        <div class="navigation">
+            <div class='toc'>
+            </div>
         </div>
     </nav>
+
     <div class="container">
         {% capture docs_content %}
         {% include README.md %}
