@@ -536,7 +536,7 @@ First, register a template in EndDash.
   EndDash.registerTemplate('superpower',
             '<div>' +
               '<span class="name-"></span>' +
-              'has the ability to' +
+              ' has ' +
               '<span class="power-"></span>' +
             '</div>'
           );
