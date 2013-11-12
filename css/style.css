@@ -33,7 +33,7 @@ nav{
     width: 105%;
 }
 
-nav ul li ul li a{
+.subNav{
     padding-left:55px;
 }
 
