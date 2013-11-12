@@ -1,7 +1,6 @@
 require('./support/helper');
 
-var path = require("path"),
-    expect = require("expect.js"),
+var expect = require("expect.js"),
     fs = require("fs"),
     generateTemplate = require("./support/generate_template");
 

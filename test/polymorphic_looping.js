@@ -1,7 +1,6 @@
 require('./support/helper');
 
 var expect = require('expect.js'),
-    fs = require('fs'),
     Backbone = require('backbone'),
     generateTemplate = require('./support/generate_template');
 

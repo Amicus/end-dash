@@ -1,7 +1,6 @@
 require('./support/helper');
 
 var expect = require("expect.js"),
-    _ = require('underscore'),
     ViewStore = require('../lib/view_store'),
     viewStore = new ViewStore();
 

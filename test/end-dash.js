@@ -5,8 +5,7 @@ var expect = require('expect.js'),
     EndDash = require('../lib/end-dash'),
     templateStore = EndDash.templateStore,
     viewStore = EndDash.viewStore,
-    Template = require('../lib/template'),
-    _ = require('underscore');
+    Template = require('../lib/template');
 
 describe('EndDash', function(){
   describe('.registerTemplate', function() {

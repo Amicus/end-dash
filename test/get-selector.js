@@ -1,7 +1,6 @@
 require('./support/helper');
 
 var util = require("../lib/util"),
-    path = require("path"),
     expect = require("expect.js"),
     fs = require("fs");
 

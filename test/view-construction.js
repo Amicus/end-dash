@@ -1,8 +1,6 @@
 require('./support/helper');
 
-var path = require("path"),
-    expect = require("expect.js"),
-    fs = require("fs"),
+var expect = require("expect.js"),
     Backbone = require("backbone"),
     EndDash = require("../lib/end-dash"),
     viewStore = EndDash.viewStore,
