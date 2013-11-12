@@ -6,6 +6,8 @@ EndDash is a bindings-aware client-side templating language built on top of vali
 At this point EndDash relies on Backbone or Backbone style objects for full functionality.
 Please [see the dependency section](#dependencies) for further details.
 
+([Full Documentation](#documentation) is below)
+
 Getting Started
 ===============
 
