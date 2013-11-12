@@ -36,6 +36,7 @@ $(document).ready(function() {
   }
   output.hide().html(html).show('slow');
   $('.container').find('a').addClass('hidden');
+  $("p:contains('*')").addClass('hidden')
   $('ol').siblings().siblings().addClass('hidden');
   $('li').on('click', function(evt) {
     if ($($(evt.target).parents()[2]).hasClass('toc')) {
