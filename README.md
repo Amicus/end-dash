@@ -538,7 +538,7 @@ EndDash.registerTemplate('greetings','<div>Hello Citizens, I am <span class="nam
 
 Or, via ```EndDash.bootstrap```.
 
-Have your template as a script of type EndDash on the page.
+To bootstrap, have your template loaded as scripts of type 'enddash' on the page.
 
 ```html
 <script type='text/enddash' name='greetings'>
