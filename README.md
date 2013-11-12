@@ -533,31 +533,39 @@ Templates
 First, register a template in EndDash.
 
   ```js
-  EndDash.registerTemplate('templateName', template);
+  EndDash.registerTemplate('superpower',
+            '<div>' +
+              '<span class="name-"></span>' +
+              'has the ability to' +
+              '<span class="power-"></span>' +
+            '</div>'
+          );
   ```
 
 Next, bind to that template. To start, get the EndDash parsed template.
 
   ```js
-  var template = EndDash.getTemplate('templateName');
+  var template = EndDash.getTemplate('superpower');
   ```
 
 Then actually bind a model to that template.
 
   ```js
-  var boundTemplate = template.bind(myModel);
+  var hero = new Backbone.Model({name: 'SuperMan', power: 'strength'}),
+      boundTemplate = template.bind(hero);
   ```
 
-The above two steps can be combined into one.
+Retrieving and binding to the template can be combined into one step.
 
   ```js
-  var boundTemplate = EndDash.registerTemplate('templateName', myModel);
+  var hero = new Backbone.Model({name: 'SuperMan', power: 'strength'}),
+      boundTemplate = EndDash.registerTemplate('superhero', hero);
   ```
 
 Next, display the HTML for this template on the page.
 
   ```js
-  someElem.html(boundTemplate.el);
+  $('.content').html(boundTemplate.el);
   ```
 
 Partials
