@@ -8,8 +8,6 @@ Please [see the dependency section](#dependencies) for further details.
 
 [Getting started](#getting-started)
 
-[Templating from models](#templating-from-models)
-
 [Building and testing](#building-and-testing)
 
 [Play with examples](#play-with-examples)
@@ -19,7 +17,7 @@ Please [see the dependency section](#dependencies) for further details.
 
 ## Getting started
 
-Include the library and dependencies:
+Include the library and dependencies.
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -28,9 +26,7 @@ Include the library and dependencies:
 <script src="/scripts/end-dash.js"></script>
 ```
 
-## Templating from models
-
-Define your templates:
+Define your templates.
 
 ```html
 <script type="text/enddash" name="character">
@@ -44,15 +40,21 @@ Define your templates:
   </div>
 </script>
 ```
+
 WARNING: A template can only have one root element. In the above case, it is the div with class 'user'.
 
-Bind templates to models in your application code:
+Load your templates into EndDash.
 
 ```javascript
 $.ready(function() {
   // Load all the templates on the page.
   EndDash.bootstrap();
+)};
+```
 
+Bind your templates to models in your application code.
+
+```javascript
   var tony = new Backbone.Model({
     firstName: 'Tony',
     lastName: 'Stark',
@@ -65,7 +67,7 @@ $.ready(function() {
 });
 ```
 
-If your model changes, the DOM updates!
+If your models changes, the DOM will update to reflect the changes.
 
 ## Building and testing
 
