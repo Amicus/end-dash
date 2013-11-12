@@ -10,6 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/syntax.css">
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
@@ -84,6 +85,9 @@
 
 <p>EndDash is a bindings-aware client-side templating language built on top of valid HTML.</p>
 
+<p>At this point EndDash relies on Backbone or Backbone style objects for full functionality.
+Please <a href="#dependencies">see the dependency section</a> for further details.</p>
+
 <p><a href="#getting-started">Getting started</a></p>
 
 <p><a href="#templating-from-models">Templating from models</a></p>
@@ -96,32 +100,28 @@
 
 <h2 id="toc_1">Getting started</h2>
 
-<p>Include the library and dependencies:
-```html</p>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-<script src="http://underscorejs.org/underscore.js"></script>
-
-<script src="http://backbonejs.org/backbone.js"></script>
-
-<script src="/assets/javascripts/end-dash.js"></script>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">## Templating from models
-
-Define your templates:
-
-```html
-&lt;script type=&quot;text/enddash&quot; name=&quot;character&quot;&gt;
-  &lt;div class=&quot;user&quot;&gt;
-    &lt;p&gt;
-      Hello, my name is &lt;span class=&quot;firstName-&quot;&gt;&lt;/span&gt;
-      &lt;span class=&quot;lastName-&quot;&gt;&lt;/span&gt;..
-    &lt;/p&gt;
-
-    &lt;strong class=&quot;quip-&quot;&gt;&lt;/strong&gt;
-  &lt;/div&gt;
-&lt;/script&gt;
+<p>Include the library and dependencies:</p>
+<div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://underscorejs.org/underscore.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://backbonejs.org/backbone.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/scripts/end-dash.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div>
+<h2 id="toc_2">Templating from models</h2>
+
+<p>Define your templates:</p>
+<div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/enddash&quot;</span> <span class="na">name=</span><span class="s">&quot;character&quot;</span><span class="nt">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;user&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+      <span class="nx">Hello</span><span class="p">,</span> <span class="nx">my</span> <span class="nx">name</span> <span class="nx">is</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;firstName-&quot;</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;</span>
+      <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;lastName-&quot;</span><span class="o">&gt;&lt;</span><span class="err">/span&gt;...</span>
+    <span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+    <span class="o">&lt;</span><span class="nx">strong</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;quip-&quot;</span><span class="o">&gt;&lt;</span><span class="err">/strong&gt;</span>
+  <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+<p>WARNING: A template can only have one root element. In the above case, it is the div with class &#39;user&#39;.</p>
+
 <p>Bind templates to models in your application code:</p>
 <div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Load all the templates on the page.</span>
@@ -140,7 +140,7 @@ Define your templates:
 </code></pre></div>
 <p>If your model changes, the DOM updates!</p>
 
-<h2 id="toc_2">Building and testing</h2>
+<h2 id="toc_3">Building and testing</h2>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash">npm install
 
 <span class="c"># We use grunt for running tasks.</span>
@@ -155,7 +155,7 @@ grunt <span class="nb">test</span>
 <span class="c"># Watch for changes and run tests</span>
 grunt watch
 </code></pre></div>
-<h2 id="toc_3">Play with examples</h2>
+<h2 id="toc_4">Play with examples</h2>
 
 <p>If you clone this repo and install grunt as described above
 you can play with some end-dash examples in your browser.
@@ -166,7 +166,7 @@ in your browser (<code>open examples/looping.html</code> for example works
 on OS X), and you can edit the templates or models directly in the
 html file if you want to experiment.</p>
 
-<h1 id="toc_4">Documentation</h1>
+<h1 id="toc_5">Documentation</h1>
 
 <p><a href="#using-model-attributes">Using Model Attributes</a>
   * <a href="#variables">Variables</a>
@@ -197,29 +197,29 @@ html file if you want to experiment.</p>
 
 <p><a href="#debugger">Debugger</a></p>
 
-<h1 id="toc_5">Using Model Attributes</h1>
+<h1 id="toc_6">Using Model Attributes</h1>
 
-<h2 id="toc_6">Variables</h2>
+<h2 id="toc_7">Variables</h2>
 
 <p>EndDash variables are rendered into the body of HTML elements, displaying their values as ordinary text:</p>
 <div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;user-&quot;</span><span class="nt">&gt;</span>
   My name is <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;firstName-&quot;</span><span class="nt">&gt;&lt;/span&gt;</span> <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;lastName-&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>.
 <span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
-<h2 id="toc_7">Attibute Interpolation</h2>
+<h2 id="toc_8">Attibute Interpolation</h2>
 
 <p>Model properties can also be interpolated into any html tag attribute.</p>
 <div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;/person/#{firstName}&#39;</span><span class="nt">&gt;</span> Home Page <span class="nt">&lt;/a&gt;</span>
-</code></pre></div><div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="nx">template</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Derrick&#39;</span><span class="p">}));</span>
+</code></pre></div><div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">template</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span><span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Derrick&#39;</span><span class="p">}));</span>
 </code></pre></div>
 <p>Resulting Tag:</p>
 <div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;/person/Derrick&#39;</span><span class="nt">&gt;</span> Home Page <span class="nt">&lt;/a&gt;</span>
 </code></pre></div>
-<h1 id="toc_8">Inputs</h1>
+<h1 id="toc_9">Inputs</h1>
 
 <p>EndDash does two-way binding between model attributes and input elements.</p>
 
-<h2 id="toc_9">Text Inputs</h2>
+<h2 id="toc_10">Text Inputs</h2>
 
 <p>Text inputs are bound to a referenced attribute on the model in scope.
 To create this binding, add the attribute name with a dash at the end as a classname
@@ -229,7 +229,7 @@ in the template.</p>
   <span class="nt">&lt;input</span>  <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;name-&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/p&gt;</span>
 </code></pre></div>
-<h2 id="toc_10">Radio buttons</h2>
+<h2 id="toc_11">Radio buttons</h2>
 
 <p>Radio buttons bind the selected button&#39;s value to the model&#39;s referenced attribute.</p>
 <div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;div&gt;</span>
@@ -242,7 +242,7 @@ in the template.</p>
   <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;james&quot;</span><span class="nt">&gt;</span>James<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
-<h2 id="toc_11">Checkboxes</h2>
+<h2 id="toc_12">Checkboxes</h2>
 
 <p>Checkboxes are trickier. When unchecked, the referenced attribute on the model will
 be &#39;false&#39;. When checked, the referenced model&#39;s attribute will be set to
@@ -250,9 +250,9 @@ the attribute value on the input element (or &#39;true&#39; if no value is defin
 <div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;p&gt;</span>Do you want to receive notifications about Iron Man?<span class="nt">&lt;/p&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">name=</span><span class="s">&quot;notifyList&quot;</span> <span class="na">class=</span><span class="s">&quot;notify-&quot;</span> <span class="nt">/&gt;</span>
 </code></pre></div>
-<h1 id="toc_12">Looping</h1>
+<h1 id="toc_13">Looping</h1>
 
-<h2 id="toc_13">Simple Looping</h2>
+<h2 id="toc_14">Simple Looping</h2>
 
 <p>EndDash lets you loop through objects in a collection.</p>
 <div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">characters</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">([</span>
@@ -286,7 +286,7 @@ the attribute value on the input element (or &#39;true&#39; if no value is defin
   <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
-<h2 id="toc_14">Polymorphic attributes</h2>
+<h2 id="toc_15">Polymorphic attributes</h2>
 
 <p>If your objects have an enum (or Enumerated type) field, you can specify handling based on which type it is.
 This is best explained with an example.</p>
@@ -345,7 +345,7 @@ class name ending in a dash.</p>
 value not specified with a <code>whenValue-</code> condition, will have this default template rendered
 for them when looping through the collection.</p>
 
-<h2 id="toc_15">Collection Attributes</h2>
+<h2 id="toc_16">Collection Attributes</h2>
 
 <p><em>Please note:</em> Backbone.Collection does <em>not</em> support attributes natively for its collections,
 but there are a number of options for extending collections to do so.  EndDash supports
@@ -360,7 +360,7 @@ different than length), as in the example below:</p>
   <span class="nt">&lt;/p&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
 </code></pre></div>
-<h1 id="toc_16">Conditionals</h1>
+<h1 id="toc_17">Conditionals</h1>
 
 <p>A ternary operator is available for presence handling via &#39;truthiness&#39; for attributes
 that may be present, with or without a false condition:</p>
@@ -374,7 +374,7 @@ that may be present, with or without a false condition:</p>
 and their boolean opposites <code>isNot</code> and <code>hasNot</code>, as above with <code>isAvailable-</code>.  EndDash will hide (via a
 <code>display:none</code> style attribute) any such element when its named attribute is falsy (or hide when truthy in
 the case of <code>isNot</code> and <code>hasNot</code>.)</p>
-<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="nx">template</span><span class="p">.</span><span class="nx">bind</span><span class="p">({</span>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">template</span><span class="p">.</span><span class="nx">bind</span><span class="p">({</span>
   <span class="nx">user</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span>
     <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Tony&#39;</span><span class="p">,</span>
     <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Stark&#39;</span><span class="p">,</span>
@@ -383,14 +383,14 @@ the case of <code>isNot</code> and <code>hasNot</code>.)</p>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-<h1 id="toc_17">Scoping</h1>
+<h1 id="toc_18">Scoping</h1>
 
-<h2 id="toc_18">What is Scoping?</h2>
+<h2 id="toc_19">What is Scoping?</h2>
 
 <p>Scope in EndDash refers to the model on the top of the EndDash stack.
 Each template and partial is given its own scope. The &#39;root&#39; scope is always the object passed
 to EndDash&#39;s &#39;bind&#39; or &#39;getTemplate&#39; function.</p>
-<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="nx">template</span><span class="p">.</span><span class="nx">bind</span><span class="p">({</span>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">template</span><span class="p">.</span><span class="nx">bind</span><span class="p">({</span>
   <span class="nx">user</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span>
     <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Tony&#39;</span><span class="p">,</span>
     <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Stark&#39;</span><span class="p">,</span>
@@ -404,7 +404,7 @@ to EndDash&#39;s &#39;bind&#39; or &#39;getTemplate&#39; function.</p>
 
 <p>Scope can change in two ways:</p>
 
-<h2 id="toc_19">Scoping Down With A Dash</h2>
+<h2 id="toc_20">Scoping Down With A Dash</h2>
 <div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;user-&#39;</span><span class="nt">&gt;</span>
   //Internal HTML
 <span class="nt">&lt;/div&gt;</span>
@@ -412,7 +412,7 @@ to EndDash&#39;s &#39;bind&#39; or &#39;getTemplate&#39; function.</p>
 <p>Scopes into the Backbone Model with properties: &#39;firstName&#39;, &#39;lastName&#39;, and &#39;hobby&#39;.
 This syntax only allows scopping down.</p>
 
-<h2 id="toc_20">Scoping With Paths</h2>
+<h2 id="toc_21">Scoping With Paths</h2>
 
 <p>(UNIX style)</p>
 <div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;user-&#39;</span><span class="nt">&gt;</span>
@@ -443,7 +443,7 @@ This syntax only allows scopping down.</p>
 at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.</p>
 
-<h1 id="toc_21">Presenters</h1>
+<h1 id="toc_22">Presenters</h1>
 
 <p>If you wish to follow the Model-View-Presenter pattern, EndDash supports a hook
 to specify what presenter to use for a given model.  By default, this function
@@ -453,7 +453,7 @@ instead to load a presenter if one is found.  Here&#39;s an example getPresenter
 function being defined and passed in to EndDash that looks for a custom presenter
 in config.presenterDirectory and uses a default base presenter or base collection
 presenter when no presenter specific to the model&#39;s name attribute is defined:</p>
-<div class="highlight"><pre><code class="js language-js" data-lang="js">  <span class="nx">getPresenter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript">  <span class="nx">getPresenter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">modelName</span> <span class="o">=</span> <span class="nx">inflection</span><span class="p">.</span><span class="nx">underscore</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
       <span class="p">,</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">model</span><span class="p">.</span><span class="nx">cid</span>
       <span class="p">,</span> <span class="nx">Presenter</span>
@@ -491,7 +491,7 @@ view specific state not intended to be saved to the server.  Taken further, mode
 a repository for persisted data only, and presenters may be used for all behavior and view state,
 which is how we use them at Amicus.</p>
 
-<h1 id="toc_22">View Integration</h1>
+<h1 id="toc_23">View Integration</h1>
 
 <p>EndDash provides dynamic behavior often otherwise handled by views in Backbone.
 If more specific dynamic behavior is required, take advantadge of EndDash&#39;s hooks to Backbone Views. Simply add
@@ -511,14 +511,14 @@ in scope.</p>
 <p>To lookup the view, EndDash uses a simple view store. You can register views by
 calling <code>EndDash.registerView</code> with the view name and the view class object. You can
 also define your own function and pass it into <code>EndDash.setCustomGetView</code></p>
-<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="nx">EndDash</span><span class="p">.</span><span class="nx">registerView</span><span class="p">(</span><span class="s1">&#39;myViewName&#39;</span><span class="p">,</span> <span class="nx">viewObj</span><span class="p">);</span>
-</code></pre></div><div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="kd">var</span> <span class="nx">views</span> <span class="o">=</span> <span class="p">{},</span>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">EndDash</span><span class="p">.</span><span class="nx">registerView</span><span class="p">(</span><span class="s1">&#39;myViewName&#39;</span><span class="p">,</span> <span class="nx">viewObj</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">views</span> <span class="o">=</span> <span class="p">{},</span>
     <span class="nx">getViews</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="nx">views</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
 <span class="p">};</span>
 <span class="nx">EndDash</span><span class="p">.</span><span class="nx">setCustomGetView</span><span class="p">(</span><span class="nx">getViews</span><span class="p">);</span>
 </code></pre></div>
-<h1 id="toc_23">Partials</h1>
+<h1 id="toc_24">Partials</h1>
 
 <p>Small, reusable components of HTML can be templated in EndDash as partials.
 One common use for partials is iterating through a collection.</p>
@@ -556,9 +556,9 @@ Without data-replace, EndDash will embed the root element beneath the partial&#3
   <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">&quot;alias-&quot;</span><span class="nt">&gt;&lt;/td&gt;</span>
 <span class="nt">&lt;/tr&gt;</span>
 </code></pre></div>
-<h1 id="toc_24">Debugger</h1>
+<h1 id="toc_25">Debugger</h1>
 
-<h2 id="toc_25">Debugging</h2>
+<h2 id="toc_26">Debugging</h2>
 
 <p>Open up a debugger in development mode to inspect the context of the
 template.</p>
@@ -579,6 +579,18 @@ template.</p>
   &lt;/div&gt;
 &lt;/body&gt;
 </code></p>
+
+<h1 id="toc_27">Misc</h1>
+
+<h2 id="toc_28">Dependencies</h2>
+
+<p>In its current release, EndDash relies on Backbone style events to update
+the DOM when a bound object changes. This means only objects which define an interface
+with Backbone&#39;s &quot;on, once, set, get&quot; will interpolate model attributes into the DOM and
+update the DOM on model changes.</p>
+
+<p>EndDash used without Backbone style getting &amp; setting will still interpolate
+a bound object&#39;s attributes into the DOM but will not update the DOM on model changes.</p>
 
 
             <p>You can also see some of them here:</p>
