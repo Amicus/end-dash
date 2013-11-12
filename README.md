@@ -1,4 +1,3 @@
-
 EndDash
 =======
 
@@ -434,7 +433,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 </div>
 ```
 
-'`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
+`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
 at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
