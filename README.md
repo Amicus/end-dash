@@ -594,52 +594,59 @@ $('.content').html(boundTemplate.el);
 Partials
 ========
 
-Small, reusable components of HTML can be templated in EndDash as partials.
-One common use for partials is iterating through a collection.
+Small, reusable, components of HTML can be templated in EndDash as partials.
+To use a partial, add `src='templateName'` as an attribute to an element with no children.
 
-
-```javascript
-var person1 = new Backbone.Model({firstName: 'Tony', lastName: 'Stark', alias: 'IronMan'});
-var person2 = new Backbone.Model({firstName: 'James', lastName: 'Rhodes', alias: 'WarMachine'});
-var person3 = new Backbone.Model({firstName: 'Pepper', lastName: 'Potts', alias: 'none' });
-
-var people = new Backbone.Collection([person1, person2, person3]);
+```html
+<script type='text/enddash' name='superheroes'>
+  <img src="#{logo}" />
+  <div class='heroes-'>
+    <div src='superhero-navigation' data-replace></div>
+  </div>
+</script>
 ```
+The partial will be passed the model in scope as its root element.
 
-Iterate through the collection using data-each.
-
-The data-replace attribute tells EndDash to substitute the partial's root element for this element.
+The data-replace attribute tells EndDash to substitute the partial's root element for its partial.
 Without data-replace, EndDash will embed the root element beneath the partial's element and leave it.
 
-```html
-<h2>Characters</h2>
-<h3>Cast of characters include:</h3>
-<table id="members_list">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Alias</th>
-    </tr>
-  </thead>
-  <tbody class="people-">
-    <div data-each>
-      <div src='./partials/person' data-replace></div>
-    </div>
-  </tbody>
-</table>
-```
-
-and in your partials folder another EndDash template such as:
+If elsewhere you define this partial as:
 
 ```html
-<tr class="userRow">
-  <td class="firstName-"></td>
-  <td class="lastName-"></td>
-  <td class="alias-"></td>
-</tr>
+<script type='text/enddash' name='superhero-navigation'>
+  <ul data-each>
+    <li>
+      <a href='#{url}'><span class='name-'></span></a>
+    </li>
+  </ul>
+</script>
 ```
 
+And bind to the top level template with:
+
+```javascript
+template.bind({
+    heroes: new Backbone.Collection([
+      new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
+      new Backbone.Model({name: 'Spiderman', url: '/superheroes/webMaster'}),
+      new Backbone.Model({name: 'Superwoman', url: '/superheroes/strong'})
+    ]),
+    logo: '/public/emblems/protectTheWorld'
+});
+```
+
+This will result in:
+
+```html
+<img class='/public/emblems/protectTheWorld'>
+<div class='heroes-'>
+  <ul>
+    <li><a href='/superheroes/techGenius'>Iron Man</a></li>
+    <li><a href='/superheroes/webMaster'>Spiderman</a></li>
+    <li><a href='/superheroes/strong'>Superwoman</a></li>
+  </ul>
+</div>
+```
 
 Debugger
 ======
