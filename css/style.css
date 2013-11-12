@@ -123,7 +123,7 @@ article pre{
 }
 
 pre, code{
-    background:red;
+    background:#f5f5f5;
 }
 
 /*EXAMPLESSSSS*/
@@ -137,10 +137,17 @@ pre, code{
     color:#021D3C;
     font-weight:100;
     text-align: center;
-    background:#F9F2F4;
+    //background:#F9F2F4;
     border-radius:5px;
     }
 
+#attributes div{
+    margin-left: 20px;
+}
+
+#inputs div p input{
+    clear:both;
+}
 
 footer{
     background:#021D3C;
