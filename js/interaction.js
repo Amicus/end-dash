@@ -11,7 +11,7 @@ $(document).ready(function() {
   var highest_level = headers.map(function(_, ele) { return get_level(ele) }).get().sort()[0]
   var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>'
 
-  var level = get_level(headers[0]), this_level, html = "<ol>";
+  var level = get_level(headers[0]), this_level, html = "<ul>";
   headers.on('click', function() {
     if (!no_back_to_top_links) window.location.hash = this.id
   }).addClass('clickable-header').each(function(_, header) {
@@ -22,12 +22,12 @@ $(document).ready(function() {
     if (this_level === level) // same level as before; same indenting
       html += "<li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
     else if (this_level < level) // higher level than before; end parent ol
-      html += "</li></ol></li><li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
+      html += "</li></ul></li><li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
     else if (this_level > level) // lower level than before; expand the previous to contain a ol
-      html += "<ol><li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
+      html += "<ul><li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
     level = this_level; // update for the next one
   });
-  html += "</ol>";
+  html += "</ul>";
   if (!no_back_to_top_links) {
     $(document).on('click', '.back-to-top', function() {
       $(window).scrollTop(0)
