@@ -12,6 +12,11 @@
 body{
   font-family: 'Lato', sans-serif;
   color:#021D3C;
+  line-height: 2em;
+}
+
+h1, h2{
+    font-family: 'Lato', sans-serif;
 }
 
 nav{
@@ -23,6 +28,51 @@ nav{
     height: 100%;
     overflow-x:hidden;
 }
+
+nav div h1{
+    display: block;
+}
+
+nav div h1 a:hover{
+    text-decoration: none;
+}
+
+nav .logoWrapper:hover .hovered {
+    transition: clip .3s ease-in-out;
+    clip:rect(0,170px,53px,0);
+}
+
+nav div h1.noHover a {
+    width:170px;
+    font-size: 0.8em;
+    text-align: center;
+    padding:10px;
+    font-weight: 100;
+    border:1px solid #021D3C;
+    color:#021D3C;
+    margin: auto;
+    display: block;
+}
+
+nav div h1.hovered{
+    position:absolute;
+    top:-20px;
+    left: 21px;
+    clip:rect(0,0px,53px,0);
+}
+
+nav div h1.hovered a{
+    width:170px;
+    font-size: 0.8em;
+    text-align: center;
+    padding:10px;
+    font-weight: 100;
+    border:1px solid #021D3C;
+    color:#ffffff;
+    margin:auto;
+    display:block;
+    background:rgba(2,29,60,1);
+    }
 
 .navigation{
     overflow-y:scroll;
@@ -44,23 +94,6 @@ nav .logoWrapper {
   height:51px;
   box-sizing: border-box;
     box-shadow: 0 5px 5px rgba(255,255,255,.5)
-}
-
-nav h1{
-    width:150px;
-    font-size: 1.8em;
-    vertical-align: middle;
-    padding:10px;
-    font-weight: 300;
-    border:1px solid #021D3C;
-    color:#021D3C;
-    margin: 0 auto;
-    cursor: pointer;
-}
-
-nav .logoWrapper:hover h1 {
-    background-color: #021D3C;
-    color: white;
 }
 
 nav ol li a{
@@ -88,7 +121,7 @@ nav ol li a:hover{
     background: transparent;
     overflow-x:hidden;
     overflow-y:auto;
-    padding-top:20px;
+    padding:40px;
     border-left:2px solid #021D3C;
 }
 
@@ -97,24 +130,24 @@ article{
   padding:1em;
 }
 
-article h1{
+.container h1{
   font-size: 2em;
-  margin: 0 0 20px 0;
+  padding: 50px 0 0px 0;
 }
 
-article h2{
+.container h1:not(:first-child) {
+  margin-top: 60px;
+  border-top: 2px solid #021D3C;
+}
+
+.container h2{
   font-size:1.5em;
-    margin: 0 0 15px 10px;
-    padding:5px;
+  margin: 60px 0 20px 0;
 }
 
-article p{
-    font-size: 1.4em;
-    font-weight:300;
-    margin:0 0 10px 20px;
-    padding:5px;
-    line-height:1.3em;
-    letter-spacing:.005em;
+.container p{
+    padding:  0 30px;
+    font-size: 1.1em;
 }
 
 article pre{
@@ -123,9 +156,18 @@ article pre{
     border:none;
 }
 
-pre, code{
-    //background:#444444;
+pre{
+    margin:30px;
 }
+
+code {
+    margin: 0 2px;
+    padding: 2px 4px;
+}
+
+/*code:hover {
+    padding: 10px;
+}*/
 
 /*EXAMPLESSSSS*/
 #user-edit div{

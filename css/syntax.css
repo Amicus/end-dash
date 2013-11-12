@@ -1,13 +1,14 @@
 pre, code {
   background: #012642;
   border:none;
+  color:#ffffff;
 }
 
 /**/
 
  .hll { background-color: #49483e }
  .c { color: #0088FF } /* Comment */
- .err { color: #960050; background-color: #1e0010 } /* Error */
+ .err { color: #BAFFE9; background-color: #004C5F; border-radius:4px; } /* Error */
  .k { color: #FF9D00 } /* Keyword */
  .l { color: #ae81ff } /* Literal */
  .n { color: #3AD900 } /* Name */

@@ -71,7 +71,7 @@ $(document).ready(function() {
   // Load all the templates on the page.
 
   var you = new Backbone.Model({
-    name: 'YourName',
+    name: 'Tony Stark',
   });
 
   var extremeCharacter = new Backbone.Model({
