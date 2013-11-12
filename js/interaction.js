@@ -96,3 +96,35 @@ $(document).ready(function() {
   $('#inputs2').html(template2.el);
 
 });
+
+// Freddie's happy castle
+
+var w = $(window)
+
+w.scroll(
+    function(){
+
+
+var footer = $("footer").offset().top,
+    inner = $(window).innerHeight(),
+    scrollTop = $(window).scrollTop(),
+    navSwap  = footer - inner,
+    cssBottom = scrollTop - navSwap
+
+console.log(footer, inner, scrollTop)
+console.log(navSwap)
+
+if (navSwap <= scrollTop)
+    {console.log(cssBottom)
+    $("nav").css({
+        "bottom": cssBottom,
+        "transition": "all 0s linear"
+    })
+} else {
+    $("nav").css({
+        "bottom": 0
+    })
+}
+
+
+})
