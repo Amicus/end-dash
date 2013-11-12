@@ -35,7 +35,10 @@ $(document).ready(function() {
     })
   }
   output.hide().html(html).show('slow');
-  //$('.container').find('a').addClass('hidden');
+  $('.container').find('a').addClass('hidden');
+  $('.container').find('a').addClass('hidden');
+  $("a:contains('dependency')").removeClass('hidden')
+    .attr('href', $("a:contains('Dependencies')").attr('href'))
   $("p:contains('*')").addClass('hidden')
   $('ol').siblings().siblings().addClass('hidden');
   $('li').on('click', function(evt) {
