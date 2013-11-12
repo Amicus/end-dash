@@ -77,7 +77,7 @@
 		
 		adjustNav: function(self, $parent) {
 			self.$elem.find('.' + self.config.currentClass).removeClass(self.config.currentClass);
-			$parent.addClass(self.config.currentClass);
+			$parent.children().first('a').addClass(self.config.currentClass);
 		},
 		
 		bindInterval: function() {
