@@ -50,7 +50,10 @@ layout: default
         <h1>EndDash</h1>
         <h3>EndDash is a bindings-aware client-side templating language built on top of valid HTML.</h3>
          <div id="inputs"></div>
-         <!-- the executable code responsibel for the above example -->
+        {% capture inputs_content %}
+        {% include inputs_example.md %}
+        {% endcapture %}
+        {{ inputs_content | markdownify }}
     </div>
 
     <div class="container">
@@ -114,10 +117,10 @@ layout: default
     <div>
       <p>
         What is your name?
-        <input  type="text" id="exampleInput" class="name-" onfocus="if(this.value == 'Tony Stark'){this.value = '';}" type="text" onblur="if(this.value == ''){this.value='Tony Stark';}">
+        <input  type="text" id="exampleInput" class="fullName-" onfocus="if(this.value == 'Tony Stark'){this.value = '';}" type="text" onblur="if(this.value == ''){this.value='Tony Stark';}">
       </p>
       <p>
-        Welcome, <span class='name-'></span>.
+        Welcome, <span class='firstName-'></span>.
       </p>
     </div>
   </script>

@@ -82,15 +82,20 @@ $(document).ready(function() {
   //interactive inputs example
   // Load all the templates on the page.
 
-  var you = new Backbone.Model({
-    name: 'Tony Stark',
+  var user = new Backbone.Model({
+    fullName: 'Tony Stark',
   });
+
+  user.on('change:fullName', function() {
+    this.set('firstName', this.get('fullName').split(' ')[0])
+  })
+
 
   var extremeCharacter = new Backbone.Model({
     name: 'Tony'
   });
 
-  var template = EndDash.getTemplate('inputName', you),
+  var template = EndDash.getTemplate('inputName', user),
       template2 = EndDash.getTemplate('whichCharacter', extremeCharacter);
 
   $('#inputs').html(template.el);
