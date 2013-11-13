@@ -244,70 +244,83 @@ var characters = new Backbone.Collection([
 
 ## Polymorphic attributes
 
-If your objects have an enum (or Enumerated type) field, you can specify handling based on which type it is.
-This is best explained with an example.
+If your objects have an enum field, you can branch based on its value.
 
-In this case, `role` is behaving as a polymorphic attribute.
-
-```html
-<div class="rolePolymorphic-" data-each>
-  <div class="whenHero-">
-    <span class="firstName-"></span>
-    says: Don't worry. I'll probably save you.
-  </div>
-  <div class="whenVillain-">
-    <span class="firstName-"></span>
-    <span class="lastName-"></span>
-    says: Worry.</div>
-  <div class="whenCivilian-">
-   <span class="firstName-"></span>
-   says: Get me outta here!
-   </div>
-</div>
-```
-The resulting HTML will be:
+For example, `role` behaves as a polymorphic attribute:
 
 ```html
 <div class="rolePolymorphic-" data-each>
   <div class="whenHero-">
-    <span class="firstName-">Tony</span>
-    says: Don't worry.  I'll probably save you.
+    <span class="firstName-"></span> says:
+    Don't worry. I'll probably save you.
   </div>
-  <div class="whenCivilian-">
-    <span class="firstName-">Piper</span>
-    says: Get me outta here!
-  </div>
+
   <div class="whenVillain-">
-    <span class="firstName-">Iron</span>
-    <span class="lastName-">Monger</span>
-    says: Worry.
+    <span class="firstName-"></span> says:
+    Worry.
   </div>
-  <div class="whenHero-">
-    <span class="firstName-">James</span>
-    says: Don't worry.  I'll probably save you.
+
+  <div class="whenCivilian-">
+    <span class="firstName-"></span> says:
+    Get me outta here!
   </div>
 </div>
 ```
 
-To add a, catch-all, base case; add a child div without a
-class name ending in a dash.
+Given the following objects:
+
+```js
+new Backbone.Collection([
+  new Backbone.Model({firstName: 'Tony', role: 'hero'}),
+  new Backbone.Model({firstName: 'Piper', role: 'civilian'}),
+  new Backbone.Model({firstName: 'Iron', role: 'villain'}),
+  new Backbone.Model({firstName: 'James', role: 'hero'})
+]);
+```
+
+The template would produce the following HTML:
 
 ```html
-<div class='rolePolymorphic-'>
+<div class="rolePolymorphic-" data-each>
   <div class="whenHero-">
-    <span class="firstName-"></span>
-    says: Don't worry.  I'll probably save you.
+    <span class="firstName-">Tony</span> says:
+    Don't worry.  I'll probably save you.
   </div>
+
+  <div class="whenCivilian-">
+    <span class="firstName-">Piper</span> says:
+    Get me outta here!
+  </div>
+
+  <div class="whenVillain-">
+    <span class="firstName-">Iron</span> says:
+    Worry.
+  </div>
+
+  <div class="whenHero-">
+    <span class="firstName-">James</span> says:
+    Don't worry.  I'll probably save you.
+  </div>
+</div>
+```
+
+To add a default case, include a non-EndDash child div:
+
+```html
+<div class="rolePolymorphic-">
+  <div class="whenHero-">
+    <span class="firstName-"></span> says:
+    Don't worry.  I'll probably save you.
+  </div>
+
+  <!-- Default case! The following gets rendered unless
+       model.get('role') === 'hero'. -->
   <div>
-    <span class="firstName-"></span>
-    says: I've lost my memory.  I don't know who I am!
+    <span class="firstName-"></span> says:
+    I've lost my memory.  I don't know who I am!
   </div>
 </div>
 ```
-
-Any models in the collection without the named polymorphic attribute, or with an attribute
-value not specified with a `whenValue-` condition, will have this default template rendered
-for them when looping through the collection.
 
 ## Collection Attributes
 
