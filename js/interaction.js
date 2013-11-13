@@ -86,11 +86,6 @@ $(document).ready(function() {
     fullName: 'Tony Stark',
   });
 
-  user.on('change:fullName', function() {
-    this.set('firstName', this.get('fullName').split(' ')[0])
-  })
-
-
   var extremeCharacter = new Backbone.Model({
     name: 'Tony'
   });

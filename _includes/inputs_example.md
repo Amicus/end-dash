@@ -5,8 +5,8 @@
         What is your name?
         <input  type="text" class="fullName-">
       </p>
-      <p>
-        Welcome, <span class='firstName-'></span>.
+      <p class='hasFullName-'>
+        Welcome, <span class='fullName-'></span>.
       </p>
     </div>
 ```
