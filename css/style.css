@@ -329,6 +329,10 @@ footer a:hover {
     padding: 30px;
   }
 
+  a img {
+    height: 8em;
+  }
+
   h1.noHover a {
     width:170px;
     font-size: 0.8em;
