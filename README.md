@@ -9,8 +9,7 @@ See [the dependency section](#dependencies) for further details.
 
 ([Documentation](#documentation) is below)
 
-Getting Started
-===============
+## Getting Started
 
 Install EndDash and install grunt helper
 
@@ -76,8 +75,7 @@ Bind your templates to models in your application code.
 
 If your models changes, the DOM will update to reflect the changes.
 
-Ready Made Examples
-===================
+## Ready Made Examples
 
 If you clone this repo and install grunt as described above
 you can play with some end-dash examples in your browser.
@@ -123,10 +121,10 @@ Documentation
 
 
 
-Using Model Attributes
-======================
+## Using Model Attributes
 
-## Variables
+
+### Variables
 
 EndDash variables are rendered into the body of HTML elements, displaying their values as ordinary text:
 
@@ -136,7 +134,7 @@ EndDash variables are rendered into the body of HTML elements, displaying their 
 </div>
 ```
 
-## Attibute Interpolation
+### Attibute Interpolation
 
 Model properties can also be interpolated into any html tag attribute.
 
@@ -154,12 +152,12 @@ Resulting Tag:
 <a href='/person/Derrick'> Home Page </a>
 ```
 
-Inputs
-======
+## Inputs
+
 
 EndDash does two-way binding between model attributes and input elements.
 
-## Text Inputs
+### Text Inputs
 
 Text inputs are bound to a referenced attribute on the model in scope.
 To create this binding, add the attribute name with a dash at the end as a classname
@@ -172,7 +170,7 @@ in the template.
 </p>
 ```
 
-## Radio buttons
+### Radio buttons
 
 Radio buttons bind the selected button's value to the model's referenced attribute.
 
@@ -188,7 +186,7 @@ Radio buttons bind the selected button's value to the model's referenced attribu
 </div>
 ```
 
-## Checkboxes
+### Checkboxes
 
 Checkboxes are trickier. When unchecked, the referenced attribute on the model will
 be 'false'. When checked, the referenced model's attribute will be set to
@@ -199,10 +197,10 @@ the attribute value on the input element (or 'true' if no value is defined).
 <input type="checkbox" name="notifyList" class="notify-" />
 ```
 
-Looping
-===========
+## Looping
 
-##Simple Looping
+
+### Simple Looping
 
 EndDash lets you loop through objects in a collection.
 
@@ -242,7 +240,7 @@ var characters = new Backbone.Collection([
 </div>
 ```
 
-## Polymorphic attributes
+### Polymorphic attributes
 
 If your objects have an enum (or Enumerated type) field, you can specify handling based on which type it is.
 This is best explained with an example.
@@ -309,7 +307,7 @@ Any models in the collection without the named polymorphic attribute, or with an
 value not specified with a `whenValue-` condition, will have this default template rendered
 for them when looping through the collection.
 
-## Collection Attributes
+### Collection Attributes
 
 *Please note:* Backbone.Collection does *not* support attributes natively for its collections,
 but there are a number of options for extending collections to do so.  EndDash supports
@@ -327,8 +325,8 @@ different than length), as in the example below:
 </div>
 ```
 
-Conditionals
-============
+## Conditionals
+
 
 A ternary operator is available for presence handling via 'truthiness' for attributes
 that may be present, with or without a false condition:
@@ -357,10 +355,9 @@ template.bind({
 });
 ```
 
-Scoping
-=======
+## Scoping
 
-## What is Scoping?
+### What is Scoping?
 
 Scope in EndDash refers to the model on the top of the EndDash stack.
 Each template and partial is given its own scope. The 'root' scope is always the object passed
@@ -382,7 +379,7 @@ The root object is the object literal with the property 'user'.
 
 Scope can change in two ways:
 
-## Scoping Down With A Dash
+### Scoping Down With A Dash
 
 ```html
 <div class='user-'>
@@ -429,8 +426,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
-Presenters
-==========
+## Presenters
 
 If you wish to follow the Model-View-Presenter pattern, EndDash supports a hook
 to specify what presenter to use for a given model.  By default, this function
@@ -481,8 +477,7 @@ view specific state not intended to be saved to the server.  Taken further, mode
 a repository for persisted data only, and presenters may be used for all behavior and view state,
 which is how we use them at Amicus.
 
-View Integration
-================
+## View Integration
 
 EndDash provides dynamic behavior often otherwise handled by views in Backbone.
 If more specific dynamic behavior is required, take advantadge of EndDash's hooks to Backbone Views. Simply add
@@ -518,8 +513,7 @@ var views = {},
 EndDash.setCustomGetView(getViews);
 ```
 
-Templates
-=========
+## Templates
 
 ### Registering a Template
 
@@ -581,8 +575,7 @@ Show the el property of the template.
 $('.content').html(boundTemplate.el);
 ```
 
-Partials
-========
+## Partials
 
 Small, reusable, components of HTML can be templated in EndDash as partials.
 To use a partial, add `src='templateName'` as an attribute to an element with no children.
@@ -638,10 +631,9 @@ This will result in:
 </div>
 ```
 
-Debugger
-======
+## Debugger
 
-## Debugging
+### Debugging
 
 Open up a debugger in development mode to inspect the context of the
 template.
@@ -663,10 +655,9 @@ In a child model scope:
 </body>
 ```
 
-Misc
-======
+## Misc
 
-## Dependencies
+### Dependencies
 
 In its current release, EndDash relies on Backbone style events to update
 the DOM when a bound object changes. This means only objects which define an interface
