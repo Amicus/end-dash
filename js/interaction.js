@@ -117,6 +117,7 @@ w.scroll(
                 "bottom": cssBottom,
                 "transition": "all 0s linear"
             })
+
         } else {
             $("nav").css({
                 "bottom": 0

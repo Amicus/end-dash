@@ -54,7 +54,7 @@ nav div h1.noHover a {
     font-size: 0.8em;
     text-align: center;
     padding:10px;
-    font-weight: 100;
+    font-weight: 300;
     border:1px solid #021D3C;
     color:#021D3C;
     margin: auto;
@@ -73,7 +73,7 @@ nav div h1.hovered a{
     font-size: 0.8em;
     text-align: center;
     padding:10px;
-    font-weight: 100;
+    font-weight: 300;
     border:1px solid #021D3C;
     color:#ffffff;
     margin:auto;
@@ -104,7 +104,8 @@ nav .logoWrapper {
   margin: 16px;
   height:51px;
   box-sizing: border-box;
-    box-shadow: 0 5px 5px rgba(255,255,255,.5)
+  box-shadow: 0 5px 5px rgba(255,255,255,.5);
+  background-color: white;
 }
 
 nav ul li a{
@@ -162,22 +163,24 @@ nav ul li.activeChildren ul {
 }
 
 .endDashFold #inputs p:nth-child(2){
-    color:red;
+    text-align: center;
+    display: block;
+    font-size: 3.5em;
+    margin-top: 40px;
 }
 
 .endDashFold input {
     width:100%;
     background:transparent;
     border:none;
-    border-bottom:15px solid white;
+    border-bottom:8px solid white;
     color: white;
-    font-size:6em;
+    font-size:3em;
     outline:none;
-    padding:0 20px;
+    padding:20px;
     margin:20px 0;
-    background:rgba(32,59,90,1);
-    border-radius:15px;
     text-shadow:4px 4px 0 rgba(2,29,60,1);
+    background-color: rgba(22,49,80,1);
 }
 
 .docs{
