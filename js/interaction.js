@@ -42,6 +42,7 @@ $(document).ready(function() {
 
   $('.toc').onePageNav({
       currentClass: 'active',
+      parentClass: 'activeChildren',
       changeHash: false,
       scrollSpeed: 750,
       scrollOffset: 30,

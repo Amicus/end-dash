@@ -77,6 +77,8 @@
 		
 		adjustNav: function(self, $parent) {
 			self.$elem.find('.' + self.config.currentClass).removeClass(self.config.currentClass);
+			self.$elem.find('.' + self.config.parentClass).removeClass(self.config.parentClass);
+			$parent.addClass(self.config.parentClass);
 			$parent.children().first('a').addClass(self.config.currentClass);
 		},
 		
