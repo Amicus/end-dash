@@ -123,6 +123,12 @@ nav ul li a:hover, nav ul li.active a{
     text-decoration: none;
 }
 
+.activeChildren > a{
+    background:#021D3C;
+    color:white;
+    text-decoration: none;
+}
+
 nav ul li ul{
     display: none;
 }
