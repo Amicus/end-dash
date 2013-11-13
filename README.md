@@ -4,19 +4,25 @@ EndDash
 
 EndDash is a bindings-aware client-side templating language built on top of valid HTML.
 
-At this point EndDash relies on Backbone or Backbone style objects for full functionality.
-Please [see the dependency section](#dependencies) for further details.
+In its current release, EndDash relies on Backbone style objects.
+See [the dependency section](#dependencies) for further details.
 
-[Getting started](#getting-started)
+([Documentation](#documentation) is below)
 
-[Building and testing](#building-and-testing)
+Getting Started
+===============
 
-[Play with examples](#play-with-examples)
+Install EndDash and install grunt helper
 
-[Documentation](#documentation)
+```bash
+npm install
 
+# We use grunt for running tasks.
+npm install -g grunt-cli
 
-## Getting started
+# Build end-dash in build/ directory
+grunt build # also aliased as `grunt`
+```
 
 Include the library and dependencies.
 
@@ -24,7 +30,7 @@ Include the library and dependencies.
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="http://backbonejs.org/backbone.js"></script>
-<script src="/scripts/end-dash.js"></script>
+<script src="/end-dash/build/end-dash.js"></script>
 ```
 
 Define your templates.
@@ -70,25 +76,8 @@ Bind your templates to models in your application code.
 
 If your models changes, the DOM will update to reflect the changes.
 
-## Building and testing
-
-```bash
-npm install
-
-# We use grunt for running tasks.
-npm install -g grunt-cli
-
-# Build end-dash in build/ directory
-grunt build # also aliased as `grunt`
-
-# Run tests
-grunt test
-
-# Watch for changes and run tests
-grunt watch
-```
-
-## Play with examples
+Ready Made Examples
+===================
 
 If you clone this repo and install grunt as described above
 you can play with some end-dash examples in your browser.
