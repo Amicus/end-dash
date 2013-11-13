@@ -49,7 +49,8 @@ layout: default
     <div class="endDashFold">
         <h1>EndDash</h1>
         <h3>EndDash is a bindings-aware client-side templating language built on top of valid HTML.</h3>
-        <div id="inputs"></div>
+         <div id="inputs"></div>
+         <!-- the executable code responsibel for the above example -->
     </div>
 
     <div class="container">
@@ -113,7 +114,7 @@ layout: default
     <div>
       <p>
         What is your name?
-        <input  type="text" class="name-">
+        <input  type="text" id="exampleInput" class="name-" onfocus="if(this.value == 'Tony Stark'){this.value = '';}" type="text" onblur="if(this.value == ''){this.value='Tony Stark';}">
       </p>
       <p>
         Welcome, <span class='name-'></span>.

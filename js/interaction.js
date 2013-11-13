@@ -103,29 +103,40 @@ $(document).ready(function() {
 var w = $(window)
 
 w.scroll(
+
     function(){
 
+        var footer = $("footer").offset().top,
+            inner = $(window).innerHeight(),
+            scrollTop = $(window).scrollTop(),
+            navSwap  = footer - inner,
+            cssBottom = scrollTop - navSwap
 
-var footer = $("footer").offset().top,
-    inner = $(window).innerHeight(),
-    scrollTop = $(window).scrollTop(),
-    navSwap  = footer - inner,
-    cssBottom = scrollTop - navSwap
-
-if (navSwap <= scrollTop) {
-    $("nav").css({
-        "bottom": cssBottom,
-        "transition": "all 0s linear"
-    })
-} else {
-    $("nav").css({
-        "bottom": 0
-    })
-}
+        if (navSwap <= scrollTop) {
+            $("nav").css({
+                "bottom": cssBottom,
+                "transition": "all 0s linear"
+            })
+        } else {
+            $("nav").css({
+                "bottom": 0
+            })
+        }
 })
+
 
 $(window).ready(function() {
-  $(".endDashFold").css({
+    $(".endDashFold").css({
         "min-height": $(window).innerHeight()
-  })
+    })
 })
+
+w.ready(
+    function landingPageInputFocus () {
+    console.log("1")
+     $(".endDashFold #inputs div p input").focus();
+     console.log("2")
+})
+
+
+

@@ -143,8 +143,9 @@ nav ul li.activeChildren ul {
 
 .endDashFold h1 {
     text-align: center;
-    font-size: 4em;
+    font-size: 8em;
     font-weight: 100;
+    margin: 10px 0 50px 0;
 }
 
 .endDashFold h3 {
@@ -158,7 +159,10 @@ nav ul li.activeChildren ul {
 .endDashFold #inputs p{
     font-size:2em;
     font-weight:100;
+}
 
+.endDashFold #inputs p:nth-child(2){
+    color:red;
 }
 
 .endDashFold input {
@@ -169,6 +173,11 @@ nav ul li.activeChildren ul {
     color: white;
     font-size:6em;
     outline:none;
+    padding:0 20px;
+    margin:20px 0;
+    background:rgba(32,59,90,1);
+    border-radius:15px;
+    text-shadow:4px 4px 0 rgba(2,29,60,1);
 }
 
 .docs{
