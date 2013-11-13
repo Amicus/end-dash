@@ -4,8 +4,8 @@ EndDash
 
 EndDash is a bindings-aware client-side templating framework built on top of valid HTML.
 
-In its current release, EndDash relies on Backbone style objects.
-See [the dependency section](#dependencies) for further details.
+In its current release, EndDash relies on Backbone objects. See
+[the dependency section](#dependencies) for further details.
 
 ([Documentation](#documentation) is below)
 
@@ -26,9 +26,11 @@ grunt build # also aliased as `grunt`
 Include the library and dependencies.
 
 ```html
+<!-- Make sure you include these libraries before EndDash -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="http://backbonejs.org/backbone.js"></script>
+
 <script src="/end-dash/build/end-dash.js"></script>
 ```
 
@@ -623,14 +625,9 @@ Misc
 
 ## Dependencies
 
-In its current release, EndDash relies on Backbone style events to update
-the DOM when a bound object changes. This means only objects which define an interface
-with Backbone's "on, once, set, get" will interpolate model attributes into the DOM and
-update the DOM on model changes.
+In its current release, EndDash relies on Backbone's event system to update
+the DOM when a bound object changes. This means only templates bound to
+Backbone objects will live-update.
 
-EndDash used without Backbone style getting & setting will still interpolate
-a bound object's attributes into the DOM but will not update the DOM on model changes.
-
-
-
-
+If you use EndDash with regular JS objects, it'll still interpolate the
+attributes but won't update the template when the object's attributes change.
