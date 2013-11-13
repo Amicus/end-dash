@@ -130,6 +130,10 @@ nav ul li a.active ~ ul {
     display: block;
 }
 
+nav ul li.activeChildren ul {
+    display: block;
+}
+
 .endDashFold {
     background-color: #021D3C;
     margin-left: 245px;
@@ -146,7 +150,7 @@ nav ul li a.active ~ ul {
 .endDashFold h3 {
     font-size:2.4em;
      text-align: center;
-    font-weight: 100;   
+    font-weight: 100;
     margin:0 10% 60px 10%;
     line-height:1.4em;
 }
