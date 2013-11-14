@@ -2,9 +2,9 @@ require('../support/helper');
 
 var expect = require("expect.js"),
     fs = require("fs"),
-    Backbone = require("backbone"),
     _ = require("underscore"),
     EndDash = require("../../lib/end-dash"),
+    Backbone = EndDash.Backbone,
     generateTemplate = require("../support/generate_template");
 
 describe("A template with partials", function() {

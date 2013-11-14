@@ -2,7 +2,7 @@ require('../support/helper');
 
 var expect = require("expect.js"),
     fs = require("fs"),
-    Backbone = require("backbone"),
+    Backbone = require('../../lib/end-dash').Backbone,
     generateTemplate = require("../support/generate_template"),
     Factory = require("test-things").Factory;
 

@@ -2,7 +2,7 @@ require('./support/helper');
 
 var generateTemplate = require('./support/generate_template'),
     DebuggerReaction = require('../lib/reactions/debugger'),
-    Backbone = require('backbone'),
+    Backbone = require('../lib/end-dash').Backbone,
     expect = require('expect.js');
 
 describe('<div debugger>', function() {

@@ -2,7 +2,7 @@ require('./support/helper');
 
 var generateTemplate = require("./support/generate_template"),
     ViewReaction = require("../lib/reactions/view"),
-    Backbone = require("backbone"),
+    Backbone = require('../lib/end-dash').Backbone,
     expect = require("expect.js"),
     views = {};
 

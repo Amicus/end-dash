@@ -1,7 +1,7 @@
 require('../support/helper');
 
 var expect = require("expect.js"),
-    Backbone = require("backbone"),
+    Backbone = require('../../lib/end-dash').Backbone,
     Model = Backbone.Model,
     Collection = Backbone.Collection,
     generateTemplate = require("../support/generate_template");

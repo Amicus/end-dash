@@ -49,5 +49,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['build']);
   grunt.registerTask('build', ['browserify', 'uglify']);
-  grunt.registerTask('test', ['simplemocha']);
+  grunt.registerTask('test', ['build', 'simplemocha']);
 };

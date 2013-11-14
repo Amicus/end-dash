@@ -1,8 +1,8 @@
 require('./support/helper');
 
 var expect = require('expect.js'),
-    Backbone = require('backbone'),
     EndDash = require('../lib/end-dash'),
+    Backbone = EndDash.Backbone,
     templateStore = EndDash.templateStore,
     viewStore = EndDash.viewStore,
     Template = require('../lib/template');
