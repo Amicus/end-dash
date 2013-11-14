@@ -75,7 +75,7 @@ $(document).ready(function() {
   user.on('change:name', function(evt){
     if (this.get('name').match(/<.*>/))
     {
-      $('#easterEgg').replaceWith('<img id="nice" src="http://i.imgur.com/9Zv4V.gif">')
+      $('#easterEgg').attr('id', 'nice')
     }
     if (this.get('name').match(/<\s*script.*>/)){
       this.set('name', 'Hacker');
