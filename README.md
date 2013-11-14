@@ -2,7 +2,7 @@
 EndDash
 =======
 
-EndDash is a bindings-aware client-side templating language built on top of valid HTML.
+EndDash is a bindings-aware client-side templating framework built on top of valid HTML.
 
 In its current release, EndDash relies on Backbone style objects.
 See [the dependency section](#dependencies) for further details.
@@ -480,7 +480,7 @@ EndDash.setCustomGetView(getViews);
 Templates
 =========
 
-### Registering a Template
+## Registering a Template
 
 This can be done manually.
 
@@ -509,7 +509,7 @@ $.ready(function() {
 )};
 ```
 
-### Binding to a Template
+## Binding to a Template
 
 First, get the EndDash-parsed version of your template.
 
@@ -532,7 +532,7 @@ var hero = new Backbone.Model({name: 'Superman'}),
     boundTemplate = EndDash.getTemplate('greetings', hero);
   ```
 
-### Displaying HTML of a bound Template
+## Displaying HTML of a bound Template
 
 Show the el property of the template.
 
@@ -597,10 +597,8 @@ This will result in:
 </div>
 ```
 
-Debugger
-======
-
-## Debugging
+Debugging
+=========
 
 Open up a debugger in development mode to inspect the context of the
 template.
@@ -623,7 +621,7 @@ In a child model scope:
 ```
 
 Misc
-======
+====
 
 ## Dependencies
 
