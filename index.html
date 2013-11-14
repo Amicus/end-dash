@@ -49,12 +49,15 @@ layout: default
     </div>
 
     <nav id='scrollSpyTarget'>
+    <ul style="display:none">
+    <li><a href="#landing"></a></li>
+    </ul>
         <div class="logoWrapper">
           <h1 class="noHover">
-              <a href="#">END DASH</a>
+              <a href="#landing">END DASH</a>
           </h1>
           <h1 class="hovered">
-              <a href="#">END DASH</a>
+              <a href="#landing">END DASH</a>
           </h1>
           <div class="logoDash"></div>
           <div class="nameDash"></div>
@@ -66,7 +69,7 @@ layout: default
         </div>
     </nav>
 
-    <div class="endDashFold">
+    <div class="endDashFold" id="landing">
         <h1>EndDash</h1>
         <h3>EndDash is a bindings-aware client-side templating language built on top of valid HTML.</h3>
          <div id="inputs"></div>
