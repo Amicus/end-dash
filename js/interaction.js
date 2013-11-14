@@ -11,7 +11,7 @@ $(document).ready(function() {
   var highest_level = headers.map(function(_, ele) { return get_level(ele) }).get().sort()[0]
   var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>'
 
-  var level = get_level(headers[0]), this_level, html = "<ul>";
+  var level = get_level(headers[0]), this_level, html = "<ul class='nav'>";
   headers.on('click', function() {
     if (!no_back_to_top_links) window.location.hash = this.id
   }).addClass('clickable-header').each(function(_, header) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
     else if (this_level < level) // higher level than before; end parent ol
       html += "</li></ul></li><li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
     else if (this_level > level) // lower level than before; expand the previous to contain a ol
-      html += "<ul><li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
+      html += "<ul class='nav'><li><a href='#" + header.id + "'>" + header.innerHTML + "</a>";
     level = this_level; // update for the next one
   });
   html += "</ul>";
@@ -40,25 +40,7 @@ $(document).ready(function() {
     .attr('href', $("a:contains('Dependencies')").attr('href'))
   $("p:contains('*')").addClass('hidden')
 
-  $('.toc').onePageNav({
-      currentClass: 'active',
-      parentClass: 'activeChildren',
-      changeHash: false,
-      scrollSpeed: 750,
-      scrollOffset: 30,
-      scrollThreshold: 0.5,
-      filter: '',
-      easing: 'swing',
-      begin: function() {
-          //I get fired when the animation is starting
-      },
-      end: function() {
-          //I get fired when the animation is ending
-      },
-      scrollChange: function($currentListItem) {
-          //I get fired when you enter a section and I pass the list item of the section
-      }
-  });
+
 
   //interactive template example
   EndDash.bootstrap();
@@ -127,6 +109,9 @@ w.scroll(
 
 
 $(window).ready(function() {
+
+    $('body').scrollspy({ target: '#scrollSpyTarget' })
+
     $(".endDashFold").css({
         "min-height": $(window).innerHeight()
     })

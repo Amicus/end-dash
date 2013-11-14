@@ -137,7 +137,7 @@ nav ul li a.active ~ ul {
     display: block;
 }
 
-nav ul li.activeChildren ul {
+nav ul li.active ul {
     display: block;
 }
 

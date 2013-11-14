@@ -48,7 +48,7 @@ layout: default
       </div>
     </div>
 
-    <nav>
+    <nav id='scrollSpyTarget'>
         <div class="logoWrapper">
           <h1 class="noHover">
               <a href="#">END DASH</a>
@@ -76,7 +76,7 @@ layout: default
         {{ inputs_content | markdownify }}
     </div>
 
-    <div class="container">
+    <div class="container" data-spy="scroll" data-target="#scrollSpyTarget">
         {% capture docs_content %}
         {% include README.md %}
         {% endcapture %}
@@ -116,10 +116,9 @@ layout: default
     </script>
   </body>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="js/jquery.nav.js"></script>
-  <script src="js/jquery.scrollTo.js"></script>
   <script src="http://underscorejs.org/underscore.js"></script>
   <script src="http://backbonejs.org/backbone.js"></script>
+  <script src="js/scrollspy.js"></script>
   <script src="js/end-dash.min.js"></script>
   <script type="text/enddash" name="suitColor">
     <div>
