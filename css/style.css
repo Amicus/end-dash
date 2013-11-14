@@ -95,7 +95,11 @@ nav ul {
     margin-bottom: 0;
 }
 
-nav ul li ul li a{
+.nav>li>a:hover{
+  background:#021D3C;
+}
+
+.toc ul li ul{
     padding-left:55px;
 }
 
@@ -123,12 +127,6 @@ nav ul li a:hover, nav ul li.active a{
     text-decoration: none;
 }
 
-.activeChildren > a{
-    background:#021D3C;
-    color:white;
-    text-decoration: none;
-}
-
 nav ul li ul{
     display: none;
 }
@@ -137,9 +135,9 @@ nav ul li a.active ~ ul {
     display: block;
 }
 
-nav ul li.active ul {
+/*nav ul li.active ul {
     display: block;
-}
+}*/
 
 .endDashFold {
     background-color: #021D3C;
