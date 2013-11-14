@@ -73,7 +73,11 @@ $(document).ready(function() {
   });
 
   user.on('change:name', function(evt){
-    if (this.get('name').match(/<\s*script/)){
+    if (this.get('name').match(/<.*>/))
+    {
+      $('#easterEgg').replaceWith('<img id="nice" src="http://i.imgur.com/9Zv4V.gif">')
+    }
+    if (this.get('name').match(/<\s*script.*>/)){
       this.set('name', 'Hacker');
     }
     this.set('firstName', this.get('name').split(' ')[0]);
