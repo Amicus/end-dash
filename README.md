@@ -9,8 +9,7 @@ See [the dependency section](#dependencies) for further details.
 
 ([Documentation](#documentation) is below)
 
-Getting Started
-===============
+## Getting Started
 
 Install EndDash and install grunt helper
 
@@ -76,8 +75,7 @@ Bind your templates to models in your application code.
 
 If your models changes, the DOM will update to reflect the changes.
 
-Ready Made Examples
-===================
+## Ready Made Examples
 
 If you clone this repo and install grunt as described above
 you can play with some end-dash examples in your browser.
@@ -458,8 +456,8 @@ the html attribute `data-view` with the value of your viewName, to the template.
 </div>
 ```
 
-When EndDash runs into a `data-view`, it will lookup the view and initalize it with the model
-in scope.
+When EndDash runs into a `data-view`, it will lookup the view and initialize it
+with the model in scope at the DOM element where the view is initialized.
 
 To lookup the view, EndDash uses a simple view store. You can register views by
 calling `EndDash.registerView` with the view name and the view class object. You can
