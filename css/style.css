@@ -301,6 +301,11 @@ footer a:hover {
     text-decoration: line-through;
 }
 
+.container .exampleExplanation {
+  text-align: center;
+  font-size: 3em;
+}
+
 .mobileParkingPage {
   display: none;
 }

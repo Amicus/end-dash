@@ -73,10 +73,12 @@ layout: default
         {% capture inputs_content %}
         {% include inputs_example.md %}
         {% endcapture %}
-        {{ inputs_content | markdownify }}
     </div>
 
     <div class="container" data-spy="scroll" data-target="#scrollSpyTarget">
+        <p class="exampleExplanation">↑ This text is being rendered by this code ↓</p>
+        {{ inputs_content | markdownify }}
+
         {% capture docs_content %}
         {% include README.md %}
         {% endcapture %}
