@@ -27,10 +27,15 @@ h1, h2, h3{
 }
 
 #nice{
+  background-image: url("applause.gif");
+  background-repeat: no-repeat;
+  height:150px;
+  width:150px;
   margin:auto;
   display: block;
   position: absolute;
-  top: -290px;
+  top: 320px;
+  right:0;
   z-index: 100;
   border-radius: 100%;
   border:5px solid white;
