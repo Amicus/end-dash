@@ -86,7 +86,7 @@ nav div h1.hovered a{
     overflow-y:scroll;
     display:block;
     position:absolute;
-    top:83px;
+    top:93px;
     left: 0;
     bottom:0;
     width: 105%;
@@ -107,7 +107,7 @@ nav ul {
 }
 
 .toc ul li ul li a{
-    padding-left:55px;
+    padding-left:45px;
 }
 
 nav .logoWrapper {
@@ -120,9 +120,9 @@ nav .logoWrapper {
 }
 
 nav ul li a{
-    padding:20px 20px 20px 25px;
+    padding:20px 10px 20px 25px;
     display: block;
-    border-left:10px solid transparent;
+    border-right:20px solid transparent;
     color:#021D3C;
     text-decoration: none;
     font-weight: 300;
@@ -137,7 +137,7 @@ nav ul li a:hover, nav ul li.active a{
 nav ul li.active ul li.active a{
   background:white;
   color:#021D3C;
-  border-left: 10px solid #021D3C;
+  border-right: 20px solid #021D3C;
 }
 
 nav ul li a:hover, nav ul li.active ul li a{
