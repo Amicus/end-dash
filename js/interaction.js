@@ -97,6 +97,8 @@ $(document).ready(function() {
   $("a:contains('Documentation')").removeClass('hidden')
     .attr('href', $("a:contains('Documentation')").attr('href'));
   $("p:contains('*')").addClass('hidden');
+  $("p:contains('note')").addClass('note');
+  $("p:contains('WARNING')").addClass('warning');
 
 });
 
