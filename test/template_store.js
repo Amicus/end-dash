@@ -47,7 +47,7 @@ describe('templateStore', function() {
 
     it('errors when it can\'t find a template', function() {
       expect(function() {
-        getTemplateClass('notLoaded')
+        getTemplateClass('notLoaded');
       }).to.throwError(/Could not find template/);
     });
 

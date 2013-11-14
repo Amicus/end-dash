@@ -17,7 +17,7 @@ module.exports = function(model, markupOrPath) {
   $('body').html(template.el);
 
   return template;
-}
+};
 
 // We need to generate random, unique names for templates so we don't
 // accidentally overwrite stuff.
