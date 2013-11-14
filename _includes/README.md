@@ -4,19 +4,25 @@ EndDash
 
 EndDash is a bindings-aware client-side templating language built on top of valid HTML.
 
-At this point EndDash relies on Backbone or Backbone style objects for full functionality.
-Please [see the dependency section](#dependencies) for further details.
+In its current release, EndDash relies on Backbone style objects.
+See [the dependency section](#dependencies) for further details.
 
-[Getting started](#getting-started)
+([Documentation](#documentation) is below)
 
-[Building and testing](#building-and-testing)
+Getting Started
+===============
 
-[Play with examples](#play-with-examples)
+Install EndDash and install grunt helper
 
-[Documentation](#documentation)
+```bash
+npm install
 
+# We use grunt for running tasks.
+npm install -g grunt-cli
 
-## Getting started
+# Build end-dash in build/ directory
+grunt build # also aliased as `grunt`
+```
 
 Include the library and dependencies.
 
@@ -24,7 +30,7 @@ Include the library and dependencies.
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="http://backbonejs.org/backbone.js"></script>
-<script src="/scripts/end-dash.js"></script>
+<script src="/end-dash/build/end-dash.js"></script>
 ```
 
 Define your templates.
@@ -70,25 +76,8 @@ Bind your templates to models in your application code.
 
 If your models changes, the DOM will update to reflect the changes.
 
-## Building and testing
-
-```bash
-npm install
-
-# We use grunt for running tasks.
-npm install -g grunt-cli
-
-# Build end-dash in build/ directory
-grunt build # also aliased as `grunt`
-
-# Run tests
-grunt test
-
-# Watch for changes and run tests
-grunt watch
-```
-
-## Play with examples
+Ready Made Examples
+===================
 
 If you clone this repo and install grunt as described above
 you can play with some end-dash examples in your browser.
@@ -121,8 +110,6 @@ Documentation
   * [What is scoping?](#what-is-scoping)
   * [Scoping Down with a Dash](#scoping-down-with-a-dash)
   * [Scoping With Paths](#scoping-with-paths)
-
-[Presenters](#presenters)
 
 [View Integration](#view-integration)
 
@@ -255,70 +242,83 @@ var characters = new Backbone.Collection([
 
 ## Polymorphic attributes
 
-If your objects have an enum (or Enumerated type) field, you can specify handling based on which type it is.
-This is best explained with an example.
+If your objects have an enum field, you can branch based on its value.
 
-In this case, `role` is behaving as a polymorphic attribute.
-
-```html
-<div class="rolePolymorphic-" data-each>
-  <div class="whenHero-">
-    <span class="firstName-"></span>
-    says: Don't worry. I'll probably save you.
-  </div>
-  <div class="whenVillain-">
-    <span class="firstName-"></span>
-    <span class="lastName-"></span>
-    says: Worry.</div>
-  <div class="whenCivilian-">
-   <span class="firstName-"></span>
-   says: Get me outta here!
-   </div>
-</div>
-```
-The resulting HTML will be:
+For example, `role` behaves as a polymorphic attribute:
 
 ```html
 <div class="rolePolymorphic-" data-each>
   <div class="whenHero-">
-    <span class="firstName-">Tony</span>
-    says: Don't worry.  I'll probably save you.
+    <span class="firstName-"></span> says:
+    Don't worry. I'll probably save you.
   </div>
-  <div class="whenCivilian-">
-    <span class="firstName-">Piper</span>
-    says: Get me outta here!
-  </div>
+
   <div class="whenVillain-">
-    <span class="firstName-">Iron</span>
-    <span class="lastName-">Monger</span>
-    says: Worry.
+    <span class="firstName-"></span> says:
+    Worry.
   </div>
-  <div class="whenHero-">
-    <span class="firstName-">James</span>
-    says: Don't worry.  I'll probably save you.
+
+  <div class="whenCivilian-">
+    <span class="firstName-"></span> says:
+    Get me outta here!
   </div>
 </div>
 ```
 
-To add a, catch-all, base case; add a child div without a
-class name ending in a dash.
+Given the following objects:
+
+```js
+new Backbone.Collection([
+  new Backbone.Model({firstName: 'Tony', role: 'hero'}),
+  new Backbone.Model({firstName: 'Piper', role: 'civilian'}),
+  new Backbone.Model({firstName: 'Iron', role: 'villain'}),
+  new Backbone.Model({firstName: 'James', role: 'hero'})
+]);
+```
+
+The template would produce the following HTML:
 
 ```html
-<div class='rolePolymorphic-'>
+<div class="rolePolymorphic-" data-each>
   <div class="whenHero-">
-    <span class="firstName-"></span>
-    says: Don't worry.  I'll probably save you.
+    <span class="firstName-">Tony</span> says:
+    Don't worry.  I'll probably save you.
   </div>
+
+  <div class="whenCivilian-">
+    <span class="firstName-">Piper</span> says:
+    Get me outta here!
+  </div>
+
+  <div class="whenVillain-">
+    <span class="firstName-">Iron</span> says:
+    Worry.
+  </div>
+
+  <div class="whenHero-">
+    <span class="firstName-">James</span> says:
+    Don't worry.  I'll probably save you.
+  </div>
+</div>
+```
+
+To add a default case, include a non-EndDash child div:
+
+```html
+<div class="rolePolymorphic-">
+  <div class="whenHero-">
+    <span class="firstName-"></span> says:
+    Don't worry.  I'll probably save you.
+  </div>
+
+  <!-- Default case! The following gets rendered unless
+       model.get('role') === 'hero'. -->
   <div>
-    <span class="firstName-"></span>
-    says: I've lost my memory.  I don't know who I am!
+    <span class="firstName-"></span> says:
+    I've lost my memory.  I don't know who I am!
   </div>
 </div>
 ```
-
-Any models in the collection without the named polymorphic attribute, or with an attribute
-value not specified with a `whenValue-` condition, will have this default template rendered
-for them when looping through the collection.
 
 ## Collection Attributes
 
@@ -439,58 +439,6 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 `class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
 at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
-
-Presenters
-==========
-
-If you wish to follow the Model-View-Presenter pattern, EndDash supports a hook
-to specify what presenter to use for a given model.  By default, this function
-simple returns the model itself, a simple identity function, but by passing in
-your own lookup function to `EndDash.setGetPresenter` EndDash will run your code
-instead to load a presenter if one is found.  Here's an example getPresenter
-function being defined and passed in to EndDash that looks for a custom presenter
-in config.presenterDirectory and uses a default base presenter or base collection
-presenter when no presenter specific to the model's name attribute is defined:
-
-```javascript
-  getPresenter = function(model) {
-    var modelName = inflection.underscore(model.name || "")
-      , id = model.cid
-      , Presenter
-      , basePresenter
-
-    if(!(model instanceof Backbone.Model) && !(model instanceof Backbone.Collection))
-      return model
-    //give collections a unique id
-    if(model instanceof Backbone.Collection) {
-      if(!model.cid) id = model.cid = _.uniqueId("collection")
-      basePresenter = "/base_collection_presenter"
-    } else {
-      basePresenter = "/base_presenter"
-    }
-    if(presenters[id]) {
-      return presenters[id]
-    } else {
-      try {
-        Presenter = require(config.presenterDirectory + "/" + modelName + "_presenter")
-      } catch(e) {
-        if(e.code !== "MODULE_NOT_FOUND") {
-          throw e
-
-        }
-        Presenter = require(config.presenterDirectory + basePresenter)
-      }
-      return presenters[id] = new Presenter(model)
-    }
-  }
-
-  EndDash.setGetPresenter(getPresenter)
-```
-
-Presenters are useful for wrapping the same model for use in different contexts, and for storing
-view specific state not intended to be saved to the server.  Taken further, models may be used as
-a repository for persisted data only, and presenters may be used for all behavior and view state,
-which is how we use them at Amicus.
 
 View Integration
 ================
