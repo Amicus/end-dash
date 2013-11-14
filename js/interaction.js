@@ -61,7 +61,7 @@ $(document).ready(function() {
 
   $('#rawDocs').find('h1').each(function(x, el){
     name = $(el).text()
-    $(el).prepend('<span class="hasFullName-"><span class="fullName-"></span>,\
+    $(el).prepend('<span class="hasName-"><span class="name-"></span>,\
     this is the section about </span>');
   });
   liveDocs = $('#rawDocs').html();
@@ -69,7 +69,7 @@ $(document).ready(function() {
   EndDash.registerTemplate('liveDocs', "<div>" + liveDocs + "</div>");
 
   var user = new Backbone.Model({
-    fullName: '',
+    name: '',
   });
 
   var extremeCharacter = new Backbone.Model({
