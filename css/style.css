@@ -27,18 +27,17 @@ h1, h2, h3{
 }
 
 #nice{
-  background-image: url("applause.gif");
+  background-image: url("../images/applause.gif");
   background-repeat: no-repeat;
-  height:150px;
-  width:150px;
-  margin:auto;
-  display: block;
+  background-position:-51px;
+  background-size: 150%;
+  height:148px;
+  width:148px;
   position: absolute;
-  top: 320px;
-  right:0;
-  z-index: 100;
-  border-radius: 100%;
-  border:5px solid white;
+  top: 436px;
+  right:50px;
+  //border-radius: 100%;
+  border:8px solid white;
 }
 
 nav{
@@ -256,6 +255,12 @@ article{
 .container p{
     padding:  0 30px;
     font-size: 1.1em;
+}
+
+.container p.warning{
+  background:#B9FDE8;
+  padding:10px 30px;
+  border-radius: 30px;
 }
 
 article pre{
