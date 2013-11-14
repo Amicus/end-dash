@@ -1,5 +1,5 @@
 
-EndDash
+Getting Started
 =======
 
 EndDash is a bindings-aware client-side templating framework built on top of valid HTML.
@@ -9,7 +9,7 @@ See [the dependency section](#dependencies) for further details.
 
 ([Documentation](#documentation) is below)
 
-## Getting Started
+## Setting up
 
 Install EndDash and install grunt helper
 
