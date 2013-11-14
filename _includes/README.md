@@ -456,8 +456,8 @@ the html attribute `data-view` with the value of your viewName, to the template.
 </div>
 ```
 
-When EndDash runs into a `data-view`, it will lookup the view and initalize it with the model
-in scope.
+When EndDash runs into a `data-view`, it will lookup the view and initialize it
+with the model in scope at the DOM element where the view is initialized.
 
 To lookup the view, EndDash uses a simple view store. You can register views by
 calling `EndDash.registerView` with the view name and the view class object. You can
