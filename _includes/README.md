@@ -9,8 +9,7 @@ See [the dependency section](#dependencies) for further details.
 
 ([Documentation](#documentation) is below)
 
-Getting Started
-===============
+## Getting Started
 
 Install EndDash and install grunt helper
 
@@ -76,8 +75,7 @@ Bind your templates to models in your application code.
 
 If your models changes, the DOM will update to reflect the changes.
 
-Ready Made Examples
-===================
+## Ready Made Examples
 
 If you clone this repo and install grunt as described above
 you can play with some end-dash examples in your browser.
