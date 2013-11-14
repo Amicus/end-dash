@@ -130,7 +130,6 @@ w.scroll(
 
 })
 
-
 w.ready(
   function() {
 
@@ -142,6 +141,27 @@ w.ready(
         "min-height": $(window).innerHeight()
     })
 })
+
+w.ready(
+    function landingPageInputFocus () {
+      $(".endDashFold #inputs div p input").focus();
+})
+
+w.ready(
+  function(){
+    exampleSetup = function(evt){
+    $target = $('#exampleInput')
+    if (!$target.val()){
+      $target.val('Tony Stark');
+      $target.trigger('change');
+    }
+  }
+  setTimeout(function(){
+    $('#exampleInput').one('blur', exampleSetup);
+    $(window).one('scroll', exampleSetup);
+
+    },0);
+  })
 
 
 
