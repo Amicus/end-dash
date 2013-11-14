@@ -72,6 +72,12 @@ $(document).ready(function() {
     name: '',
   });
 
+  user.on('change:name', function(evt){
+    if (this.get('name').match(/<\s*script/)){
+      this.set('name', 'Hacker')
+    }
+  })
+
   var extremeCharacter = new Backbone.Model({
     name: 'Tony'
   });
