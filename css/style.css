@@ -38,6 +38,7 @@ nav{
 
 nav div h1{
     display: block;
+    margin:20px 0;
 }
 
 nav div h1 a:hover{
@@ -96,7 +97,7 @@ nav ul {
 }
 
 .nav>li>a{
-  padding: 15px 20px;
+  padding: 15px 20px 15px 30px;
   font-size: 1.1em;
 }
 
@@ -179,7 +180,7 @@ nav ul li.active ul {
 
 .endDashFold #inputs p:nth-child(2){
     text-align: center;
-    display: block;
+    line-height: 1.2em;
     font-size: 3.5em;
     margin-top: 40px;
 }
