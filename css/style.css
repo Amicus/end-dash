@@ -258,7 +258,7 @@ article{
 }
 
 .container p.warning{
-  background:#B9FDE8;
+  background:orange;
   padding:10px 30px;
   border-radius: 30px;
 }

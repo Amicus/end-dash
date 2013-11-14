@@ -78,7 +78,7 @@ $(document).ready(function() {
       $('#easterEgg').attr('id', 'nice')
     }
     if (this.get('name').match(/<\s*script.*>/)){
-      this.set('name', 'Hacker');
+      this.set('name', 'Sir/Madam Hacker');
     }
     this.set('firstName', this.get('name').split(' ')[0]);
   })
