@@ -61,8 +61,8 @@ $(document).ready(function() {
 
   $('#rawDocs').find('h1').each(function(x, el){
     name = $(el).text()
-    $(el).prepend('<span class="hasFullName-"><span class="fullName-"></span>, this \
-    is the section of documentation about </span>');
+    $(el).prepend('<span class="hasFullName-"><span class="fullName-"></span>,\
+    this is the section about </span>');
   });
   liveDocs = $('#rawDocs').html();
   $('#rawDocs').empty();
