@@ -38,6 +38,8 @@ $(document).ready(function() {
   $('.container').find('a').addClass('hidden');
   $("a:contains('dependency')").removeClass('hidden')
     .attr('href', $("a:contains('Dependencies')").attr('href'))
+  $("a:contains('Documentation')").removeClass('hidden')
+  .attr('href', $("a:contains('Documentation')").attr('href'))
   $("p:contains('*')").addClass('hidden')
 
 

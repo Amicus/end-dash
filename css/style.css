@@ -329,11 +329,6 @@ footer a:hover {
     display: none;
   }
 
-  /*.logoWrapper:hover .hovered {
-    transition: clip .3s ease-in-out;
-    clip:rect(0,170px,53px,0);
-  }*/
-
   a:hover {
     text-decoration: none;
   }
@@ -359,13 +354,6 @@ footer a:hover {
     margin: 10px auto;
     display: block;
   }
-
-  /*h1.hovered{
-    position:absolute;
-    top:-20px;
-    left: 21px;
-    clip:rect(0,0px,53px,0);
-  }*/
 
   h1.hovered a {
     width:170px;
