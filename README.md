@@ -198,45 +198,44 @@ the attribute value on the input element (or 'true' if no value is defined).
 Looping
 ===========
 
-##Simple Looping
+## Simple Looping
 
-EndDash lets you loop through objects in a collection.
-
-```javascript
-var characters = new Backbone.Collection([
-  new Backbone.Model({
-    firstName: 'Tony',
-    lastName: 'Stark',
-    role: 'hero'
-  }),
-
-  new Backbone.Model({
-    firstName: 'Pepper',
-    lastName: 'Potts',
-    role: 'civilian'
-  }),
-
-  new Backbone.Model({
-    firstName: 'Iron',
-    lastName: 'Monger',
-    role: 'villain'
-  }),
-
-  new Backbone.Model({
-    firstName: 'James',
-    lastName: 'Rhodes',
-    role: 'hero'
-  })
-]);
-```
+To reuse a set of DOM elements for each child model in a collection,
+add the `data-each` attribute to the parent of this set.
 
 ```html
-<div class="characters-">
   <div data-each>
     <div class="firstName-"></div>
   </div>
-</div>
 ```
+
+The object in scope at these elements, will be iterated through (using `.each`).
+Each child of this collection will be bound to the nested elements.
+
+Given the above template and the collection:
+
+```javascript
+var characters = new Backbone.Collection([
+  new Backbone.Model({firstName: 'Tony'}),
+  new Backbone.Model({firstName: 'Pepper'}),
+  new Backbone.Model({firstName: 'Iron'}),
+  new Backbone.Model({firstName: 'James'})
+]);
+```
+
+the output will be:
+
+```html
+  <div data-each>
+    <div class="firstName-">Tony</div>
+    <div class="firstName-">Pepper</div>
+    <div class="firstName-">Iron</div>
+    <div class="firstName-">James</div>
+  </div>
+```
+
+Note that the elements iterated over must have one root.
+(Here `<div class="firstName-"></div>`).
 
 ## Polymorphic attributes
 
