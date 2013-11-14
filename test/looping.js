@@ -61,7 +61,7 @@ describe("A template with looping", function() {
           age2  = "6",
           totalCount = 2,
           model = { people: new Backbone.Collection([{name: name1, age: age1}, {name: name2, age: age2}]) };
-      model['people'].get = function(attribute) { return totalCount.toString() };
+      model.people.get = function(attribute) { return totalCount.toString(); };
       var template = generateTemplate(model, fs.readFileSync(__dirname + "/support/templates/multiple_iteration.html").toString());
       expect($(".people- span.totalCount-").html()).to.be(totalCount.toString());
       expect($(".people- ul.names li div:nth-child(1)").html()).to.be(name1);
@@ -164,7 +164,7 @@ describe("A template with no looping and no scoping", function(){
           new Backbone.Model({ type: "cool" })
         ];
         this.template = generateTemplate(this.things, this.markup);
-    })
+    });
     it("will interpolate values correctly", function(){
       generateTemplate(this.things, this.markup);
 

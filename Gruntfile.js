@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-browserify');
 
@@ -15,10 +16,21 @@ module.exports = function(grunt) {
       dist: {src: ['test/**/*.js', '!test/support/**/*.js']}
     },
 
-    watch: {
+    jshint: {
       dist: {
-        files: ['test/**/*.js'],
+        src: ['lib/**/*.js', 'test/**/*.js']
+      }
+    },
+
+    watch: {
+      test: {
+        files: ['<%= simplemocha.dist.src %>'],
         tasks: ['simplemocha']
+      },
+
+      lint: {
+        files: ['<%= jshint.dist.src %>'],
+        tasks: ['jshint']
       }
     },
 

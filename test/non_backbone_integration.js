@@ -11,11 +11,11 @@ describe("With two copies of Backbone", function(){
     BackboneClone = require('backbone');// Internally we use !(model instanceof Backbone.Model || ... instanceof Backbone.Collection)
                                         // If the Backbone for EndDash is different then the clients, we want to handle this case.
                                         // See lib/reactions/model.js for fix.
-  })
+  });
   after(function(){
     delete require.cache[require.resolve('backbone')];
     require.cache[require.resolve('backbone')] = Backbone;
-  })
+  });
   beforeEach(function(){
     this.literalModel1 = {persisted: "Chelsa Piers"};
     this.literalModel2 = {persisted: "Columbus circle"};

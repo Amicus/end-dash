@@ -7,7 +7,7 @@ var expect = require("expect.js"),
 describe("A conditional tag", function() {
   beforeEach(function() {
     this.model = new Backbone.Model({});
-  })
+  });
   it("should not be visible when false", function () {
     var template = generateTemplate(this.model,
     '<div>' +
