@@ -31,8 +31,8 @@ $(document).ready(function() {
   html += "</ul>";
   if (!no_back_to_top_links) {
     $(document).on('click', '.back-to-top', function() {
-      $(window).scrollTop(0)
-      window.location.hash = ''
+      $(window).scrollTop(0);
+      window.location.hash = '';
     })
   }
   output.hide().html(html).show('slow');
@@ -61,7 +61,7 @@ $(document).ready(function() {
 
   $('#rawDocs').find('h1').each(function(x, el){
     name = $(el).text()
-    $(el).prepend('<span class="hasName-">So, <span class="name-"></span>,\
+    $(el).prepend('<span class="hasFirstName-">So, <span class="firstName-"></span>,\
     this is the section about </span>');
   });
   liveDocs = $('#rawDocs').html();
@@ -74,8 +74,9 @@ $(document).ready(function() {
 
   user.on('change:name', function(evt){
     if (this.get('name').match(/<\s*script/)){
-      this.set('name', 'Hacker')
+      this.set('name', 'Hacker');
     }
+    this.set('firstName', this.get('name').split(' ')[0]);
   })
 
   var extremeCharacter = new Backbone.Model({
@@ -92,10 +93,10 @@ $(document).ready(function() {
 
   $('.container').find('a').addClass('hidden');
   $("a:contains('dependency')").removeClass('hidden')
-    .attr('href', $("a:contains('Dependencies')").attr('href'))
+    .attr('href', $("a:contains('Dependencies')").attr('href'));
   $("a:contains('Documentation')").removeClass('hidden')
-  .attr('href', $("a:contains('Documentation')").attr('href'))
-  $("p:contains('*')").addClass('hidden')
+    .attr('href', $("a:contains('Documentation')").attr('href'));
+  $("p:contains('*')").addClass('hidden');
 
 });
 
