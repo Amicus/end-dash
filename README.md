@@ -203,7 +203,7 @@ Looping
 ## Simple Looping
 
 To reuse a set of DOM elements for each child model in a collection,
-add the ```data-each``` attribute to the parent of this set.
+add the `data-each` attribute to the parent of this set.
 
 ```html
   <div data-each>
@@ -237,7 +237,7 @@ the output will be:
 ```
 
 Note that the elements iterated over must have one root.
-(Here ```<div class="firstName-"></div>```).
+(Here `<div class="firstName-"></div>`).
 
 ## Polymorphic attributes
 
