@@ -61,7 +61,7 @@ $(document).ready(function() {
 
   $('#rawDocs').find('h1').each(function(x, el){
     name = $(el).text()
-    $(el).prepend('<span class="hasName-"><span class="name-"></span>,\
+    $(el).prepend('<span class="hasName-">So, <span class="name-"></span>,\
     this is the section about </span>');
   });
   liveDocs = $('#rawDocs').html();
@@ -113,34 +113,35 @@ w.scroll(
             navSwap  = footer - inner,
             cssBottom = scrollTop - navSwap
 
+        if (w.scrollTop()<w.height()){
+          $(".active").removeClass("active")
+        }
+
         if (navSwap <= scrollTop) {
             $("nav").css({
                 "bottom": cssBottom,
                 "transition": "all 0s linear"
             })
-
         } else {
             $("nav").css({
                 "bottom": 0
             })
         }
+
+
 })
 
 
-$(window).ready(function() {
+w.ready(
+  function() {
+
+    $(".endDashFold #inputs div p input").focus();
 
     $('body').scrollspy({ target: '#scrollSpyTarget' })
 
     $(".endDashFold").css({
         "min-height": $(window).innerHeight()
     })
-})
-
-w.ready(
-    function landingPageInputFocus () {
-    console.log("1")
-     $(".endDashFold #inputs div p input").focus();
-     console.log("2")
 })
 
 
