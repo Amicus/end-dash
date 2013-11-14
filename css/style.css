@@ -120,18 +120,24 @@ nav .logoWrapper {
 }
 
 nav ul li a{
-    padding:20px 20px 17px 35px;
+    padding:20px 20px 20px 25px;
     display: block;
-    border-bottom:3px solid transparent;
+    border-left:10px solid transparent;
     color:#021D3C;
     text-decoration: none;
     font-weight: 300;
 }
 
-nav ul li a:hover, nav ul li.active a, nav ul li.active ul li.active a{
+nav ul li a:hover, nav ul li.active a{
     background:#021D3C;
     color:white;
     text-decoration: none;
+}
+
+nav ul li.active ul li.active a{
+  background:white;
+  color:#021D3C;
+  border-left: 10px solid #021D3C;
 }
 
 nav ul li a:hover, nav ul li.active ul li a{
