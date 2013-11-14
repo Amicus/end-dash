@@ -26,6 +26,16 @@ h1, h2, h3{
     font-family: 'Lato', sans-serif;
 }
 
+#nice{
+  margin:auto;
+  display: block;
+  position: absolute;
+  top: -290px;
+  z-index: 100;
+  border-radius: 100%;
+  border:5px solid white;
+}
+
 nav{
     float:left;
     width: 245px;
@@ -228,7 +238,7 @@ article{
   padding: 50px 0 0px 0;
 }
 
-.container h1:not(:first-child) {
+.container h1{
   margin-top: 60px;
   border-top: 2px solid #021D3C;
 }
@@ -320,6 +330,8 @@ footer a:hover {
 .container .exampleExplanation {
   text-align: center;
   font-size: 3em;
+  line-height: 1em;
+  font-weight:300;
 }
 
 .mobileParkingPage {

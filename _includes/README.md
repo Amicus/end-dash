@@ -618,10 +618,8 @@ In a child model scope:
 </body>
 ```
 
-Misc
+Dependencies
 ====
-
-## Dependencies
 
 In its current release, EndDash relies on Backbone style events to update
 the DOM when a bound object changes. This means only objects which define an interface

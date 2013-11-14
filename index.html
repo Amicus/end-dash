@@ -78,10 +78,11 @@ layout: default
         {% capture inputs_content %}
         {% include inputs_example.md %}
         {% endcapture %}
+        <img src="applause.gif" alt="" id="nice">
     </div>
 
     <div class="container" data-spy="scroll" data-target="#scrollSpyTarget">
-        <p class="exampleExplanation">↑ This text is being rendered by this code ↓</p>
+        <p class="exampleExplanation">This ↑ is being rendered by this ↓</p>
         {{ inputs_content | markdownify }}
 
         <div id='liveDocs'></div>
