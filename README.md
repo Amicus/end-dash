@@ -211,7 +211,7 @@ add the ```data-each``` attribute to the parent of this set.
   </div>
 ```
 
-The object in scope at these elements, will be iterated through (using ```.each```).
+The object in scope at these elements, will be iterated through (using `.each`).
 Each child of this collection will be bound to the nested elements.
 
 Given the above template and the collection:
