@@ -42,7 +42,7 @@ layout: default
       </div>
 
       <div class="mobileContainer">
-        <h3>EndDash is a bindings-aware client-side templating language built on top of valid HTML.</h3>
+        <h3>EndDash is a bindings-aware client-side templating framework built on top of valid HTML.</h3>
         <h3><a href="https://github.com/Amicus/end-dash">See the documentation on GitHub.</a></h3>
       </div>
     </div>
@@ -71,7 +71,7 @@ layout: default
 
     <div class="endDashFold" id="landing">
         <h1>EndDash</h1>
-        <h3>EndDash is a bindings-aware client-side templating language built on top of valid HTML.</h3>
+        <h3>EndDash is a bindings-aware client-side templating framework built on top of valid HTML.</h3>
          <div id="inputs"></div>
         {% capture inputs_content %}
         {% include inputs_example.md %}
@@ -82,10 +82,7 @@ layout: default
         <p class="exampleExplanation">↑ This text is being rendered by this code ↓</p>
         {{ inputs_content | markdownify }}
 
-        {% capture docs_content %}
-        {% include README.md %}
-        {% endcapture %}
-        {{ docs_content | markdownify }}
+        <div id='liveDocs'></div>
 
         <p>You can also see some of the examples here:</p>
         <div id="attributes"></div>
@@ -107,6 +104,12 @@ layout: default
         <h1>Made with love in <span class="strikethrough">California</span> New York, by <a href="http://www.amicushq.com">Amicus</a></h1>
     </footer>
 
+    <div id='rawDocs' style='display:none'>
+      {% capture docs_content %}
+      {% include README.md %}
+      {% endcapture %}
+      {{ docs_content | markdownify }}
+    </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 
@@ -125,6 +128,7 @@ layout: default
   <script src="http://backbonejs.org/backbone.js"></script>
   <script src="js/scrollspy.js"></script>
   <script src="js/end-dash.min.js"></script>
+
   <script type="text/enddash" name="suitColor">
     <div>
       <input type="radio" class="color-" name="color-" value="Red" id="classic"/>
@@ -141,10 +145,10 @@ layout: default
     <div>
       <p>
         What is your name?
-        <input  type="text" id="exampleInput" class="fullName-">
+        <input  type="text" id="exampleInput" class="name-">
       </p>
-      <p class='hasFullName-'>
-        Welcome, <span class='fullName-'></span>.
+      <p class='hasName-'>
+        Welcome, <span class='name-'></span>.
       </p>
     </div>
   </script>

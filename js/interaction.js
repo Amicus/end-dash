@@ -1,5 +1,6 @@
-// https://github.com/ghiculescu/jekyll-table-of-contents
 $(document).ready(function() {
+
+  // https://github.com/ghiculescu/jekyll-table-of-contents
   var no_back_to_top_links = false
 
   var headers = $('h1, h2, h3, h4, h5, h6').filter(function() {return this.id}), // get all headers with an ID
@@ -35,14 +36,6 @@ $(document).ready(function() {
     })
   }
   output.hide().html(html).show('slow');
-  $('.container').find('a').addClass('hidden');
-  $("a:contains('dependency')").removeClass('hidden')
-    .attr('href', $("a:contains('Dependencies')").attr('href'))
-  $("a:contains('Documentation')").removeClass('hidden')
-  .attr('href', $("a:contains('Documentation')").attr('href'))
-  $("p:contains('*')").addClass('hidden')
-
-
 
   //interactive template example
   EndDash.bootstrap();
@@ -66,19 +59,37 @@ $(document).ready(function() {
   //interactive inputs example
   // Load all the templates on the page.
 
+  $('#rawDocs').find('h1').each(function(x, el){
+    name = $(el).text()
+    $(el).prepend('<span class="hasName-"><span class="name-"></span>,\
+    this is the section about </span>');
+  });
+  liveDocs = $('#rawDocs').html();
+  $('#rawDocs').empty();
+  EndDash.registerTemplate('liveDocs', "<div>" + liveDocs + "</div>");
+
   var user = new Backbone.Model({
-    fullName: '',
+    name: '',
   });
 
   var extremeCharacter = new Backbone.Model({
     name: 'Tony'
   });
 
-  var template = EndDash.getTemplate('inputName', user),
+  var docs      = EndDash.getTemplate('liveDocs', user),
+      template  = EndDash.getTemplate('inputName', user),
       template2 = EndDash.getTemplate('whichCharacter', extremeCharacter);
 
+  $('#liveDocs').html(docs.el);
   $('#inputs').html(template.el);
   $('#inputs2').html(template2.el);
+
+  $('.container').find('a').addClass('hidden');
+  $("a:contains('dependency')").removeClass('hidden')
+    .attr('href', $("a:contains('Dependencies')").attr('href'))
+  $("a:contains('Documentation')").removeClass('hidden')
+  .attr('href', $("a:contains('Documentation')").attr('href'))
+  $("p:contains('*')").addClass('hidden')
 
 });
 

@@ -3,10 +3,10 @@
     <div>
       <p>
         What is your name?
-        <input  type="text" class="fullName-">
+        <input  type="text" class="name-">
       </p>
-      <p class='hasFullName-'>
-        Welcome, <span class='fullName-'></span>.
+      <p class='hasName-'>
+        Welcome, <span class='name-'></span>.
       </p>
     </div>
 ```
