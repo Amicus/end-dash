@@ -104,6 +104,10 @@ $(document).ready(function() {
   $("p:contains('note')").addClass('note');
   $("p:contains('WARNING')").addClass('warning');
 
+
+  var examplesDiv = $('a[href$="#toc_35"]').parent();
+  examples = examplesDiv.detach();
+  $('.toc').first('div.toc').children('ul').append(examples);
 });
 
 // Freddie's happy castle
