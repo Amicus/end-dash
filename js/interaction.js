@@ -75,9 +75,7 @@ $(document).ready(function() {
   user.on('change:name', function(evt){
     if (this.get('name').match(/<.*>/))
     {
-      $('#easterEgg').attr('id', 'nice')
-    }
-    if (this.get('name').match(/<\s*script.*>/)){
+      $('#easterEgg').attr('id', 'nice');
       this.set('name', 'Sir/Madam Hacker');
     }
     this.set('firstName', this.get('name').split(' ')[0]);
