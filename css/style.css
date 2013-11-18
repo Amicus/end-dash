@@ -358,6 +358,19 @@ input{
   font-size: 1.3em;
 }
 
+#typed-cursor{
+  opacity: 1;
+  font-weight: 100;
+  // add prefixes
+  animation: blink 0.7s infinite;
+}
+
+@-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+
 footer{
     background:#021D3C;
     width: 100%;

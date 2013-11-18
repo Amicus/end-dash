@@ -164,7 +164,10 @@ w.ready(
     exampleSetup = function(evt){
     $target = $('#exampleInput')
     if (!$target.val()){
-      $target.val('Tony Stark');
+      $target.typed({
+        strings: ["Tony Stark"],
+        typeSpeed: 30
+      });
       $target.trigger('change');
     }
   }
