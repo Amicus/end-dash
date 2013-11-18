@@ -328,7 +328,7 @@ input{
 
 /*EXAMPLESSSSS*/
 #user-edit div{
-    font-size: 2.7em;
+    font-size: 2.4em;
     padding-bottom:20px;
     margin-bottom:30px;
 }
@@ -351,6 +351,12 @@ input{
 
 #template-edit{
   margin-top:100px;
+}
+
+#model-edit{
+  background-color:#163150;
+  padding:20px;
+  font-size: 1.3em;
 }
 
 footer{
