@@ -77,12 +77,14 @@ layout: default
           <div id="attributes"></div>
           <div id="inputs2"></div>
           <div id="inputs3"></div>
-
-
+          <p>
+          These two areas are fully live example of a model being bound to an EndDash template and then
+          rendered below.  Update the model and/or the template to see them render as you type.
+          </p>
           <pre id="template-edit" contenteditable>&lt;div&gt;&lt;!--Enter your own EndDash template here!--&gt;
   &lt;div class="isName-"&gt;Hi &lt;span class="name-"&gt;!&lt;/span&gt;&lt;/div&gt;
-  &lt;div class="isNotName-"&gt;I don't know your name!&lt;/div&gt;&lt;/div&gt;</pre>
-          <pre id="model-edit" contenteditable>new Backbone.Model({text: "Edit this Backbone Model by adding a name attribute to see the text below change!"})</pre>
+  &lt;div class="isNotName- text-"&gt;I don't know your name!&lt;/div&gt;&lt;/div&gt;</pre>
+          <pre id="model-edit" contenteditable>new Backbone.Model({text: "Edit model to see me change!"})</pre>
           <p> The results of your template and model or collection above can be previewed below:</p>
           <div id="user-edit"></div>
     </div>
@@ -106,14 +108,16 @@ layout: default
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-        ga('create','UA-XXXXX-X');ga('send','pageview');
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-26295994-4', 'enddash.com');
+        ga('require', 'linkid', 'linkid.js');
+        ga('send', 'pageview');
+
     </script>
   </body>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
