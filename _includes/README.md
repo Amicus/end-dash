@@ -633,11 +633,11 @@ Contributing and Future Improvements
 ====================================
 
 There are a number of future improvements planned for EndDash and we'd love for you
-to be involved in them!  Please Fork the EndDash repo and open pull requests or get
+to be involved in them.  Please Fork the EndDash repo and open pull requests or get
 involved in discussing features or improving documentation via GitHub issues or a PR
-on the `README.md` file!  Our homepage at `enddash.com` is hosted on GitHub pages via
+on the `README.md` file.  Our homepage at `enddash.com` is hosted on GitHub pages via
 the `gh-pages` branch, so feel free to improve and make PR's to the home page and live
-examples there as well!
+examples there as well.
 
 ## Building and testing
 
