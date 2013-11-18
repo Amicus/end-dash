@@ -117,7 +117,13 @@ Documentation
 
 [Partials](#partials)
 
-[Debugger](#debugger)
+[Debugging](#debugging)
+
+[Dependencies](#dependencies)
+
+[Contributing and Future Improvements](#contributing-and-future-improvements)
+  * [Building and Testing](#building-and-testing)
+  * [Future Improvements](#future-improvements)
 
 
 
