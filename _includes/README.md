@@ -51,7 +51,7 @@ WARNING: A template can only have one root element. In the above case, it is the
 
 Load your templates into EndDash.
 
-```javascript
+```js
 $.ready(function() {
   // Load all the templates on the page.
   EndDash.bootstrap();
@@ -60,7 +60,7 @@ $.ready(function() {
 
 Bind your templates to models in your application code.
 
-```javascript
+```js
   var tony = new Backbone.Model({
     firstName: 'Tony',
     lastName: 'Stark',
@@ -140,7 +140,7 @@ Model properties can also be interpolated into any html tag attribute.
 <a href='/person/#{firstName}'> Home Page </a>
 ```
 
-```javascript
+```js
 template.bind(new Backbone.Model({firstName: 'Derrick'}));
 ```
 
@@ -202,7 +202,7 @@ Looping
 
 EndDash lets you loop through objects in a collection.
 
-```javascript
+```js
 var characters = new Backbone.Collection([
   new Backbone.Model({
     firstName: 'Tony',
@@ -355,7 +355,7 @@ and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`. 
 `display:none` style attribute) any such element when its named attribute is falsy (or hide when truthy in
 the case of `isNot` and `hasNot`.)
 
-```javascript
+```js
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
@@ -375,7 +375,7 @@ Scope in EndDash refers to the model on the top of the EndDash stack.
 Each template and partial is given its own scope. The 'root' scope is always the object passed
 to EndDash's 'bind' or 'getTemplate' function.
 
-```javascript
+```js
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
@@ -463,11 +463,11 @@ To lookup the view, EndDash uses a simple view store. You can register views by
 calling `EndDash.registerView` with the view name and the view class object. You can
 also define your own function and pass it into `EndDash.setCustomGetView`
 
-```javascript
+```js
 EndDash.registerView('myViewName', viewObj);
 ```
 
-```javascript
+```js
 var views = {},
     getViews = function(name) {
       return views[name];
@@ -500,7 +500,7 @@ To bootstrap, have your templates loaded as scripts of type 'enddash' on the pag
 
 Then call ```EndDash.bootstrap```.
 
-```javascript
+```js
 $.ready(function() {
   // Load all the templates on the page.
   EndDash.bootstrap();
@@ -571,7 +571,7 @@ If elsewhere you define this partial as:
 
 And bind to the top level template with:
 
-```javascript
+```js
 template.bind({
     heroes: new Backbone.Collection([
       new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
