@@ -2,7 +2,7 @@
 Getting Started
 =======
 
-EndDash is a declarative two-way binding javascript based templating framework built on top of valid HTML.
+EndDash is a two-way binding javascript templating framework built on top of semantic HTML
 
 In its current release, EndDash relies on Backbone style objects.
 See [the dependency section](#dependencies) for further details.
