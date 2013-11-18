@@ -82,6 +82,13 @@ $(document).ready(function() {
       this.set('name', 'Sir/Madam Hacker');
     }
     this.set('firstName', this.get('name').split(' ')[0]);
+    that = this;
+    if (that.get('name')){
+      text = ("So, " + that.get("firstName") + ", this is the section about Examples");
+      $('#toc_35').text(text);
+    } else {
+      $('#toc_35').text("Examples");
+    }
   })
 
   var extremeCharacter = new Backbone.Model({
