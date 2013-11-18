@@ -399,7 +399,7 @@ Outputs:
 ```html
 <div class="user-">
   <p>
-    My schedule is very full.
+    My schedule is very full. <span class="isAvailable-" style="display:none">I just have a few openings</span>
   </p>
 </div>
 ```
