@@ -44,13 +44,13 @@ h1, h2, h3{
   transition-delay: .5s;
   opacity: 0;
   position: relative;
-  left: -290px;
-  top: -20px;
+  left: -86px;
+  top: -140px;
   background-color: #fff;
-  height: 170px;
-  width: 250px;
-  border-radius: 10px;
-  padding: 25px;
+  height: 130px;
+  width: 300px;
+  border-radius: 100px;
+  padding: 34px 25px 25px 25px;
 }
 
 .niceSpeech p {
@@ -60,8 +60,8 @@ h1, h2, h3{
 }
 
 .niceSpeech:before {
-  left: 100%;
-  top: 50%;
+  left: 45%;
+  bottom:-27%;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -69,9 +69,8 @@ h1, h2, h3{
   position: absolute;
   pointer-events: none;
   border-color: rgba(255, 255, 255, 0);
-  border-left-color: #ffffff;
+  border-top-color: #ffffff;
   border-width: 20px;
-  margin-top: -45px;
 }
 
 nav{
