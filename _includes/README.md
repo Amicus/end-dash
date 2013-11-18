@@ -4,8 +4,8 @@ Getting Started
 
 EndDash is a two-way binding javascript templating framework built on top of semantic HTML
 
-In its current release, EndDash relies on Backbone style objects.
-See [the dependency section](#dependencies) for further details.
+In its current release, EndDash relies on Backbone objects. See
+[the dependency section](#dependencies) for further details.
 
 ([Documentation](#documentation) is below)
 
@@ -26,9 +26,11 @@ grunt build # also aliased as `grunt`
 Include the library and dependencies.
 
 ```html
+<!-- Make sure you include these libraries before EndDash -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="http://backbonejs.org/backbone.js"></script>
+
 <script src="/end-dash/build/end-dash.js"></script>
 ```
 
@@ -137,7 +139,7 @@ EndDash variables are rendered into the body of HTML elements, displaying their 
 Model properties can also be interpolated into any html tag attribute.
 
 ```html
-<a href='/person/#{firstName}'> Home Page </a>
+<a href="/person/#{firstName}"> Home Page </a>
 ```
 
 ```js
@@ -147,7 +149,7 @@ template.bind(new Backbone.Model({firstName: 'Derrick'}));
 Resulting Tag:
 
 ```html
-<a href='/person/Derrick'> Home Page </a>
+<a href="/person/Derrick"> Home Page </a>
 ```
 
 Inputs
@@ -198,45 +200,44 @@ the attribute value on the input element (or 'true' if no value is defined).
 Looping
 ===========
 
-##Simple Looping
+## Simple Looping
 
-EndDash lets you loop through objects in a collection.
-
-```js
-var characters = new Backbone.Collection([
-  new Backbone.Model({
-    firstName: 'Tony',
-    lastName: 'Stark',
-    role: 'hero'
-  }),
-
-  new Backbone.Model({
-    firstName: 'Pepper',
-    lastName: 'Potts',
-    role: 'civilian'
-  }),
-
-  new Backbone.Model({
-    firstName: 'Iron',
-    lastName: 'Monger',
-    role: 'villain'
-  }),
-
-  new Backbone.Model({
-    firstName: 'James',
-    lastName: 'Rhodes',
-    role: 'hero'
-  })
-]);
-```
+To reuse a set of DOM elements for each child model in a collection,
+add the `data-each` attribute to the parent of this set.
 
 ```html
-<div class="characters-">
   <div data-each>
     <div class="firstName-"></div>
   </div>
-</div>
 ```
+
+The object in scope at these elements, will be iterated through (using `.each`).
+Each child of this collection will be bound to the nested elements.
+
+Given the above template and the collection:
+
+```js
+var characters = new Backbone.Collection([
+  new Backbone.Model({firstName: 'Tony'}),
+  new Backbone.Model({firstName: 'Pepper'}),
+  new Backbone.Model({firstName: 'Iron'}),
+  new Backbone.Model({firstName: 'James'})
+]);
+```
+
+the output will be:
+
+```html
+  <div data-each>
+    <div class="firstName-">Tony</div>
+    <div class="firstName-">Pepper</div>
+    <div class="firstName-">Iron</div>
+    <div class="firstName-">James</div>
+  </div>
+```
+
+Note that the elements iterated over must have one root.
+(Here `<div class="firstName-"></div>`).
 
 ## Polymorphic attributes
 
@@ -268,8 +269,8 @@ Given the following objects:
 ```js
 new Backbone.Collection([
   new Backbone.Model({firstName: 'Tony', role: 'hero'}),
-  new Backbone.Model({firstName: 'Piper', role: 'civilian'}),
-  new Backbone.Model({firstName: 'Iron', role: 'villain'}),
+  new Backbone.Model({firstName: 'Pepper', role: 'civilian'}),
+  new Backbone.Model({firstName: 'Aldrich', role: 'villain'}),
   new Backbone.Model({firstName: 'James', role: 'hero'})
 ]);
 ```
@@ -284,18 +285,18 @@ The template would produce the following HTML:
   </div>
 
   <div class="whenCivilian-">
-    <span class="firstName-">Piper</span> says:
+    <span class="firstName-">Pepper</span> says:
     Get me outta here!
   </div>
 
   <div class="whenVillain-">
-    <span class="firstName-">Iron</span> says:
-    Worry.
+    <span class="firstName-">Aldrich</span> says:
+    The whole world's gonna be watching.
   </div>
 
   <div class="whenHero-">
     <span class="firstName-">James</span> says:
-    Don't worry.  I'll probably save you.
+    Don't worry.  I'll save you!
   </div>
 </div>
 ```
@@ -394,7 +395,7 @@ Scope can change in two ways:
 ## Scoping Down With A Dash
 
 ```html
-<div class='user-'>
+<div class="user-">
   //Internal HTML
 </div>
 ```
@@ -406,8 +407,8 @@ This syntax only allows scopping down.
 (UNIX style)
 
 ```html
-<div class='user-'>
-  <div data-scope='/'>
+<div class="user-">
+  <div data-scope="/">
     //Iternal HTML
   </div>
 </div>
@@ -420,13 +421,13 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 `.` for the current scope.
 
 ```html
-<div class='user-'>
+<div class="user-">
   //User scope
-  <div class='hobby-'>
+  <div class="hobby-">
   //Hobby scope
-    <div data-scope='../'>
+    <div data-scope="../">
     //Back in User Scope
-      <div data-scope='/user/hobby'>
+      <div data-scope="/user/hobby">
       //Back in Hobby scope
       </div>
     </div>
@@ -434,7 +435,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 </div>
 ```
 
-`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
+`class="user-"` is actually syntactic sugar for `data-scope="./user"`.  Using `data-scope` like this,
 at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
@@ -491,7 +492,7 @@ Or, via ```EndDash.bootstrap```.
 To bootstrap, have your templates loaded as scripts of type 'enddash' on the page.
 
 ```html
-<script type='text/enddash' name='greetings'>
+<script type="text/enddash" name="greetings">
   <div>
     Hello Citizens, I am <span class="name-"></span>
   </div>
@@ -542,13 +543,13 @@ Partials
 ========
 
 Small, reusable, components of HTML can be templated in EndDash as partials.
-To use a partial, add `src='templateName'` as an attribute to an element with no children.
+To use a partial, add `src="templateName"` as an attribute to an element with no children.
 
 ```html
-<script type='text/enddash' name='superheroes'>
+<script type="text/enddash" name="superheroes">
   <img src="#{logo}" />
-  <div class='heroes-'>
-    <div src='superhero-navigation' data-replace></div>
+  <div class="heroes-">
+    <div src="superhero-navigation" data-replace></div>
   </div>
 </script>
 ```
@@ -560,10 +561,10 @@ Without data-replace, EndDash will embed the root element beneath the partial's 
 If elsewhere you define this partial as:
 
 ```html
-<script type='text/enddash' name='superhero-navigation'>
+<script type="text/enddash" name="superhero-navigation">
   <ul data-each>
     <li>
-      <a href='#{url}'><span class='name-'></span></a>
+      <a href="#{url}"><span class="name-"></span></a>
     </li>
   </ul>
 </script>
@@ -585,12 +586,12 @@ template.bind({
 This will result in:
 
 ```html
-<img class='/public/emblems/protectTheWorld'>
-<div class='heroes-'>
+<img class="/public/emblems/protectTheWorld">
+<div class="heroes-">
   <ul>
-    <li><a href='/superheroes/techGenius'>Iron Man</a></li>
-    <li><a href='/superheroes/webMaster'>Spiderman</a></li>
-    <li><a href='/superheroes/strong'>Superwoman</a></li>
+    <li><a href="/superheroes/techGenius">Iron Man</a></li>
+    <li><a href="/superheroes/webMaster">Spiderman</a></li>
+    <li><a href="/superheroes/strong">Superwoman</a></li>
   </ul>
 </div>
 ```
