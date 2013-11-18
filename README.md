@@ -269,8 +269,8 @@ Given the following objects:
 ```js
 new Backbone.Collection([
   new Backbone.Model({firstName: 'Tony', role: 'hero'}),
-  new Backbone.Model({firstName: 'Piper', role: 'civilian'}),
-  new Backbone.Model({firstName: 'Iron', role: 'villain'}),
+  new Backbone.Model({firstName: 'Pepper', role: 'civilian'}),
+  new Backbone.Model({firstName: 'Aldrich', role: 'villain'}),
   new Backbone.Model({firstName: 'James', role: 'hero'})
 ]);
 ```
@@ -285,18 +285,18 @@ The template would produce the following HTML:
   </div>
 
   <div class="whenCivilian-">
-    <span class="firstName-">Piper</span> says:
+    <span class="firstName-">Pepper</span> says:
     Get me outta here!
   </div>
 
   <div class="whenVillain-">
-    <span class="firstName-">Iron</span> says:
-    Worry.
+    <span class="firstName-">Aldrich</span> says:
+    The whole world's gonna be watching.
   </div>
 
   <div class="whenHero-">
     <span class="firstName-">James</span> says:
-    Don't worry.  I'll probably save you.
+    Don't worry.  I'll save you!
   </div>
 </div>
 ```
