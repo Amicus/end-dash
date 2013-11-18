@@ -629,6 +629,44 @@ update the DOM on model changes.
 EndDash used without Backbone style getting & setting will still interpolate
 a bound object's attributes into the DOM but will not update the DOM on model changes.
 
+Contributing and Future Improvements
+====================================
+
+There are a number of future improvements planned for EndDash and we'd love for you
+to be involved in them.  Please Fork the EndDash repo and open pull requests or get
+involved in discussing features or improving documentation via GitHub issues or a PR
+on the `README.md` file.  Our homepage at `enddash.com` is hosted on GitHub pages via
+the `gh-pages` branch, so feel free to improve and make PR's to the home page and live
+examples there as well.
+
+## Building and testing
+
+To develop EndDash locally, you must have NPM and Grunt installed.  From the directory
+of your local clone of the EndDash repository:
+
+```bash
+npm install
+
+# We use grunt for running tasks.
+npm install -g grunt-cli
+
+# Build end-dash in build/ directory
+grunt build # also aliased as `grunt`
+
+# Run tests
+grunt test
+
+# Watch for changes and run tests
+grunt watch
+```
+
+## Future Improvements
+
+Right now EndDash only supports browser side rendering, but we have plans to support Node.js
+server-side rendering as well, and hybrid rendering where templates are pre-processed server
+side and served as static compiled assets for the client.  We also have a branch with a new
+interpolation syntax support to avoid requiring the use of `span` elements for dynamic text,
+and a few other ideas open or coming soon to GitHub issues and pull-requests on the github repo.
 
 
 
