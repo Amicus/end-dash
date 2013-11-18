@@ -2,7 +2,7 @@
 Getting Started
 =======
 
-EndDash is a bindings-aware client-side templating framework built on top of valid HTML.
+EndDash is a two-way binding javascript templating framework built on top of semantic HTML
 
 In its current release, EndDash relies on Backbone style objects.
 See [the dependency section](#dependencies) for further details.
@@ -619,7 +619,7 @@ In a child model scope:
 ```
 
 Dependencies
-====
+============
 
 In its current release, EndDash relies on Backbone style events to update
 the DOM when a bound object changes. This means only objects which define an interface
