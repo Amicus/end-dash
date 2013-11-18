@@ -1,15 +1,15 @@
 
-EndDash
+Getting Started
 =======
 
-EndDash is a bindings-aware client-side templating framework built on top of valid HTML.
+EndDash is a two-way binding javascript templating framework built on top of semantic HTML
 
 In its current release, EndDash relies on Backbone objects. See
 [the dependency section](#dependencies) for further details.
 
 ([Documentation](#documentation) is below)
 
-## Getting Started
+## Setting up
 
 Install EndDash and install grunt helper
 
@@ -53,7 +53,7 @@ WARNING: A template can only have one root element. In the above case, it is the
 
 Load your templates into EndDash.
 
-```javascript
+```js
 $.ready(function() {
   // Load all the templates on the page.
   EndDash.bootstrap();
@@ -62,7 +62,7 @@ $.ready(function() {
 
 Bind your templates to models in your application code.
 
-```javascript
+```js
   var tony = new Backbone.Model({
     firstName: 'Tony',
     lastName: 'Stark',
@@ -142,7 +142,7 @@ Model properties can also be interpolated into any html tag attribute.
 <a href="/person/#{firstName}"> Home Page </a>
 ```
 
-```javascript
+```js
 template.bind(new Backbone.Model({firstName: 'Derrick'}));
 ```
 
@@ -216,7 +216,7 @@ Each child of this collection will be bound to the nested elements.
 
 Given the above template and the collection:
 
-```javascript
+```js
 var characters = new Backbone.Collection([
   new Backbone.Model({firstName: 'Tony'}),
   new Backbone.Model({firstName: 'Pepper'}),
@@ -356,7 +356,7 @@ and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`. 
 `display:none` style attribute) any such element when its named attribute is falsy (or hide when truthy in
 the case of `isNot` and `hasNot`.)
 
-```javascript
+```js
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
@@ -376,7 +376,7 @@ Scope in EndDash refers to the model on the top of the EndDash stack.
 Each template and partial is given its own scope. The 'root' scope is always the object passed
 to EndDash's 'bind' or 'getTemplate' function.
 
-```javascript
+```js
 template.bind({
   user: new Backbone.Model({
     firstName: 'Tony',
@@ -464,11 +464,11 @@ To lookup the view, EndDash uses a simple view store. You can register views by
 calling `EndDash.registerView` with the view name and the view class object. You can
 also define your own function and pass it into `EndDash.setCustomGetView`
 
-```javascript
+```js
 EndDash.registerView('myViewName', viewObj);
 ```
 
-```javascript
+```js
 var views = {},
     getViews = function(name) {
       return views[name];
@@ -501,7 +501,7 @@ To bootstrap, have your templates loaded as scripts of type 'enddash' on the pag
 
 Then call ```EndDash.bootstrap```.
 
-```javascript
+```js
 $.ready(function() {
   // Load all the templates on the page.
   EndDash.bootstrap();
@@ -572,7 +572,7 @@ If elsewhere you define this partial as:
 
 And bind to the top level template with:
 
-```javascript
+```js
 template.bind({
     heroes: new Backbone.Collection([
       new Backbone.Model({name: 'Iron Man', url: '/superheroes/techGenius'}),
@@ -619,14 +619,55 @@ In a child model scope:
 </body>
 ```
 
-Misc
-====
+Dependencies
+============
 
-## Dependencies
+In its current release, EndDash relies on Backbone style events to update
+the DOM when a bound object changes. This means only objects which define an interface
+with Backbone's "on, once, set, get" will interpolate model attributes into the DOM and
+update the DOM on model changes.
 
-In its current release, EndDash relies on Backbone's event system to update
-the DOM when a bound object changes. This means only templates bound to
-Backbone objects will live-update.
+EndDash used without Backbone style getting & setting will still interpolate
+a bound object's attributes into the DOM but will not update the DOM on model changes.
 
-If you use EndDash with regular JS objects, it'll still interpolate the
-attributes but won't update the template when the object's attributes change.
+Contributing and Future Improvements
+====================================
+
+There are a number of future improvements planned for EndDash and we'd love for you
+to be involved in them.  Please Fork the EndDash repo and open pull requests or get
+involved in discussing features or improving documentation via GitHub issues or a PR
+on the `README.md` file.  Our homepage at `enddash.com` is hosted on GitHub pages via
+the `gh-pages` branch, so feel free to improve and make PR's to the home page and live
+examples there as well.
+
+## Building and testing
+
+To develop EndDash locally, you must have NPM and Grunt installed.  From the directory
+of your local clone of the EndDash repository:
+
+```bash
+npm install
+
+# We use grunt for running tasks.
+npm install -g grunt-cli
+
+# Build end-dash in build/ directory
+grunt build # also aliased as `grunt`
+
+# Run tests
+grunt test
+
+# Watch for changes and run tests
+grunt watch
+```
+
+## Future Improvements
+
+Right now EndDash only supports browser side rendering, but we have plans to support Node.js
+server-side rendering as well, and hybrid rendering where templates are pre-processed server
+side and served as static compiled assets for the client.  We also have a branch with a new
+interpolation syntax support to avoid requiring the use of `span` elements for dynamic text,
+and a few other ideas open or coming soon to GitHub issues and pull-requests on the github repo.
+
+
+
