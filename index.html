@@ -63,7 +63,13 @@ layout: default
         {% capture inputs_content %}
         {% include inputs_example.md %}
         {% endcapture %}
-        <div id="easterEgg"></div>
+
+        <div id="easterEgg">
+          <div class="niceSpeech">
+            <p>Well done, sir/madam!</p>
+            <p>You're clearly awesome. You should consider joining us. <a href="http://jobs.amicushq.com">Apply here!</a></p>
+          </div>
+        </div>
     </div>
 
     <div class="container" data-spy="scroll" data-target="#scrollSpyTarget">
@@ -84,8 +90,8 @@ layout: default
           </p>
           <pre id="template-edit" contenteditable>&lt;div&gt;&lt;!--Enter your own EndDash template here!--&gt;
   &lt;div class="isName-"&gt;Hi &lt;span class="name-"&gt;!&lt;/span&gt;&lt;/div&gt;
-  &lt;div class="isNotName- text-"&gt;I don't know your name!&lt;/div&gt;&lt;/div&gt;</pre>
-          <pre id="model-edit" contenteditable>new Backbone.Model({text: "Edit model to see me change!"})</pre>
+  &lt;div class="isNotName- text-"&gt;&lt;/div&gt; &lt;/div&gt;</pre>
+          <pre id="model-edit" contenteditable>new Backbone.Model({text: "Add a name to the model to see me change!"})</pre>
           <p> The results of your template and model or collection above can be previewed below:</p>
           <div id="user-edit"></div>
     </div>

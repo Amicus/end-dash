@@ -76,6 +76,9 @@ $(document).ready(function() {
     if (this.get('name').match(/<.*>/))
     {
       $('#easterEgg').attr('id', 'nice');
+      $('.niceSpeech').css({
+        "opacity": 1
+      })
       this.set('name', 'Sir/Madam Hacker');
     }
     this.set('firstName', this.get('name').split(' ')[0]);
