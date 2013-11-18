@@ -41,7 +41,7 @@ h1, h2, h3{
 
 .niceSpeech {
   transition-property: opacity;
-  transition-delay: 1s;
+  transition-delay: .5s;
   opacity: 0;
   position: relative;
   left: -290px;
