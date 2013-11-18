@@ -139,7 +139,7 @@ EndDash variables are rendered into the body of HTML elements, displaying their 
 Model properties can also be interpolated into any html tag attribute.
 
 ```html
-<a href='/person/#{firstName}'> Home Page </a>
+<a href="/person/#{firstName}"> Home Page </a>
 ```
 
 ```javascript
@@ -149,7 +149,7 @@ template.bind(new Backbone.Model({firstName: 'Derrick'}));
 Resulting Tag:
 
 ```html
-<a href='/person/Derrick'> Home Page </a>
+<a href="/person/Derrick"> Home Page </a>
 ```
 
 Inputs
@@ -395,7 +395,7 @@ Scope can change in two ways:
 ## Scoping Down With A Dash
 
 ```html
-<div class='user-'>
+<div class="user-">
   //Internal HTML
 </div>
 ```
@@ -407,8 +407,8 @@ This syntax only allows scopping down.
 (UNIX style)
 
 ```html
-<div class='user-'>
-  <div data-scope='/'>
+<div class="user-">
+  <div data-scope="/">
     //Iternal HTML
   </div>
 </div>
@@ -421,13 +421,13 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 `.` for the current scope.
 
 ```html
-<div class='user-'>
+<div class="user-">
   //User scope
-  <div class='hobby-'>
+  <div class="hobby-">
   //Hobby scope
-    <div data-scope='../'>
+    <div data-scope="../">
     //Back in User Scope
-      <div data-scope='/user/hobby'>
+      <div data-scope="/user/hobby">
       //Back in Hobby scope
       </div>
     </div>
@@ -435,7 +435,7 @@ Normal UNIX path shorthands apply: `..` to move back up a scope level, `/` to se
 </div>
 ```
 
-`class='user-'` is actually syntatic sugar for `data-scope='./user'`.  Using `data-scope` like this,
+`class="user-"` is actually syntatic sugar for `data-scope="./user"`.  Using `data-scope` like this,
 at the current scope, is mainly useful for accessing a property of a nested model in the same DOM
 element that you change the scope.
 
@@ -492,7 +492,7 @@ Or, via ```EndDash.bootstrap```.
 To bootstrap, have your templates loaded as scripts of type 'enddash' on the page.
 
 ```html
-<script type='text/enddash' name='greetings'>
+<script type="text/enddash" name="greetings">
   <div>
     Hello Citizens, I am <span class="name-"></span>
   </div>
@@ -543,13 +543,13 @@ Partials
 ========
 
 Small, reusable, components of HTML can be templated in EndDash as partials.
-To use a partial, add `src='templateName'` as an attribute to an element with no children.
+To use a partial, add `src="templateName"` as an attribute to an element with no children.
 
 ```html
-<script type='text/enddash' name='superheroes'>
+<script type="text/enddash" name="superheroes">
   <img src="#{logo}" />
-  <div class='heroes-'>
-    <div src='superhero-navigation' data-replace></div>
+  <div class="heroes-">
+    <div src="superhero-navigation" data-replace></div>
   </div>
 </script>
 ```
@@ -561,10 +561,10 @@ Without data-replace, EndDash will embed the root element beneath the partial's 
 If elsewhere you define this partial as:
 
 ```html
-<script type='text/enddash' name='superhero-navigation'>
+<script type="text/enddash" name="superhero-navigation">
   <ul data-each>
     <li>
-      <a href='#{url}'><span class='name-'></span></a>
+      <a href="#{url}"><span class="name-"></span></a>
     </li>
   </ul>
 </script>
@@ -586,12 +586,12 @@ template.bind({
 This will result in:
 
 ```html
-<img class='/public/emblems/protectTheWorld'>
-<div class='heroes-'>
+<img class="/public/emblems/protectTheWorld">
+<div class="heroes-">
   <ul>
-    <li><a href='/superheroes/techGenius'>Iron Man</a></li>
-    <li><a href='/superheroes/webMaster'>Spiderman</a></li>
-    <li><a href='/superheroes/strong'>Superwoman</a></li>
+    <li><a href="/superheroes/techGenius">Iron Man</a></li>
+    <li><a href="/superheroes/webMaster">Spiderman</a></li>
+    <li><a href="/superheroes/strong">Superwoman</a></li>
   </ul>
 </div>
 ```
