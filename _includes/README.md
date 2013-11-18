@@ -662,7 +662,7 @@ grunt watch
 
 ## Future Improvements
 
-Right now EndDash only support browser side rendering, but we have plans to support Node.js
+Right now EndDash only supports browser side rendering, but we have plans to support Node.js
 server-side rendering as well, and hybrid rendering where templates are pre-processed server
 side and served as static compiled assets for the client.  We also have a branch with a new
 interpolation syntax support to avoid requiring the use of `span` elements for dynamic text,
