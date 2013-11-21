@@ -7,6 +7,8 @@
     "url": "git://github.com/Amicus/end-dash.git"
   },
   "dependencies": {
+    "underscore": "1.x.x",
+    "backbone": "x.x.x",
     "inflection": "x.x.x"
   },
   "engines": {
