@@ -19,7 +19,6 @@
     "lib/page_helper.js",
     "lib/parser.js",
     "lib/reaction.js",
-    "lib/reactions",
     "lib/rules.js",
     "lib/template.js",
     "lib/template_store.js",
