@@ -1,0 +1,19 @@
+{
+  "name": "end-dash",
+  "repo": "Amicus/end-dash",
+  "description": "",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "xcoderzach/path": "*",
+    "components/underscore": "*",
+    "components/backbone": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ],
+  "remotes": []
+}

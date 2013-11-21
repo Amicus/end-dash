@@ -7,8 +7,6 @@
     "url": "git://github.com/Amicus/end-dash.git"
   },
   "dependencies": {
-    "underscore": "1.x.x",
-    "backbone": "x.x.x",
     "inflection": "x.x.x"
   },
   "engines": {
@@ -18,8 +16,6 @@
     "mocha": "~1.13.0",
     "jsdom": "0.5.x",
     "expect.js": "0.x.x",
-    "test-things": "git+ssh://git@github.com/Amicus/test-things.git",
-    "awesome-docs": "git+ssh://git@github.com/Amicus/awesome-docs.git",
     "grunt": "~0.4.1",
     "grunt-simple-mocha": "~0.4.0",
     "grunt-contrib-watch": "~0.5.3",
