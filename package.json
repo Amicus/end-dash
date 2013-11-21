@@ -19,6 +19,7 @@
     "jsdom": "0.5.x",
     "expect.js": "0.x.x",
     "grunt": "~0.4.1",
+    "test-things": "git+ssh://git@github.com/Amicus/test-things.git",
     "grunt-simple-mocha": "~0.4.0",
     "grunt-contrib-watch": "~0.5.3",
     "browserify": "~2.35.0",

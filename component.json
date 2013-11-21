@@ -15,6 +15,8 @@
   "scripts": [
     "index.js",
     "lib/compile.js",
+    "lib/underscore.js",
+    "lib/backbone.js",
     "lib/end-dash.js",
     "lib/page_helper.js",
     "lib/parser.js",
