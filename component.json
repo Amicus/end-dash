@@ -13,7 +13,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": [
-    "index.js"
+    "index.js",
     "lib/compile.js",
     "lib/end-dash.js",
     "lib/page_helper.js",
