@@ -2,7 +2,7 @@ require('../support/helper');
 
 var expect = require("expect.js"),
     fs = require("fs"),
-    Backbone = require('../../lib/end-dash').Backbone,
+    Backbone = require('../../lib/backbone'),
     generateTemplate = require("../support/generate_template");
 
 describe("A collection template", function() {
