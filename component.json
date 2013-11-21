@@ -14,6 +14,27 @@
   "main": "index.js",
   "scripts": [
     "index.js"
+    "lib/compile.js",
+    "lib/end-dash.js",
+    "lib/page_helper.js",
+    "lib/parser.js",
+    "lib/reaction.js",
+    "lib/reactions",
+    "lib/rules.js",
+    "lib/template.js",
+    "lib/template_store.js",
+    "lib/util.js",
+    "lib/view_store.js",
+    "lib/reactions/attribute.js",
+    "lib/reactions/conditional.js",
+    "lib/reactions/debugger.js",
+    "lib/reactions/deprecated_looping.js",
+    "lib/reactions/looping.js",
+    "lib/reactions/model.js",
+    "lib/reactions/partial.js",
+    "lib/reactions/scope.js",
+    "lib/reactions/variable.js",
+    "lib/reactions/view.js"
   ],
   "remotes": []
 }
