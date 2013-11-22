@@ -1,10 +1,13 @@
 var createBrowser = require('./create_browser');
 
-before(function(done) {
-  require('../../lib/end-dash');
+global.Backbone = require('backbone');
+var EndDash = require('../../lib/end-dash');
 
+before(function(done) {
   createBrowser({
-    scripts: [__dirname + '/../../vendor/jquery.js']
+    scripts: [
+      __dirname + '/../../vendor/jquery.js',
+    ]
   }, function(errors, _context) {
     global.window = _context;
     global.$ = window.$;
