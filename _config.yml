@@ -6,4 +6,5 @@ redcarpet:
   render_options:
       - with_toc_data
       - hard_wrap
-
+  include:
+    ["jobs"]
