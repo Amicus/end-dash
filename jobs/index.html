@@ -1,0 +1,204 @@
+<div>
+
+    <p>Think EndDash is interesting (check it out below) and want to do social good with your coding skills? Apply to join the team that built it.</p>
+
+    <p><a href="http://amicushq.com/">Amicus</a> is looking for an experienced Javascripter who loves hacking frameworks destined for the server, and who also loves creating the sort of user delight that only comes from getting the front end just right. If you join us, you'll be helping build and open source more of our frontend stack (there's a lot more cool stuff beside EndDash that we're already using in production) while also creating an experience for our users that feels like magic -- all with the aim of empowering more people to do more good in the world.
+    </p>
+
+    <a href="http://jobs.amicushq.com/">APPLY HERE.</a>
+
+</div>
+
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta property="og:image" content="//endDash.png" />
+      <title>End Dash</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/reset.css">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="css/syntax.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="image_src" href="//endDash.png" type="image/png"  />
+    <script src="js/mobile.js"></script>
+
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <img src="endDash.png" alt="" id="fbShare" class="hidden">
+    <nav id='scrollSpyTarget'>
+    <ul style="display:none">
+    <li><a href="#landing"></a></li>
+    </ul>
+        <div class="logoWrapper">
+          <h1 class="noHover">
+              <a href="#landing">END DASH</a>
+          </h1>
+          <h1 class="hovered">
+              <a href="#landing">END DASH</a>
+          </h1>
+          <div class="logoDash"></div>
+          <div class="nameDash"></div>
+        </div>
+
+        <div class="navigation">
+            <div class='toc'>
+            </div>
+        </div>
+    </nav>
+
+    <div id="jobs">
+
+        <p>Think EndDash is interesting (check it out below) and want to do social good with your coding skills? Apply to join the team that built it.</p>
+
+        <p><a href="http://amicushq.com/">Amicus</a> is looking for an experienced Javascripter who loves hacking frameworks destined for the server, and who also loves creating the sort of user delight that only comes from getting the front end just right. If you join us, you'll be helping build and open source more of our frontend stack (there's a lot more cool stuff beside EndDash that we're already using in production) while also creating an experience for our users that feels like magic -- all with the aim of empowering more people to do more good in the world.
+        </p>
+
+        <a href="http://jobs.amicushq.com/">APPLY HERE.</a>
+
+    </div>
+
+    <div class="endDashFold" id="landing">
+        <h1>EndDash</h1>
+        <h3>EndDash is a two-way binding javascript templating framework built on top of semantic HTML</h3>
+        <div id="inputs"></div>
+
+        {% capture inputs_content %}
+        {% include inputs_example.md %}
+        {% endcapture %}
+
+        <div id="easterEgg">
+          <div class="niceSpeech">
+            <p>Congratulations.</p>
+            <p><a href="http://jobs.amicushq.com">Now join, or the cow gets it!</a></p>
+          </div>
+        </div>
+    </div>
+
+    <div class="container" data-spy="scroll" data-target="#scrollSpyTarget">
+        <p class="exampleExplanation">This ↑ is being rendered by this ↓</p>
+        {{ inputs_content | markdownify }}
+
+        <div id='liveDocs'></div>
+
+        <h1 id="toc_35">Examples</h1>
+          <div class="hidden">
+              <p>You can also see some of the examples here:</p>
+              <div id="attributes"></div>
+              <div id="inputs2"></div>
+              <div id="inputs3"></div>
+          </div>
+          <p>
+          These two areas are fully live examples of a model being bound to an EndDash template and then rendered below.  Update the model and/or the template to see them render as you type.
+          </p>
+          <pre id="template-edit" contenteditable>&lt;div&gt;&lt;!--Enter your own EndDash template here!--&gt;
+  &lt;div class="isName-"&gt;Hi &lt;span class="name-"&gt;!&lt;/span&gt;&lt;/div&gt;
+  &lt;div class="isNotName- text-"&gt;&lt;/div&gt; &lt;/div&gt;</pre>
+          <pre id="model-edit" contenteditable>new Backbone.Model({text: "Add a name to the model to see me change!"})</pre>
+          <p> The results of your template and model or collection above can be previewed below:</p>
+          <div id="user-edit"></div>
+    </div>
+    <!-- other styles from https://github.com/blog/273-github-ribbons -->
+
+
+    <a href="https://github.com/amicus/end-dash">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+    src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+    </a>
+    <footer>
+        <h1>Made with love in <span class="strikethrough">California</span> New York, by <a href="http://www.amicushq.com">Amicus</a></h1>
+    </footer>
+
+    <div id='rawDocs' style='display:none'>
+      {% capture docs_content %}
+      {% include README.md %}
+      {% endcapture %}
+      {{ docs_content | markdownify }}
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-26295994-4', 'enddash.com');
+        ga('require', 'linkid', 'linkid.js');
+        ga('send', 'pageview');
+
+    </script>
+  </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore.js"></script>
+  <script src="http://backbonejs.org/backbone.js"></script>
+  <script src="js/scrollspy.js"></script>
+  <script src="js/end-dash.min.js"></script>
+
+  <script type="text/enddash" name="suitColor">
+    <div>
+      <input type="radio" class="color-" name="color-" value="Red" id="classic"/>
+      <label for="classic">Classic</label>
+      <input type="radio" class="color-" name="color-" value="Brown" id="brown"/>
+      <label for="brown">Brown</label>
+      <input type="radio" class="color-" name="color-" value="Pink" id="pink"/>
+      <label for="pink">Pink</label>
+      <p>The <span class='#{color}' style='color:#{color}'>Iron Man suit</span> is <span class="color-"></span></p>
+    </div>
+  </script>
+
+  <script type="text/enddash" name="inputName">
+    <div>
+      <p>
+        What is your name?
+        <input  type="text" id="exampleInput" class="name-">
+      </p>
+      <p class='hasName-'>
+        Welcome, <span class='name-'></span>.
+      </p>
+    </div>
+  </script>
+
+  <script type="text/enddash" name="whichCharacter">
+    <div>
+
+      <p>Who is your <span class="isDisliked-">least</span> favorite Iron Man character?</p>
+      <input type="radio" class="name-" name="name-" value="Tony" id="tony"/>
+      <label for="tony">Tony</label>
+      <input type="radio" class="name-" name="name-" value="Pepper" id="pepper"/>
+      <label for="pepper">Pepper</label>
+      <input type="radio" class="name-" name="name-" value="James" id="james"/>
+      <label for="james">James</label>
+      <p>Love to hate?</p>
+      <input type="checkbox" class="disliked-"/>
+      <p>Your <span class="isDisliked-">least</span> favorite character is <span class='name-'></name></p>
+    </div>
+  </script>
+  <script src="js/interaction.js"></script>
+</html>
+
+<!-- To Do:
+0) improve the Examples section and make the header templated (so it can say the person's name)
+1) make Tony Stark type itself if viewer doesn't input name
+2) make footer push nav up instead of hiding the overflow
+ -->
