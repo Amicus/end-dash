@@ -1,10 +1,10 @@
-require('./support/helper');
+require('../support/helper');
 
 var expect = require("expect.js"),
-    generateTemplate = require("./support/generate_template"),
-    Backbone = require('../lib/end-dash').Backbone;
+    generateTemplate = require("../support/generate_template"),
+    Backbone = require('../../lib/end-dash').Backbone;
 
-require("../lib/template");
+require("../../lib/template");
 
 describe("Setting a single variable", function() {
 
