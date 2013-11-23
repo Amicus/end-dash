@@ -21,21 +21,21 @@ describe("Setting a single variable", function() {
 
   describe("inputs", function() {
       beforeEach(function() {
-        this.model = new Backbone.Model({ singleVariable: "this is value" })
-        this.template = generateTemplate(this.model, '<div><input class="me" value="#{singleVariable}" /></div>')
-        this.el = $('.me')
-      })
+          this.model = new Backbone.Model({ singleVariable: "this is value" });
+          this.template = generateTemplate(this.model, '<div><input class = "singleVariable-" /></div>');
+          this.el = $(".singleVariable-");
+      });
       it("should set the value on inputs", function() {
-        expect(this.el.val()).to.be("this is value")
-      })
+        expect(this.el.val()).to.be("this is value");
+      });
 
       it("should trigger change events on the elements", function(done) {
         this.el.on('change', function () {
-            done()
-        })
-        this.model.set('singleVariable', 'not the other value')
-      })
-  })
+            done();
+        });
+        this.model.set('singleVariable', 'not the other value');
+      });
+  });
 
   it("should set the value on select menus when given a string", function() {
     var template = generateTemplate({ singleVariable: "false" },
