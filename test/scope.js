@@ -3,7 +3,7 @@ require('./support/helper');
 var expect = require("expect.js"),
     generateTemplate = require("./support/generate_template"),
     Backbone = require('../lib/end-dash').Backbone,
-    variableReaction = require('../lib/reactions/variable');
+    variableReaction = require('../lib/reactions/deprecated_variable');
 
 describe('scope', function(){
   describe ("polymorphic key but no scope changes", function(){
