@@ -1,11 +1,12 @@
 require('./support/helper');
 
 var expect = require('expect.js'),
+    Backbone = require('backbone'),
     EndDash = require('../lib/end-dash'),
-    Backbone = EndDash.Backbone,
     templateStore = EndDash.templateStore,
     viewStore = EndDash.viewStore,
-    Template = require('../lib/template');
+    Template = require('../lib/template'),
+    _ = require('underscore');
 
 describe('EndDash', function(){
   describe('.registerTemplate', function() {
@@ -32,7 +33,7 @@ describe('EndDash', function(){
     });
 
     it('binds values from the model to the template', function() {
-      EndDash.registerTemplate('cat', '<div class="catName-"></div>');
+      EndDash.registerTemplate('cat', '<div class="catName">#{catName}</div>');
 
       var model = new Backbone.Model({catName: 'Alabama'}),
           template = EndDash.getTemplate('cat', model);
@@ -41,7 +42,7 @@ describe('EndDash', function(){
     });
 
     it('tracks changes on the model after binding', function() {
-      EndDash.registerTemplate('goose', '<div class="gooseName-"></div>');
+      EndDash.registerTemplate('goose', '<div class="gooseName">#{gooseName}</div>');
 
       var model = new Backbone.Model({gooseName: 'Snowy'}),
           template = EndDash.getTemplate('goose', model);

@@ -1,15 +1,16 @@
 require('./support/helper');
 
-var generateTemplate = require('./support/generate_template'),
+var generateTemplate = require('./support/generate_template')
     DebuggerReaction = require('../lib/reactions/debugger'),
-    Backbone = require('../lib/end-dash').Backbone,
+    Backbone = require('backbone'),
+    Model = Backbone.Model,
     expect = require('expect.js');
 
 describe('<div debugger>', function() {
   beforeEach(function() {
-    var dog = new Backbone.Model({name: 'Fido'});
+    var dog = new Model({name: 'Fido'});
 
-    this.model = new Backbone.Model({
+    this.model = new Model({
       name: 'Mukund',
       dog: dog
     });

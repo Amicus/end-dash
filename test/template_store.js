@@ -2,6 +2,7 @@ require('./support/helper');
 
 var expect = require("expect.js"),
     _ = require('underscore'),
+    Parser = require('../lib/parser'),
     Template = require('../lib/template'),
     TemplateStore = require('../lib/template_store'),
     templateStore = new TemplateStore(),
@@ -47,7 +48,7 @@ describe('templateStore', function() {
 
     it('errors when it can\'t find a template', function() {
       expect(function() {
-        getTemplateClass('notLoaded');
+        getTemplateClass('notLoaded')
       }).to.throwError(/Could not find template/);
     });
 

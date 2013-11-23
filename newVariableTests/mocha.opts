@@ -1,4 +1,0 @@
---require expect.js
---ui bdd
---globals window,$
---reporter spec
