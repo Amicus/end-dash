@@ -118,8 +118,6 @@ $(document).ready(function() {
   $('.toc').first('div.toc').children('ul').append(examples);
 });
 
-// Freddie's happy castle
-
 var w = $(window)
 
 w.scroll(
@@ -130,7 +128,15 @@ w.scroll(
             inner = $(window).innerHeight(),
             scrollTop = $(window).scrollTop(),
             navSwap  = footer - inner,
-            cssBottom = scrollTop - navSwap
+            cssBottom = scrollTop - navSwap,
+            button = $("a.jobs"),
+            jobs = $(".jobs p").parent(),
+            tOffset = button.offset().top,
+            jOffset = jobs.height(),
+            container = $(".container"),
+            width = container.outerWidth(),
+            buttonHeight = button.height(),
+            fold = $(".endDashFold")
 
         if (w.scrollTop()<w.height()){
           $(".active").removeClass("active")
@@ -147,7 +153,32 @@ w.scroll(
             })
         }
 
-})
+      if (w.scrollTop()>tOffset){
+        button.css({
+          "position":"fixed",
+          "top":0,
+          "width":width,
+          "transition":"none"
+        }),
+        fold.css({
+          "margin-top":buttonHeight+40,
+          "transition":"none"
+        })
+      } else if (w.scrollTop() < jOffset+60) {
+          button.css({
+            "position":"relative",
+            "top":"auto"
+          }),
+          fold.css({
+            "margin-top":0
+          })
+        }
+}
+
+)
+
+
+
 
 w.ready(
   function() {

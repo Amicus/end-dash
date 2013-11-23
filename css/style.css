@@ -256,17 +256,46 @@ nav ul li.active ul {
     display: none;
 }
 
-.container, #jobs{
-    width:auto !important;
-    margin-left: 245px;
-    background: transparent;
-    overflow-y:auto;
-    padding:40px;
-    border-left:2px solid #021D3C;
+.container{
+  width:auto !important;
+  padding:40px;
+  border-left:2px solid #021D3C;
+  background: transparent;
+  margin-left: 245px;
 }
 
-#jobs{
-  margin-top: -30px;
+.container, .jobs{
+    overflow-y:auto;
+}
+
+.jobs{
+  background:#efefef;
+  margin-left: 245px;
+  padding:60px 60px 0 60px;
+  font-size: 1.5em;
+  font-weight: 300;
+  line-height: 1.8em;
+}
+
+a.jobs {
+  padding:21px 50px 22px 50px;
+  font-size:2em;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  font-weight: 300;
+  color:#021D3C;
+}
+
+.jobs p:first-child:first-letter {
+  float: left;
+  font-size: 3.5em;
+  line-height: 71px;
+  padding-top:1px;
+}
+
+a.jobs:hover{
+  background:#fff;
 }
 
 article{

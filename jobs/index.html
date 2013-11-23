@@ -1,4 +1,3 @@
-
 ---
 layout: default
 ---
@@ -26,7 +25,7 @@ layout: default
       <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
       <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="image_src" href="//../endDash.png" type="image/png"  />
+    <link rel="image_src" href="../endDash.png" type="image/png"  />
     <script src="../js/mobile.js"></script>
 
   </head>
@@ -37,7 +36,7 @@ layout: default
     <img src="../endDash.png" alt="" id="fbShare" class="hidden">
     <nav id='scrollSpyTarget'>
     <ul style="display:none">
-    <li><a href="#landing"></a></li>
+    <li><a href="../"></a></li>
     </ul>
         <div class="logoWrapper">
           <h1 class="noHover">
@@ -56,16 +55,11 @@ layout: default
         </div>
     </nav>
 
-    <div id="jobs">
-
-        <p>Think EndDash is interesting (check it out below) and want to do social good with your coding skills? Apply to join the team that built it.</p>
-
-        <p><a href="http://amicushq.com/">Amicus</a> is looking for an experienced Javascripter who loves hacking frameworks destined for the server, and who also loves creating the sort of user delight that only comes from getting the front end just right. If you join us, you'll be helping build and open source more of our frontend stack (there's a lot more cool stuff beside EndDash that we're already using in production) while also creating an experience for our users that feels like magic -- all with the aim of empowering more people to do more good in the world.
-        </p>
-
-        <a href="http://jobs.amicushq.com/">APPLY HERE.</a>
+    <div class="jobs">
+      <p>Think EndDash is interesting (check it out below) and want to do social good with your coding skills? Apply to join the team that built it. <a href="http://amicushq.com/">Amicus</a> is looking for an experienced Javascripter who loves hacking frameworks destined for the server, and who also loves creating the sort of user delight that only comes from getting the front end just right. If you join us, you'll be helping build and open source more of our frontend stack (there's a lot more cool stuff beside EndDash that we're already using in production) while also creating an experience for our users that feels like magic -- all with the aim of empowering more people to do more good in the world.</p>
 
     </div>
+    <a class="jobs" href="http://jobs.amicushq.com/">APPLY HERE.</a>
 
     <div class="endDashFold" id="landing">
         <h1>EndDash</h1>
@@ -125,7 +119,7 @@ layout: default
       {{ docs_content | markdownify }}
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
