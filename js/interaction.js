@@ -127,16 +127,7 @@ w.scroll(
         var footer = $("footer").offset().top,
             inner = $(window).innerHeight(),
             scrollTop = $(window).scrollTop(),
-            navSwap  = footer - inner,
-            cssBottom = scrollTop - navSwap,
-            button = $("a.jobs"),
-            jobs = $(".jobs p").parent(),
-            tOffset = button.offset().top,
-            jOffset = jobs.height(),
-            container = $(".container"),
-            width = container.outerWidth(),
-            buttonHeight = button.height(),
-            fold = $(".endDashFold")
+            navSwap  = footer - inner
 
         if (w.scrollTop()<w.height()){
           $(".active").removeClass("active")
@@ -153,26 +144,6 @@ w.scroll(
             })
         }
 
-      if (w.scrollTop()>tOffset){
-        button.css({
-          "position":"fixed",
-          "top":0,
-          "width":width,
-          "transition":"none"
-        }),
-        fold.css({
-          "margin-top":buttonHeight+40,
-          "transition":"none"
-        })
-      } else if (w.scrollTop() < jOffset+60) {
-          button.css({
-            "position":"relative",
-            "top":"auto"
-          }),
-          fold.css({
-            "margin-top":0
-          })
-        }
 }
 
 )
