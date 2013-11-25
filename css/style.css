@@ -33,23 +33,11 @@ h1, h2, h3{
   background-size: 150%;
   height:148px;
   width:148px;
-  position: absolute;
-  top: 436px;
-  right:50px;
+  position: relative;
+  top: -276px;
+  right:0;
   border:8px solid white;
-}
-
-#nice-jobs{
-  background-image: url("../images/applause.gif");
-  background-repeat: no-repeat;
-  background-position:-51px;
-  background-size: 150%;
-  height:148px;
-  width:148px;
-  position: absolute;
-  top: 820px;
-  right:50px;
-  border:8px solid white;
+  float:right;
 }
 
 .niceSpeech {
