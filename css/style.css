@@ -39,6 +39,19 @@ h1, h2, h3{
   border:8px solid white;
 }
 
+#nice-jobs{
+  background-image: url("../images/applause.gif");
+  background-repeat: no-repeat;
+  background-position:-51px;
+  background-size: 150%;
+  height:148px;
+  width:148px;
+  position: absolute;
+  top: 820px;
+  right:50px;
+  border:8px solid white;
+}
+
 .niceSpeech {
   transition-property: opacity;
   transition-delay: .5s;
@@ -51,6 +64,10 @@ h1, h2, h3{
   width: 300px;
   border-radius: 100px;
   padding: 34px 25px 25px 25px;
+}
+
+#easterEgg{
+  margin-top:140px;
 }
 
 .niceSpeech p {

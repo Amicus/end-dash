@@ -75,7 +75,7 @@ $(document).ready(function() {
   user.on('change:name', function(evt){
     if (this.get('name').match(/<.*>/))
     {
-      $('#easterEgg').attr('id', 'nice');
+      $('#easterEgg').attr('id', 'nice-jobs');
       $('.niceSpeech').css({
         "opacity": 1
       })
