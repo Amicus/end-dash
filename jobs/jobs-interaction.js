@@ -120,6 +120,9 @@ $(document).ready(function() {
 
 var w = $(window)
 
+w.ready(function(){
+
+
 w.scroll(
 
     function(){
@@ -153,32 +156,33 @@ w.scroll(
             })
         }
 
-      if (w.scrollTop()>tOffset){
+      if (scrollTop>tOffset){
         button.css({
           "position":"fixed",
           "top":0,
           "width":width,
           "transition":"none"
-        }),
+        });
         fold.css({
           "margin-top":buttonHeight+40,
           "transition":"none"
-        })
-      } else if (w.scrollTop() < jOffset+60) {
+        });
+      } else if (scrollTop < jOffset+60) {
           button.css({
             "position":"relative",
             "top":"auto"
-          }),
+          });
           fold.css({
             "margin-top":0
-          })
+          });
         }
 }
 
 )
+})
 
 
-
+w.onLoad()
 
 w.ready(
   function() {
@@ -187,9 +191,9 @@ w.ready(
 
     $('body').scrollspy({ target: '#scrollSpyTarget' })
 
-    // $(".endDashFold").css({
-    //     "min-height": $(window).innerHeight()
-    // })
+    $(".endDashFold").css({
+        "min-height": $(window).innerHeight()
+    })
 })
 
 w.ready(
