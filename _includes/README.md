@@ -117,7 +117,13 @@ Documentation
 
 [Partials](#partials)
 
-[Debugger](#debugger)
+[Debugging](#debugging)
+
+[Dependencies](#dependencies)
+
+[Contributing and Future Improvements](#contributing-and-future-improvements)
+  * [Building and Testing](#building-and-testing)
+  * [Future Improvements](#future-improvements)
 
 
 
@@ -134,7 +140,7 @@ EndDash variables are rendered into the body of HTML elements, displaying their 
 </div>
 ```
 
-## Attibute Interpolation
+## Attribute Interpolation
 
 Model properties can also be interpolated into any html tag attribute.
 
