@@ -109,7 +109,7 @@ describe("A template with looping", function() {
   });
 });
 
-describe("A template with looping on the same element as the scope", function(){
+describe("A template with looping after scoping", function(){
   describe("with an array in a Backbone Model", function(){
     beforeEach(function(){
         this.things = [
@@ -149,7 +149,7 @@ describe("A template with looping on the same element as the scope", function(){
 });
 
 
-describe("A template with looping after scoping", function(){
+describe("A template with looping and scoping on the same element", function(){
   describe("with an array of Backbone Models", function(){
     beforeEach(function() {
         this.things = [
