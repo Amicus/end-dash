@@ -148,6 +148,30 @@ describe("A template with looping after scoping", function(){
   });
 });
 
+
+describe("A template with looping and scoping on the same element", function(){
+  describe("with an array of Backbone Models", function(){
+    beforeEach(function() {
+        this.things = [
+          new Backbone.Model({ type: "awesome" }),
+          new Backbone.Model({ type: "cool" })
+        ];
+        this.topLevelObject = new Backbone.Model({ things: this.things });
+        this.markup = "<div class='things-' data-each>" +
+                         "<div>" +
+                           "<div class='type-'>" +
+                          "</div>" +
+                         "</div>" +
+                      "</div>";
+        this.template = generateTemplate(this.topLevelObject, this.markup);
+    });
+    it("it will set the values", function(){
+      expect($(".things- div:nth-child(1) .type-").html()).to.be("awesome");
+      expect($(".things- div:nth-child(2) .type-").html()).to.be("cool");
+    });
+  });
+});
+
 describe("A template with no looping and no scoping", function(){
   beforeEach(function(){
     this.markup = "<div data-each>" +
