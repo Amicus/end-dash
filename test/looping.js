@@ -109,7 +109,7 @@ describe("A template with looping", function() {
   });
 });
 
-describe("A template with looping after scoping", function(){
+describe("A template with looping on the same element as the scope", function(){
   describe("with an array in a Backbone Model", function(){
     beforeEach(function(){
         this.things = [
@@ -144,6 +144,30 @@ describe("A template with looping after scoping", function(){
       this.things[1] = model1;
       expect($(".things- div div:nth-child(1) div").html()).to.be("awesome");
       expect($(".things- div div:nth-child(2) div").html()).to.be("cool");
+    });
+  });
+});
+
+
+describe("A template with looping after scoping", function(){
+  describe("with an array of Backbone Models", function(){
+    beforeEach(function() {
+        this.things = [
+          new Backbone.Model({ type: "awesome" }),
+          new Backbone.Model({ type: "cool" })
+        ];
+        this.topLevelObject = new Backbone.Model({ things: this.things });
+        this.markup = "<div class='things-' data-each>" +
+                         "<div>" +
+                           "<div class='type-'>" +
+                          "</div>" +
+                         "</div>" +
+                      "</div>";
+        this.template = generateTemplate(this.topLevelObject, this.markup);
+    });
+    it("it will set the values", function(){
+      expect($(".things- div:nth-child(1) .type-").html()).to.be("awesome");
+      expect($(".things- div:nth-child(2) .type-").html()).to.be("cool");
     });
   });
 });
