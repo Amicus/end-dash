@@ -21,22 +21,22 @@ describe("A template with looping", function() {
       this.things.at(0).set("type", "cool");
       this.things.at(1).set("type", "awesome");
 
-      expect($(".things- li div:nth-child(1)").html()).to.be("cool");
-      expect($(".things- li div:nth-child(1)").hasClass("whenCool-")).to.be(true);
-
-      expect($(".things- li div:nth-child(2)").html()).to.be("awesome");
-      expect($(".things- li div:nth-child(2)").hasClass("whenAwesome-")).to.be(true);
+      expect($(".things- li:nth-child(1) div").html()).to.be("cool");
+      expect($(".things- li:nth-child(1) div").hasClass("whenCool-")).to.be(true);
+                                            
+      expect($(".things- li:nth-child(2) div").html()).to.be("awesome");
+      expect($(".things- li:nth-child(2) div").hasClass("whenAwesome-")).to.be(true);
     });
 
     describe("whose bound dom elements are moved on the page", function() {
       beforeEach(function(){
         var el = $(".things- li div:nth-child(2)");
         el.insertBefore($('.things- li div:nth-child(1)'));
-        expect($('.things- li div:nth-child(1)').html()).to.be('cool');
+        expect($('.things- li:nth-child(1) div').html()).to.be('cool');
       });
       it("removing a child will remove the right child object from the dom", function() {
         this.things.remove(this.things[1]);
-        expect($(".things- li div:nth-child(1)").html()).to.be("cool");
+        expect($(".things- li:nth-child(1) div").html()).to.be("cool");
       });
     });
 
@@ -47,11 +47,11 @@ describe("A template with looping", function() {
           age2  = "6",
           model = { people: [{name: name1, age: age1}, {name: name2, age: age2}] },
           template = generateTemplate(model, fs.readFileSync(__dirname + "/support/templates/multiple_iteration.html").toString());
-      expect($(".people- ul.names li div:nth-child(1)").html()).to.be(name1);
-      expect($(".people- ul.names li div:nth-child(2)").html()).to.be(name2);
+      expect($(".people- ul.names li:nth-child(1) .name-").html()).to.be(name1);
+      expect($(".people- ul.names li:nth-child(2) .name-").html()).to.be(name2);
 
-      expect($(".people- ul.ages li div:nth-child(1)").html()).to.be(age1);
-      expect($(".people- ul.ages li div:nth-child(2)").html()).to.be(age2);
+      expect($(".people- ul.ages li:nth-child(1) .age-").html()).to.be(age1);
+      expect($(".people- ul.ages li:nth-child(2) .age-").html()).to.be(age2);
     });
 
     it("will support collection attributes if model's attribute interface is extended to collections", function() {
@@ -64,11 +64,11 @@ describe("A template with looping", function() {
       model.people.get = function(attribute) { return totalCount.toString(); };
       var template = generateTemplate(model, fs.readFileSync(__dirname + "/support/templates/multiple_iteration.html").toString());
       expect($(".people- span.totalCount-").html()).to.be(totalCount.toString());
-      expect($(".people- ul.names li div:nth-child(1)").html()).to.be(name1);
-      expect($(".people- ul.names li div:nth-child(2)").html()).to.be(name2);
+      expect($(".people- ul.names li:nth-child(1) .name-").html()).to.be(name1);
+      expect($(".people- ul.names li:nth-child(2) .name-").html()).to.be(name2);
 
-      expect($(".people- ul.ages li div:nth-child(1)").html()).to.be(age1);
-      expect($(".people- ul.ages li div:nth-child(2)").html()).to.be(age2);
+      expect($(".people- ul.ages li:nth-child(1) .age-").html()).to.be(age1);
+      expect($(".people- ul.ages li:nth-child(2) .age-").html()).to.be(age2);
     });
   });
 
@@ -87,23 +87,20 @@ describe("A template with looping", function() {
       this.things[0].set("type", "cool");
       this.things[1].set("type", "awesome");
 
-      expect($(".things- li div:nth-child(1)").html()).to.be("cool");
-      expect($(".things- li div:nth-child(1)").hasClass("whenCool-")).to.be(true);
-
-      expect($(".things- li div:nth-child(2)").html()).to.be("awesome");
-      expect($(".things- li div:nth-child(2)").hasClass("whenAwesome-")).to.be(true);
+      expect($(".things- li:nth-child(1) .whenCool-").html()).to.be("cool");
+      expect($(".things- li:nth-child(2) .whenAwesome-").html()).to.be("awesome");
     });
 
     describe("whose bound dom elements are moved on the page", function() {
       beforeEach(function(){
-        var el = $(".things- li div:nth-child(2)");
-        el.insertBefore($('.things- li div:nth-child(1)'));
-        expect($('.things- li div:nth-child(1)').html()).to.be('cool');
+        var el = $(".things- li:nth-child(2) div");
+        el.insertBefore($('.things- li:nth-child(1) div'));
+        expect($('.things- li:nth-child(1) div').html()).to.be('cool');
       });
       it("removing a child will not remove the right child object from the dom", function() {
         this.things.pop();
-        expect($(".things- li div:nth-child(1)").html()).to.be("cool");
-        expect($(".things- li div:nth-child(2)").html()).to.be("awesome");
+        expect($(".things- li:nth-child(1) .whenCool-").html()).to.be("cool");
+        expect($(".things- li:nth-child(2) .whenAwesome").html()).to.be("awesome");
       });
     });
   });
@@ -119,10 +116,8 @@ describe("A template with looping after scoping", function(){
         this.topLevelObject = new Backbone.Model({ things: this.things });
         this.markup = "<div class='things-'>" +
                           "<div data-each>" +
-                            "<div>" +
                               "<div class=type-'>" +
                               "</div>" +
-                            "</div>" +
                           "</div>" +
                       "</div>";
         this.template = generateTemplate(this.topLevelObject, this.markup);
@@ -131,27 +126,27 @@ describe("A template with looping after scoping", function(){
       this.things[0].set("type", "cool");
       this.things[1].set("type", "awesome");
 
-      expect($(".things- div div:nth-child(1) div").html()).to.be("cool");
-      expect($(".things- div div:nth-child(2) div").html()).to.be("awesome");
+      expect($(".things- div:nth-child(1) .type-").html()).to.be("cool");
+      expect($(".things- div:nth-child(2) .type-").html()).to.be("awesome");
     });
     it("the dom will not update when objects are removed from the array", function(){
       this.things.pop();
-      expect($(".things- div div:nth-child(1) div").html()).to.be("awesome");
+      expect($(".things- div:nth-child(1) .type-").html()).to.be("awesome");
     });
     it("the dom will not update when objects are moved in the array", function(){
       var model1 = this.things[0];
       this.things[0] = this.things[1];
       this.things[1] = model1;
-      expect($(".things- div div:nth-child(1) div").html()).to.be("awesome");
-      expect($(".things- div div:nth-child(2) div").html()).to.be("cool");
+      expect($(".things- div:nth-child(1) .type-").html()).to.be("awesome");
+      expect($(".things- div:nth-child(2) .type-").html()).to.be("cool");
     });
   });
 });
 
 describe("A template with no looping and no scoping", function(){
   beforeEach(function(){
-    this.markup = "<div data-each>" +
-                    "<div>" +
+    this.markup = "<div>" +
+                    "<div data-each>" +
                       "<div class=type-'>" +
                       "</div>" +
                     "</div>" +
