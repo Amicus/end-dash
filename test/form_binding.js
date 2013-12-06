@@ -13,7 +13,7 @@ describe("when the template has an input", function() {
     $(".name-").val("new").change();
     expect(model.get("name")).to.be("new");
   });
-  it("should update the DOM with a radio button to the value of the model", function() {
+  it("should update the DOM with a radio button to the value of the model on next tick", function(done) {
     var model = new Backbone.Model({ name: 1 }),
         markup = '<div class = "model-">' +
                    '<input type="radio" name="name" class="name-" value="1">' +
@@ -21,11 +21,17 @@ describe("when the template has an input", function() {
                  '</div>',
         template = generateTemplate({ model: model }, markup);
 
-    expect($("input:nth-child(1)").is(":checked")).to.be(true);
-    expect($("input:nth-child(2)").is(":checked")).to.be(false);
-    model.set("name", 2);
-    expect($("input:nth-child(1)").is(":checked")).to.be(false);
-    expect($("input:nth-child(2)").is(":checked")).to.be(true);
+    setTimeout(function () {
+        expect($("input:nth-child(1)").is(":checked")).to.be(true);
+        expect($("input:nth-child(2)").is(":checked")).to.be(false);
+
+        model.set("name", 2);
+
+        expect($("input:nth-child(1)").is(":checked")).to.be(false);
+        expect($("input:nth-child(2)").is(":checked")).to.be(true);
+
+        done();
+    }, 0);
   });
 });
 describe("when the template has a select input", function() {
