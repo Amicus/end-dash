@@ -1,0 +1,12 @@
+{
+  "framework": "mocha",
+  "before_tests": "browserify -t brfs test/*.js -o build/test-build.js && browserify -t brfs test/deprecated/*.js -o build/deprecated-test-build.js",
+  "serve_files": [
+    "build/test-build.js",
+    "build/deprecated-test-build.js"
+  ],
+  "src_files": [
+     "test/**/*.js",
+     "lib/**/*.js"
+  ]
+}
