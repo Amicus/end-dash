@@ -29,17 +29,12 @@ describe("Setting a single variable", function() {
           this.template = generateTemplate(this.model, '<div><input class = "singleVariable-" /></div>');
           this.el = $(".singleVariable-");
       });
-
-      it("should set the value on inputs", function(done) {
-        var that = this;
-        setTimeout(function () {
-          expect(that.el.val()).to.be("this is value");
-          done();
-        }, 0)
+      it("should set the value on inputs", function() {
+        expect(this.el.val()).to.be("this is value");
       });
 
       it("should trigger change events on the elements", function(done) {
-        this.el.one('change', function () {
+        this.el.on('change', function () {
             done();
         });
         this.model.set('singleVariable', 'not the other value');
@@ -47,34 +42,27 @@ describe("Setting a single variable", function() {
   });
 
 
-  it("should set the value on select menus when given a string", function(done) {
-    generateTemplate({ singleVariable: "false" },
-                     '<div>' +
-                         '<select class="singleVariable-">' +
-                           '<option value="true">Yes</option>' +
-                           '<option value="false">No</option>' +
-                         '</select>' +
-                       '</div>'
-                     );
-
-    setTimeout(function () {
-      expect($(".singleVariable-").val()).to.be("false");
-      done();
-    }, 0)
+  it("should set the value on select menus when given a string", function() {
+    var template = generateTemplate({ singleVariable: "false" },
+                                    '<div>' +
+                                        '<select class="singleVariable-">' +
+                                          '<option value="true">Yes</option>' +
+                                          '<option value="false">No</option>' +
+                                        '</select>' +
+                                      '</div>'
+                                    );
+    expect($(".singleVariable-").val()).to.be("false");
   });
 
-  it("should set the value on select menus when given a boolean", function(done) {
-    generateTemplate({ singleVariable: false },
-                     '<div>' +
-                         '<select class="singleVariable-">' +
-                           '<option value="true">Yes</option>' +
-                           '<option value="false">No</option>' +
-                         '</select>' +
-                       '</div>'
-                     );
-    setTimeout(function () {
-      expect($(".singleVariable-").val()).to.be("false");
-      done();
-    }, 0)
+  it("should set the value on select menus when given a boolean", function() {
+    var template = generateTemplate({ singleVariable: false },
+                                    '<div>' +
+                                        '<select class="singleVariable-">' +
+                                          '<option value="true">Yes</option>' +
+                                          '<option value="false">No</option>' +
+                                        '</select>' +
+                                      '</div>'
+                                    );
+    expect($(".singleVariable-").val()).to.be("false");
   });
 });
