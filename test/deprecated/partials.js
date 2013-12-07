@@ -9,20 +9,14 @@ var expect = require("expect.js"),
 
 describe("A template with partials", function() {
   it("should do collections", function() {
-    var templates = [
-      "/templates/partials.html",
-      "/templates/embedded_partial.html",
-      "/templates/list_item.html"
-    ];
-
     var model = {
       items: new Backbone.Collection([{ variable: "wat1" }, { variable: "wat2" }]),
       thing: new Backbone.Model({ name: "Zach" })
     };
 
-    _(templates).each(function(template) {
-      EndDash.templateStore.load(template, fs.readFileSync(__dirname + template).toString());
-    });
+    EndDash.templateStore.load("/templates/partials.html", fs.readFileSync(__dirname + "/templates/partials.html").toString());
+    EndDash.templateStore.load("/templates/embedded_partial.html", fs.readFileSync(__dirname + "/templates/embedded_partial.html").toString());
+    EndDash.templateStore.load("/templates/list_item.html", fs.readFileSync(__dirname + "/templates/list_item.html").toString());
 
     var template = generateTemplate(model, '/templates/partials.html');
 

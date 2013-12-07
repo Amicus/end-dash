@@ -117,14 +117,14 @@ describe("A template with looping after scoping", function(){
           new Backbone.Model({ type: "cool" })
         ];
         this.topLevelObject = new Backbone.Model({ things: this.things });
-        this.markup = "<div class='things-'>" +
-                          "<div data-each>" +
-                            "<div>" +
-                              "<div class=type-'>" +
-                              "</div>" +
-                            "</div>" +
-                          "</div>" +
-                      "</div>";
+        this.markup = '<div class="things-">' +
+                          '<div data-each>' +
+                            '<div>' +
+                              '<div class="type-">' +
+                              '</div>' +
+                            '</div>' +
+                          '</div>' +
+                      '</div>';
         this.template = generateTemplate(this.topLevelObject, this.markup);
     });
     it("looping will change when an object types change", function(){
@@ -174,12 +174,12 @@ describe("A template with looping and scoping on the same element", function(){
 
 describe("A template with no looping and no scoping", function(){
   beforeEach(function(){
-    this.markup = "<div data-each>" +
-                    "<div>" +
-                      "<div class=type-'>" +
-                      "</div>" +
-                    "</div>" +
-                  "</div>";
+    this.markup = '<div data-each>' +
+                    '<div>' +
+                      '<div class="type-">' +
+                      '</div>' +
+                    '</div>' +
+                  '</div>';
   });
   describe("bound to an array literal containing backbone models", function(){
     beforeEach(function(){
