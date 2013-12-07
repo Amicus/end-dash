@@ -24,9 +24,9 @@ describe("Setting a single variable", function() {
       { num: 2, word: 'two' },
       { num: 3, word: 'three' }
     ])
-    var template = generateTemplate({ number: 1, numbers: numbers }, this.markup);
+    var template = generateTemplate({ number: 2, numbers: numbers }, this.markup);
 
-    expect($('.number-').val()).to.equal('1')
+    expect($('.number-').val()).to.equal('2')
   });
 
 });
