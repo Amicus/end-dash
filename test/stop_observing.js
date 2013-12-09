@@ -48,11 +48,11 @@ describe("When I clean up a template", function() {
 
   it("should not remove other peoples listeners from the element", function(done) {
     var model = { person: new Model({ name: "zach" }) },
-        markup = '<div class="person-"><input class="name-"></div>',
+        markup = '<div class="person-"><input class="name-" /></div>',
         template = generateTemplate(model, markup);
 
 
-    $(".name-").on("change", function() {
+    $(".name-").one("change", function() {
       done();
     });
 
