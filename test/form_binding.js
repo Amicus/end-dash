@@ -28,18 +28,17 @@ describe("when the template has an input", function() {
     expect($("input:nth-child(2)").is(":checked")).to.be(true);
   });
 });
-describe("when the template has a select input", function() {
-  it("should update the model when it changes to it's change");
-  var originalTestFunctionForWhenNotPending = function() {
-    var model = new Backbone.Model({ val: "2" }),
-        markup = '<div class="model-"><select class="val-">' +
-                   '<option id="opt1" value="1">1</option>' +
-                   '<option id="opt2" value="2">2</option>' +
-                 '</select></div>',
-        template = generateTemplate({ model: model }, markup);
-
-    expect(model.get("val")).to.be("2");
-    $("#opt1").click();
-    expect(model.get("val")).to.be("1");
-  };
-});
+//describe("when the template has a select input", function() {
+//  var originalTestFunctionForWhenNotPending = function() {
+//    var model = new Backbone.Model({ val: "2" }),
+//        markup = '<div class="model-"><select class="val-">' +
+//                   '<option id="opt1" value="1">1</option>' +
+//                   '<option id="opt2" value="2">2</option>' +
+//                 '</select></div>',
+//        template = generateTemplate({ model: model }, markup);
+//
+//    expect(model.get("val")).to.be("2");
+//    $("#opt1").click();
+//    expect(model.get("val")).to.be("1");
+//  };
+//});
