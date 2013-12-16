@@ -1,0 +1,42 @@
+{
+  "name": "end-dash",
+  "repo": "Amicus/end-dash",
+  "description": "templates with a dash at the end http://www.enddash.com",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "Amicus/path": "*",
+    "components/underscore": "*",
+    "components/backbone": "*",
+    "xcoderzach/inflection": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "lib/compile.js",
+    "lib/underscore.js",
+    "lib/backbone.js",
+    "lib/end-dash.js",
+    "lib/page_helper.js",
+    "lib/parser.js",
+    "lib/reaction.js",
+    "lib/rules.js",
+    "lib/template.js",
+    "lib/template_store.js",
+    "lib/util.js",
+    "lib/view_store.js",
+    "lib/reactions/attribute.js",
+    "lib/reactions/conditional.js",
+    "lib/reactions/debugger.js",
+    "lib/reactions/deprecated_looping.js",
+    "lib/reactions/looping.js",
+    "lib/reactions/model.js",
+    "lib/reactions/partial.js",
+    "lib/reactions/scope.js",
+    "lib/reactions/variable.js",
+    "lib/reactions/view.js"
+  ],
+  "remotes": []
+}

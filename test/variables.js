@@ -2,7 +2,7 @@ require('./support/helper');
 
 var expect = require("expect.js"),
     generateTemplate = require("./support/generate_template"),
-    Backbone = require('../lib/end-dash').Backbone;
+    Backbone = require('../lib/backbone');
 
 require("../lib/template");
 

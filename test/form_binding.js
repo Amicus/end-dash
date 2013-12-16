@@ -1,7 +1,7 @@
 require('./support/helper');
 
 var expect = require("expect.js"),
-    Backbone = require('../lib/end-dash').Backbone,
+    Backbone = require('../lib/backbone'),
     generateTemplate = require("./support/generate_template");
 
 describe("when the template has an input", function() {

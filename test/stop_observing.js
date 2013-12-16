@@ -1,6 +1,6 @@
 require('./support/helper');
 
-var Model = require('../lib/end-dash').Backbone.Model,
+var Model = require('../lib/backbone').Model,
     expect = require("expect.js"),
     generateTemplate = require("./support/generate_template");
 

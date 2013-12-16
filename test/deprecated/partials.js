@@ -4,7 +4,7 @@ var expect = require("expect.js"),
     fs = require("fs"),
     _ = require("underscore"),
     EndDash = require("../../lib/end-dash"),
-    Backbone = EndDash.Backbone,
+    Backbone = require('../../lib/backbone'),
     generateTemplate = require("../support/generate_template");
 
 describe("A template with partials", function() {
