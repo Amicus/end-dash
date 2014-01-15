@@ -4,6 +4,34 @@ var Model = require('../lib/end-dash').Backbone.Model,
     expect = require("expect.js"),
     generateTemplate = require("./support/generate_template");
 
+describe("Updating the DOM on model changes", function(){
+  describe("on a markup using the attribute 'name'", function(){
+    beforeEach(function(){
+      this.markup = '<div><div id="target" class="#{name}"></div></div>';
+    });
+
+    describe("with a backbone model bound to the markup", function(){
+      beforeEach(function(){
+        this.model = new Model({name: "Zachary"});
+        this.template = generateTemplate(this.model, this.markup);
+      });
+
+      it("interpolates the 'name' value", function(){
+        expect($('#target').hasClass(this.model.get('name'))).to.be(true);
+      });
+      describe("changing the model without events and then triggering an event manually", function(){
+        beforeEach(function(){
+          this.model.attributes.name = "Zach";
+          this.model.trigger('change:name');
+        });
+        it("interpolates the new value of the attribute", function(){
+          expect($('#target').hasClass(this.model.get('name'))).to.be(true);
+        });
+      });
+    });
+  });
+});
+
 describe("An element with an attribute", function() {
   beforeEach(function() {
     this.markup = '<div><a href="/person/#{name}" id = "link"></a></div>';
