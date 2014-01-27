@@ -15,5 +15,7 @@ branches:
   only:
   - master
   - production
+before_script:
+  - npm install -g grunt-cli
 script:
-- mocha -R spec test
+  - grunt test
