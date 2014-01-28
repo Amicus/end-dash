@@ -16,6 +16,9 @@ branches:
   - master
   - production
 before_script:
+  # http://stackoverflow.com/questions/16638573/auto-authorize-ssh-auth-requests-on-travis-ci
+  # to make npm install not hang
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - npm install -g grunt-cli
 script:
   - grunt test
