@@ -7,9 +7,9 @@ var expect = require('expect.js'),
 describe('A collection template with data-switch attributes', function() {
   var markup =
     '<ul data-each data-switch="role">'+
-    '  <div data-when="superhero" class="#{tag} #{role}">I\'ll save you!</div>'+
-    '  <div data-when="supervillain" class="#{tag} #{role}">I will not.</div>'+
-    '  <div data-else class="#{tag} #{role}">I am going to run.</div>'+
+    '  <div data-case="superhero" class="#{tag} #{role}">I\'ll save you!</div>'+
+    '  <div data-case="supervillain" class="#{tag} #{role}">I will not.</div>'+
+    '  <div data-default class="#{tag} #{role}">I am going to run.</div>'+
     '</ul>';
 
   describe('backed by a regular object', function() {
