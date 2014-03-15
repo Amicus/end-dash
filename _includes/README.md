@@ -1,4 +1,3 @@
-
 Getting Started
 =======
 
@@ -358,9 +357,9 @@ that may be present, with or without a false condition:
 ```
 
 The same truthiness controls conditional visibility EndDash class elements that start with `is` or `has`,
-and their boolean opposites `isNot` and `hasNot`, as above with `isAvailable-`.  EndDash will hide (via a
+and their boolean opposites `isNot` and `hasNo`, as above with `isAvailable-`.  EndDash will hide (via a
 `display:none` style attribute) any such element when its named attribute is falsy (or hide when truthy in
-the case of `isNot` and `hasNot`.)
+the case of `isNot` and `hasNo`.)
 
 ```js
 template.bind({
