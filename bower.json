@@ -1,9 +1,9 @@
 {
   "name": "end-dash",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "main": "./lib/end-dash.js",
   "dependencies": {
-    "jquery": "1.8.x",
+    "jquery": "1.8.3",
     "inflection": "x.x.x",
     "underscore": "1.4.x"
   }
