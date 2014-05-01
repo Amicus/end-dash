@@ -11,3 +11,7 @@ before(function(done) {
     done();
   });
 });
+
+afterEach(function(){
+  this.template.cleanup()
+})
