@@ -13,5 +13,5 @@ before(function(done) {
 });
 
 afterEach(function(){
-  this.template.cleanup()
+  this.template.cleanup();
 })
