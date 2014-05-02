@@ -71,7 +71,6 @@ describe("When I clean up a template", function() {
       ]);
 
       var markup = fs.readFileSync(__dirname + "/support/templates/polymorphic.html").toString();
-      this.things.name = 'blo'
       this.template = generateTemplate({things: this.things}, markup);
 
       this.template.cleanup();
@@ -83,6 +82,39 @@ describe("When I clean up a template", function() {
 
       this.things.reset();
       expect($('[data-each]').children().length).to.be(2);
+    });
+
+    it("it does not error when you remove the HTML and then remove a model ", function(){
+      $('.things-').remove()
+      this.things.pop();
+      // This is a very specific bug
+      // JQuery#remove, destroys all listeners/properties from the
+      // elements it removes. Without #cleanup, changing the things
+      // collection after #remove will error because the looping reaction
+      // attempts to delete the DOM element that corrospends to the model
+      // removed. Which is no longer there. Thus undefined.el.remove -> error
+    })
+  });
+
+  describe("with a deprecated template with a collection reaction", function(){
+    beforeEach(function(){
+      this.things = new Collection([
+        new Model({ type: "awesome" }),
+        new Model({ type: "cool" })
+      ]);
+
+      var markup = fs.readFileSync(__dirname + "/deprecated/templates/polymorphic.html").toString();
+      this.template = generateTemplate({things: this.things}, markup);
+
+      this.template.cleanup();
+    });
+
+    it("Does not react", function(){
+      this.things.add(new Model({type: "awesome"}));
+      expect($('.things-').children().length).to.be(2);
+
+      this.things.reset();
+      expect($('.things-').children().length).to.be(2);
     });
 
     it("it does not error when you remove the HTML and then remove a model ", function(){
