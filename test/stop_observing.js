@@ -85,7 +85,7 @@ describe("When I clean up a template", function() {
     });
 
     it("it does not error when you remove the HTML and then remove a model ", function(){
-      $('.things-').remove()
+      $('.things-').remove();
       this.things.pop();
       // This is a very specific bug
       // JQuery#remove, destroys all listeners/properties from the
@@ -93,7 +93,7 @@ describe("When I clean up a template", function() {
       // collection after #remove will error because the looping reaction
       // attempts to delete the DOM element that corrospends to the model
       // removed. Which is no longer there. Thus undefined.el.remove -> error
-    })
+    });
   });
 
   describe("with a deprecated template with a collection reaction", function(){
@@ -118,7 +118,7 @@ describe("When I clean up a template", function() {
     });
 
     it("it does not error when you remove the HTML and then remove a model ", function(){
-      $('.things-').remove()
+      $('.things-').remove();
       this.things.pop();
       // This is a very specific bug
       // JQuery#remove, destroys all listeners/properties from the
@@ -126,7 +126,43 @@ describe("When I clean up a template", function() {
       // collection after #remove will error because the looping reaction
       // attempts to delete the DOM element that corrospends to the model
       // removed. Which is no longer there. Thus undefined.el.remove -> error
-    })
+    });
+  });
+
+  describe("A template with lots of scoping", function() {
+    describe("which has data-scope attributes", function() {
+      before(function() {
+        this.dude = new Model({name: 'dude'});
+        this.item = new Model({name: 'item'});
+        this.thing = new Model({name: 'thing', dude: this.dude, item: this.item});
+        this.model = new Model({name: 'model', thing: this.thing, item: this.item});
+        this.sock = new Model({name: 'sock'});
+        this.boot = new Model({name: 'boot', sock: this.sock});
+        this.root = new Model({name: 'root', boot: this.boot, model: this.model});
+        this.template = generateTemplate(this.root, fs.readFileSync(__dirname + "/support/templates/scopes.html").toString());
+        // this.template.cleanup()
+      });
+
+      it("should be able to access the root scope", function() {
+        expect($("#rootName").html()).to.be("root");
+      });
+
+      it("should be able to access child models of the root scope", function() {
+        expect($("#modelName").html()).to.be("model");
+      });
+
+      it("should be able to access a relative scope", function() {
+        expect($("#thingName").html()).to.be("thing");
+      });
+
+      it("should be able to access a model after relative scope", function() {
+        expect($("#itemName").html()).to.be("item");
+      });
+
+      it("should be able to modify the scope of a model", function() {
+        expect($("#sockName").html()).to.be("sock");
+      });
+    });
   });
 
 });
