@@ -140,24 +140,23 @@ describe("When I clean up a template", function() {
         this.boot = new Model({name: 'boot', sock: this.sock});
         this.root = new Model({name: 'root', boot: this.boot, model: this.model});
         this.template = generateTemplate(this.root, fs.readFileSync(__dirname + "/support/templates/scopes.html").toString());
-        this.template.cleanup()
+        this.template.cleanup();
       });
 
       it("should be able to access child models of the root scope", function() {
-        this.root.set('model', new Model({name: 'crazy'}))
+        this.root.set('model', new Model({name: 'crazy'}));
         expect($("#modelName").html()).to.be("model");
       });
 
       it("should be able to access a relative scope", function() {
-        this.model.set('thing', new Model({dude: this.dude, name: 'otherThing', item: this.item}))
+        this.model.set('thing', new Model({dude: this.dude, name: 'otherThing', item: this.item}));
         expect($("#thingName").html()).to.be("thing");
       });
 
       it("should be able to modify the scope of a model", function() {
-        this.boot.set('sock', new Model({name: 'Bryant'}))
+        this.boot.set('sock', new Model({name: 'Bryant'}));
         expect($("#sockName").html()).to.be("sock");
       });
     });
   });
-
 });
