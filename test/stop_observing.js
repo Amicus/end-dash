@@ -180,7 +180,8 @@ describe("When I clean up a template", function() {
 
       it("should remove listeners from the nested collection", function() {
         this.nestedCollection.pop() // Note, this was erroring beforehand
-                                    // Not expecting an error because Mochajs w/ virtual DOM has a bug :(
+                                    // We cannot use expect.js `.to.not.throwException` here due to an error with Mocha
+                                    // and the virtual DOM.  See: 
       });
     });
   });
