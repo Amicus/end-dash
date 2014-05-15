@@ -159,4 +159,32 @@ describe("When I clean up a template", function() {
       });
     });
   });
+
+  describe("A template with nested looping", function() {
+    describe("which has data-scope attributes", function() {
+      before(function() {
+        this.dude = new Model({name: 'dude'});
+        this.item = new Model({name: 'item'});
+        this.nestedCollection = new Collection([this.dude, this.item]);
+        this.nestedCollectionModel = new Model({nested: this.nestedCollection});
+        this.collection = new Collection(this.nestedCollectionModel);
+        this.template = generateTemplate(this.collection,'<div id="head" data-each>\
+            <div class="nested-" data-each>\
+              <span class="name-"></span>\
+            </div>\
+           </div>'
+        );
+        this.template.cleanup();
+        $('body').html('') // Remove data properties EndDash Template
+      });
+
+      it("should remove listeners from the nested collection", function() {
+        var that = this,
+            popItem = function() {
+              that.nestedCollection.pop();
+            };
+        expect(popItem).to.not.throwException();
+      });
+    });
+  });
 });
