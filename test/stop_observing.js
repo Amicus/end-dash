@@ -175,13 +175,15 @@ describe("When I clean up a template", function() {
            </div>'
         );
         this.template.cleanup();
-        $('body').html('') // Remove data properties from DOM
+        $('body').html('') // Remove data properties EndDash Template
       });
 
       it("should remove listeners from the nested collection", function() {
-        this.nestedCollection.pop() // Note, this was erroring beforehand
-                                    // We cannot use expect.js `.to.not.throwException` here due to an error with Mocha
-                                    // and the virtual DOM.  See: 
+        var that = this,
+            popItem = function() {
+              that.nestedCollection.pop();
+            };
+        expect(popItem).to.not.throwException();
       });
     });
   });
